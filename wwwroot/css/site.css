@@ -1,16 +1,8 @@
 html {
     font-size: 14px;
-}
-
-@media (min-width: 768px) {
-    html {
-        font-size: 16px;
-    }
-}
-
-html {
     position: relative;
     min-height: 100%;
+    overflow: auto;
 }
 
 ::-webkit-scrollbar {
@@ -32,7 +24,12 @@ html {
     }
 
 body {
-    margin-bottom: 60px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #f8f9fa;
+    overflow-x: auto;
 }
 
 .account-login-form,
@@ -181,6 +178,10 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
     }
 
 @media (max-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+
     .form-inline button {
         font-size: 14px;
     }
