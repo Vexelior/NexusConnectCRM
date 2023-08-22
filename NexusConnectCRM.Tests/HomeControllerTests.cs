@@ -13,18 +13,63 @@ namespace NexusConnectCRM.Tests
 {
     public class HomeControllerTests
     {
+        private readonly Mock<ILogger<HomeController>> _logger;
+
+        public HomeControllerTests()
+        {
+            _logger = new Mock<ILogger<HomeController>>();
+        }
+
         [Fact]
         public void Index_ReturnsAViewResult()
         {
             // Arrange
-            var logger = new Mock<ILogger<HomeController>>();
-            var controller = new HomeController(logger.Object);
+            var controller = new HomeController(_logger.Object);
 
             // Act
             var result = controller.Index();
 
             // Assert
             Assert.IsType<ViewResult>(result);
-        } 
+        }
+
+        [Fact]
+        public void About_ReturnsAViewResult()
+        {
+            // Arrange
+            var controller = new HomeController(_logger.Object);
+
+            // Act
+            var result = controller.About();
+
+            // Assert
+            Assert.IsType<ViewResult>(result);
+        }
+
+        [Fact]
+        public void Privacy_ReturnsAViewResult()
+        {
+            // Arrange
+            var controller = new HomeController(_logger.Object);
+
+            // Act
+            var result = controller.Privacy();
+
+            // Assert
+            Assert.IsType<ViewResult>(result);
+        }
+
+        [Fact]
+        public void FAQ_ReturnsAViewResult()
+        {
+            // Arrange
+            var controller = new HomeController(_logger.Object);
+
+            // Act
+            var result = controller.FAQ();
+
+            // Assert
+            Assert.IsType<ViewResult>(result);
+        }
     }
 }
