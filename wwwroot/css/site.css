@@ -30,6 +30,7 @@ body {
     color: #212529;
     background-color: #f8f9fa;
     overflow-x: auto;
+    margin-bottom: 60px;
 }
 
 .account-login-form,
@@ -162,6 +163,15 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
     margin-bottom: 0;
 }
 
+.employeeTaskChart {
+    width: 50%;
+    height: 50%;
+}
+
+.list-group  button {
+    font-size: 14px;
+}
+
 .footer {
     position: absolute;
     bottom: 0;
@@ -262,6 +272,11 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
 
     .portal-profile-edit-button {
         font-size: 14px;
+    }
+
+    .employeeTaskChart {
+        width: 100%;
+        height: 100%;
     }
 
     footer {
