@@ -17,6 +17,7 @@ namespace NexusConnectCRM.Data.Models.Customer
         public string Country { get; set; }
         public string CompanyName { get; set; }
         public int PhoneNumber { get; set; }
+        public int CompanyId { get; set; }
         public string UserId { get; set; }
     }
 }

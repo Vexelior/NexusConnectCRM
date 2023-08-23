@@ -7,6 +7,7 @@ using NexusConnectCRM.Data;
 using NexusConnectCRM.Data.Migrations;
 using NexusConnectCRM.Data.Models.Company;
 using NexusConnectCRM.Data.Models.Identity;
+using NexusConnectCRM.Data.Models.Prospect;
 
 namespace NexusConnectCRM.Areas.Prospect.Controllers
 {
@@ -26,7 +27,7 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
 
             if (!string.IsNullOrEmpty(user))
             {
-                ApplicationUser verifiedUser = await _context.Users.FirstOrDefaultAsync(u => u.UserName == user);
+                ProspectInfo verifiedUser = await _context.Prospects.FirstOrDefaultAsync(u => u.EmailAddress == user);
 
                 if (verifiedUser == null)
                 {
@@ -41,7 +42,7 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
 
                     if (verifiedUser.CompanyId == 0)
                     {
-                        return await ProspectCompanyDetails(verifiedUser.Id);
+                        return await ProspectCompanyDetails(verifiedUser.UserId);
                     }
                     else
                     {
@@ -72,7 +73,7 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
         [HttpPost]
         public async Task<IActionResult> CompanyDetails(ProspectCompanyDetailsViewModel viewModel)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == viewModel.UserId);
+            var user = await _context.Prospects.FirstOrDefaultAsync(u => u.UserId == viewModel.UserId);
 
             if (user == null)
             {
@@ -110,7 +111,7 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
                     Industry = companyModel.Industry
                 };
 
-                var potentialCompany = await _context.Companies.FirstOrDefaultAsync(c => c.Name == company.Name &&
+                Company potentialCompany = await _context.Companies.FirstOrDefaultAsync(c => c.Name == company.Name &&
                                                                                              c.Industry == company.Industry);
                 if (potentialCompany != null)
                 {
@@ -164,7 +165,7 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
         [HttpPost]
         public async Task<IActionResult> ProspectDetails(ProspectUserDetailsViewModel viewModel)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == viewModel.UserId);
+            var user = await _context.Prospects.FirstOrDefaultAsync(u => u.UserId == viewModel.UserId);
 
             if (user == null)
             {

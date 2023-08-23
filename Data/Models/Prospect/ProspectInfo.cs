@@ -14,6 +14,7 @@
         public string Country { get; set; }
         public string CompanyName { get; set; }
         public string PhoneNumber { get; set; }
+        public int CompanyId { get; set; }
         public string UserId { get; set; }
     }
 }

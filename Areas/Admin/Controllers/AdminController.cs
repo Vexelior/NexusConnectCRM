@@ -68,12 +68,6 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 DateOfBirth = DateTime.Parse(user.DateOfBirth.ToString()).ToString("MM/dd/yyyy"),
-                Address = user.Address,
-                City = user.City,
-                State = user.State,
-                ZipCode = user.ZipCode,
-                Country = user.Country,
-                CompanyName = user.CompanyName,
                 Roles = selectListItems
             };
 
@@ -98,12 +92,6 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                 user.LastName = viewModel.LastName;
                 user.Email = viewModel.Email;
                 user.DateOfBirth = Convert.ToDateTime(viewModel.DateOfBirth);
-                user.Address = viewModel.Address;
-                user.City = viewModel.City;
-                user.State = viewModel.State;
-                user.ZipCode = viewModel.ZipCode;
-                user.Country = viewModel.Country;
-                user.CompanyName = viewModel.CompanyName;
 
                 if (string.IsNullOrEmpty(viewModel.SelectedRole))
                 {

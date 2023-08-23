@@ -52,12 +52,12 @@ namespace NexusConnectCRM.Areas.Admin.ViewModels
             Email = user.Email;
             DateOfBirth = Convert.ToDateTime(user.DateOfBirth).ToString("MM/dd/yyyy");
             PhoneNumber = user.PhoneNumber;
-            Address = user.Address;
-            City = user.City;
-            State = user.State;
-            ZipCode = user.ZipCode;
-            Country = user.Country;
-            CompanyName = user.CompanyName;
+            //Address = user.Address;
+            //City = user.City;
+            //State = user.State;
+            //ZipCode = user.ZipCode;
+            //Country = user.Country;
+            //CompanyName = user.CompanyName;
         }
     }
 }
