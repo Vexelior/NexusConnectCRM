@@ -5,7 +5,6 @@ using NexusConnectCRM.Data;
 using Microsoft.AspNetCore.Identity;
 using NexusConnectCRM.Data.Models.Identity;
 using NexusConnectCRM.Areas.Employee.ViewModels;
-using NexusConnectCRM.Data.Models.Customer;
 
 namespace NexusConnectCRM.Areas.Employee.Controllers
 {
@@ -44,7 +43,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
 
         public async Task<IActionResult> ViewProspects()
         {
-            var users = await _context.Users.Where(x => x.Roles.Equals("Prospect")).ToListAsync();
+            var users = await _context.Prospects.ToListAsync();
 
             if (users == null)
             {
