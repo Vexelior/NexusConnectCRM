@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NexusConnectCRM.Data.Models.Company;
 using NexusConnectCRM.Data.Models.Identity;
+using NexusConnectCRM.Data.Models.Prospect;
 using System.ComponentModel.DataAnnotations;
 
 namespace NexusConnectCRM.Areas.Prospect.ViewModels
@@ -37,9 +38,9 @@ namespace NexusConnectCRM.Areas.Prospect.ViewModels
         {
         }
 
-        public ProspectCompanyDetailsViewModel(ApplicationUser user)
+        public ProspectCompanyDetailsViewModel(ProspectInfo user)
         {
-            UserId = user.Id;
+            UserId = user.UserId;
         }
     }
 }

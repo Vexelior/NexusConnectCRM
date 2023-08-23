@@ -58,7 +58,7 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
 
         public async Task<IActionResult> ProspectCompanyDetails(string id)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+            var user = await _context.Prospects.FirstOrDefaultAsync(u => u.UserId == id);
 
             if (user == null)
             {
@@ -149,7 +149,7 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
 
         public async Task<IActionResult> CompleteUserDetails(string id)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+            var user = await _context.Prospects.FirstOrDefaultAsync(u => Convert.ToString(u.Id) == id);
 
             if (user == null)
             {
@@ -181,7 +181,7 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
                     Country = viewModel.Country,
                     City = viewModel.City,
                     State = viewModel.State,
-                    ZipCode = viewModel.ZipCode,
+                    ZipCode = viewModel.ZipCode
                 };
 
                 user.Address = prospectModel.Address;
