@@ -1,10 +1,9 @@
-﻿using NexusConnectCRM.Data.Models.Identity;
-using System.ComponentModel.DataAnnotations;
+﻿using NexusConnectCRM.Data.Models.Customer;
 
 namespace NexusConnectCRM.Areas.Employee.ViewModels
 {
     public class ListCustomersViewModel
     {
-        public IEnumerable<ApplicationUser> Users { get; set; }
+        public List<CustomerInfo> Users { get; set; }
     }
 }

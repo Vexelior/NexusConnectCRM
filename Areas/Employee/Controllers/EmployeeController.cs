@@ -60,7 +60,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
 
         public async Task<IActionResult> ViewCustomers()
         {
-            var users = await _context.Users.Where(x => x.Roles.Equals("Customer")).ToListAsync();
+            var users = await _context.Customers.ToListAsync();
 
             if (users == null)
             {

@@ -13,15 +13,16 @@
                     <tr>
                         <th scope="col">First Name</th>
                         <th scope="col">Last Name</th>
-@*                        <th scope="col">Company Name</th>
-*@                        <th scope="col">Email</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Date of Birth</th>
                         <th scope="col">Phone Number</th>
-@*                        <th scope="col">Address</th>
+                        <th scope="col">Address</th>
                         <th scope="col">City</th>
                         <th scope="col">State</th>
                         <th scope="col">Zip Code</th>
                         <th scope="col">Country</th>
-*@                    </tr>
+                        <th scope="col">Company Name</th>
+                    </tr>
                 </thead>
                 <tbody>
                     @foreach (var customer in Model.Users)
@@ -29,14 +30,15 @@
                         <tr>
                             <td>@customer.FirstName</td>
                             <td>@customer.LastName</td>
-@*                            <td>@customer.CompanyName</td>
-*@                            <td>@customer.Email</td>
+                            <td>@customer.EmailAddress</td>
+                            <td>@customer.DateOfBirth</td>
                             <td>@customer.PhoneNumber</td>
-@*                            <td>@customer.Address</td>
+                            <td>@customer.Address</td>
                             <td>@customer.City</td>
                             <td>@customer.State</td>
                             <td>@customer.ZipCode</td>
-                            <td>@customer.Country</td>*@
+                            <td>@customer.Country</td>
+                            <td>@customer.CompanyName</td>
                         </tr>
                     }
                 </tbody>
