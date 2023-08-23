@@ -138,7 +138,6 @@ namespace NexusConnectCRM.Areas.Identity.Pages.Account
                 user.LastName = Input.LastName;
                 user.PhoneNumber = Input.PhoneNumber;
                 user.DateOfBirth = Input.DateOfBirth;
-                user.CompanyId = 0;
                 user.Roles = "Prospect";
                 user.EmailConfirmed = true;
 

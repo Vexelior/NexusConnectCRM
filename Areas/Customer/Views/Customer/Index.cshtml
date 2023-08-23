@@ -5,8 +5,8 @@
     ViewData["Title"] = "Customer Portal";
     Layout = "~/Views/Shared/_CustomerPortalLayout.cshtml";
 
-    var userCompanyId = Model.User?.CompanyId;
-    var userCompany = _context.Companies?.FirstOrDefault(c => c.Id == userCompanyId);
+    //var userCompanyId = Model.User?.CompanyId;
+    //var userCompany = _context.Companies?.FirstOrDefault(c => c.Id == userCompanyId);
 }
 
 <div class="container mt-5">
@@ -32,7 +32,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+@*        <div class="col-md-6">
             <div class="card prospect-info-card">
                 <i class="fa fa-solid fa-building mt-3" style="font-size: 24px;"></i>
                 <h1 class="text-center">@userCompany.Name</h1>
@@ -52,7 +52,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>*@
     </div>
     <div class="row">
         <div class="col-md-4">

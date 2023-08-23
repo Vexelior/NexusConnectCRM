@@ -1,13 +1,4 @@
-﻿@using Microsoft.AspNetCore.Identity
-@inject NexusConnectCRM.Data.ApplicationDbContext _context
-@using System.Linq
-
-@{
-    var userId = _context.Users.FirstOrDefault(u => u.Email == User.Identity.Name)?.CompanyId;
-    var userCompanyId = _context.Companies.FirstOrDefault(c => c.Id == userId)?.Id;
-}
-
-<a class="list-group-item list-group-item-action list-group-item-light p-3" asp-controller="Home" asp-action="Index">
+﻿<a class="list-group-item list-group-item-action list-group-item-light p-3" asp-controller="Home" asp-action="Index">
     Home
 </a>
 <a class="list-group-item list-group-item-action list-group-item-light p-3" asp-controller="Prospect" asp-action="Index">Dashboard</a>

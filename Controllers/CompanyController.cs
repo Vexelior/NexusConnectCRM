@@ -16,24 +16,24 @@ namespace NexusConnectCRM.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> UpdateUserCompanyDetails(int? id)
-        {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+        //public async Task<IActionResult> UpdateUserCompanyDetails(int? id)
+        //{
+        //    var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
 
-            if (id == null || _context.Companies == null || user == null)
-            {
-                return NotFound();
-            }
+        //    if (id == null || _context.Companies == null || user == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var userCompany = await _context.Companies.FirstOrDefaultAsync(x => x.Id == user.CompanyId);
+        //    var userCompany = await _context.Companies.FirstOrDefaultAsync(x => x.Id == user.CompanyId);
 
-            if (userCompany == null)
-            {
-                return NotFound();
-            }
+        //    if (userCompany == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View("UpdateUserCompanyDetails", userCompany);
-        }
+        //    return View("UpdateUserCompanyDetails", userCompany);
+        //}
 
         [HttpPost]
         [ValidateAntiForgeryToken]
