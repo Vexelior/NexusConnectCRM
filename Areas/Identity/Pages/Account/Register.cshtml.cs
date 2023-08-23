@@ -39,7 +39,8 @@ namespace NexusConnectCRM.Areas.Identity.Pages.Account
             IUserStore<ApplicationUser> userStore,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender, 
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -47,6 +48,7 @@ namespace NexusConnectCRM.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _context = context;
         }
 
         /// <summary>
@@ -147,6 +149,7 @@ namespace NexusConnectCRM.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+                    await CreateProspect(user);
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return LocalRedirect(returnUrl);
                    
@@ -155,8 +158,6 @@ namespace NexusConnectCRM.Areas.Identity.Pages.Account
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
-
-                await CreateProspect(user);
             }
 
             // If we got this far, something failed, redisplay form
@@ -182,9 +183,9 @@ namespace NexusConnectCRM.Areas.Identity.Pages.Account
                     UserId = user.Id,
                 };
 
-                if (_context.Prospects.Any(p => p.EmailAddress == user.Email || p.UserId == user.Id))
+                if (_context.Prospects != null && _context.Prospects.Any(p => p.EmailAddress == user.Email))
                 {
-                    ModelState.AddModelError(string.Empty, $"There is already a prospect with the email address {user.Email} or the user id {user.Id}");
+                    ModelState.AddModelError(string.Empty, $"There is already a account with the email address {user.Email}.");
                     return;
                 }
 
