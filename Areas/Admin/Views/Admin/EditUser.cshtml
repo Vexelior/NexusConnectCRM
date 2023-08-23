@@ -73,11 +73,9 @@
                     @Html.DropDownListFor(m => m.SelectedRole, Model.Roles, new { @class = "form-control form-select" })
                     @Html.ValidationMessageFor(m => m.Roles, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary" style="width: auto;">Save</button>
-                    <input type="button" value="Cancel" class="btn btn-secondary" onclick="history.back()" />
-                </div>
+                <button type="submit" class="btn btn-primary w-100">Save</button>
             }
+            <a href="@Url.Action("Index", "Admin")" class="btn btn-secondary w-100">Cancel</a>
         </div>
     </div>
 </div>
