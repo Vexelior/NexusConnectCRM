@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using NexusConnectCRM.Data;
 using NexusConnectCRM.Data.Models.Identity;
 using NexusConnectCRM.Data.Models.Prospect;
 
@@ -25,6 +26,7 @@ namespace NexusConnectCRM.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
     {
+        private readonly ApplicationDbContext _context;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IUserStore<ApplicationUser> _userStore;
@@ -138,12 +140,6 @@ namespace NexusConnectCRM.Areas.Identity.Pages.Account
                 user.Roles = "Prospect";
                 user.EmailConfirmed = true;
 
-                ProspectInfo prospect = new()
-                {
-                    
-                };
-
-
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
@@ -159,10 +155,46 @@ namespace NexusConnectCRM.Areas.Identity.Pages.Account
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
+
+                await CreateProspect(user);
             }
 
             // If we got this far, something failed, redisplay form
             return Page();
+        }
+
+        private async Task CreateProspect(ApplicationUser user)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException(nameof(user));
+            }
+
+            try
+            {
+                ProspectInfo prospect = new()
+                {
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    EmailAddress = user.Email,
+                    PhoneNumber = user.PhoneNumber,
+                    DateOfBirth = user.DateOfBirth,
+                    UserId = user.Id,
+                };
+
+                if (_context.Prospects.Any(p => p.EmailAddress == user.Email || p.UserId == user.Id))
+                {
+                    ModelState.AddModelError(string.Empty, $"There is already a prospect with the email address {user.Email} or the user id {user.Id}");
+                    return;
+                }
+
+                _context.Prospects.Add(prospect);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, $"There was a problem with creating your account. \n\n {ex.Message}");
+            }
         }
 
         private ApplicationUser CreateUser()
