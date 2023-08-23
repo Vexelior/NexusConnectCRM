@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using NexusConnectCRM.Data.Models.Identity;
+using NexusConnectCRM.Data.Models.Prospect;
 
 namespace NexusConnectCRM.Areas.Identity.Pages.Account
 {
@@ -136,6 +137,12 @@ namespace NexusConnectCRM.Areas.Identity.Pages.Account
                 user.CompanyId = 0;
                 user.Roles = "Prospect";
                 user.EmailConfirmed = true;
+
+                ProspectInfo prospect = new()
+                {
+                    
+                };
+
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);

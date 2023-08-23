@@ -28,9 +28,9 @@ namespace NexusConnectCRM.Data
             }
         }
 
-        public DbSet<Prospect> Prospects { get; set; } = null!;
-        public DbSet<Customer> Customers { get; set; } = null!;
-        public DbSet<Employee> Employees { get; set; } = null!;
+        public DbSet<ProspectInfo> Prospects { get; set; } = null!;
+        public DbSet<CustomerInfo> Customers { get; set; } = null!;
+        public DbSet<EmployeeInfo> Employees { get; set; } = null!;
         public DbSet<ProspectEmployee> ProspectEmployees { get; set; } = null!;
         public DbSet<CustomerEmployee> CustomerEmployees { get; set; } = null!;
         public DbSet<Company> Companies { get; set; } = null!;
