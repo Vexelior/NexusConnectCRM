@@ -180,6 +180,10 @@ namespace NexusConnectCRM.Areas.Identity.Pages.Account
                     PhoneNumber = user.PhoneNumber,
                     DateOfBirth = user.DateOfBirth,
                     UserId = user.Id,
+                    CreatedDate = DateTime.Now,
+                    ModifiedDate = DateTime.Now,
+                    IsActive = true,
+                    IsContacted = false,
                 };
 
                 if (_context.Prospects != null && _context.Prospects.Any(p => p.EmailAddress == user.Email))

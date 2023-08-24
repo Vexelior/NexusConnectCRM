@@ -91,5 +91,22 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
 
             return View("~/Areas/Employee/Views/Employee/ViewCompanies.cshtml", viewModel);
         }
+
+        public async Task<IActionResult> MarkContacted(int id)
+        {
+            var prospect = await _context.Prospects.FirstOrDefaultAsync(m => m.Id == id);
+
+            if (prospect == null)
+            {
+                return NotFound();
+            }
+
+            prospect.IsContacted = true;
+
+            _context.Update(prospect);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("ViewProspects", "Employee");
+        }
     }
 }

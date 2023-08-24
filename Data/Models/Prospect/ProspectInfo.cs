@@ -16,5 +16,9 @@
         public string PhoneNumber { get; set; }
         public int CompanyId { get; set; }
         public string UserId { get; set; }
+        public bool IsActive { get; set; }
+        public bool IsContacted { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime ModifiedDate { get; set; }
     }
 }

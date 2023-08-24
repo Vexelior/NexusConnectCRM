@@ -22,6 +22,8 @@
                         <th scope="col">Zip Code</th>
                         <th scope="col">Country</th>
                         <th scope="col">Company Name</th>
+                        <th scope="col">Contacted?</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,6 +41,21 @@
                             <td>@customer.ZipCode</td>
                             <td>@customer.Country</td>
                             <td>@customer.CompanyName</td>
+                            @if (customer.IsContacted == false)
+                            {
+                                <td>
+                                    <i class="fa fa-times" aria-hidden="true" style="color: red"></i>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <i class="fa fa-check" aria-hidden="true" style="color: green"></i>
+                                </td>
+                            }
+                            <td>
+                                <a href="@Url.Action("MarkContacted", "Employee", new { id = customer.Id })" class="btn btn-secondary">Contacted</a>
+                            </td>
                         </tr>
                     }
                 </tbody>

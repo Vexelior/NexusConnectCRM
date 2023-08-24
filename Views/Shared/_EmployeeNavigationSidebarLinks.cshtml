@@ -5,6 +5,14 @@
 @{
     // var userId = _context.Users.FirstOrDefault(u => u.Email == User.Identity.Name)?.CompanyId;
     // var userCompanyId = _context.Companies.FirstOrDefault(c => c.Id == userId)?.Id;
+    var prospectsNeededContact = _context.Prospects.Where(p => p.IsContacted == false &&
+                                                          p.Address != null &&
+                                                          p.City != null &&
+                                                          p.State != null &&
+                                                          p.Country != null &&
+                                                          p.ZipCode != null);
+
+    int prospectsNeededContactCount = prospectsNeededContact.Count();
 }
 
 <a class="list-group-item list-group-item-action list-group-item-light p-3" asp-controller="Home" asp-action="Index">
@@ -24,6 +32,10 @@
         <li>
             <a class="dropdown-item" href="@Url.Action("ViewProspects", "Employee")">
                 Prospects
+                @if (prospectsNeededContactCount > 0)
+                {
+                    <span class="badge bg-danger rounded-pill">@prospectsNeededContactCount</span>
+                }
             </a>
         </li>
         <li>
