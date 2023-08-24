@@ -2,7 +2,7 @@
 
 namespace NexusConnectCRM.Data.Models.Company
 {
-    public class Company
+    public class CompanyInfo
     {
         [Key]
         public int Id { get; set; }
@@ -16,8 +16,9 @@ namespace NexusConnectCRM.Data.Models.Company
         public string Website { get; set; }
         public string Email { get; set; }
         public string Industry { get; set; }
+        public bool NeedsContact { get; set; }
 
-        public Company()
+        public CompanyInfo()
         {
         }
     }

@@ -3,6 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using NexusConnectCRM.Data;
 using NexusConnectCRM.Data.Models.Identity;
 using NexusConnectCRM.Data.Models.Prospect;
+using NexusConnectCRM.Data.Models.Company;
+using NexusConnectCRM.Data.Models.Customer;
+
 
 namespace NexusConnectCRM.Extensions
 {
@@ -149,6 +152,58 @@ namespace NexusConnectCRM.Extensions
                     };
 
                     context.Prospects.Add(prospectInfo);
+                    context.SaveChanges();
+                }
+            }
+
+            if (!context.Companies.Any())
+            {
+                for (int i = 0; i < 22; i++)
+                {
+                    CompanyInfo companyInfo = new()
+                    {
+                        Name = $"Company{i}",
+                        Address = $"123 Company St, Unit {i}",
+                        City = $"Company City {i}",
+                        State = $"Company State {i}",
+                        Zip = $"1234{i}",
+                        Country = $"Company Country {i}",
+                        Phone = $"555-555-555{i}",
+                        Website = $"www.company{i}.com",
+                        Email = $"company{i}@mail.com",
+                        Industry = $"Company Industry {i}",
+                        NeedsContact = true
+                    };
+
+                    context.Companies.Add(companyInfo);
+                    context.SaveChanges();
+                }
+            }
+
+            if (!context.Customers.Any())
+            {
+                for (int i = 0; i < 42; i++)
+                {
+                    CustomerInfo customer = new()
+                    {
+                        FirstName = "Customer",
+                        LastName = $"Customer {i}",
+                        EmailAddress = $"Customer{i}@mail.com",
+                        DateOfBirth = DateTime.Now,
+                        Address = $"123 Prospect St, Unit {i}",
+                        City = $"Customer City {i}",
+                        State = $"Customer State {i}",
+                        ZipCode = $"1234{i}",
+                        Country = $"Customer Country {i}",
+                        CompanyName = $"Customer{i}",
+                        PhoneNumber = $"555-555-555{i}",
+                        IsActive = true,
+                        CreatedDate = DateTime.Now,
+                        ModifiedDate = DateTime.Now,
+                        NeedsContact = true
+                    };
+
+                    context.Customers.Add(customer);
                     context.SaveChanges();
                 }
             }

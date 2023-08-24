@@ -97,7 +97,7 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
                     Industry = viewModel.Industry
                 };
 
-                Company company = new()
+                CompanyInfo company = new()
                 {
                     Name = companyModel.Name,
                     Address = companyModel.Address,
@@ -111,7 +111,7 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
                     Industry = companyModel.Industry
                 };
 
-                Company potentialCompany = await _context.Companies.FirstOrDefaultAsync(c => c.Name == company.Name &&
+                CompanyInfo potentialCompany = await _context.Companies.FirstOrDefaultAsync(c => c.Name == company.Name &&
                                                                                              c.Industry == company.Industry);
                 if (potentialCompany != null)
                 {

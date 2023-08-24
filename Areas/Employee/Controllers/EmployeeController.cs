@@ -92,7 +92,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             return View("~/Areas/Employee/Views/Employee/ViewCompanies.cshtml", viewModel);
         }
 
-        public async Task<IActionResult> MarkContacted(int id)
+        public async Task<IActionResult> ProspectMarkContacted(int id)
         {
             var prospect = await _context.Prospects.FirstOrDefaultAsync(m => m.Id == id);
 
@@ -107,6 +107,40 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             await _context.SaveChangesAsync();
 
             return RedirectToAction("ViewProspects", "Employee");
+        }
+
+        public async Task<IActionResult> CustomerHelped(int id)
+        {
+            var customer = await _context.Customers.FirstOrDefaultAsync(m => m.Id == id);
+
+            if (customer == null)
+            {
+                return NotFound();
+            }
+
+            customer.NeedsContact = false;
+
+            _context.Update(customer);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("ViewCustomers", "Employee");
+        }
+
+        public async Task<IActionResult> CompanyHelped(int id)
+        {
+            var company = await _context.Companies.FirstOrDefaultAsync(m => m.Id == id);
+
+            if (company == null)
+            {
+                return NotFound();
+            }
+
+            company.NeedsContact = false;
+
+            _context.Update(company);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("ViewCompanies", "Employee");
         }
     }
 }

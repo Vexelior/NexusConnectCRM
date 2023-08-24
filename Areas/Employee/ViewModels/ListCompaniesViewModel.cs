@@ -4,6 +4,6 @@ namespace NexusConnectCRM.Areas.Employee.ViewModels
 {
     public class ListCompaniesViewModel
     {
-        public List<Company> Companies { get; set; }
+        public List<CompanyInfo> Companies { get; set; }
     }
 }

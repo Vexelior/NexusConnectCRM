@@ -37,7 +37,7 @@ namespace NexusConnectCRM.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpdateUserCompanyDetails(int id, [Bind("Id,Name,Address,Country,City,State,Zip,Phone,Website,Email,Industry")] Company company)
+        public async Task<IActionResult> UpdateUserCompanyDetails(int id, [Bind("Id,Name,Address,Country,City,State,Zip,Phone,Website,Email,Industry")] CompanyInfo company)
         {
             if (id != company.Id)
             {

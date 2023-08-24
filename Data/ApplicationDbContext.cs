@@ -33,6 +33,6 @@ namespace NexusConnectCRM.Data
         public DbSet<EmployeeInfo> Employees { get; set; } = null!;
         public DbSet<ProspectEmployee> ProspectEmployees { get; set; } = null!;
         public DbSet<CustomerEmployee> CustomerEmployees { get; set; } = null!;
-        public DbSet<Company> Companies { get; set; } = null!;
+        public DbSet<CompanyInfo> Companies { get; set; } = null!;
     }
 }

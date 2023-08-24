@@ -21,6 +21,8 @@
                         <th scope="col">Phone</th>
                         <th scope="col">Website</th>
                         <th scope="col">Industry</th>
+                        <th>Helped?</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,6 +39,30 @@
                             <td>@company.Phone</td>
                             <td>@company.Website</td>
                             <td>@company.Industry</td>
+                            @if (company.NeedsContact == true)
+                            {
+                                <td>
+                                    <i class="fa fa-times" style="color: red;"></i>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <i class="fa fa-check" style="color: green;"></i>
+                                </td>
+                            }
+                            <td>
+                                @if (company.NeedsContact == false)
+                                {
+                                    <span class="text-muted">
+                                        Completed!
+                                    </span>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("CompanyHelped", "Employee", new { id = company.Id })" class="btn btn-secondary">Helped</a>
+                                }
+                            </td>
                         </tr>
                     }
                 </tbody>

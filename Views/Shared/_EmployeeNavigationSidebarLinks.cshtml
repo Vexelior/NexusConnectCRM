@@ -13,11 +13,15 @@
                                                           p.ZipCode != null);
 
     int prospectsNeededContactCount = prospectsNeededContact.Count();
-}
 
-<a class="list-group-item list-group-item-action list-group-item-light p-3" asp-controller="Home" asp-action="Index">
-    Home
-</a>
+    var customersNeededContact = _context.Customers.Where(c => c.NeedsContact == true);
+    int customersNeededContactCount = customersNeededContact.Count();
+
+    var companiesNeededContact = _context.Companies.Where(c => c.NeedsContact == true);
+    int companiesNeededContactCount = companiesNeededContact.Count();
+
+    var totalNeededContactCount = prospectsNeededContactCount + customersNeededContactCount + companiesNeededContactCount;
+}
 <a class="list-group-item list-group-item-action list-group-item-light p-3" asp-controller="Employee" asp-action="Index">
     Dashboard
 </a>
@@ -26,7 +30,11 @@
 </a>
 <div class="dropdown dropend">
     <button class="dropdown-toggle list-group-item list-group-item-action list-group-item-light p-3 portal-profile-edit-button" data-bs-toggle="dropdown" aria-expanded="false">
-        Users
+        Tasks
+        @if (totalNeededContactCount > 0)
+        {
+            <span class="badge bg-danger rounded-pill">@totalNeededContactCount</span>
+        }
     </button>
     <ul class="dropdown-menu">
         <li>
@@ -48,20 +56,39 @@
         <li>
             <a class="dropdown-item" href="@Url.Action("ViewCustomers", "Employee")">
                 Customers
+                @if (customersNeededContactCount > 0)
+                {
+                    @if (customersNeededContactCount > 99)
+                    {
+                        <span class="badge bg-danger rounded-pill">99+</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger rounded-pill">@customersNeededContactCount</span>
+                    }
+                }
             </a>
         </li>
         <li>
             <a class="dropdown-item" href="@Url.Action("ViewCompanies", "Employee")">
                 Companies
+                @if (companiesNeededContactCount > 0)
+                {
+                    @if (companiesNeededContactCount > 99)
+                    {
+                        <span class="badge bg-danger rounded-pill">99+</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger rounded-pill">@companiesNeededContactCount</span>
+                    }
+                }
             </a>
         </li>
     </ul>
 </div>
 <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">
     Status
-</a>
-<a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">
-    Help
 </a>
 <form class="form-inline" id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
     <button type="submit" class="list-group-item list-group-item-action list-group-item-light p-3" style="width: 100%;">Logout</button>
