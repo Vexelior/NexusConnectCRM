@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NexusConnectCRM.Areas.Admin.ViewModels;
 using NexusConnectCRM.Data;
+using NexusConnectCRM.Data.Models.Customer;
+using NexusConnectCRM.Data.Models.Employee;
 using NexusConnectCRM.Data.Models.Identity;
 
 namespace NexusConnectCRM.Areas.Admin.Controllers
@@ -24,12 +26,23 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            IEnumerable<ApplicationUser> users = await _context.Users.ToListAsync();
+            List<ApplicationUser> users = await _context.Users.ToListAsync();
 
             foreach (ApplicationUser user in users)
             {
                 IList<string> userRoles = await _userManager.GetRolesAsync(user);
                 user.Roles = userRoles.FirstOrDefault();
+            }
+
+            if (User.IsInRole("Admin"))
+            {
+                foreach (var user in users.ToList())
+                {
+                    if (user.Roles == "Admin")
+                    {
+                        users.Remove(user);
+                    }
+                }
             }
 
             AdminIndexViewModel viewModel = new()
@@ -62,16 +75,78 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                 selectListItems.Add(new SelectListItem(role.Name.Humanize(LetterCasing.Title), role.Name, isSelected));
             }
 
-            AdminEditViewModel viewModel = new(user)
-            {
-                UserId = user.Id,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                DateOfBirth = DateTime.Parse(user.DateOfBirth.ToString()).ToString("MM/dd/yyyy"),
-                Roles = selectListItems
-            };
+            var prospect = _context.Prospects.Where(p => p.UserId == user.Id).FirstOrDefault();
+            var customer = _context.Customers.Where(c => c.UserId == user.Id).FirstOrDefault();
+            var employee = _context.Employees.Where(e => e.UserId == user.Id).FirstOrDefault();
+            var admin = _context.Users.Where(a => a.Roles == "Admin" && a.Id == user.Id).FirstOrDefault();
 
-            return View("~/Areas/Admin/Views/Admin/EditUser.cshtml", viewModel);
+            if (customer != null)
+            {
+                AdminEditViewModel customerViewModel = new()
+                {
+                    UserId = user.Id,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    DateOfBirth = DateTime.Parse(user.DateOfBirth.ToString()).ToString("MM/dd/yyyy"),
+                    Roles = selectListItems,
+                    Address = customer.Address,
+                    City = customer.City,
+                    State = customer.State,
+                    ZipCode = customer.ZipCode,
+                    PhoneNumber = customer.PhoneNumber,
+                    Country = customer.Country,
+                    EmailAddress = customer.EmailAddress,
+                    CompanyName = customer.CompanyName,
+                };
+
+                return View("~/Areas/Admin/Views/Admin/EditUser.cshtml", customerViewModel);
+            }
+            else if (prospect != null)
+            {
+                AdminEditViewModel prospectViewModel = new()
+                {
+                    UserId = user.Id,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    DateOfBirth = DateTime.Parse(user.DateOfBirth.ToString()).ToString("MM/dd/yyyy"),
+                    Roles = selectListItems,
+                    Address = prospect.Address,
+                    City = prospect.City,
+                    State = prospect.State,
+                    ZipCode = prospect.ZipCode,
+                    PhoneNumber = prospect.PhoneNumber,
+                    Country = prospect.Country,
+                    EmailAddress = prospect.EmailAddress,
+                    CompanyName = prospect.CompanyName,
+                };
+
+                return View("~/Areas/Admin/Views/Admin/EditUser.cshtml", prospectViewModel);
+            }
+            else if (employee != null)
+            {
+                AdminEditViewModel employeeViewModel = new()
+                {
+                    UserId = user.Id,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    DateOfBirth = DateTime.Parse(user.DateOfBirth.ToString()).ToString("MM/dd/yyyy"),
+                    Roles = selectListItems,
+                    Address = employee.Address,
+                    City = employee.City,
+                    State = employee.State,
+                    ZipCode = employee.ZipCode,
+                    PhoneNumber = employee.PhoneNumber,
+                    Country = employee.Country,
+                    EmailAddress = employee.EmailAddress,
+                    CompanyName = "NexusConnect",
+                };
+
+                return View("~/Areas/Admin/Views/Admin/EditUser.cshtml", employeeViewModel);
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
         [HttpPost]
@@ -90,7 +165,7 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
             {
                 user.FirstName = viewModel.FirstName;
                 user.LastName = viewModel.LastName;
-                user.Email = viewModel.Email;
+                user.Email = viewModel.EmailAddress;
                 user.DateOfBirth = Convert.ToDateTime(viewModel.DateOfBirth);
 
                 if (string.IsNullOrEmpty(viewModel.SelectedRole))
@@ -113,6 +188,7 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                     return View("~/Areas/Admin/Views/Admin/EditUser.cshtml", viewModel);
                 }
 
+                await AdvanceUser(user.Id, viewModel.SelectedRole);
                 _context.Update(user);
                 await _context.SaveChangesAsync();
             }
@@ -137,8 +213,134 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                 Users = users
             };
 
-            // Add query string to index view
             return View("~/Areas/Admin/Views/Admin/Index.cshtml", newModel);
+        }
+
+        private async Task AdvanceUser(string id, string role)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            var userCurrentRole = await _userManager.GetRolesAsync(user);
+
+            if (user == null)
+            {
+                return;
+            }
+
+            switch (role)
+            {
+                case "Customer":
+                    var potentialCustomer = _context.Customers.Where(c => c.UserId == user.Id).FirstOrDefault();
+
+                    if (potentialCustomer == null)
+                    {
+                        var potentialEmployeeToCustomer = _context.Employees.Where(e => e.UserId == user.Id).FirstOrDefault();
+                        var potentialProspectToCustomer = _context.Prospects.Where(p => p.UserId == user.Id).FirstOrDefault();
+
+                        if (potentialEmployeeToCustomer != null && potentialProspectToCustomer == null)
+                        {
+                            CustomerInfo customer = new()
+                            {
+                                FirstName = potentialEmployeeToCustomer.FirstName,
+                                LastName = potentialEmployeeToCustomer.LastName,
+                                EmailAddress = potentialEmployeeToCustomer.EmailAddress,
+                                DateOfBirth = potentialEmployeeToCustomer.DateOfBirth,
+                                Address = potentialEmployeeToCustomer.Address,
+                                City = potentialEmployeeToCustomer.City,
+                                State = potentialEmployeeToCustomer.State,
+                                ZipCode = potentialEmployeeToCustomer.ZipCode,
+                                PhoneNumber = potentialEmployeeToCustomer.PhoneNumber,
+                                Country = potentialEmployeeToCustomer.Country,
+                                CompanyName = "",
+                                UserId = potentialEmployeeToCustomer.UserId
+                            };
+
+                            _context.Add(customer);
+                            _context.Employees.Remove(potentialEmployeeToCustomer);
+                            await _context.SaveChangesAsync();
+                        }
+
+                        if (potentialProspectToCustomer != null && potentialEmployeeToCustomer == null)
+                        {
+                            CustomerInfo customer = new()
+                            {
+                                FirstName = potentialProspectToCustomer.FirstName,
+                                LastName = potentialProspectToCustomer.LastName,
+                                EmailAddress = potentialProspectToCustomer.EmailAddress,
+                                DateOfBirth = potentialProspectToCustomer.DateOfBirth,
+                                Address = potentialProspectToCustomer.Address,
+                                City = potentialProspectToCustomer.City,
+                                State = potentialProspectToCustomer.State,
+                                ZipCode = potentialProspectToCustomer.ZipCode,
+                                PhoneNumber = potentialProspectToCustomer.PhoneNumber,
+                                Country = potentialProspectToCustomer.Country,
+                                CompanyName = potentialProspectToCustomer.CompanyName,
+                                CompanyId = potentialProspectToCustomer.CompanyId,
+                                UserId = potentialProspectToCustomer.UserId
+                            };
+
+                            _context.Add(customer);
+                            _context.Prospects.Remove(potentialProspectToCustomer);
+                            await _context.SaveChangesAsync();
+                        }
+                    }
+                    break;
+                case "Employee":
+                    var potentialEmployee = _context.Employees.Where(e => e.UserId == user.Id).FirstOrDefault();
+
+                    if (potentialEmployee == null)
+                    {
+                        var potentialCustomerToEmployee = _context.Customers.Where(c => c.UserId == user.Id).FirstOrDefault();
+                        var potentialProspectToEmployee = _context.Prospects.Where(p => p.UserId == user.Id).FirstOrDefault();
+
+                        if (potentialCustomerToEmployee != null && potentialProspectToEmployee == null)
+                        {
+                            EmployeeInfo employee = new()
+                            {
+                                FirstName = potentialCustomerToEmployee.FirstName,
+                                LastName = potentialCustomerToEmployee.LastName,
+                                EmailAddress = potentialCustomerToEmployee.EmailAddress,
+                                DateOfBirth = potentialCustomerToEmployee.DateOfBirth,
+                                Address = potentialCustomerToEmployee.Address,
+                                City = potentialCustomerToEmployee.City,
+                                State = potentialCustomerToEmployee.State,
+                                ZipCode = potentialCustomerToEmployee.ZipCode,
+                                Country = potentialCustomerToEmployee.Country,
+                                PhoneNumber = potentialCustomerToEmployee.PhoneNumber,
+                                Department = "",
+                                UserId = potentialCustomerToEmployee.UserId
+                            };
+
+                            _context.Add(employee);
+                            _context.Remove(potentialCustomerToEmployee);
+                            await _context.SaveChangesAsync();
+                        }
+                        else if (potentialProspectToEmployee != null && potentialCustomerToEmployee == null)
+                        {
+                            EmployeeInfo employee = new()
+                            {
+                                FirstName = potentialProspectToEmployee.FirstName,
+                                LastName = potentialProspectToEmployee.LastName,
+                                EmailAddress = potentialProspectToEmployee.EmailAddress,
+                                DateOfBirth = potentialProspectToEmployee.DateOfBirth,
+                                Address = potentialProspectToEmployee.Address,
+                                City = potentialProspectToEmployee.City,
+                                State = potentialProspectToEmployee.State,
+                                ZipCode = potentialProspectToEmployee.ZipCode,
+                                Country = potentialProspectToEmployee.Country,
+                                PhoneNumber = potentialProspectToEmployee.PhoneNumber,
+                                Department = "",
+                                UserId = potentialProspectToEmployee.UserId
+                            };
+
+                            _context.Add(employee);
+                            _context.Remove(potentialProspectToEmployee);
+                            await _context.SaveChangesAsync();
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
