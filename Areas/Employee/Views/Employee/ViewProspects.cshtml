@@ -54,7 +54,16 @@
                                 </td>
                             }
                             <td>
-                                <a href="@Url.Action("ProspectMarkContacted", "Employee", new { id = customer.Id })" class="btn btn-secondary">Contacted</a>
+                                @if (customer.IsContacted == true)
+                                {
+                                    <span class="text-muted">
+                                        Completed!
+                                    </span>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("CustomerHelped", "Employee", new { id = customer.Id })" class="btn btn-secondary">Helped</a>
+                                }
                             </td>
                         </tr>
                     }

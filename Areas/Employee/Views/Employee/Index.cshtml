@@ -12,7 +12,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Assigned Tasks</h5>
-                        <p class="card-text">8 tasks</p>
+                        <p class="card-text">@Model.UncompletedTasks</p>
                     </div>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Completed Tasks</h5>
-                        <p class="card-text">14 tasks</p>
+                        <p class="card-text">@Model.CompletedTasks</p>
                     </div>
                 </div>
             </div>
@@ -64,3 +64,19 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+<script type="text/javascript">
+    var ctx = document.getElementById('employeeTaskProgressChart').getContext('2d');
+    var taskProgressChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Completed', 'Pending'],
+            datasets: [{
+                data: [@Model.CompletedTasks, @Model.UncompletedTasks],
+                backgroundColor: ['rgba(75, 192, 192, 0.8)', 'rgba(255, 99, 132, 0.8)']
+            }],
+
+        }
+    });
+</script>

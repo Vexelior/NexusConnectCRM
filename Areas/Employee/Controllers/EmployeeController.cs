@@ -31,11 +31,48 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                 return NotFound();
             }
 
+            var prospectsNeededContact = _context.Prospects.Where(p => p.IsContacted == false &&
+                                                      p.Address != null &&
+                                                      p.City != null &&
+                                                      p.State != null &&
+                                                      p.Country != null &&
+                                                      p.ZipCode != null);
+
+            int prospectsNeededContactCount = prospectsNeededContact.Count();
+
+            var customersNeededContact = _context.Customers.Where(c => c.NeedsContact == true);
+            int customersNeededContactCount = customersNeededContact.Count();
+
+            var companiesNeededContact = _context.Companies.Where(c => c.NeedsContact == true);
+            int companiesNeededContactCount = companiesNeededContact.Count();
+
+            var totalNeededContactCount = prospectsNeededContactCount + customersNeededContactCount + companiesNeededContactCount;
+
+            var prospectsNotNeededContact = _context.Prospects.Where(p => p.IsContacted == true &&
+                                                                 p.Address != null &&
+                                                                 p.City != null &&
+                                                                 p.State != null &&
+                                                                 p.Country != null &&
+                                                                 p.ZipCode != null);
+            var prospectsNotNeededContactCount = prospectsNotNeededContact.Count();
+
+            var customersNotNeededContact = _context.Customers.Where(c => c.NeedsContact == false);
+            var customersNotNeededContactCount = customersNotNeededContact.Count();
+
+            var companiesNotNeededContact = _context.Companies.Where(c => c.NeedsContact == false);
+            var companiesNotNeededContactCount = companiesNotNeededContact.Count();
+
+            var totalNotNeededContactCount = prospectsNotNeededContactCount + customersNotNeededContactCount + companiesNotNeededContactCount;
+
+
             EmployeeIndexViewModel viewModel = new()
             {
                 EmployeeId = user.Id,
                 FirstName = user.FirstName,
-                LastName = user.LastName
+                LastName = user.LastName,
+                TotalTasks = totalNeededContactCount + totalNotNeededContactCount,
+                UncompletedTasks = totalNeededContactCount,
+                CompletedTasks = totalNotNeededContactCount
             };
 
             return View("~/Areas/Employee/Views/Employee/Index.cshtml", viewModel);
