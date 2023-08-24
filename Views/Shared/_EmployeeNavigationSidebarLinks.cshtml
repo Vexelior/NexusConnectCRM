@@ -34,7 +34,14 @@
                 Prospects
                 @if (prospectsNeededContactCount > 0)
                 {
-                    <span class="badge bg-danger rounded-pill">@prospectsNeededContactCount</span>
+                    @if (prospectsNeededContactCount > 99)
+                    {
+                        <span class="badge bg-danger rounded-pill">99+</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger rounded-pill">@prospectsNeededContactCount</span>
+                    }
                 }
             </a>
         </li>

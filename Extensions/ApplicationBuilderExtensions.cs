@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using NexusConnectCRM.Data;
 using NexusConnectCRM.Data.Models.Identity;
+using NexusConnectCRM.Data.Models.Prospect;
 
 namespace NexusConnectCRM.Extensions
 {
@@ -121,6 +122,34 @@ namespace NexusConnectCRM.Extensions
                 else
                 {
                     throw new Exception("Prospect account creation failed.");
+                }
+            }
+
+            if (!context.Prospects.Any())
+            {
+                for (int i = 0; i < 100; i++)
+                {
+                    ProspectInfo prospectInfo = new()
+                    {
+                        FirstName = "Prospect",
+                        LastName = $"User{i}",
+                        EmailAddress = $"prospect{i}@mail.com",
+                        DateOfBirth = DateTime.Now,
+                        Address = $"123 Prospect St, Unit {i}",
+                        City = $"Prospect City {i}",
+                        State = $"Prospect State {i}",
+                        ZipCode = $"1234{i}",
+                        Country = $"Prospect Country {i}",
+                        CompanyName = $"Company{i}",
+                        PhoneNumber = $"555-555-555{i}",
+                        IsActive = true,
+                        IsContacted = false,
+                        CreatedDate = DateTime.Now,
+                        ModifiedDate = DateTime.Now
+                    };
+
+                    context.Prospects.Add(prospectInfo);
+                    context.SaveChanges();
                 }
             }
 
