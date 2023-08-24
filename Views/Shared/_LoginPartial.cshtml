@@ -5,7 +5,6 @@
 @inject NexusConnectCRM.Data.ApplicationDbContext _context
 
 @{
-    // Get the first name of the user
     var firstName = _context.Users.FirstOrDefault(u => u.Id == UserManager.GetUserId(User))?.FirstName;
 }
 
@@ -24,7 +23,7 @@
                         <span>Hello, @User.Identity?.Name!</span>
                     }
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <ul class="dropdown-menu" id="userNavigationDropdownMenu" aria-labelledby="dropdownMenuLink">
                     <li>
                         <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                     </li>

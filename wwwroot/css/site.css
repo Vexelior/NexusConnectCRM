@@ -68,6 +68,15 @@ body {
     margin-right: 0 !important;
 }
 
+#userNavigationDropdownMenu {
+    text-align: center;
+}
+
+#userNavigationDropdownMenu > li {
+    margin-left: 0;
+    margin-right: 0;
+}
+
 .account-login-form,
 .account-register-form,
 .forgot-password-form {
