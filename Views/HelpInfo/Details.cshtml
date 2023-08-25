@@ -1,0 +1,60 @@
+﻿@model NexusConnectCRM.Data.Models.Help.HelpInfo
+
+@{
+    ViewData["Title"] = "Ticket Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row">
+        <h1 class="text-center">Ticket Details</h1>
+        <div class="col" style="margin: 0 auto;">
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Title)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Title)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Image)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Image)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.IsPending)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.IsPending)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.IsApproved)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.IsApproved)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.IsRejected)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.IsRejected)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.IsCompleted)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.IsCompleted)
+                </dd>
+            </dl>
+            <a class="btn btn-secondary" asp-action="Index">Back</a>
+        </div>
+    </div>
+</div>

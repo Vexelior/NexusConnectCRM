@@ -207,55 +207,5 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
                 return View("~/Areas/Prospect/Views/Prospect/ProspectEnterUserDetails.cshtml");
             }
         }
-
-        public IActionResult Help(string id)
-        {
-            var user = _context.Prospects.FirstOrDefault(u => u.UserId == id);
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            ProspectNeedHelpViewModel viewModel = new(user);
-
-            return View("~/Areas/Prospect/Views/Prospect/ProspectNeedHelp.cshtml", viewModel);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> SubmitHelp(ProspectNeedHelpViewModel vm)
-        {
-            var user = await _context.Users.FindAsync(vm.UserId);
-            var prospect = await _context.Prospects.FirstOrDefaultAsync(u => u.UserId == vm.UserId);
-
-            if (user == null || prospect == null)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                HelpInfo help = new()
-                {
-                    Title = vm.Title,
-                    Description = vm.Description,
-                    Image = vm.Image,
-                    Author = vm.UserId
-                };
-
-                prospect.NeedsHelp = true;
-
-                _context.Add(help);
-                _context.Update(prospect);
-                await _context.SaveChangesAsync();
-
-                return RedirectToAction("Index", "Prospect", new { HelpSubmitted = true });
-            }
-            else
-            {
-                ModelState.AddModelError("", "Invalid Help Details");
-                return View("~/Areas/Prospect/Views/Prospect/ProspectNeedHelp.cshtml");
-            }
-        }
     }
 }
