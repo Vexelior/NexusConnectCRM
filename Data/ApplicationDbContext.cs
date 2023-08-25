@@ -6,6 +6,7 @@ using NexusConnectCRM.Data.Models.Identity;
 using NexusConnectCRM.Data.Models.Prospect;
 using NexusConnectCRM.Areas.Admin.ViewModels;
 using NexusConnectCRM.Data.Models.Company;
+using NexusConnectCRM.Data.Models.Help;
 
 namespace NexusConnectCRM.Data
 {
@@ -31,8 +32,9 @@ namespace NexusConnectCRM.Data
         public DbSet<ProspectInfo> Prospects { get; set; } = null!;
         public DbSet<CustomerInfo> Customers { get; set; } = null!;
         public DbSet<EmployeeInfo> Employees { get; set; } = null!;
+        public DbSet<CompanyInfo> Companies { get; set; } = null!;
+        public DbSet<HelpInfo> Help { get; set; } = null!;
         public DbSet<ProspectEmployee> ProspectEmployees { get; set; } = null!;
         public DbSet<CustomerEmployee> CustomerEmployees { get; set; } = null!;
-        public DbSet<CompanyInfo> Companies { get; set; } = null!;
     }
 }

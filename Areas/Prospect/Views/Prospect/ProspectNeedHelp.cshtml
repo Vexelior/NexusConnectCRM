@@ -1,0 +1,41 @@
+﻿@model NexusConnectCRM.Areas.Prospect.ViewModels.ProspectNeedHelpViewModel
+@inject NexusConnectCRM.Data.ApplicationDbContext _context
+
+@{
+    ViewBag.Title = "Help";
+    Layout = "~/Views/Shared/_ProspectPortalLayout.cshtml";
+}
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-10" style="margin: 0 auto;">
+            <h1 class="text-center">Help Request</h1>
+            @using (Html.BeginForm("SubmitHelp", "Prospect", FormMethod.Post))
+            {
+                @Html.HiddenFor(m => m.UserId)
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Title)
+                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Description)
+                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Image)
+                    @Html.TextBoxFor(m => m.Image, new { @class = "form-control", type = "file" })
+                    @Html.ValidationMessageFor(m => m.Image, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Author)
+                    @Html.TextBoxFor(m => m.Author, new { @class = "form-control", @placeholder = Model.Author, @readonly = "readonly" })
+                    @Html.ValidationMessageFor(m => m.Author, "", new { @class = "text-danger" })
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Save</button>
+                <a href="@Url.Action("Index", "Prospect")" class="btn btn-danger w-100">Cancel</a>
+            }
+        </div>
+    </div>
+</div>

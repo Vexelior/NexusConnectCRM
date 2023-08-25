@@ -1,5 +1,7 @@
 ﻿@model NexusConnectCRM.Areas.Prospect.ViewModels.ProspectIndexViewModel
 @using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
 @using NexusConnectCRM.Data.Models.Company
 @inject NexusConnectCRM.Data.ApplicationDbContext _context
 @using System.Linq
@@ -10,6 +12,12 @@
     var userCompanyId = Model.User?.CompanyId;
     var userCompany = _context.Companies?.FirstOrDefault(c => c.Id == userCompanyId);
     var userRole = _context.Users.Where(u => u.Id == Model.User.UserId).Select(u => u.Roles).FirstOrDefault();
+
+    @*TODO: This is not working*@
+    if (HttpContextAccessor.HttpContext?.Request?.Query["HelpSubmitted"].FirstOrDefault() != null)
+    {
+        ViewBag.HelpSubmitted = true;
+    }
 }
 
 @if (Model.User?.Address == null ||
@@ -25,9 +33,20 @@ else
 {
     <div class="container mt-5">
         <div class="row">
-            <div class="alert alert-success text-center" style="padding-bottom: 0; width: 80%; margin: 0 auto; margin-bottom: 50px;">
+            <div class="alert alert-success alert-dismissable text-center" style="padding-bottom: 0; width: 80%; margin: 0 auto; margin-bottom: 50px;">
                 <p>Thank you for registering with NexusConnect! An associate will be in contact with you shortly and help you get started on the next steps.</p>
             </div>
+            @if (ViewBag.HelpSubmitted == true)
+            {
+                <div class="alert alert-success alert-dismissable" style="padding-bottom: 0; width: 80%; margin: 0 auto; margin-bottom: 50px;">
+                    <p>
+                        Your help request has been submitted. An associate will be in contact with you shortly.
+                        <br />
+                        <br />
+                        In the meantime, please feel free to browse your resources.
+                    </p>
+                </div>
+            }
             <div class="col-md-6">
                 <div class="card prospect-info-card">
                     <i class="fa fa-solid fa-user mt-3" style="font-size: 24px;"></i>

@@ -1,4 +1,11 @@
-﻿<a class="list-group-item list-group-item-action list-group-item-light p-3" asp-controller="Home" asp-action="Index">
+﻿@inject NexusConnectCRM.Data.ApplicationDbContext _context
+
+@{
+    // Get the id of the current user
+    var userId = _context.Users.FirstOrDefault(u => u.UserName == User.Identity.Name)?.Id;
+}
+
+<a class="list-group-item list-group-item-action list-group-item-light p-3" asp-controller="Home" asp-action="Index">
     Home
 </a>
 <a class="list-group-item list-group-item-action list-group-item-light p-3" asp-controller="Prospect" asp-action="Index">Dashboard</a>
@@ -14,7 +21,8 @@
         </li>
     </ul>
 </div>
-<a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">
+@*Pass in the User's id to the url action*@
+<a class="list-group-item list-group-item-action list-group-item-light p-3" href="@Url.Action("Help", "Prospect", new { id = userId })">
     Help
 </a>
 <form class="form-inline" id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
