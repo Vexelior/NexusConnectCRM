@@ -18,6 +18,8 @@
         public string UserId { get; set; }
         public bool IsActive { get; set; }
         public bool IsContacted { get; set; }
+        public bool IsHelped { get; set; }
+
         public bool NeedsHelp { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }

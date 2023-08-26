@@ -20,5 +20,7 @@ namespace NexusConnectCRM.Data.Models.Help
         public bool IsRejected { get; set; }
         [Display(Name = "Completed")]
         public bool IsCompleted { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime ModifiedDate { get; set; }
     }
 }

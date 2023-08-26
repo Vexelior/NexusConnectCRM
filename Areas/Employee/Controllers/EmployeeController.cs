@@ -32,37 +32,28 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             }
 
             var prospectsNeededContact = _context.Prospects.Where(p => p.IsContacted == false &&
-                                                      p.Address != null &&
-                                                      p.City != null &&
-                                                      p.State != null &&
-                                                      p.Country != null &&
-                                                      p.ZipCode != null);
+                                                                           p.Address != null &&
+                                                                           p.City != null &&
+                                                                           p.State != null &&
+                                                                           p.Country != null &&
+                                                                           p.ZipCode != null).Count();
 
-            int prospectsNeededContactCount = prospectsNeededContact.Count();
+            var customersNeededContact = _context.Customers.Where(c => c.NeedsContact == true).Count();
+            var companiesNeededContact = _context.Companies.Where(c => c.NeedsContact == true).Count();
 
-            var customersNeededContact = _context.Customers.Where(c => c.NeedsContact == true);
-            int customersNeededContactCount = customersNeededContact.Count();
-
-            var companiesNeededContact = _context.Companies.Where(c => c.NeedsContact == true);
-            int companiesNeededContactCount = companiesNeededContact.Count();
-
-            var totalNeededContactCount = prospectsNeededContactCount + customersNeededContactCount + companiesNeededContactCount;
 
             var prospectsNotNeededContact = _context.Prospects.Where(p => p.IsContacted == true &&
-                                                                 p.Address != null &&
-                                                                 p.City != null &&
-                                                                 p.State != null &&
-                                                                 p.Country != null &&
-                                                                 p.ZipCode != null);
-            var prospectsNotNeededContactCount = prospectsNotNeededContact.Count();
+                                                                              p.Address != null &&
+                                                                              p.City != null &&
+                                                                              p.State != null &&
+                                                                              p.Country != null &&
+                                                                              p.ZipCode != null).Count();
 
-            var customersNotNeededContact = _context.Customers.Where(c => c.NeedsContact == false);
-            var customersNotNeededContactCount = customersNotNeededContact.Count();
+            var customersNotNeededContact = _context.Customers.Where(c => c.NeedsContact == false).Count();
+            var companiesNotNeededContact = _context.Companies.Where(c => c.NeedsContact == false).Count();
 
-            var companiesNotNeededContact = _context.Companies.Where(c => c.NeedsContact == false);
-            var companiesNotNeededContactCount = companiesNotNeededContact.Count();
-
-            var totalNotNeededContactCount = prospectsNotNeededContactCount + customersNotNeededContactCount + companiesNotNeededContactCount;
+            var totalNeededContactCount = prospectsNeededContact + customersNeededContact + companiesNeededContact;
+            var totalNotNeededContactCount = prospectsNotNeededContact + customersNotNeededContact + companiesNotNeededContact;
 
 
             EmployeeIndexViewModel viewModel = new()
@@ -129,6 +120,40 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             return View("~/Areas/Employee/Views/Employee/ViewCompanies.cshtml", viewModel);
         }
 
+        public async Task<IActionResult> Help()
+        {
+            var helpList = await _context.Help.Where(h => h.IsPending == true).ToListAsync();
+
+            if (helpList == null)
+            {
+                return NotFound();
+            }
+
+            ListHelpViewModel viewModel = new()
+            {
+                HelpList = helpList,
+            };
+
+            return View("~/Areas/Employee/Views/Employee/Help.cshtml", viewModel);
+        }
+
+        public async Task<IActionResult> HelpEdit(int id)
+        {
+            var help = await _context.Help.FirstOrDefaultAsync(m => m.Id == id);
+
+            if (help == null)
+            {
+                return NotFound();
+            }
+
+            HelpEditViewModel viewModel = new()
+            {
+                Help = help
+            };
+
+            return View("~/Areas/Employee/Views/Employee/HelpEdit.cshtml", viewModel);
+        }
+
         public async Task<IActionResult> ProspectMarkContacted(int id)
         {
             var prospect = await _context.Prospects.FirstOrDefaultAsync(m => m.Id == id);
@@ -144,6 +169,23 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             await _context.SaveChangesAsync();
 
             return RedirectToAction("ViewProspects", "Employee");
+        }
+
+        public async Task<IActionResult> ProspectHelped(int id)
+        {
+            var prospect = await _context.Prospects.FirstOrDefaultAsync(m => m.Id == id);
+
+            if (prospect == null)
+            {
+                return NotFound();
+            }
+
+            prospect.IsHelped = false;
+
+            _context.Update(prospect);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("ViewCustomers", "Employee");
         }
 
         public async Task<IActionResult> CustomerHelped(int id)
