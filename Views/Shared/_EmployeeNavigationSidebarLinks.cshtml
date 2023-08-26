@@ -10,17 +10,19 @@
                                                           p.City != null &&
                                                           p.State != null &&
                                                           p.Country != null &&
-                                                          p.ZipCode != null);
+                                                          p.ZipCode != null).Count();
 
-    int prospectsNeededContactCount = prospectsNeededContact.Count();
+    var customersNeededContact = _context.Customers.Where(c => c.NeedsContact == true).Count();
 
-    var customersNeededContact = _context.Customers.Where(c => c.NeedsContact == true);
-    int customersNeededContactCount = customersNeededContact.Count();
+    var companiesNeededContact = _context.Companies.Where(c => c.NeedsContact == true).Count();
 
-    var companiesNeededContact = _context.Companies.Where(c => c.NeedsContact == true);
-    int companiesNeededContactCount = companiesNeededContact.Count();
+    var totalNeededContactCount = prospectsNeededContact + customersNeededContact + companiesNeededContact;
 
-    var totalNeededContactCount = prospectsNeededContactCount + customersNeededContactCount + companiesNeededContactCount;
+    var pendingHelpTicketsCount = _context.Help.Where(h => h.IsPending == true).Count();
+    var unapprovedHelpTicketsCount = _context.Help.Where(h => h.IsApproved == false).Count();
+    var uncompletedHelpTicketsCount = _context.Help.Where(h => h.IsCompleted == false).Count();
+
+    var ticketCount = pendingHelpTicketsCount + unapprovedHelpTicketsCount + uncompletedHelpTicketsCount;
 }
 <a class="list-group-item list-group-item-action list-group-item-light p-3" asp-controller="Employee" asp-action="Index">
     Dashboard
@@ -40,15 +42,15 @@
         <li>
             <a class="dropdown-item" href="@Url.Action("ViewProspects", "Employee")">
                 Prospects
-                @if (prospectsNeededContactCount > 0)
+                @if (prospectsNeededContact > 0)
                 {
-                    @if (prospectsNeededContactCount > 99)
+                    @if (prospectsNeededContact > 99)
                     {
                         <span class="badge bg-danger rounded-pill">99+</span>
                     }
                     else
                     {
-                        <span class="badge bg-danger rounded-pill">@prospectsNeededContactCount</span>
+                        <span class="badge bg-danger rounded-pill">@prospectsNeededContact</span>
                     }
                 }
             </a>
@@ -56,15 +58,15 @@
         <li>
             <a class="dropdown-item" href="@Url.Action("ViewCustomers", "Employee")">
                 Customers
-                @if (customersNeededContactCount > 0)
+                @if (customersNeededContact > 0)
                 {
-                    @if (customersNeededContactCount > 99)
+                    @if (customersNeededContact > 99)
                     {
                         <span class="badge bg-danger rounded-pill">99+</span>
                     }
                     else
                     {
-                        <span class="badge bg-danger rounded-pill">@customersNeededContactCount</span>
+                        <span class="badge bg-danger rounded-pill">@customersNeededContact</span>
                     }
                 }
             </a>
@@ -72,24 +74,119 @@
         <li>
             <a class="dropdown-item" href="@Url.Action("ViewCompanies", "Employee")">
                 Companies
-                @if (companiesNeededContactCount > 0)
+                @if (companiesNeededContact > 0)
                 {
-                    @if (companiesNeededContactCount > 99)
+                    @if (companiesNeededContact > 99)
                     {
                         <span class="badge bg-danger rounded-pill">99+</span>
                     }
                     else
                     {
-                        <span class="badge bg-danger rounded-pill">@companiesNeededContactCount</span>
+                        <span class="badge bg-danger rounded-pill">@companiesNeededContact</span>
                     }
                 }
             </a>
         </li>
     </ul>
 </div>
-<a class="list-group-item list-group-item-action list-group-item-light p-3" href="@Url.Action("Help", "Employee")">
-    Help Tickets
-</a>
+<div class="dropdown dropend">
+    <button class="dropdown-toggle list-group-item list-group-item-action list-group-item-light p-3 portal-profile-edit-button" data-bs-toggle="dropdown" aria-expanded="false">
+        Help Tickets
+        @if (ticketCount > 0)
+        {
+            @if (ticketCount > 99)
+            {
+                <span class="badge bg-danger rounded-pill">99+</span>
+            }
+            else
+            {
+                <span class="badge bg-danger rounded-pill">@ticketCount</span>
+            }
+        }
+    </button>
+    <ul class="dropdown-menu">
+        <li>
+            <a class="dropdown-item" href="@Url.Action("Help", "Employee")">
+                All Tickets
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item" href="@Url.Action("NotApprovedHelp", "Employee")">
+                Unapproved
+                @if (unapprovedHelpTicketsCount > 0)
+                {
+                    @if (unapprovedHelpTicketsCount > 99)
+                    {
+                        <span class="badge bg-danger rounded-pill">99+</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger rounded-pill">@unapprovedHelpTicketsCount</span>
+                    }
+                }
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item" href="@Url.Action("NotCompletedHelp", "Employee")">
+                Incomplete
+                @if (uncompletedHelpTicketsCount > 0)
+                {
+                    @if (uncompletedHelpTicketsCount > 99)
+                    {
+                        <span class="badge bg-danger rounded-pill">99+</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger rounded-pill">@uncompletedHelpTicketsCount</span>
+                    }
+                }
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item" href="@Url.Action("RejectedHelp", "Employee")">
+                Rejected
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item" href="@Url.Action("CompletedHelp", "Employee")">
+                Completed
+            </a>
+        </li>
+        @*<li>
+        <a class="dropdown-item" href="@Url.Action("ViewCustomers", "Employee")">
+        Customers
+        @if (customersNeededContact > 0)
+        {
+        @if (customersNeededContact > 99)
+        {
+        <span class="badge bg-danger rounded-pill">99+</span>
+        }
+        else
+        {
+        <span class="badge bg-danger rounded-pill">@customersNeededContact</span>
+        }
+        }
+        </a>
+        </li>
+        <li>
+        <a class="dropdown-item" href="@Url.Action("ViewCompanies", "Employee")">
+        Companies
+        @if (companiesNeededContact > 0)
+        {
+        @if (companiesNeededContact > 99)
+        {
+        <span class="badge bg-danger rounded-pill">99+</span>
+        }
+        else
+        {
+        <span class="badge bg-danger rounded-pill">@companiesNeededContact</span>
+        }
+        }
+        </a>
+        </li>*@
+    </ul>
+</div>
+
 <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">
     Status
 </a>

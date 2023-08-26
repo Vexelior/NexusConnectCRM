@@ -13,7 +13,7 @@
         <div class="col-xs-12">
             <h1 class="text-center">Ticket Details</h1>
             <hr />
-            @using (Html.BeginForm("SubmitHelpResponse", "Employee", FormMethod.Post))
+            @using (Html.BeginForm("SubmitHelpResponse", "Employee", FormMethod.Post, new { id = "helpResponseForm" }))
             {
                 @Html.HiddenFor(m => m.Id)
                 <div class="form-horizontal">
@@ -98,7 +98,7 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col">
-                                            @Html.TextAreaFor(m => m.Response, new { @class = "form-control", @rows = "10" })
+                                            @Html.TextAreaFor(m => m.Response, new { @class = "form-control", @rows = "10", id = "ResponseText" })
                                             <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#AttachFile"></button>
                                             <div class="form-group">
                                                 <div class="col-md-offset-2 col-md-10">
@@ -117,3 +117,15 @@
         </div>
     </div>
 </div>
+
+<script>
+    const responseText = document.getElementById("ResponseText");
+    const helpResponseForm = document.getElementById("helpResponseForm");
+    
+    helpResponseForm.addEventListener("submit", function (event) {
+        if (responseText.value === "") {
+            event.preventDefault();
+            alert("Please enter a response.");
+        }
+    });
+</script>
