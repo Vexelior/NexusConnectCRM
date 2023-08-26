@@ -13,8 +13,9 @@
         <div class="col-xs-12">
             <h1 class="text-center">Ticket Details</h1>
             <hr />
-            @using (Html.BeginForm("HelpEdit", "Employee", FormMethod.Post))
+            @using (Html.BeginForm("SubmitHelpResponse", "Employee", FormMethod.Post))
             {
+                @Html.HiddenFor(m => m.Help.Id)
                 <div class="form-horizontal">
                     <div class="container">
                         <div class="row">
@@ -68,7 +69,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="container">
                     <div class="row">
                         <div class="col">
@@ -80,12 +80,12 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col">
-                                            <textarea placeholder="Response" class="w-100 mb-0"></textarea>
+                                            @Html.TextAreaFor(m => m.Response, new { @class = "form-control", @rows = "10" })
                                             <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#AttachFile"></button>
                                             <div class="form-group">
                                                 <div class="col-md-offset-2 col-md-10">
                                                     <input id="submitButton" type="submit" value="Save" class="btn btn-primary">
-                                                    <a class="btn btn-secondary" href="@Url.Action("Help", "Employee")">Cancel</a>
+                                                    <a class="btn btn-secondary" href="@Url.Action("Help", "Employee", new { id = Model.Help.Id })">Cancel</a>
                                                 </div>
                                             </div>
                                         </div>

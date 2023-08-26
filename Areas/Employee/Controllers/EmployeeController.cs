@@ -5,6 +5,7 @@ using NexusConnectCRM.Data;
 using Microsoft.AspNetCore.Identity;
 using NexusConnectCRM.Data.Models.Identity;
 using NexusConnectCRM.Areas.Employee.ViewModels;
+using NexusConnectCRM.Data.Models.Help;
 
 namespace NexusConnectCRM.Areas.Employee.Controllers
 {
@@ -152,6 +153,56 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             };
 
             return View("~/Areas/Employee/Views/Employee/HelpEdit.cshtml", viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SubmitHelpResponse(int id, [Bind("Id,Response,Image,Author,CreatedDate,ModifiedDate,Help")] HelpResponseInfo helpResponseInfo)
+        {
+           if (id != helpResponseInfo.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    helpResponseInfo.Author = _userManager.GetUserId(User);
+                    helpResponseInfo.CreatedDate = DateTime.Now;
+                    helpResponseInfo.ModifiedDate = DateTime.Now;
+
+                    _context.Update(helpResponseInfo);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!HelpResponseInfoExists(helpResponseInfo.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+
+                HelpInfo help = await _context.Help.FirstOrDefaultAsync(h => h.Id == helpResponseInfo.Help.Id);
+
+                HelpEditViewModel viewModel = new()
+                {
+                    Help = help
+                };
+
+                return RedirectToAction("HelpEdit", "Employee", viewModel);
+            }
+            return View("~/Areas/Employee/Views/Employee/Help.cshtml");
+        
+        }
+
+        private bool HelpResponseInfoExists(int id)
+        {
+            return _context.Help.Any(e => e.Id == id);
         }
 
         public async Task<IActionResult> ProspectMarkContacted(int id)
