@@ -34,6 +34,7 @@ namespace NexusConnectCRM.Data
         public DbSet<EmployeeInfo> Employees { get; set; } = null!;
         public DbSet<CompanyInfo> Companies { get; set; } = null!;
         public DbSet<HelpInfo> Help { get; set; } = null!;
+        public DbSet<HelpResponseInfo> HelpFeedback { get; set; } = null!;
         public DbSet<ProspectEmployee> ProspectEmployees { get; set; } = null!;
         public DbSet<CustomerEmployee> CustomerEmployees { get; set; } = null!;
     }

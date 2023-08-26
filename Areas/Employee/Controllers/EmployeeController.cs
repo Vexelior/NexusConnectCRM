@@ -123,7 +123,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
 
         public async Task<IActionResult> Help()
         {
-            var helpList = await _context.Help.Where(h => h.IsPending == true).ToListAsync();
+            var helpList = await _context.Help.ToListAsync();
 
             if (helpList == null)
             {
@@ -147,9 +147,13 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                 return NotFound();
             }
 
+            List<HelpResponseInfo> feedback = await _context.HelpFeedback.Where(h => h.ResponseId == help.ResponseId).ToListAsync();
+
             HelpEditViewModel viewModel = new()
             {
-                Help = help
+                Id = id,
+                Help = help,
+                HelpResponses = feedback
             };
 
             return View("~/Areas/Employee/Views/Employee/HelpEdit.cshtml", viewModel);
@@ -157,52 +161,46 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SubmitHelpResponse(int id, [Bind("Id,Response,Image,Author,CreatedDate,ModifiedDate,Help")] HelpResponseInfo helpResponseInfo)
+        public async Task<IActionResult> SubmitHelpResponse(int id, HelpEditViewModel viewModel)
         {
-           if (id != helpResponseInfo.Id)
+            var help = await _context.Help.FirstOrDefaultAsync(m => m.Id == id);
+            
+            if (help == null)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            string name = _context.Users.FirstOrDefault(u => u.Id == help.Author).FirstName + " " + _context.Users.FirstOrDefault(u => u.Id == help.Author).LastName;
+
+            DateTime date = DateTime.Now;
+            string dateString = date.ToString("MM/dd/yyyy");
+
+            string message = $"[{dateString}] {name}: \r {viewModel.Response}";
+
+            HelpResponseInfo feedback = new()
             {
-                try
-                {
-                    helpResponseInfo.Author = _userManager.GetUserId(User);
-                    helpResponseInfo.CreatedDate = DateTime.Now;
-                    helpResponseInfo.ModifiedDate = DateTime.Now;
+                Response = message,
+                Author = _userManager.GetUserId(User),
+                IsEmployee = true,
+                CreatedDate = help.CreatedDate,
+                ModifiedDate = DateTime.Now,
+                Image = null,
+                ResponseId = help.ResponseId
+            };
 
-                    _context.Update(helpResponseInfo);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!HelpResponseInfoExists(helpResponseInfo.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+            help.IsPending = false;
 
-                HelpInfo help = await _context.Help.FirstOrDefaultAsync(h => h.Id == helpResponseInfo.Help.Id);
+            _context.Add(feedback);
+            await _context.SaveChangesAsync();
 
-                HelpEditViewModel viewModel = new()
-                {
-                    Help = help
-                };
+            var helpList = await _context.Help.ToListAsync();
 
-                return RedirectToAction("HelpEdit", "Employee", viewModel);
-            }
-            return View("~/Areas/Employee/Views/Employee/Help.cshtml");
-        
-        }
+            ListHelpViewModel vm = new()
+            {
+                HelpList = helpList,
+            };
 
-        private bool HelpResponseInfoExists(int id)
-        {
-            return _context.Help.Any(e => e.Id == id);
+            return View("~/Areas/Employee/Views/Employee/Help.cshtml", vm);
         }
 
         public async Task<IActionResult> ProspectMarkContacted(int id)

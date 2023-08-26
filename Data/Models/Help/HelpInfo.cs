@@ -23,5 +23,6 @@ namespace NexusConnectCRM.Data.Models.Help
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
         public List<HelpResponseInfo> HelpResponses { get; set; }
+        public string ResponseId { get; set; }
     }
 }

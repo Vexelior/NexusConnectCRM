@@ -46,7 +46,7 @@ namespace NexusConnectCRM.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Description,Image,Author,IsPending,IsApproved,IsRejected,IsCompleted")] HelpInfo helpInfo)
+        public async Task<IActionResult> Create([Bind("Id,ResponseId,Title,Description,Image,Author,IsPending,IsApproved,IsRejected,IsCompleted")] HelpInfo helpInfo)
         {
             string authorId = _userManager.GetUserId(User);
 
@@ -55,6 +55,7 @@ namespace NexusConnectCRM.Controllers
             helpInfo.IsApproved = false;
             helpInfo.IsCompleted = false;
             helpInfo.IsRejected = false;
+            helpInfo.ResponseId = authorId;
 
             if (ModelState.IsValid)
             {

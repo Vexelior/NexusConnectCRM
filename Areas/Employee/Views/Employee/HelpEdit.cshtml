@@ -15,7 +15,7 @@
             <hr />
             @using (Html.BeginForm("SubmitHelpResponse", "Employee", FormMethod.Post))
             {
-                @Html.HiddenFor(m => m.Help.Id)
+                @Html.HiddenFor(m => m.Id)
                 <div class="form-horizontal">
                     <div class="container">
                         <div class="row">
@@ -73,10 +73,28 @@
                     <div class="row">
                         <div class="col">
                             <div class="card scrollbar-primary">
-                                <div class="card-body scrollbar">
-                                    Test Reply
-                                    <br />
-                                </div>
+                                @if (Model.HelpResponses.Count() > 0)
+                                {
+                                    <div class="card-body scrollbar" id="chatlogs">
+
+                                        @foreach (var message in Model.HelpResponses)
+                                        {
+                                            <p style="color:black;font-size:19px;" class="text-left pr-5 mb-0">
+                                                <strong style="white-space: pre-wrap">@message.Response</strong>
+                                            </p>
+                                            <br />
+                                        }
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="card-body scrollbar" id="chatlogs">
+                                        <p style="color:black;font-size:19px;" class="text-left pr-5 mb-0">
+                                            <strong style="white-space: pre-wrap">No responses yet.</strong>
+                                        </p>
+                                        <br />
+                                    </div>
+                                }
                                 <div class="container">
                                     <div class="row">
                                         <div class="col">
