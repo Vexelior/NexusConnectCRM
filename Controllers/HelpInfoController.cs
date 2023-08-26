@@ -56,6 +56,8 @@ namespace NexusConnectCRM.Controllers
             helpInfo.IsCompleted = false;
             helpInfo.IsRejected = false;
             helpInfo.ResponseId = authorId;
+            helpInfo.CreatedDate = DateTime.Now;
+            helpInfo.ModifiedDate = DateTime.Now;
 
             if (ModelState.IsValid)
             {
