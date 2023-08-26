@@ -18,9 +18,9 @@
 
     var totalNeededContactCount = prospectsNeededContact + customersNeededContact + companiesNeededContact;
 
-    var pendingHelpTicketsCount = _context.Help.Where(h => h.IsPending == true).Count();
-    var unapprovedHelpTicketsCount = _context.Help.Where(h => h.IsApproved == false).Count();
-    var uncompletedHelpTicketsCount = _context.Help.Where(h => h.IsCompleted == false).Count();
+    var pendingHelpTicketsCount = _context.Help.Where(h => h.IsPending == true && h.IsRejected == false).Count();
+    var unapprovedHelpTicketsCount = _context.Help.Where(h => h.IsApproved == false && h.IsRejected == false).Count();
+    var uncompletedHelpTicketsCount = _context.Help.Where(h => h.IsCompleted == false && h.IsRejected == false).Count();
 
     var ticketCount = pendingHelpTicketsCount + unapprovedHelpTicketsCount + uncompletedHelpTicketsCount;
 }

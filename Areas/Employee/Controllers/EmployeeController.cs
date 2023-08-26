@@ -138,6 +138,46 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             return View("~/Areas/Employee/Views/Employee/Help.cshtml", viewModel);
         }
 
+        public async Task<IActionResult> HelpApprove(int id)
+        {
+            var help = await _context.Help.FirstOrDefaultAsync(m => m.Id == id);
+
+            if (help == null)
+            {
+                return NotFound();
+            }
+
+            help.IsCompleted = false;
+            help.IsApproved = true;
+            help.IsPending = false;
+            help.IsRejected = false;
+
+            _context.Update(help);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Help");
+        }
+
+        public async Task<IActionResult> HelpReject(int id)
+        {
+            var help = await _context.Help.FirstOrDefaultAsync(m => m.Id == id);
+
+            if (help == null)
+            {
+                return NotFound();
+            }
+
+            help.IsCompleted = true;
+            help.IsApproved = false;
+            help.IsPending = false;
+            help.IsRejected = true;
+
+            _context.Update(help);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Help");
+        }
+
         public async Task<IActionResult> NotApprovedHelp()
         {
             var helpList = await _context.Help.Where(h => h.IsApproved == false).ToListAsync();
