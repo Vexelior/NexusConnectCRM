@@ -79,10 +79,20 @@
 
                                         @foreach (var message in Model.HelpResponses)
                                         {
-                                            <p style="color:black;font-size:19px;" class="text-left pr-5 mb-0">
-                                                <strong style="white-space: pre-wrap">@message.Response</strong>
-                                            </p>
-                                            <br />
+                                            if (message.IsEmployee)
+                                            {
+                                                <p style="color:black;font-size:16px;" class="text-left pr-5 mb-0">
+                                                    <strong style="white-space: pre-wrap">@message.Response</strong>
+                                                </p>
+                                                <br />
+                                            }
+                                            else
+                                            {
+                                                <p style="color:black;font-size:16px;" class="text-right pl-5 mb-0">
+                                                    <strong style="white-space: pre-wrap">@message.Response</strong>
+                                                </p>
+                                                <br />
+                                            }
                                         }
                                     </div>
                                 }
@@ -121,11 +131,20 @@
 <script>
     const responseText = document.getElementById("ResponseText");
     const helpResponseForm = document.getElementById("helpResponseForm");
-    
+    const submitButton = document.getElementById("submitButton");
+
     helpResponseForm.addEventListener("submit", function (event) {
         if (responseText.value === "") {
             event.preventDefault();
             alert("Please enter a response.");
+            submitButton.disabled = false;
+            submitButton.innerHTML = "Save";
+            submitButton.style.cursor = 'default';
+        }
+        else {
+            submitButton.disabled = true;
+            submitButton.innerHTML = "<i class='fa fa-spinner fa-spin'></i> Saving...";
+            submitButton.style.cursor = 'no-drop';
         }
     });
 </script>

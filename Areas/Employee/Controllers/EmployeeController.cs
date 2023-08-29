@@ -267,7 +267,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             string name = _context.Users.FirstOrDefault(u => u.Id == help.Author).FirstName + " " + _context.Users.FirstOrDefault(u => u.Id == help.Author).LastName;
 
             DateTime date = DateTime.Now;
-            string dateString = date.ToString("MM/dd/yyyy");
+            string dateString = date.ToString("MM/dd/yyyy h:mmtt");
 
             string message = $"[{dateString}] {name}: \r {viewModel.Response}";
 
