@@ -21,8 +21,6 @@
     var pendingHelpTicketsCount = _context.Help.Where(h => h.IsPending == true && h.IsRejected == false).Count();
     var unapprovedHelpTicketsCount = _context.Help.Where(h => h.IsApproved == false && h.IsRejected == false).Count();
     var uncompletedHelpTicketsCount = _context.Help.Where(h => h.IsCompleted == false && h.IsRejected == false).Count();
-
-    var ticketCount = pendingHelpTicketsCount + unapprovedHelpTicketsCount + uncompletedHelpTicketsCount;
 }
 <a class="list-group-item list-group-item-action list-group-item-light p-3" asp-controller="Employee" asp-action="Index">
     Dashboard
@@ -92,15 +90,15 @@
 <div class="dropdown dropend">
     <button class="dropdown-toggle list-group-item list-group-item-action list-group-item-light p-3 portal-profile-edit-button" data-bs-toggle="dropdown" aria-expanded="false">
         Help Tickets
-        @if (ticketCount > 0)
+        @if (pendingHelpTicketsCount > 0)
         {
-            @if (ticketCount > 99)
+            @if (pendingHelpTicketsCount > 99)
             {
                 <span class="badge bg-danger rounded-pill">99+</span>
             }
             else
             {
-                <span class="badge bg-danger rounded-pill">@ticketCount</span>
+                <span class="badge bg-danger rounded-pill">@pendingHelpTicketsCount</span>
             }
         }
     </button>

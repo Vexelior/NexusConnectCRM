@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using NexusConnectCRM.Areas.Employee.ViewModels;
 using NexusConnectCRM.Data;
 using NexusConnectCRM.Data.Models.Help;
 using NexusConnectCRM.Data.Models.Identity;
+using NexusConnectCRM.ViewModels;
 
 namespace NexusConnectCRM.Controllers
 {
@@ -68,7 +70,6 @@ namespace NexusConnectCRM.Controllers
             return View(helpInfo);
         }
 
-        // Edit : HelpInfo/Details/5
         public async Task<IActionResult> Details(int id)
         {
             var user = await _userManager.GetUserAsync(User);
@@ -78,17 +79,79 @@ namespace NexusConnectCRM.Controllers
                 return NotFound();
             }
 
-            var helpInfo = await _context.Help.FindAsync(id);
+            var help = await _context.Help.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (helpInfo.Author != user.Id)
+            if (help.Author != user.Id)
             {
                 return NotFound();
             }
 
-            return View(helpInfo);
+            List<HelpResponseInfo> feedback = await _context.HelpFeedback.Where(h => h.ResponseId == help.ResponseId).ToListAsync();
+
+            AuthorHelpEditViewModel viewModel = new()
+            {
+                Id = id,
+                Help = help,
+                HelpResponses = feedback
+            };
+
+            return View(viewModel);
         }
 
-       
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SubmitHelpResponse(int id, HelpEditViewModel viewModel)
+        {
+            var help = await _context.Help.FirstOrDefaultAsync(m => m.Id == id);
+
+            if (help == null)
+            {
+                return NotFound();
+            }
+
+            if (viewModel.Response == null)
+            {
+                ModelState.AddModelError("Response", "Please enter a response.");
+                return RedirectToAction("HelpEdit", new { id = id });
+            }
+
+            string name = _context.Users.Where(u => u.Id == _userManager.GetUserId(User)).Select(u => u.FirstName + " " + u.LastName).FirstOrDefault();
+
+            DateTime date = DateTime.Now;
+            string dateString = date.ToString("MM/dd/yyyy h:mmtt");
+
+            string message = $"[{dateString}] {name}: \n {viewModel.Response}";
+
+            HelpResponseInfo feedback = new()
+            {
+                Response = message,
+                Author = _userManager.GetUserId(User),
+                IsEmployee = false,
+                CreatedDate = help.CreatedDate,
+                ModifiedDate = DateTime.Now,
+                Image = null,
+                ResponseId = help.ResponseId
+            };
+
+            help.IsPending = true;
+            help.IsCompleted = false;
+            help.ModifiedDate = feedback.ModifiedDate;
+
+            _context.Add(feedback);
+            await _context.SaveChangesAsync();
+
+            AuthorHelpEditViewModel vm = new()
+            {
+                Id = id,
+                Help = help,
+                HelpResponses = await _context.HelpFeedback.Where(h => h.ResponseId == help.ResponseId).ToListAsync(),
+                Response = "",
+            };
+
+            return View("~/Views/HelpInfo/Details.cshtml", vm);
+        }
+
+
         private bool HelpInfoExists(int id)
         {
             return _context.Help.Any(e => e.Id == id);

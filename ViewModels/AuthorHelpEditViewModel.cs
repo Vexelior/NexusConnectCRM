@@ -1,16 +1,15 @@
-﻿using Microsoft.AspNetCore.SignalR;
-using NexusConnectCRM.Data.Models.Help;
+﻿using NexusConnectCRM.Data.Models.Help;
 using System.ComponentModel.DataAnnotations;
 
-namespace NexusConnectCRM.Areas.Employee.ViewModels
+namespace NexusConnectCRM.ViewModels
 {
-    public class HelpEditViewModel
+    public class AuthorHelpEditViewModel
     {
         public int Id { get; set; }
         public HelpInfo Help { get; set; }
         [Required]
         public string Response { get; set; }
         public List<HelpResponseInfo> HelpResponses { get; set; }
-        public HelpEditViewModel() { }
+        public AuthorHelpEditViewModel() { }
     }
 }

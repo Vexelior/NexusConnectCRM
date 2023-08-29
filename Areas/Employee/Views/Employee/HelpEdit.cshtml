@@ -20,49 +20,51 @@
                     <div class="container">
                         <div class="row">
                             <div class="col">
-                                <div class="form-group">
-                                    <label class="control-label col-md-2" for="Title">Name</label>
-                                    <div class="col-md-10">
+                                <div class="form-group text-center">
+                                    <label class="control-label col-md-2 fw-bold" for="Title">Name:</label>
+                                    <div class="col">
                                         @fullName
                                     </div>
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="form-group">
-                                    <label class="control-label col-md-2">
-                                        Created
+                                <div class="form-group text-center">
+                                    <label class="control-label col-md-2 fw-bold" for="Title">Title:</label>
+                                    <div class="col">
+                                        @Model.Help.Title
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group text-center">
+                                    <label class="control-label col-md-2 fw-bold">
+                                        Created:
                                     </label>
-                                    <div class="col-md-10">
+                                    <div class="col">
                                         @Model.Help.CreatedDate
                                     </div>
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="form-group">
-                                    <label class="control-label col-md-2">
-                                        Updated
+                                <div class="form-group text-center">
+                                    <label class="control-label col-md-2 fw-bold">
+                                        Updated:
                                     </label>
-                                    <div class="col-md-10">
+                                    <div class="col">
                                         @Model.Help.ModifiedDate
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <hr />
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-xs-12" style="margin: 0 auto;">
-                                    <div class="form-group mb-20">
-                                        <label class="control-label col-md-2" for="Title">Title</label>
-                                        <div class="col-md-10">
-                                            @Model.Help.Title
-                                        </div>
-                                    </div>
-                                    <div class="form-group mb-20">
-                                        <label class="control-label col-md-2" for="Title">Description</label>
-                                        <div class="col-md-10">
-                                            @Model.Help.Description
-                                        </div>
+                    </div>
+                    <hr />
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group text-center">
+                                    <label class="control-label col-md-2 fw-bold" for="Description">Description:</label>
+                                    <div class="col">
+                                        @Model.Help.Description
                                     </div>
                                 </div>
                             </div>
@@ -81,17 +83,21 @@
                                         {
                                             if (message.IsEmployee)
                                             {
-                                                <p style="color:black;font-size:16px;" class="text-left pr-5 mb-0">
-                                                    <strong style="white-space: pre-wrap">@message.Response</strong>
-                                                </p>
-                                                <br />
+                                                <div style="text-align: left;">
+                                                    <p style="color:black; font-size:16px;" class="pr-5 mb-0">
+                                                        <strong style="white-space: pre-wrap;">@message.Response</strong>
+                                                    </p>
+                                                    <br />
+                                                </div>
                                             }
                                             else
                                             {
-                                                <p style="color:black;font-size:16px;" class="text-right pl-5 mb-0">
-                                                    <strong style="white-space: pre-wrap">@message.Response</strong>
-                                                </p>
-                                                <br />
+                                                <div class="justify-content-end" style="text-align: right;">
+                                                    <p style="color:black; font-size:16px;" class="pr-5 mb-0">
+                                                        <strong style="white-space: pre-wrap;">@message.Response</strong>
+                                                    </p>
+                                                    <br />
+                                                </div>
                                             }
                                         }
                                     </div>
@@ -108,7 +114,7 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col">
-                                            @Html.TextAreaFor(m => m.Response, new { @class = "form-control", @rows = "10", id = "ResponseText" })
+                                            @Html.TextAreaFor(m => m.Response, new { @class = "form-control", @rows = "10", id = "ResponseText", @placeholder =  "Response" })
                                             <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#AttachFile"></button>
                                             <div class="form-group">
                                                 <div class="col-md-offset-2 col-md-10">

@@ -27,6 +27,10 @@
                         {
                             <a href="@Url.Action("HelpReject", "Employee", new { id = help.Id })" class="btn btn-danger ml-auto">Reject</a>
                         }
+                        @if (!help.IsClosed)
+                        {
+                            <a href="@Url.Action("HelpClose", "Employee", new { id = help.Id })" class="btn btn-dark ml-auto">Close</a>
+                        }
                     </div>
                     <div class="card-footer d-flex d-inline">
                         @if (help.IsApproved)
@@ -55,11 +59,20 @@
                         }
                         @if (help.IsRejected)
                         {
-                            <p class="m-lg-2">Rejected: <i class="fas fa-check-circle" style="color: red;"></i></p>
+                            <p class="m-lg-2">Rejected: <i class="fas fa-check-circle" style="color: green;"></i></p>
                         }
                         else
                         {
-                            <p class="m-lg-2">Rejected: <i class="fas fa-question-circle" style="color: orange;"></i></p>
+                            <p class="m-lg-2">Rejected: <i class="fas fa-times-circle" style="color: red;"></i></p>
+                        }
+                        @if (help.IsClosed)
+                        {
+                            <p class="m-lg-2">Closed: <i class="fas fa-check-circle" style="color: green;"></i></p>
+
+                        }
+                        else
+                        {
+                            <p class="m-lg-2">Rejected: <i class="fas fa-times-circle" style="color: red;"></i></p>
                         }
                     </div>
                 </div>

@@ -151,6 +151,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             help.IsApproved = true;
             help.IsPending = false;
             help.IsRejected = false;
+            help.IsClosed = false;
 
             _context.Update(help);
             await _context.SaveChangesAsync();
@@ -171,6 +172,28 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             help.IsApproved = false;
             help.IsPending = false;
             help.IsRejected = true;
+            help.IsClosed = true;
+
+            _context.Update(help);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Help");
+        }
+
+        public async Task<IActionResult> HelpClose(int id)
+        {
+            var help = await _context.Help.FirstOrDefaultAsync(m => m.Id == id);
+
+            if (help == null)
+            {
+                return NotFound();
+            }
+
+            help.IsApproved = true;
+            help.IsCompleted = true;
+            help.IsPending = false;
+            help.IsRejected = false;
+            help.IsClosed = true;
 
             _context.Update(help);
             await _context.SaveChangesAsync();
@@ -264,12 +287,12 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                 return RedirectToAction("HelpEdit", new { id = id });
             }
 
-            string name = _context.Users.FirstOrDefault(u => u.Id == help.Author).FirstName + " " + _context.Users.FirstOrDefault(u => u.Id == help.Author).LastName;
+            string name = _context.Users.Where(u => u.Id == _userManager.GetUserId(User)).Select(u => u.FirstName + " " + u.LastName).FirstOrDefault();
 
             DateTime date = DateTime.Now;
             string dateString = date.ToString("MM/dd/yyyy h:mmtt");
 
-            string message = $"[{dateString}] {name}: \r {viewModel.Response}";
+            string message = $"[{dateString}] {name}: \n {viewModel.Response}";
 
             HelpResponseInfo feedback = new()
             {
@@ -286,6 +309,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             help.IsCompleted = true;
             help.IsApproved = true;
             help.IsRejected = false;
+            help.ModifiedDate = feedback.ModifiedDate;
 
             _context.Add(feedback);
             await _context.SaveChangesAsync();

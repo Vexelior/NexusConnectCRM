@@ -1,4 +1,12 @@
-﻿<a class="list-group-item list-group-item-action list-group-item-light p-3" asp-controller="Home" asp-action="Index">
+﻿@using Microsoft.AspNetCore.Identity
+@inject NexusConnectCRM.Data.ApplicationDbContext _context
+@using System.Linq
+
+@{
+    var completedNotClosedTickets = _context.Help.Where(h => h.IsCompleted == true && h.IsClosed == false).Count();
+}
+
+<a class="list-group-item list-group-item-action list-group-item-light p-3" asp-controller="Home" asp-action="Index">
     Home
 </a>
 <a class="list-group-item list-group-item-action list-group-item-light p-3" asp-controller="Prospect" asp-action="Index">Dashboard</a>
@@ -14,9 +22,20 @@
         </li>
     </ul>
 </div>
-@*Pass in the User's id to the url action*@
 <a class="list-group-item list-group-item-action list-group-item-light p-3" href="@Url.Action("Index", "HelpInfo")">
     Help
+    @if (completedNotClosedTickets > 0)
+    {
+        if (completedNotClosedTickets > 99)
+        {
+            <span class="badge bg-danger rounded-pill">99+</span>
+        }
+        else
+        {
+            <span class="badge bg-danger rounded-pill">@completedNotClosedTickets</span>
+
+        }
+    }
 </a>
 <form class="form-inline" id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
     <button type="submit" class="list-group-item list-group-item-action list-group-item-light p-3" style="width: 100%;">Logout</button>
