@@ -6,7 +6,7 @@
     var completedNotClosedTickets = _context.Help.Where(h => h.IsCompleted == true && h.IsClosed == false).Count();
 }
 
-<a class="list-group-item list-group-item-action list-group-item-light p-3" asp-controller="Home" asp-action="Index">
+<a class="list-group-item list-group-item-action list-group-item-light p-3" asp-area="" asp-controller="Home" asp-action="Index">
     Home
 </a>
 <a class="list-group-item list-group-item-action list-group-item-light p-3" asp-controller="Prospect" asp-action="Index">Dashboard</a>
@@ -22,7 +22,7 @@
         </li>
     </ul>
 </div>
-<a class="list-group-item list-group-item-action list-group-item-light p-3" href="@Url.Action("Index", "HelpInfo")">
+<a class="list-group-item list-group-item-action list-group-item-light p-3" asp-area="" asp-action="Index" asp-controller="HelpInfo">
     Help
     @if (completedNotClosedTickets > 0)
     {
@@ -33,7 +33,6 @@
         else
         {
             <span class="badge bg-danger rounded-pill">@completedNotClosedTickets</span>
-
         }
     }
 </a>

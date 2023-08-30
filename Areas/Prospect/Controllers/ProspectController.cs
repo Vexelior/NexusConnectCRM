@@ -1,17 +1,14 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NexusConnectCRM.Areas.Prospect.ViewModels;
 using NexusConnectCRM.Data;
-using NexusConnectCRM.Data.Migrations;
 using NexusConnectCRM.Data.Models.Company;
-using NexusConnectCRM.Data.Models.Help;
-using NexusConnectCRM.Data.Models.Identity;
 using NexusConnectCRM.Data.Models.Prospect;
 
 namespace NexusConnectCRM.Areas.Prospect.Controllers
 {
+    [Area("Prospect")]
     [Authorize(Roles = "Admin,Employee,Prospect")]
     public class ProspectController : Controller
     {
@@ -47,7 +44,7 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
                     }
                     else
                     {
-                        return View("~/Areas/Prospect/Views/Prospect/Index.cshtml", viewModel);
+                        return View("Index", viewModel);
                     }
                 }
             }
@@ -68,7 +65,7 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
 
             ProspectCompanyDetailsViewModel viewModel = new(user);
 
-            return View("~/Areas/Prospect/Views/Prospect/EnterCompanyDetails.cshtml", viewModel);
+            return View("EnterCompanyDetails", viewModel);
         }
 
         [HttpPost]
@@ -139,12 +136,12 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
                     User = user
                 };
 
-                return View("~/Areas/Prospect/Views/Prospect/Index.cshtml", indexViewModel);
+                return View("Index", indexViewModel);
             }
             else
             {
                 ModelState.AddModelError("", "Invalid Company Details");
-                return View("~/Areas/Prospect/Views/Prospect/EnterCompanyDetails.cshtml");
+                return View("EnterCompanyDetails");
             }
         }
 
@@ -159,7 +156,7 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
 
             ProspectUserDetailsViewModel viewModel = new(user);
 
-            return View("~/Areas/Prospect/Views/Prospect/EnterUserDetails.cshtml", viewModel);
+            return View("EnterUserDetails", viewModel);
         }
 
 
@@ -199,12 +196,12 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
                     User = user
                 };
 
-                return View("~/Areas/Prospect/Views/Prospect/Index.cshtml", indexViewModel);
+                return View("Index", indexViewModel);
             }
             else
             {
                 ModelState.AddModelError("", "Invalid User Details");
-                return View("~/Areas/Prospect/Views/Prospect/ProspectEnterUserDetails.cshtml");
+                return View("ProspectEnterUserDetails");
             }
         }
     }

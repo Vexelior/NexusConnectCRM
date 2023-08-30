@@ -1,15 +1,15 @@
 ﻿@model NexusConnectCRM.Areas.Employee.ViewModels.ListHelpViewModel
 @inject NexusConnectCRM.Data.ApplicationDbContext _context
 @{
-    ViewBag.Title = "Closed Help Tickets";
+    ViewBag.Title = "Rejected Help Tickets";
     Layout = "~/Views/Shared/_EmployeePortalLayout.cshtml";
 }
 
 @if (Model.HelpList.Count() <= 0)
 {
-    <h1 class="text-center">
-        No Closed Tickets
-    </h1>
+    <h3 class="text-center">
+        No Rejected Tickets
+    </h3>
 }
 else
 {
@@ -73,6 +73,7 @@ else
                         </div>
                     </div>
                 }
+
             </div>
         </div>
     </div>

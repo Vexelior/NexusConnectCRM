@@ -9,6 +9,7 @@ using NexusConnectCRM.Data.Models.Help;
 
 namespace NexusConnectCRM.Areas.Employee.Controllers
 {
+    [Area("Employee")]
     [Authorize(Roles = "Employee, Admin")]
     public class EmployeeController : Controller
     {
@@ -67,7 +68,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                 CompletedTasks = totalNotNeededContactCount
             };
 
-            return View("~/Areas/Employee/Views/Employee/Index.cshtml", viewModel);
+            return View("Index", viewModel);
         }
 
         public async Task<IActionResult> ViewProspects()
@@ -84,7 +85,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                 Users = users
             };
 
-            return View("~/Areas/Employee/Views/Employee/ViewProspects.cshtml", viewModel);
+            return View("ViewProspects", viewModel);
         }
 
         public async Task<IActionResult> ViewCustomers()
@@ -101,7 +102,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                 Users = users
             };
 
-            return View("~/Areas/Employee/Views/Employee/ViewCustomers.cshtml", viewModel);
+            return View("ViewCustomers", viewModel);
         }
 
         public async Task<IActionResult> ViewCompanies()
@@ -118,7 +119,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                 Companies = companies
             };
 
-            return View("~/Areas/Employee/Views/Employee/ViewCompanies.cshtml", viewModel);
+            return View("ViewCompanies", viewModel);
         }
 
         public async Task<IActionResult> Help()
@@ -135,7 +136,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                 HelpList = helpList,
             };
 
-            return View("~/Areas/Employee/Views/Employee/Help.cshtml", viewModel);
+            return View("Help", viewModel);
         }
 
         public async Task<IActionResult> HelpApprove(int id)
@@ -209,7 +210,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                 HelpList = helpList,
             };
 
-            return View("~/Areas/Employee/Views/Employee/ClosedHelp.cshtml", viewModel);
+            return View("ClosedHelp", viewModel);
         }
 
         public async Task<IActionResult> NotCompletedHelp()
@@ -221,7 +222,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                 HelpList = helpList,
             };
 
-            return View("~/Areas/Employee/Views/Employee/NotCompletedHelp.cshtml", viewModel);
+            return View("NotCompletedHelp", viewModel);
         }
 
         public async Task<IActionResult> RejectedHelp()
@@ -233,7 +234,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                 HelpList = helpList,
             };
 
-            return View("~/Areas/Employee/Views/Employee/NotCompletedHelp.cshtml", viewModel);
+            return View("NotCompletedHelp", viewModel);
         }
 
         public async Task<IActionResult> CompletedHelp()
@@ -245,7 +246,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                 HelpList = helpList,
             };
 
-            return View("~/Areas/Employee/Views/Employee/NotCompletedHelp.cshtml", viewModel);
+            return View("NotCompletedHelp", viewModel);
         }
 
         public async Task<IActionResult> HelpEdit(int id)
@@ -266,7 +267,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                 HelpResponses = feedback
             };
 
-            return View("~/Areas/Employee/Views/Employee/HelpEdit.cshtml", viewModel);
+            return View("HelpEdit", viewModel);
         }
 
         [HttpPost]

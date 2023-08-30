@@ -23,6 +23,10 @@ namespace NexusConnectCRM
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
 
+            builder.Services.AddMvc(options =>
+                options.EnableEndpointRouting = false
+            );
+
             var app = builder.Build();
 
             // Create a service scope to get an ApplicationDbContext instance \\
@@ -65,6 +69,10 @@ namespace NexusConnectCRM
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.MapControllerRoute(
+                name: "areas",
+                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
             app.MapControllerRoute(
                 name: "default",

@@ -61,10 +61,12 @@
                     <div class="container">
                         <div class="row">
                             <div class="col">
-                                <div class="form-group text-center">
+                                <div class="form-group">
                                     <label class="control-label col-md-2 fw-bold" for="Description">Description:</label>
                                     <div class="col">
-                                        @Model.Help.Description
+                                        <p class="text-justify">
+                                            @Model.Help.Description
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -163,7 +165,7 @@
                                             <div class="col">
                                                 <p class="text-center">
                                                     <strong>
-                                                        This ticket has not yet been aprroved.
+                                                        This ticket has not yet been approved.
                                                     </strong>
                                                 </p>
                                                 <a class="btn btn-secondary mb-3" href="@Url.Action("Index", "HelpInfo")">Cancel</a>

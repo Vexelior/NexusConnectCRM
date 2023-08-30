@@ -118,23 +118,37 @@ namespace NexusConnectCRM.Areas.Identity.Pages.Account
 
                     if (user.Roles.Equals("Prospect"))
                     {
-                        return RedirectToAction("Index", "Prospect");
+                        return RedirectToAction("Index", "Prospect", new 
+                        { 
+                            Area = "Prospect" 
+                        });
                     }
                     else if (user.Roles.Equals("Customer"))
                     {
-                        return RedirectToAction("Index", "Customer");
+                        return RedirectToAction("Index", "Customer", new
+                        { 
+                            Area = "Customer" 
+                        });
                     }
                     else if (user.Roles.Equals("Employee"))
                     {
-                        return RedirectToAction("Index", "Employee");
+                        return RedirectToAction("Index", "Employee", new { 
+                            Area = "Employee" 
+                        });
                     }
                     else if (user.Roles.Equals("Admin"))
                     {
-                        return RedirectToAction("Index", "Admin");
+                        return RedirectToAction("Index", "Admin", new
+                        {
+                            Area = "Admin"
+                        });
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Home", new
+                        {
+                            Area = "Home"
+                        });
                     }
                 }
                 if (result.RequiresTwoFactor)

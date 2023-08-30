@@ -6,6 +6,7 @@ using NexusConnectCRM.Data;
 
 namespace NexusConnectCRM.Areas.Customer.Controllers
 {
+    [Area("Customer")]
     [Authorize(Roles = "Customer,Admin,Employee")]
     public class CustomerController : Controller
     {
@@ -31,7 +32,7 @@ namespace NexusConnectCRM.Areas.Customer.Controllers
                 User = await _context.Users.FirstOrDefaultAsync(u => u.UserName == user)
             };
 
-            return View("~/Areas/Customer/Views/Customer/Index.cshtml", viewModel);
+            return View("Index", viewModel);
         }
     }
 }
