@@ -120,6 +120,24 @@
                                                 <div class="col-md-offset-2 col-md-10">
                                                     <input id="submitButton" type="submit" value="Save" class="btn btn-primary">
                                                     <a class="btn btn-secondary" href="@Url.Action("Help", "Employee")">Cancel</a>
+                                                    <div class="container" style="padding-left: 0; padding-top: 10px;">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                @if (!Model.Help.IsApproved)
+                                                                {
+                                                                    <a href="@Url.Action("HelpApprove", "Employee", new { id = Model.Help.Id })" class="btn btn-success me-1">Approve</a>
+                                                                }
+                                                                @if (!Model.Help.IsRejected)
+                                                                {
+                                                                    <a href="@Url.Action("HelpReject", "Employee", new { id = Model.Help.Id })" class="btn btn-danger me-1">Reject</a>
+                                                                }
+                                                                @if (!Model.Help.IsClosed)
+                                                                {
+                                                                    <a href="@Url.Action("HelpClose", "Employee", new { id = Model.Help.Id })" class="btn btn-dark me-1">Close</a>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

@@ -155,7 +155,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             _context.Update(help);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("Help");
+            return RedirectToAction(nameof(HelpEdit), new { id = help.Id });
         }
 
         public async Task<IActionResult> HelpReject(int id)
@@ -176,7 +176,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             _context.Update(help);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("Help");
+            return RedirectToAction(nameof(HelpEdit), new { id = help.Id });
         }
 
         public async Task<IActionResult> HelpClose(int id)
@@ -197,7 +197,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             _context.Update(help);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("Help");
+            return RedirectToAction(nameof(HelpEdit), new { id = help.Id });
         }
 
         public async Task<IActionResult> ClosedHelp()
