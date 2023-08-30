@@ -147,7 +147,6 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                 return NotFound();
             }
 
-            help.IsCompleted = false;
             help.IsApproved = true;
             help.IsPending = false;
             help.IsRejected = false;
@@ -201,16 +200,16 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             return RedirectToAction("Help");
         }
 
-        public async Task<IActionResult> NotApprovedHelp()
+        public async Task<IActionResult> ClosedHelp()
         {
-            var helpList = await _context.Help.Where(h => h.IsApproved == false).ToListAsync();
+            var helpList = await _context.Help.Where(h => h.IsClosed == true).ToListAsync();
 
             ListHelpViewModel viewModel = new()
             {
                 HelpList = helpList,
             };
 
-            return View("~/Areas/Employee/Views/Employee/NotApprovedHelp.cshtml", viewModel);
+            return View("~/Areas/Employee/Views/Employee/ClosedHelp.cshtml", viewModel);
         }
 
         public async Task<IActionResult> NotCompletedHelp()
@@ -258,7 +257,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                 return NotFound();
             }
 
-            List<HelpResponseInfo> feedback = await _context.HelpFeedback.Where(h => h.ResponseId == help.ResponseId).ToListAsync();
+            List<HelpResponseInfo> feedback = await _context.HelpFeedback.Where(h => h.ResponseId == help.Id).ToListAsync();
 
             HelpEditViewModel viewModel = new()
             {
@@ -281,12 +280,6 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                 return NotFound();
             }
 
-            if (viewModel.Response == null)
-            {
-                ModelState.AddModelError("Response", "Please enter a response.");
-                return RedirectToAction("HelpEdit", new { id = id });
-            }
-
             string name = _context.Users.Where(u => u.Id == _userManager.GetUserId(User)).Select(u => u.FirstName + " " + u.LastName).FirstOrDefault();
 
             DateTime date = DateTime.Now;
@@ -302,7 +295,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                 CreatedDate = help.CreatedDate,
                 ModifiedDate = DateTime.Now,
                 Image = null,
-                ResponseId = help.ResponseId
+                ResponseId = help.Id
             };
 
             help.IsPending = false;
@@ -314,15 +307,8 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             _context.Add(feedback);
             await _context.SaveChangesAsync();
 
-            HelpEditViewModel vm = new()
-            {
-                Id = id,
-                Help = help,
-                HelpResponses = await _context.HelpFeedback.Where(h => h.ResponseId == help.ResponseId).ToListAsync(),
-                Response = null
-            };
+            return RedirectToAction(nameof(HelpEdit), new { id = help.Id });
 
-            return View("~/Areas/Employee/Views/Employee/HelpEdit.cshtml", vm);
         }
 
         public async Task<IActionResult> ProspectMarkContacted(int id)

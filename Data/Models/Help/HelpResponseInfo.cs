@@ -6,7 +6,7 @@ namespace NexusConnectCRM.Data.Models.Help
     {
         [Key]
         public int Id { get; set; }
-        public string ResponseId { get; set; }
+        public int ResponseId { get; set; }
         public string Response { get; set; }
         public byte[] Image { get; set; }
         public string Author { get; set; }

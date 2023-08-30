@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NexusConnectCRM.Data;
 
@@ -11,9 +12,11 @@ using NexusConnectCRM.Data;
 namespace NexusConnectCRM.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230829223208_RemoveNotNeededColumnsFromHelp")]
+    partial class RemoveNotNeededColumnsFromHelp
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -567,10 +570,10 @@ namespace NexusConnectCRM.Data.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("IsContacted")
+                    b.Property<bool>("IsContacted")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("IsHelped")
+                    b.Property<bool>("IsHelped")
                         .HasColumnType("bit");
 
                     b.Property<string>("LastName")
@@ -579,7 +582,7 @@ namespace NexusConnectCRM.Data.Migrations
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool?>("NeedsHelp")
+                    b.Property<bool>("NeedsHelp")
                         .HasColumnType("bit");
 
                     b.Property<string>("PhoneNumber")

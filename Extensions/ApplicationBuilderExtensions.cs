@@ -208,6 +208,84 @@ namespace NexusConnectCRM.Extensions
                 }
             }
 
+            // My testing account. \\
+            if (context.Users.Where(u => u.Email == "asanderson1994s@gmail.com").FirstOrDefault() == null)
+            {
+                ApplicationUser testUser = new()
+                {
+                    UserName = "asanderson1994s@gmail.com",
+                    Email = "asanderson1994s@gmail.com",
+                    NormalizedEmail = "ASANDERSON1994S@GMAIL.COM",
+                    EmailConfirmed = true,
+                    FirstName = "Alexander",
+                    LastName = "Sanderson",
+                    Roles = "Prospect",
+                    NormalizedUserName = "ASANDERSON1994S@GMAIL.COM",
+                    SecurityStamp = Guid.NewGuid().ToString("D"),
+                    ConcurrencyStamp = Guid.NewGuid().ToString("D"),
+                    LockoutEnabled = false,
+                    PhoneNumberConfirmed = false,
+                    TwoFactorEnabled = false
+                };
+                IdentityResult accountResult = userManager.CreateAsync(testUser, "Pass1234!").Result;
+
+                if (accountResult.Succeeded)
+                {
+                    userManager.AddToRoleAsync(testUser, "Prospect").Wait();
+                }
+                else
+                {
+                    throw new Exception("Test account creation failed");
+                }
+
+                CompanyInfo company = new()
+                { 
+                    Name = "The Tech Academy",
+                    Address = "310 SW 4th Ave, Suite 200",
+                    City = "Portland",
+                    State = "Oregon",
+                    Zip = "97204",
+                    Country = "United States",
+                    Phone = "503-206-6915",
+                    Website = "https://www.learncodinganywhere.com",
+                    Email = "info@learncodinganywhere.com",
+                    Industry = "Education",
+                    NeedsContact = false
+                };
+
+                context.Companies.Add(company);
+                context.SaveChanges();
+
+                var userId = context.Users.Where(u => u.Email == "asanderson1994s@gmail.com").FirstOrDefault().Id;
+                var techAcademyId = context.Companies.Where(c => c.Name == "The Tech Academy").FirstOrDefault().Id;
+
+                ProspectInfo prospectInfo = new()
+                {
+                    FirstName = "Alexander",
+                    LastName = "Sanderson",
+                    EmailAddress = "asanderson1994s@gmail.com",
+                    DateOfBirth = new DateTime(1994, 8, 19),
+                    Address = "4602 Boise Ct",
+                    City = "Vancouver",
+                    State = "Washington",
+                    ZipCode = "98661",
+                    Country = "United States",
+                    CompanyName = "The Tech Academy",
+                    PhoneNumber = "360-281-9758",
+                    UserId = userId,
+                    CompanyId = techAcademyId,
+                    IsActive = true,
+                    IsContacted = null,
+                    IsHelped = null,
+                    NeedsHelp = null,
+                    CreatedDate = DateTime.Now,
+                    ModifiedDate = DateTime.Now
+                };
+
+                context.Prospects.Add(prospectInfo);
+                context.SaveChanges();
+            }
+
             return app;
         }
     }

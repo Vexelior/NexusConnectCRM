@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NexusConnectCRM.Areas.Employee.ViewModels;
 using NexusConnectCRM.Data;
@@ -57,7 +52,6 @@ namespace NexusConnectCRM.Controllers
             helpInfo.IsApproved = false;
             helpInfo.IsCompleted = false;
             helpInfo.IsRejected = false;
-            helpInfo.ResponseId = authorId;
             helpInfo.CreatedDate = DateTime.Now;
             helpInfo.ModifiedDate = DateTime.Now;
 
@@ -86,7 +80,7 @@ namespace NexusConnectCRM.Controllers
                 return NotFound();
             }
 
-            List<HelpResponseInfo> feedback = await _context.HelpFeedback.Where(h => h.ResponseId == help.ResponseId).ToListAsync();
+            List<HelpResponseInfo> feedback = await _context.HelpFeedback.Where(h => h.ResponseId == help.Id).ToListAsync();
 
             AuthorHelpEditViewModel viewModel = new()
             {
@@ -109,12 +103,6 @@ namespace NexusConnectCRM.Controllers
                 return NotFound();
             }
 
-            if (viewModel.Response == null)
-            {
-                ModelState.AddModelError("Response", "Please enter a response.");
-                return RedirectToAction("HelpEdit", new { id = id });
-            }
-
             string name = _context.Users.Where(u => u.Id == _userManager.GetUserId(User)).Select(u => u.FirstName + " " + u.LastName).FirstOrDefault();
 
             DateTime date = DateTime.Now;
@@ -130,7 +118,7 @@ namespace NexusConnectCRM.Controllers
                 CreatedDate = help.CreatedDate,
                 ModifiedDate = DateTime.Now,
                 Image = null,
-                ResponseId = help.ResponseId
+                ResponseId = help.Id
             };
 
             help.IsPending = true;
@@ -140,15 +128,7 @@ namespace NexusConnectCRM.Controllers
             _context.Add(feedback);
             await _context.SaveChangesAsync();
 
-            AuthorHelpEditViewModel vm = new()
-            {
-                Id = id,
-                Help = help,
-                HelpResponses = await _context.HelpFeedback.Where(h => h.ResponseId == help.ResponseId).ToListAsync(),
-                Response = "",
-            };
-
-            return View("~/Views/HelpInfo/Details.cshtml", vm);
+            return RedirectToAction(nameof(Details), new { id = help.Id });
         }
 
 

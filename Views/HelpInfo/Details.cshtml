@@ -109,7 +109,7 @@
                                         <br />
                                     </div>
                                 }
-                                @if (Model.Help.IsApproved)
+                                @if (Model.Help.IsApproved && !Model.Help.IsClosed)
                                 {
                                     <div class="container">
                                         <div class="row">
@@ -119,9 +119,39 @@
                                                 <div class="form-group">
                                                     <div class="col-md-offset-2 col-md-10">
                                                         <input id="submitButton" type="submit" value="Save" class="btn btn-primary">
-                                                        <a class="btn btn-secondary" href="@Url.Action("Index", "HelpInfo", new { id = Model.Help.Id })">Cancel</a>
+                                                        <a class="btn btn-secondary" href="@Url.Action("Index", "HelpInfo")">Cancel</a>
                                                     </div>
                                                 </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else if (Model.Help.IsClosed && !Model.Help.IsRejected)
+                                {
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="text-center">
+                                                    <strong>
+                                                        This ticket has been closed.
+                                                    </strong>
+                                                </p>
+                                                <a class="btn btn-secondary mb-3" href="@Url.Action("Index", "HelpInfo")">Cancel</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else if (Model.Help.IsRejected)
+                                {
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="text-center">
+                                                    <strong>
+                                                        This ticket has been rejected.
+                                                    </strong>
+                                                </p>
+                                                <a class="btn btn-secondary mb-3" href="@Url.Action("Index", "HelpInfo")">Cancel</a>
                                             </div>
                                         </div>
                                     </div>
@@ -136,6 +166,7 @@
                                                         This ticket has not yet been aprroved.
                                                     </strong>
                                                 </p>
+                                                <a class="btn btn-secondary mb-3" href="@Url.Action("Index", "HelpInfo")">Cancel</a>
                                             </div>
                                         </div>
                                     </div>

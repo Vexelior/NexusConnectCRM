@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.SignalR;
-using NexusConnectCRM.Data.Models.Help;
+﻿using NexusConnectCRM.Data.Models.Help;
 using System.ComponentModel.DataAnnotations;
 
 namespace NexusConnectCRM.Areas.Employee.ViewModels

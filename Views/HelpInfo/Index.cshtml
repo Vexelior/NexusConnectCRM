@@ -11,73 +11,117 @@
 
 <div class="d-flex justify-content-center">
     <div class="d-flex flex-row me-3">
-        <div class="bg-success" style="width: 20px; height: 20px;"></div>
+        <div style="width: 20px; height: 20px;">
+            <span class="fa fa-check" style="color: green; font-size: 16px;"></span>
+        </div>
         <p class="ms-1">Completed</p>
     </div>
     <div class="d-flex flex-row me-3">
-        <div class="bg-warning" style="width: 20px; height: 20px;"></div>
+        <div style="width: 20px; height: 20px;">
+            <span class="fa fa-waiting" style="color: orange; font-size: 16px;"></span>
+        </div>
         <p class="ms-1">Pending</p>
     </div>
     <div class="d-flex flex-row me-3">
-        <div class="bg-danger" style="width: 20px; height: 20px;"></div>
+        <div style="width: 20px; height: 20px;">
+            <span class="fa fa-times" style="color: red; font-size: 16px;"></span>
+        </div>
         <p class="ms-1">Rejected</p>
+    </div>
+    <div class="d-flex flex-row me-3">
+        <div style="width: 20px; height: 20px;">
+            <span class="fa fa-lock" style="color: black; font-size: 16px;"></span>
+        </div>
+        <p class="ms-1">Closed</p>
     </div>
 </div>
 
-<table class="table text-center">
+<table class="table table-hover text-center">
     <thead>
         <tr>
+            <th>Ticket #</th>
             <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
+            <th></th>
             <th></th>
         </tr>
     </thead>
     <tbody class="text-center">
         @foreach (var item in Model)
         {
-            if (item.IsCompleted)
+            if (item.IsCompleted && !item.IsClosed)
             {
-                <tr class="bg-success">
+                <tr>
+                    <td>@item.Id</td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Title)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Description)
+                        <a class="btn btn-dark" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    </td>
+                    <td>
+                        <span class="fa fa-check" style="color: green; font-size: 16px;"></span>
+                    </td>
+                </tr>
+            }
+            else if (!item.IsCompleted && item.IsApproved)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
                     </td>
                     <td>
                         <a class="btn btn-dark" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    </td>
+                    <td>
+                        <span class="fa fa-waiting" style="color: orange; font-size: 16px;"></span>
                     </td>
                 </tr>
             }
             else if (item.IsRejected)
             {
-                <tr class="bg-warning">
+                <tr>
+                    <td>@item.Id</td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Title)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Description)
+                        <a class="btn btn-dark" asp-action="Details" asp-route-id="@item.Id">Details</a>
                     </td>
                     <td>
-                        <a class="btn btn-dark" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        <span class="fa fa-times" style="color: red; font-size: 16px;"></span>
                     </td>
                 </tr>
             }
             else if (item.IsPending)
             {
-                <tr class="bg-warning">
+                <tr>
+                    <td>@item.Id</td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Title)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Description)
+                        <a class="btn btn-dark" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    </td>
+                    <td>
+                        <span class="fa fa-waiting" style="color: orange; font-size: 16px;"></span>
+                    </td>
+                </tr>
+            }
+            else if (item.IsClosed && item.IsApproved)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
                     </td>
                     <td>
                         <a class="btn btn-dark" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    </td>
+                    <td>
+                        <span class="fa fa-lock" style="color: black; font-size: 16px;"></span>
                     </td>
                 </tr>
             }
