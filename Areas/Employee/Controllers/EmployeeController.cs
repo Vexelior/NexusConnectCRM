@@ -34,22 +34,22 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             }
 
             var prospectsNeededContact = _context.Prospects.Where(p => p.IsContacted == false &&
-                                                                           p.Address != null &&
-                                                                           p.City != null &&
-                                                                           p.State != null &&
-                                                                           p.Country != null &&
-                                                                           p.ZipCode != null).Count();
+                                                                               p.Address != null &&
+                                                                               p.City != null &&
+                                                                               p.State != null &&
+                                                                               p.Country != null &&
+                                                                               p.ZipCode != null).Count();
 
             var customersNeededContact = _context.Customers.Where(c => c.NeedsContact == true).Count();
             var companiesNeededContact = _context.Companies.Where(c => c.NeedsContact == true).Count();
 
 
             var prospectsNotNeededContact = _context.Prospects.Where(p => p.IsContacted == true &&
-                                                                              p.Address != null &&
-                                                                              p.City != null &&
-                                                                              p.State != null &&
-                                                                              p.Country != null &&
-                                                                              p.ZipCode != null).Count();
+                                                                                  p.Address != null &&
+                                                                                  p.City != null &&
+                                                                                  p.State != null &&
+                                                                                  p.Country != null &&
+                                                                                  p.ZipCode != null).Count();
 
             var customersNotNeededContact = _context.Customers.Where(c => c.NeedsContact == false).Count();
             var companiesNotNeededContact = _context.Companies.Where(c => c.NeedsContact == false).Count();
@@ -154,7 +154,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             _context.Update(help);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction(nameof(HelpEdit), new { id = help.Id });
+            return RedirectToAction(nameof(HelpEdit), new { id = help.Id, author = help.Author });
         }
 
         public async Task<IActionResult> HelpReject(int id)
@@ -173,7 +173,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             _context.Update(help);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction(nameof(HelpEdit), new { id = help.Id });
+            return RedirectToAction(nameof(HelpEdit), new { id = help.Id, author = help.Author });
         }
 
         public async Task<IActionResult> HelpClose(int id)
@@ -192,7 +192,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             _context.Update(help);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction(nameof(HelpEdit), new { id = help.Id });
+            return RedirectToAction(nameof(HelpEdit), new { id = help.Id, author = help.Author });
         }
 
         public async Task<IActionResult> HelpCompleted(int id)
@@ -206,7 +206,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             _context.Update(help);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction(nameof(HelpEdit), new { id = help.Id });
+            return RedirectToAction(nameof(HelpEdit), new { id = help.Id, author = help.Author });
         }
 
         public async Task<IActionResult> NewHelp()
@@ -365,7 +365,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             _context.Add(feedback);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction(nameof(HelpEdit), new { id = help.Id });
+            return RedirectToAction(nameof(HelpEdit), new { id = help.Id, author = help.Author });
 
         }
 
