@@ -124,7 +124,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
 
         public async Task<IActionResult> Help()
         {
-            var helpList = await _context.Help.ToListAsync();
+            var helpList = await _context.Help.OrderByDescending(h => h.CreatedDate).ToListAsync();
 
             if (helpList == null)
             {
@@ -166,7 +166,9 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                 return NotFound();
             }
 
+            help.IsApproved = false;
             help.IsRejected = true;
+            help.IsClosed = false;
 
             _context.Update(help);
             await _context.SaveChangesAsync();
@@ -185,6 +187,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
 
             help.IsCompleted = true;
             help.IsClosed = true;
+            help.IsRejected = false;
 
             _context.Update(help);
             await _context.SaveChangesAsync();
@@ -192,9 +195,37 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             return RedirectToAction(nameof(HelpEdit), new { id = help.Id });
         }
 
+        public async Task HelpCompleted(int id)
+        {
+            var help = await _context.Help.FirstOrDefaultAsync(m => m.Id == id) ?? throw new Exception("Help ticket not found");
+
+            help.IsCompleted = true;
+            help.IsClosed = false;
+            help.IsRejected = false;
+
+            _context.Update(help);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<IActionResult> NewHelp()
+        {
+            var helpList = await _context.Help.Where(h => h.CustomerWasRecentResponse)
+                                              .OrderByDescending(h => h.CreatedDate)
+                                              .ToListAsync();
+
+            ListHelpViewModel viewModel = new()
+            {
+                HelpList = helpList,
+            };
+
+            return View("NewHelp", viewModel);
+        }
+
         public async Task<IActionResult> ClosedHelp()
         {
-            var helpList = await _context.Help.Where(h => h.IsClosed == true).ToListAsync();
+            var helpList = await _context.Help.Where(h => h.IsClosed)
+                                              .OrderByDescending(h => h.CreatedDate)
+                                              .ToListAsync();
 
             ListHelpViewModel viewModel = new()
             {
@@ -204,40 +235,46 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             return View("ClosedHelp", viewModel);
         }
 
-        public async Task<IActionResult> NotCompletedHelp()
+        public async Task<IActionResult> PendingHelp()
         {
-            var helpList = await _context.Help.Where(h => h.IsCompleted == false).ToListAsync();
+            var helpList = await _context.Help.Where(h => h.IsPending)
+                                              .OrderByDescending(h => h.CreatedDate)
+                                              .ToListAsync();
 
             ListHelpViewModel viewModel = new()
             {
                 HelpList = helpList,
             };
 
-            return View("NotCompletedHelp", viewModel);
+            return View("PendingHelp", viewModel);
         }
 
         public async Task<IActionResult> RejectedHelp()
         {
-            var helpList = await _context.Help.Where(h => h.IsRejected == true).ToListAsync();
+            var helpList = await _context.Help.Where(h => h.IsRejected)
+                                              .OrderByDescending(h => h.CreatedDate)
+                                              .ToListAsync();
 
             ListHelpViewModel viewModel = new()
             {
                 HelpList = helpList,
             };
 
-            return View("NotCompletedHelp", viewModel);
+            return View("RejectedHelp", viewModel);
         }
 
         public async Task<IActionResult> CompletedHelp()
         {
-            var helpList = await _context.Help.Where(h => h.IsCompleted == true).ToListAsync();
+            var helpList = await _context.Help.Where(h => h.IsCompleted)
+                                              .OrderByDescending(h => h.CreatedDate)
+                                              .ToListAsync();
 
             ListHelpViewModel viewModel = new()
             {
                 HelpList = helpList,
             };
 
-            return View("NotCompletedHelp", viewModel);
+            return View("CompletedHelp", viewModel);
         }
 
         public async Task<IActionResult> HelpEdit(int id)
@@ -330,7 +367,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
 
         }
 
-        public async Task<IActionResult> ProspectMarkContacted(int id)
+        public async Task<IActionResult> ProspectContacted(int id)
         {
             var prospect = await _context.Prospects.FirstOrDefaultAsync(m => m.Id == id);
 

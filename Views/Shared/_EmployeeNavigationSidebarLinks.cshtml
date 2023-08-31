@@ -17,13 +17,12 @@
     var totalNeededContactCount = prospectsNeededContact + customersNeededContact + companiesNeededContact;
 
     // Tickets \\
-    var ticketsNeedingAttention = _context.Help.Where(h => h.IsPending == true && 
-                                                           h.CustomerWasRecentResponse == true && 
+    var ticketsNeedingAttention = _context.Help.Where(h => h.CustomerWasRecentResponse == true && 
                                                           !h.IsClosed &&
                                                           !h.IsRejected).Count();
 
     var pendingHelpTicketsCount = _context.Help.Where(h => h.IsPending == true && 
-                                                           h.IsRejected == false && 
+                                                          !h.IsRejected && 
                                                           !h.IsClosed &&
                                                           !h.IsRejected).Count();
 
@@ -116,7 +115,23 @@
             </a>
         </li>
         <li>
-            <a class="dropdown-item" href="@Url.Action("NotCompletedHelp", "Employee")">
+            <a class="dropdown-item" href="@Url.Action("NewHelp", "Employee")">
+                New
+                @if (ticketsNeedingAttention > 0)
+                {
+                    @if (ticketsNeedingAttention > 99)
+                    {
+                        <span class="badge bg-danger rounded-pill">99+</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger rounded-pill">@ticketsNeedingAttention</span>
+                    }
+                }
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item" href="@Url.Action("PendingHelp", "Employee")">
                 Pending
                 @if (pendingHelpTicketsCount > 0)
                 {

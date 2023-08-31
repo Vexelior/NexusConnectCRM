@@ -117,27 +117,12 @@
                                             @Html.TextAreaFor(m => m.Response, new { @class = "form-control", @rows = "10", id = "ResponseText", @placeholder =  "Response" })
                                             <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#AttachFile"></button>
                                             <div class="form-group">
-                                                <div class="col-md-offset-2 col-md-10">
+                                                <div class="col" style="margin: 0;">
                                                     <input id="submitButton" type="submit" value="Save" class="btn btn-primary">
                                                     <a class="btn btn-secondary" href="@Url.Action("Help", "Employee")">Cancel</a>
-                                                    <div class="container" style="padding-left: 0; padding-top: 10px;">
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                @if (!Model.Help.IsApproved)
-                                                                {
-                                                                    <a href="@Url.Action("HelpApprove", "Employee", new { id = Model.Help.Id })" class="btn btn-success me-1">Approve</a>
-                                                                }
-                                                                @if (!Model.Help.IsRejected)
-                                                                {
-                                                                    <a href="@Url.Action("HelpReject", "Employee", new { id = Model.Help.Id })" class="btn btn-danger me-1">Reject</a>
-                                                                }
-                                                                @if (!Model.Help.IsClosed)
-                                                                {
-                                                                    <a href="@Url.Action("HelpClose", "Employee", new { id = Model.Help.Id })" class="btn btn-dark me-1">Close</a>
-                                                                }
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    <button type="button" class="btn btn-dark" style="float: right; width: auto;" data-bs-toggle="modal" data-bs-target="#TicketOptionsModal">
+                                                        Options
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -152,10 +137,43 @@
     </div>
 </div>
 
+<!-- Ticket Options Modal -->
+<div class="modal fade" id="TicketOptionsModal" tabindex="-1" role="dialog" aria-labelledby="TicketOptionsLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="TicketOptionsLabel">Ticket Options</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                @if (!Model.Help.IsApproved)
+                {
+                    <a href="@Url.Action("HelpApprove", "Employee", new { id = Model.Help.Id })" class="btn btn-primary me-1">Approve</a>
+                }
+                @if (!Model.Help.IsCompleted)
+                {
+                    <a href="@Url.Action("HelpCompleted", "Employee", new { id = Model.Help.Id })" class="btn btn-success">Complete</a>
+                }
+                @if (!Model.Help.IsRejected)
+                {
+                    <a href="@Url.Action("HelpReject", "Employee", new { id = Model.Help.Id })" class="btn btn-danger me-1">Reject</a>
+                }
+                @if (!Model.Help.IsClosed)
+                {
+                    <a href="@Url.Action("HelpClose", "Employee", new { id = Model.Help.Id })" class="btn btn-dark me-1">Close</a>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width: auto;">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     const responseText = document.getElementById("ResponseText");
     const helpResponseForm = document.getElementById("helpResponseForm");
-    const submitButton = document.getElementById("submitButton");
+    let submitButton = document.getElementById("submitButton");
 
     helpResponseForm.addEventListener("submit", function (event) {
         if (responseText.value === "") {
@@ -167,7 +185,7 @@
         }
         else {
             submitButton.disabled = true;
-            submitButton.innerHTML = "<i class='fa fa-spinner fa-spin'></i> Saving...";
+            submitButton.innerHTML = "<i class='fa fa-spinner'></i> Saving...";
             submitButton.style.cursor = 'no-drop';
         }
     });

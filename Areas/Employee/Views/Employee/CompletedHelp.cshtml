@@ -1,14 +1,14 @@
 ﻿@model NexusConnectCRM.Areas.Employee.ViewModels.ListHelpViewModel
 @inject NexusConnectCRM.Data.ApplicationDbContext _context
 @{
-    ViewBag.Title = "Rejected Help Tickets";
+    ViewBag.Title = "Completed Help Tickets";
     Layout = "~/Views/Shared/_EmployeePortalLayout.cshtml";
 }
 
-@if (Model.HelpList.Count() <= 0)
+@if (Model.HelpList.Count() == 0)
 {
     <h1 class="text-center">
-        No Rejected Tickets
+        No Completed Tickets
     </h1>
 }
 else

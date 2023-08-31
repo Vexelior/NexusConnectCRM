@@ -30,7 +30,9 @@ namespace NexusConnectCRM.Controllers
                 return NotFound();
             }
 
-            var userHelpTickets = await _context.Help.Where(u => u.Author == user.Id).ToListAsync();
+            var userHelpTickets = await _context.Help.Where(u => u.Author == user.Id)
+                                                     .OrderByDescending(u => u.CreatedDate)
+                                                     .ToListAsync();
 
             HelpInfoIndexViewModel viewModel = new()
             {
@@ -130,7 +132,6 @@ namespace NexusConnectCRM.Controllers
                 ResponseId = help.Id
             };
 
-            help.IsPending = true;
             help.IsCompleted = false;
             help.ModifiedDate = feedback.ModifiedDate;
             help.CustomerWasRecentResponse = true;
