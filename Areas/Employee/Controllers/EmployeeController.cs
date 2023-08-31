@@ -150,8 +150,6 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
 
             help.IsApproved = true;
             help.IsPending = false;
-            help.IsRejected = false;
-            help.IsClosed = false;
 
             _context.Update(help);
             await _context.SaveChangesAsync();
@@ -168,11 +166,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                 return NotFound();
             }
 
-            help.IsCompleted = true;
-            help.IsApproved = false;
-            help.IsPending = false;
             help.IsRejected = true;
-            help.IsClosed = true;
 
             _context.Update(help);
             await _context.SaveChangesAsync();
@@ -189,10 +183,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                 return NotFound();
             }
 
-            help.IsApproved = true;
             help.IsCompleted = true;
-            help.IsPending = false;
-            help.IsRejected = false;
             help.IsClosed = true;
 
             _context.Update(help);
@@ -328,7 +319,6 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                 ResponseId = help.Id
             };
 
-            help.IsPending = true;
             help.ModifiedDate = feedback.ModifiedDate;
             help.CustomerWasRecentResponse = false;
             help.EmployeeWasRecentResponse = true;

@@ -5,7 +5,6 @@ using NexusConnectCRM.Areas.Employee.ViewModels;
 using NexusConnectCRM.Data;
 using NexusConnectCRM.Data.Models.Help;
 using NexusConnectCRM.Data.Models.Identity;
-using NexusConnectCRM.ViewModels.HelpInfo;
 using NexusConnectCRM.ViewModels.HelpInfoData;
 
 namespace NexusConnectCRM.Controllers
@@ -36,10 +35,9 @@ namespace NexusConnectCRM.Controllers
             HelpInfoIndexViewModel viewModel = new()
             {
                 HelpInfos = userHelpTickets,
-                WasLastReplyByEmployee = false
             };
 
-            return userHelpTickets == null ? throw new Exception("No help tickets found for this user.") : (IActionResult)View(userHelpTickets);
+            return View("Index", viewModel);
         }
 
         // GET: HelpInfo/Create
@@ -137,6 +135,7 @@ namespace NexusConnectCRM.Controllers
             help.ModifiedDate = feedback.ModifiedDate;
             help.CustomerWasRecentResponse = true;
             help.EmployeeWasRecentResponse = false;
+            help.EmployeeViewed = false;
 
             _context.Add(feedback);
             await _context.SaveChangesAsync();

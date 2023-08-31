@@ -3,8 +3,7 @@
 @using System.Linq
 
 @{
-    // var userId = _context.Users.FirstOrDefault(u => u.Email == User.Identity.Name)?.CompanyId;
-    // var userCompanyId = _context.Companies.FirstOrDefault(c => c.Id == userId)?.Id;
+    // Temp Notification Test Count \\
     var prospectsNeededContact = _context.Prospects.Where(p => p.IsContacted == false &&
                                                           p.Address != null &&
                                                           p.City != null &&
@@ -13,12 +12,22 @@
                                                           p.ZipCode != null).Count();
 
     var customersNeededContact = _context.Customers.Where(c => c.NeedsContact == true).Count();
-
     var companiesNeededContact = _context.Companies.Where(c => c.NeedsContact == true).Count();
 
     var totalNeededContactCount = prospectsNeededContact + customersNeededContact + companiesNeededContact;
 
-    var pendingHelpTicketsCount = _context.Help.Where(h => h.IsPending == true && h.IsRejected == false).Count();
+    // Tickets \\
+    var ticketsNeedingAttention = _context.Help.Where(h => h.IsPending == true && 
+                                                           h.CustomerWasRecentResponse == true && 
+                                                          !h.IsClosed &&
+                                                          !h.IsRejected).Count();
+
+    var pendingHelpTicketsCount = _context.Help.Where(h => h.IsPending == true && 
+                                                           h.IsRejected == false && 
+                                                          !h.IsClosed &&
+                                                          !h.IsRejected).Count();
+
+    var ticketNotificationCount = ticketsNeedingAttention + pendingHelpTicketsCount;
 }
 <a class="list-group-item list-group-item-action list-group-item-light p-3" asp-controller="Employee" asp-action="Index">
     Dashboard
@@ -88,15 +97,15 @@
 <div class="dropdown dropend">
     <button class="dropdown-toggle list-group-item list-group-item-action list-group-item-light p-3 portal-profile-edit-button" data-bs-toggle="dropdown" aria-expanded="false">
         Help Tickets
-        @if (pendingHelpTicketsCount > 0)
+        @if (ticketNotificationCount > 0)
         {
-            @if (pendingHelpTicketsCount > 99)
+            @if (ticketNotificationCount > 99)
             {
                 <span class="badge bg-danger rounded-pill">99+</span>
             }
             else
             {
-                <span class="badge bg-danger rounded-pill">@pendingHelpTicketsCount</span>
+                <span class="badge bg-danger rounded-pill">@ticketNotificationCount</span>
             }
         }
     </button>
@@ -108,7 +117,7 @@
         </li>
         <li>
             <a class="dropdown-item" href="@Url.Action("NotCompletedHelp", "Employee")">
-                Incomplete
+                Pending
                 @if (pendingHelpTicketsCount > 0)
                 {
                     @if (pendingHelpTicketsCount > 99)
