@@ -195,7 +195,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             return RedirectToAction(nameof(HelpEdit), new { id = help.Id });
         }
 
-        public async Task HelpCompleted(int id)
+        public async Task<IActionResult> HelpCompleted(int id)
         {
             var help = await _context.Help.FirstOrDefaultAsync(m => m.Id == id) ?? throw new Exception("Help ticket not found");
 
@@ -205,6 +205,8 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
 
             _context.Update(help);
             await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(HelpEdit), new { id = help.Id });
         }
 
         public async Task<IActionResult> NewHelp()
