@@ -267,7 +267,36 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                 HelpResponses = feedback
             };
 
+            await SetEmployeeViewed(id);
+
             return View("HelpEdit", viewModel);
+        }
+
+        public async Task SetEmployeeViewed(int id)
+        {
+            HelpInfo help = await _context.Help.FirstOrDefaultAsync(m => m.Id == id);
+
+            if (help == null)
+            {
+                return;
+            }
+            try
+            {
+                help.EmployeeViewed = true;
+                _context.Update(help);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!HelpExists(help.Id))
+                {
+                    return;
+                }
+                else
+                {
+                    throw;
+                }
+            }
         }
 
         [HttpPost]
@@ -275,7 +304,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
         public async Task<IActionResult> SubmitHelpResponse(int id, HelpEditViewModel viewModel)
         {
             var help = await _context.Help.FirstOrDefaultAsync(m => m.Id == id);
-            
+
             if (help == null)
             {
                 return NotFound();
@@ -299,11 +328,10 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                 ResponseId = help.Id
             };
 
-            help.IsPending = false;
-            help.IsCompleted = true;
-            help.IsApproved = true;
-            help.IsRejected = false;
+            help.IsPending = true;
             help.ModifiedDate = feedback.ModifiedDate;
+            help.CustomerWasRecentResponse = false;
+            help.EmployeeWasRecentResponse = true;
 
             _context.Add(feedback);
             await _context.SaveChangesAsync();
@@ -378,6 +406,11 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             await _context.SaveChangesAsync();
 
             return RedirectToAction("ViewCompanies", "Employee");
+        }
+
+        private bool HelpExists(int id)
+        {
+            return _context.Help.Any(e => e.Id == id);
         }
     }
 }

@@ -23,6 +23,11 @@ namespace NexusConnectCRM.Data.Models.Help
         public bool IsClosed { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
+        public bool EmployeeViewed { get; set; }
+        public bool CustomerViewed { get; set; }
+        public bool CustomerWasRecentResponse { get; set; }
+        public bool EmployeeWasRecentResponse { get; set; }
+
         public List<HelpResponseInfo> HelpResponses { get; set; }
     }
 }

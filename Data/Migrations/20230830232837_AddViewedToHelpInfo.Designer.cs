@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NexusConnectCRM.Data;
 
@@ -11,9 +12,11 @@ using NexusConnectCRM.Data;
 namespace NexusConnectCRM.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230830232837_AddViewedToHelpInfo")]
+    partial class AddViewedToHelpInfo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -379,15 +382,9 @@ namespace NexusConnectCRM.Data.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("CustomerViewed")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("EmployeeViewed")
-                        .HasColumnType("bit");
 
                     b.Property<byte[]>("Image")
                         .HasColumnType("varbinary(max)");
@@ -432,6 +429,12 @@ namespace NexusConnectCRM.Data.Migrations
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("CustomerViewed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("EmployeeViewed")
+                        .HasColumnType("bit");
 
                     b.Property<int?>("HelpInfoId")
                         .HasColumnType("int");

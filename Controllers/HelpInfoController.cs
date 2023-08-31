@@ -5,7 +5,8 @@ using NexusConnectCRM.Areas.Employee.ViewModels;
 using NexusConnectCRM.Data;
 using NexusConnectCRM.Data.Models.Help;
 using NexusConnectCRM.Data.Models.Identity;
-using NexusConnectCRM.ViewModels;
+using NexusConnectCRM.ViewModels.HelpInfo;
+using NexusConnectCRM.ViewModels.HelpInfoData;
 
 namespace NexusConnectCRM.Controllers
 {
@@ -32,6 +33,12 @@ namespace NexusConnectCRM.Controllers
 
             var userHelpTickets = await _context.Help.Where(u => u.Author == user.Id).ToListAsync();
 
+            HelpInfoIndexViewModel viewModel = new()
+            {
+                HelpInfos = userHelpTickets,
+                WasLastReplyByEmployee = false
+            };
+
             return userHelpTickets == null ? throw new Exception("No help tickets found for this user.") : (IActionResult)View(userHelpTickets);
         }
 
@@ -54,6 +61,8 @@ namespace NexusConnectCRM.Controllers
             helpInfo.IsRejected = false;
             helpInfo.CreatedDate = DateTime.Now;
             helpInfo.ModifiedDate = DateTime.Now;
+            helpInfo.CustomerViewed = true;
+            helpInfo.EmployeeViewed = false;
 
             if (ModelState.IsValid)
             {
@@ -82,12 +91,14 @@ namespace NexusConnectCRM.Controllers
 
             List<HelpResponseInfo> feedback = await _context.HelpFeedback.Where(h => h.ResponseId == help.Id).ToListAsync();
 
-            AuthorHelpEditViewModel viewModel = new()
+            HelpInfoEditViewModel viewModel = new()
             {
                 Id = id,
                 Help = help,
                 HelpResponses = feedback
             };
+
+            await SetCustomerViewed(id);
 
             return View(viewModel);
         }
@@ -124,6 +135,8 @@ namespace NexusConnectCRM.Controllers
             help.IsPending = true;
             help.IsCompleted = false;
             help.ModifiedDate = feedback.ModifiedDate;
+            help.CustomerWasRecentResponse = true;
+            help.EmployeeWasRecentResponse = false;
 
             _context.Add(feedback);
             await _context.SaveChangesAsync();
@@ -131,6 +144,28 @@ namespace NexusConnectCRM.Controllers
             return RedirectToAction(nameof(Details), new { id = help.Id });
         }
 
+        public async Task SetCustomerViewed(int id)
+        {
+            HelpInfo helpTicket = await _context.Help.FirstOrDefaultAsync(m => m.Id == id);
+
+            try
+            {
+                helpTicket.CustomerViewed = true;
+                _context.Update(helpTicket);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!HelpInfoExists(helpTicket.Id))
+                {
+                    throw new Exception("Help ticket not found.");
+                }
+                else
+                {
+                    throw;
+                }
+            }
+        }
 
         private bool HelpInfoExists(int id)
         {

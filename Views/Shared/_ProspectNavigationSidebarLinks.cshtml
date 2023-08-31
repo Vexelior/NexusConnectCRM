@@ -3,7 +3,11 @@
 @using System.Linq
 
 @{
-    var completedNotClosedTickets = _context.Help.Where(h => h.IsCompleted == true && h.IsClosed == false).Count();
+    var helpTicketNotifications = _context.Help.Where(h => h.IsCompleted == false && 
+                                                           h.IsClosed == false && 
+                                                           h.IsPending == true && 
+                                                           h.EmployeeWasRecentResponse == true).Count();
+                                                           
 }
 
 <a class="list-group-item list-group-item-action list-group-item-light p-3" asp-area="" asp-controller="Home" asp-action="Index">
@@ -24,15 +28,15 @@
 </div>
 <a class="list-group-item list-group-item-action list-group-item-light p-3" asp-area="" asp-action="Index" asp-controller="HelpInfo">
     Help
-    @if (completedNotClosedTickets > 0)
+    @if (helpTicketNotifications > 0)
     {
-        if (completedNotClosedTickets > 99)
+        if (helpTicketNotifications > 99)
         {
             <span class="badge bg-danger rounded-pill">99+</span>
         }
         else
         {
-            <span class="badge bg-danger rounded-pill">@completedNotClosedTickets</span>
+            <span class="badge bg-danger rounded-pill">@helpTicketNotifications</span>
         }
     }
 </a>
