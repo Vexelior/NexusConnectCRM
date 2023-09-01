@@ -197,7 +197,12 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
 
         public async Task<IActionResult> HelpCompleted(int id)
         {
-            var help = await _context.Help.FirstOrDefaultAsync(m => m.Id == id) ?? throw new Exception("Help ticket not found");
+            var help = await _context.Help.FirstOrDefaultAsync(m => m.Id == id);
+
+            if (help == null)
+            {
+                return NotFound();
+            }
 
             help.IsCompleted = true;
             help.IsClosed = false;
