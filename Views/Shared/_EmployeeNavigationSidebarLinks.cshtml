@@ -3,23 +3,12 @@
 @using System.Linq
 
 @{
-    // Temp Notification Test Count \\
-    var prospectsNeededContact = _context.Prospects.Where(p => p.IsContacted == false &&
-                                                          p.Address != null &&
-                                                          p.City != null &&
-                                                          p.State != null &&
-                                                          p.Country != null &&
-                                                          p.ZipCode != null).Count();
-
-    var customersNeededContact = _context.Customers.Where(c => c.NeedsContact == true).Count();
-    var companiesNeededContact = _context.Companies.Where(c => c.NeedsContact == true).Count();
-
-    var totalNeededContactCount = prospectsNeededContact + customersNeededContact + companiesNeededContact;
-
     // Tickets \\
-    var ticketsNeedingAttention = _context.Help.Where(h => h.CustomerWasRecentResponse == true && 
+    var ticketsNeedingAttention = _context.Help.Where(h => h.CustomerWasRecentResponse &&
+                                                          !h.EmployeeWasRecentResponse &&
                                                           !h.IsClosed &&
-                                                          !h.IsRejected).Count();
+                                                          !h.IsRejected &&
+                                                           h.IsApproved).Count();
 
     var pendingHelpTicketsCount = _context.Help.Where(h => h.IsPending == true && 
                                                           !h.IsRejected && 
@@ -34,65 +23,6 @@
 <a class="list-group-item list-group-item-action list-group-item-light p-3" asp-area="Identity" asp-page="/Account/Manage/Index" title="Update Profile">
     Profile
 </a>
-<div class="dropdown dropend">
-    <button class="dropdown-toggle list-group-item list-group-item-action list-group-item-light p-3 portal-profile-edit-button" data-bs-toggle="dropdown" aria-expanded="false">
-        Tasks
-        @if (totalNeededContactCount > 0)
-        {
-            <span class="badge bg-danger rounded-pill">@totalNeededContactCount</span>
-        }
-    </button>
-    <ul class="dropdown-menu">
-        <li>
-            <a class="dropdown-item" href="@Url.Action("ViewProspects", "Employee")">
-                Prospects
-                @if (prospectsNeededContact > 0)
-                {
-                    @if (prospectsNeededContact > 99)
-                    {
-                        <span class="badge bg-danger rounded-pill">99+</span>
-                    }
-                    else
-                    {
-                        <span class="badge bg-danger rounded-pill">@prospectsNeededContact</span>
-                    }
-                }
-            </a>
-        </li>
-        <li>
-            <a class="dropdown-item" href="@Url.Action("ViewCustomers", "Employee")">
-                Customers
-                @if (customersNeededContact > 0)
-                {
-                    @if (customersNeededContact > 99)
-                    {
-                        <span class="badge bg-danger rounded-pill">99+</span>
-                    }
-                    else
-                    {
-                        <span class="badge bg-danger rounded-pill">@customersNeededContact</span>
-                    }
-                }
-            </a>
-        </li>
-        <li>
-            <a class="dropdown-item" href="@Url.Action("ViewCompanies", "Employee")">
-                Companies
-                @if (companiesNeededContact > 0)
-                {
-                    @if (companiesNeededContact > 99)
-                    {
-                        <span class="badge bg-danger rounded-pill">99+</span>
-                    }
-                    else
-                    {
-                        <span class="badge bg-danger rounded-pill">@companiesNeededContact</span>
-                    }
-                }
-            </a>
-        </li>
-    </ul>
-</div>
 <div class="dropdown dropend">
     <button class="dropdown-toggle list-group-item list-group-item-action list-group-item-light p-3 portal-profile-edit-button" data-bs-toggle="dropdown" aria-expanded="false">
         Help Tickets
@@ -161,41 +91,8 @@
                 Closed
             </a>
         </li>
-        @*<li>
-        <a class="dropdown-item" href="@Url.Action("ViewCustomers", "Employee")">
-        Customers
-        @if (customersNeededContact > 0)
-        {
-        @if (customersNeededContact > 99)
-        {
-        <span class="badge bg-danger rounded-pill">99+</span>
-        }
-        else
-        {
-        <span class="badge bg-danger rounded-pill">@customersNeededContact</span>
-        }
-        }
-        </a>
-        </li>
-        <li>
-        <a class="dropdown-item" href="@Url.Action("ViewCompanies", "Employee")">
-        Companies
-        @if (companiesNeededContact > 0)
-        {
-        @if (companiesNeededContact > 99)
-        {
-        <span class="badge bg-danger rounded-pill">99+</span>
-        }
-        else
-        {
-        <span class="badge bg-danger rounded-pill">@companiesNeededContact</span>
-        }
-        }
-        </a>
-        </li>*@
     </ul>
 </div>
-
 <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">
     Status
 </a>

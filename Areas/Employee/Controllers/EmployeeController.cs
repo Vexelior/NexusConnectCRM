@@ -71,57 +71,6 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             return View("Index", viewModel);
         }
 
-        public async Task<IActionResult> ViewProspects()
-        {
-            var users = await _context.Prospects.ToListAsync();
-
-            if (users == null)
-            {
-                return NotFound();
-            }
-
-            ListProspectsViewModel viewModel = new()
-            {
-                Users = users
-            };
-
-            return View("ViewProspects", viewModel);
-        }
-
-        public async Task<IActionResult> ViewCustomers()
-        {
-            var users = await _context.Customers.ToListAsync();
-
-            if (users == null)
-            {
-                return NotFound();
-            }
-
-            ListCustomersViewModel viewModel = new()
-            {
-                Users = users
-            };
-
-            return View("ViewCustomers", viewModel);
-        }
-
-        public async Task<IActionResult> ViewCompanies()
-        {
-            var companies = await _context.Companies.ToListAsync();
-
-            if (companies == null)
-            {
-                return NotFound();
-            }
-
-            ListCompaniesViewModel viewModel = new()
-            {
-                Companies = companies
-            };
-
-            return View("ViewCompanies", viewModel);
-        }
-
         public async Task<IActionResult> Help()
         {
             var helpList = await _context.Help.OrderByDescending(h => h.CreatedDate).ToListAsync();
@@ -137,151 +86,6 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             };
 
             return View("Help", viewModel);
-        }
-
-        public async Task<IActionResult> HelpApprove(int id)
-        {
-            var help = await _context.Help.FirstOrDefaultAsync(m => m.Id == id);
-
-            if (help == null)
-            {
-                return NotFound();
-            }
-
-            help.IsApproved = true;
-            help.IsPending = false;
-
-            _context.Update(help);
-            await _context.SaveChangesAsync();
-
-            return RedirectToAction(nameof(HelpEdit), new { id = help.Id, author = help.Author });
-        }
-
-        public async Task<IActionResult> HelpReject(int id)
-        {
-            var help = await _context.Help.FirstOrDefaultAsync(m => m.Id == id);
-
-            if (help == null)
-            {
-                return NotFound();
-            }
-
-            help.IsApproved = false;
-            help.IsRejected = true;
-            help.IsClosed = false;
-
-            _context.Update(help);
-            await _context.SaveChangesAsync();
-
-            return RedirectToAction(nameof(HelpEdit), new { id = help.Id, author = help.Author });
-        }
-
-        public async Task<IActionResult> HelpClose(int id)
-        {
-            var help = await _context.Help.FirstOrDefaultAsync(m => m.Id == id);
-
-            if (help == null)
-            {
-                return NotFound();
-            }
-
-            help.IsCompleted = true;
-            help.IsClosed = true;
-            help.IsRejected = false;
-
-            _context.Update(help);
-            await _context.SaveChangesAsync();
-
-            return RedirectToAction(nameof(HelpEdit), new { id = help.Id, author = help.Author });
-        }
-
-        public async Task<IActionResult> HelpCompleted(int id)
-        {
-            var help = await _context.Help.FirstOrDefaultAsync(m => m.Id == id);
-
-            if (help == null)
-            {
-                return NotFound();
-            }
-
-            help.IsCompleted = true;
-            help.IsClosed = false;
-            help.IsRejected = false;
-
-            _context.Update(help);
-            await _context.SaveChangesAsync();
-
-            return RedirectToAction(nameof(HelpEdit), new { id = help.Id, author = help.Author });
-        }
-
-        public async Task<IActionResult> NewHelp()
-        {
-            var helpList = await _context.Help.Where(h => h.CustomerWasRecentResponse)
-                                              .OrderByDescending(h => h.CreatedDate)
-                                              .ToListAsync();
-
-            ListHelpViewModel viewModel = new()
-            {
-                HelpList = helpList,
-            };
-
-            return View("NewHelp", viewModel);
-        }
-
-        public async Task<IActionResult> ClosedHelp()
-        {
-            var helpList = await _context.Help.Where(h => h.IsClosed)
-                                              .OrderByDescending(h => h.CreatedDate)
-                                              .ToListAsync();
-
-            ListHelpViewModel viewModel = new()
-            {
-                HelpList = helpList,
-            };
-
-            return View("ClosedHelp", viewModel);
-        }
-
-        public async Task<IActionResult> PendingHelp()
-        {
-            var helpList = await _context.Help.Where(h => h.IsPending)
-                                              .OrderByDescending(h => h.CreatedDate)
-                                              .ToListAsync();
-
-            ListHelpViewModel viewModel = new()
-            {
-                HelpList = helpList,
-            };
-
-            return View("PendingHelp", viewModel);
-        }
-
-        public async Task<IActionResult> RejectedHelp()
-        {
-            var helpList = await _context.Help.Where(h => h.IsRejected)
-                                              .OrderByDescending(h => h.CreatedDate)
-                                              .ToListAsync();
-
-            ListHelpViewModel viewModel = new()
-            {
-                HelpList = helpList,
-            };
-
-            return View("RejectedHelp", viewModel);
-        }
-
-        public async Task<IActionResult> CompletedHelp()
-        {
-            var helpList = await _context.Help.Where(h => h.IsCompleted)
-                                              .OrderByDescending(h => h.CreatedDate)
-                                              .ToListAsync();
-
-            ListHelpViewModel viewModel = new()
-            {
-                HelpList = helpList,
-            };
-
-            return View("CompletedHelp", viewModel);
         }
 
         public async Task<IActionResult> HelpEdit(int id)
@@ -374,72 +178,149 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
 
         }
 
-        public async Task<IActionResult> ProspectContacted(int id)
+        public async Task<IActionResult> HelpApprove(int id)
         {
-            var prospect = await _context.Prospects.FirstOrDefaultAsync(m => m.Id == id);
+            var help = await _context.Help.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (prospect == null)
+            if (help == null)
             {
                 return NotFound();
             }
 
-            prospect.IsContacted = true;
+            help.IsApproved = true;
+            help.IsPending = false;
 
-            _context.Update(prospect);
+            _context.Update(help);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("ViewProspects", "Employee");
+            return RedirectToAction(nameof(HelpEdit), new { id = help.Id, author = help.Author });
         }
 
-        public async Task<IActionResult> ProspectHelped(int id)
+        public async Task<IActionResult> HelpReject(int id)
         {
-            var prospect = await _context.Prospects.FirstOrDefaultAsync(m => m.Id == id);
+            var help = await _context.Help.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (prospect == null)
+            if (help == null)
             {
                 return NotFound();
             }
 
-            prospect.IsHelped = false;
+            help.IsApproved = false;
+            help.IsRejected = true;
+            help.IsClosed = false;
 
-            _context.Update(prospect);
+            _context.Update(help);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("ViewCustomers", "Employee");
+            return RedirectToAction(nameof(HelpEdit), new { id = help.Id, author = help.Author });
         }
 
-        public async Task<IActionResult> CustomerHelped(int id)
+        public async Task<IActionResult> HelpClose(int id)
         {
-            var customer = await _context.Customers.FirstOrDefaultAsync(m => m.Id == id);
+            var help = await _context.Help.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (customer == null)
+            if (help == null)
             {
                 return NotFound();
             }
 
-            customer.NeedsContact = false;
+            help.IsCompleted = true;
+            help.IsClosed = true;
+            help.IsRejected = false;
 
-            _context.Update(customer);
+            _context.Update(help);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("ViewCustomers", "Employee");
+            return RedirectToAction(nameof(HelpEdit), new { id = help.Id, author = help.Author });
         }
 
-        public async Task<IActionResult> CompanyHelped(int id)
+        public async Task<IActionResult> HelpCompleted(int id)
         {
-            var company = await _context.Companies.FirstOrDefaultAsync(m => m.Id == id);
+            var help = await _context.Help.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (company == null)
+            if (help == null)
             {
                 return NotFound();
             }
 
-            company.NeedsContact = false;
+            help.IsCompleted = true;
+            help.IsClosed = false;
+            help.IsRejected = false;
 
-            _context.Update(company);
+            _context.Update(help);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("ViewCompanies", "Employee");
+            return RedirectToAction(nameof(HelpEdit), new { id = help.Id, author = help.Author });
+        }
+
+        public async Task<IActionResult> NewHelp()
+        {
+            var helpList = await _context.Help.Where(h => h.CustomerWasRecentResponse && h.IsApproved)
+                                              .OrderByDescending(h => h.CreatedDate)
+                                              .ToListAsync();
+
+            ListHelpViewModel viewModel = new()
+            {
+                HelpList = helpList,
+            };
+
+            return View("NewHelp", viewModel);
+        }
+
+        public async Task<IActionResult> ClosedHelp()
+        {
+            var helpList = await _context.Help.Where(h => h.IsClosed)
+                                              .OrderByDescending(h => h.CreatedDate)
+                                              .ToListAsync();
+
+            ListHelpViewModel viewModel = new()
+            {
+                HelpList = helpList,
+            };
+
+            return View("ClosedHelp", viewModel);
+        }
+
+        public async Task<IActionResult> PendingHelp()
+        {
+            var helpList = await _context.Help.Where(h => h.IsPending)
+                                              .OrderByDescending(h => h.CreatedDate)
+                                              .ToListAsync();
+
+            ListHelpViewModel viewModel = new()
+            {
+                HelpList = helpList,
+            };
+
+            return View("PendingHelp", viewModel);
+        }
+
+        public async Task<IActionResult> RejectedHelp()
+        {
+            var helpList = await _context.Help.Where(h => h.IsRejected)
+                                              .OrderByDescending(h => h.CreatedDate)
+                                              .ToListAsync();
+
+            ListHelpViewModel viewModel = new()
+            {
+                HelpList = helpList,
+            };
+
+            return View("RejectedHelp", viewModel);
+        }
+
+        public async Task<IActionResult> CompletedHelp()
+        {
+            var helpList = await _context.Help.Where(h => h.IsCompleted)
+                                              .OrderByDescending(h => h.CreatedDate)
+                                              .ToListAsync();
+
+            ListHelpViewModel viewModel = new()
+            {
+                HelpList = helpList,
+            };
+
+            return View("CompletedHelp", viewModel);
         }
 
         private bool HelpExists(int id)

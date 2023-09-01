@@ -54,18 +54,20 @@ namespace NexusConnectCRM.Controllers
         {
             string authorId = _userManager.GetUserId(User);
 
-            helpInfo.Author = authorId;
-            helpInfo.IsPending = true;
-            helpInfo.IsApproved = false;
-            helpInfo.IsCompleted = false;
-            helpInfo.IsRejected = false;
-            helpInfo.CreatedDate = DateTime.Now;
-            helpInfo.ModifiedDate = DateTime.Now;
-            helpInfo.CustomerViewed = true;
-            helpInfo.EmployeeViewed = false;
-
             if (ModelState.IsValid)
             {
+                helpInfo.Author = authorId;
+                helpInfo.IsPending = true;
+                helpInfo.IsApproved = false;
+                helpInfo.IsCompleted = false;
+                helpInfo.IsRejected = false;
+                helpInfo.CreatedDate = DateTime.Now;
+                helpInfo.ModifiedDate = DateTime.Now;
+                helpInfo.CustomerViewed = true;
+                helpInfo.EmployeeViewed = false;
+                helpInfo.CustomerWasRecentResponse = true;
+                helpInfo.EmployeeWasRecentResponse = false;
+
                 _context.Add(helpInfo);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -114,7 +116,9 @@ namespace NexusConnectCRM.Controllers
                 return NotFound();
             }
 
-            string name = _context.Users.Where(u => u.Id == _userManager.GetUserId(User)).Select(u => u.FirstName + " " + u.LastName).FirstOrDefault();
+            string name = _context.Users.Where(u => u.Id == _userManager.GetUserId(User))
+                                        .Select(u => u.FirstName + " " + u.LastName)
+                                        .FirstOrDefault();
 
             DateTime date = DateTime.Now;
             string dateString = date.ToString("MM/dd/yyyy h:mmtt");
