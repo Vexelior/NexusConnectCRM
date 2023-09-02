@@ -53,7 +53,7 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                 Users = users
             };
 
-            return View("~/Areas/Admin/Views/Admin/Index.cshtml", viewModel);
+            return View("Index", viewModel);
         }
 
         public async Task<IActionResult> EditUser(string id)
@@ -101,7 +101,7 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                         Roles = selectListItems
                     };
 
-                    return View("~/Areas/Admin/Views/Admin/EditUser.cshtml", viewModel);
+                    return View("EditUser", viewModel);
                 }
             }
             else if (user.Roles == "Customer")
@@ -128,7 +128,7 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                         Roles = selectListItems
                     };
 
-                    return View("~/Areas/Admin/Views/Admin/EditUser.cshtml", viewModel);
+                    return View("EditUser", viewModel);
                 }
             }
             else if (user.Roles == "Employee")
@@ -155,7 +155,7 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                         Roles = selectListItems
                     };
 
-                    return View("~/Areas/Admin/Views/Admin/EditUser.cshtml", viewModel);
+                    return View("EditUser", viewModel);
                 }
             }
 
@@ -172,7 +172,14 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            viewModel.Roles = new List<SelectListItem> { new SelectListItem { Value = viewModel.SelectedRole, Text = viewModel.SelectedRole } };
+            viewModel.Roles = new List<SelectListItem> 
+            { 
+                new SelectListItem 
+                { 
+                    Value = viewModel.SelectedRole, 
+                    Text = viewModel.SelectedRole 
+                } 
+            };
 
             if (ModelState.IsValid)
             {
@@ -184,7 +191,7 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                 if (string.IsNullOrEmpty(viewModel.SelectedRole))
                 {
                     ModelState.AddModelError("", "Please select a role");
-                    return View("~/Areas/Admin/Views/Admin/EditUser.cshtml", viewModel);
+                    return View("EditUser", viewModel);
                 }
 
                 IList<string> userRoles = await _userManager.GetRolesAsync(user);
@@ -198,17 +205,18 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                 else
                 {
                     ModelState.AddModelError("", "Something went wrong...");
-                    return View("~/Areas/Admin/Views/Admin/EditUser.cshtml", viewModel);
+                    return View("EditUser", viewModel);
                 }
 
                 await AdvanceUser(user.Id);
+
                 _context.Update(user);
                 await _context.SaveChangesAsync();
             }
             else
             {
                 ModelState.AddModelError("", "Something went wrong...");
-                return View("~/Areas/Admin/Views/Admin/EditUser.cshtml", viewModel);
+                return View("EditUser", viewModel);
             }
 
             IList<string> newUserRoles = await _userManager.GetRolesAsync(user);
@@ -226,7 +234,7 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                 Users = users
             };
 
-            return View("~/Areas/Admin/Views/Admin/Index.cshtml", newModel);
+            return View("Index", newModel);
         }
 
         private async Task AdvanceUser(string id)
@@ -312,7 +320,7 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                 Users = users
             };
 
-            return View("~/Areas/Admin/Views/Admin/ViewProspects.cshtml", viewModel);
+            return View("ViewProspects", viewModel);
         }
 
         public async Task<IActionResult> ViewCustomers()
@@ -329,7 +337,7 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                 Users = users
             };
 
-            return View("~/Areas/Admin/Views/Admin/ViewCustomers.cshtml", viewModel);
+            return View("ViewCustomers", viewModel);
         }
 
         public async Task<IActionResult> ViewCompanies()
@@ -346,7 +354,7 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                 Companies = companies
             };
 
-            return View("~/Areas/Admin/Views/Admin/ViewCompanies.cshtml", viewModel);
+            return View("ViewCompanies", viewModel);
         }
     }
 }
