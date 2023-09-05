@@ -117,12 +117,32 @@
                                             @Html.TextAreaFor(m => m.Response, new { @class = "form-control", @rows = "10", id = "ResponseText", @placeholder =  "Response" })
                                             <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#AttachFile"></button>
                                             <div class="form-group">
-                                                <div class="col" style="margin: 0;">
-                                                    <input id="submitButton" type="submit" value="Save" class="btn btn-primary">
-                                                    <a class="btn btn-secondary" href="@Url.Action("Help", "Employee")">Cancel</a>
-                                                    <button type="button" class="btn btn-dark" style="float: right; width: auto;" data-bs-toggle="modal" data-bs-target="#TicketOptionsModal">
-                                                        Options
-                                                    </button>
+                                                <div class="row">
+                                                    @if (Model.Help.IsPending)
+                                                    {
+                                                        <div class="col" style="margin: 0;">
+                                                            <p style="color: red;">
+                                                                <strong>
+                                                                    This ticket is pending approval.
+                                                                </strong>
+                                                            </p>
+                                                        </div>
+                                                        <div class="col" style="margin: 0;">
+                                                            <button type="button" class="btn btn-dark" style="float: right; width: auto;" data-bs-toggle="modal" data-bs-target="#TicketOptionsModal">
+                                                                Options
+                                                            </button>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="col" style="margin: 0;">
+                                                            <input id="submitButton" type="submit" value="Save" class="btn btn-primary">
+                                                            <a class="btn btn-secondary" href="@Url.Action("Help", "Employee")">Cancel</a>
+                                                            <button type="button" class="btn btn-dark" style="float: right; width: auto;" data-bs-toggle="modal" data-bs-target="#TicketOptionsModal">
+                                                                Options
+                                                            </button>
+                                                        </div>
+                                                    }
                                                 </div>
                                             </div>
                                         </div>

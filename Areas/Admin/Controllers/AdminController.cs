@@ -223,7 +223,12 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
 
             foreach (var role in _context.Roles)
             {
-                selectListItems.Add(new SelectListItem(role.Name.Humanize(LetterCasing.Title), role.Name, newUserRoles.Contains(role.Name)));
+                selectListItems.Add(new SelectListItem
+                                            (
+                                                role.Name.Humanize(LetterCasing.Title),
+                                                role.Name, 
+                                                newUserRoles.Contains(role.Name)
+                                            ));
             }
 
             return RedirectToAction("Index");

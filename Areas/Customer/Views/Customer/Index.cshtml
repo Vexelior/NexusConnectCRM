@@ -4,9 +4,6 @@
 @{
     ViewData["Title"] = "Customer Portal";
     Layout = "~/Views/Shared/_CustomerPortalLayout.cshtml";
-
-    //var userCompanyId = Model.User?.CompanyId;
-    //var userCompany = _context.Companies?.FirstOrDefault(c => c.Id == userCompanyId);
 }
 
 <div class="container mt-5">
@@ -20,9 +17,9 @@
                     <div class="row">
                         <div class="col-md-6">
                             <h4 class="text-center"><i class="fa fa-solid fa-map-marker" style="font-size: 16px;"></i> Address</h4>
-@*                            <p class="text-center">@Model.User.Address</p>
-                            <p class="text-center">@Model.User.City, @Model.User.State @Model.User.ZipCode</p>
-*@                        </div>
+                            <p class="text-center">@Model.CustomerInfo.Address</p>
+                            <p class="text-center">@Model.CustomerInfo.City, @Model.CustomerInfo.State @Model.CustomerInfo.ZipCode</p>
+                        </div>
                         <div class="col-md-6">
                             <h4 class="text-center">Contact</h4>
                             <p class="text-center"><i class="fa fa-solid fa-phone"></i> @Model.User.PhoneNumber</p>
@@ -32,27 +29,27 @@
                 </div>
             </div>
         </div>
-@*        <div class="col-md-6">
+        <div class="col-md-6">
             <div class="card prospect-info-card">
                 <i class="fa fa-solid fa-building mt-3" style="font-size: 24px;"></i>
-                <h1 class="text-center">@userCompany.Name</h1>
+                <h1 class="text-center">@Model.Company.Name</h1>
                 <span class="text-muted text-center">Company</span>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
                             <h4 class="text-center"><i class="fa fa-solid fa-map-marker" style="font-size: 16px;"></i> Address</h4>
-                            <p class="text-center">@userCompany?.Address</p>
-                            <p class="text-center">@userCompany?.City, @userCompany?.State @userCompany?.Zip</p>
+                            <p class="text-center">@Model.Company.Address</p>
+                            <p class="text-center">@Model.Company.City, @Model.Company.State @Model.Company.Zip</p>
                         </div>
                         <div class="col-md-6">
                             <h4 class="text-center">Contact</h4>
-                            <p class="text-center"><i class="fa fa-solid fa-phone"></i> @userCompany?.Phone</p>
-                            <p class="text-center"><i class="fa fa-solid fa-envelope"></i> @userCompany?.Email</p>
+                            <p class="text-center"><i class="fa fa-solid fa-phone"></i> @Model.Company.Phone</p>
+                            <p class="text-center"><i class="fa fa-solid fa-envelope"></i> @Model.Company.Email</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>*@
+        </div>
     </div>
     <div class="row">
         <div class="col-md-4">
