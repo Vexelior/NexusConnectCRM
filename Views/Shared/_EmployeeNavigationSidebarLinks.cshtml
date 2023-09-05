@@ -6,7 +6,7 @@
     // Tickets \\
     var ticketsNeedingAttention = _context.Help.Where(h => h.CustomerWasRecentResponse &&
                                                           !h.EmployeeWasRecentResponse &&
-                                                          !h.IsClosed &&
+                                                          !h.IsCompleted &&
                                                           !h.IsRejected &&
                                                            h.IsApproved).Count();
 

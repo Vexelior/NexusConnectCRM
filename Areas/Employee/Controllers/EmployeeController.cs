@@ -255,7 +255,9 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
 
         public async Task<IActionResult> NewHelp()
         {
-            var helpList = await _context.Help.Where(h => h.CustomerWasRecentResponse && h.IsApproved)
+            var helpList = await _context.Help.Where(h => h.CustomerWasRecentResponse && 
+                                                                   h.IsApproved &&
+                                                                  !h.IsCompleted)
                                               .OrderByDescending(h => h.CreatedDate)
                                               .ToListAsync();
 
