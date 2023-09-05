@@ -74,8 +74,29 @@
                     @Html.ValidationMessageFor(m => m.Roles, "", new { @class = "text-danger" })
                 </div>
                 <button type="submit" class="btn btn-primary w-100">Save</button>
+                <button type="button" class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteUserModal">
+                    Delete
+                </button>
             }
             <a href="@Url.Action("Index", "Admin")" class="btn btn-secondary w-100">Cancel</a>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteUserLabel">Delete User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete account for '@Model.FirstName @Model.LastName'?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width: auto;">Close</button>
+                <a href="@Url.Action("DeleteUser", "Admin", new { id = Model.UserId })" class="btn btn-danger">Delete</a>
+            </div>
         </div>
     </div>
 </div>

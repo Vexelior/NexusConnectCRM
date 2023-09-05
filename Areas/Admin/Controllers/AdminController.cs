@@ -5,12 +5,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NexusConnectCRM.Areas.Admin.ViewModels;
-using NexusConnectCRM.Areas.Employee.ViewModels;
 using NexusConnectCRM.Data;
 using NexusConnectCRM.Data.Models.Customer;
 using NexusConnectCRM.Data.Models.Employee;
 using NexusConnectCRM.Data.Models.Identity;
-using NexusConnectCRM.Data.Models.Prospect;
 
 namespace NexusConnectCRM.Areas.Admin.Controllers
 {
@@ -50,7 +48,8 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
 
             AdminIndexViewModel viewModel = new()
             {
-                Users = users
+                Users = users,
+                TotalUsers = users.Count
             };
 
             return View("Index", viewModel);
@@ -172,13 +171,13 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            viewModel.Roles = new List<SelectListItem> 
-            { 
-                new SelectListItem 
-                { 
-                    Value = viewModel.SelectedRole, 
-                    Text = viewModel.SelectedRole 
-                } 
+            viewModel.Roles = new List<SelectListItem>
+            {
+                new SelectListItem
+                {
+                    Value = viewModel.SelectedRole,
+                    Text = viewModel.SelectedRole
+                }
             };
 
             if (ModelState.IsValid)
@@ -227,31 +226,79 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                 selectListItems.Add(new SelectListItem(role.Name.Humanize(LetterCasing.Title), role.Name, newUserRoles.Contains(role.Name)));
             }
 
-            IEnumerable<ApplicationUser> users = await _context.Users.ToListAsync();
+            return RedirectToAction("Index");
+        }
 
-            AdminIndexViewModel newModel = new()
+        public async Task<IActionResult> DeleteUser(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id) ?? throw new NullReferenceException("User not found");
+
+            var potentialProspect = _context.Prospects.Where(p => p.UserId == user.Id).FirstOrDefault();
+            var potentialCustomer = _context.Customers.Where(c => c.UserId == user.Id).FirstOrDefault();
+            var potentialEmployee = _context.Employees.Where(e => e.UserId == user.Id).FirstOrDefault();
+
+            if (potentialProspect != null)
             {
-                Users = users
-            };
+                _context.Prospects.Remove(potentialProspect);
+            }
+            else if (potentialCustomer != null)
+            {
+                _context.Customers.Remove(potentialCustomer);
+            }
+            else if (potentialEmployee != null)
+            {
+                _context.Employees.Remove(potentialEmployee);
+            }
 
-            return View("Index", newModel);
+            try
+            {
+                await _userManager.DeleteAsync(user);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Something went wrong...", ex);
+            }
+            finally
+            {
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToAction("Index");
         }
 
         private async Task AdvanceUser(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
             var userCurrentRole = await _userManager.GetRolesAsync(user);
+
             var potentialProspect = _context.Prospects.Where(p => p.UserId == user.Id).FirstOrDefault();
+            var potentialCustomer = _context.Customers.Where(c => c.UserId == user.Id).FirstOrDefault();
+            var potentialEmployee = _context.Employees.Where(e => e.UserId == user.Id).FirstOrDefault();
 
             if (user == null || potentialProspect == null)
             {
-                throw new Exception("User or prospect is null");
+                throw new NullReferenceException();
             }
 
             switch (userCurrentRole[0])
             {
+                case "Prospect":
+                    if (potentialEmployee != null)
+                    {
+                        potentialEmployee.IsActive = false;
+                        _context.Update(potentialEmployee);
+                    }
+                    else if (potentialCustomer != null)
+                    {
+                        potentialCustomer.IsActive = false;
+                        _context.Update(potentialCustomer);
+                    }
+
+                    potentialProspect.IsActive = true;
+                    _context.Update(potentialProspect);
+
+                    break;
                 case "Customer":
-                    var potentialCustomer = _context.Customers.Where(c => c.UserId == user.Id).FirstOrDefault();
 
                     if (potentialCustomer == null)
                     {
@@ -275,9 +322,15 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                         _context.Add(customer);
                         _context.SaveChanges();
                     }
+                    else
+                    {
+                        potentialCustomer.IsActive = true;
+                        potentialProspect.IsActive = false;
+
+                        _context.Update(potentialCustomer);
+                    }
                     break;
                 case "Employee":
-                    var potentialEmployee = _context.Employees.Where(e => e.UserId == user.Id).FirstOrDefault();
 
                     if (potentialEmployee == null)
                     {
@@ -299,6 +352,13 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
 
                         _context.Add(employee);
                         _context.SaveChanges();
+                    }
+                    else
+                    {
+                        potentialEmployee.IsActive = true;
+                        potentialProspect.IsActive = false;
+
+                        _context.Update(potentialEmployee);
                     }
                     break;
                 default:
