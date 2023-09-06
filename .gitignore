@@ -362,4 +362,4 @@ MigrationBackup/
 FodyWeavers.xsd
 
 # Uploaded Images
-NexusConnectCRM/wwwroot/images/help/*
+wwwroot/images/help/*
