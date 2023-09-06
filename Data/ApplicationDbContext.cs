@@ -37,7 +37,6 @@ namespace NexusConnectCRM.Data
 
         // Help Tables \\
         public DbSet<HelpInfo> Help { get; set; } = null!;
-        public DbSet<HelpImage> HelpImages { get; set; } = null!;
         public DbSet<HelpResponseInfo> HelpFeedback { get; set; } = null!;
 
         // Relationship Tables \\
