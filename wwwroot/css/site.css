@@ -182,6 +182,10 @@ button {
     margin-top: 5px;
 }
 
+#sidebar-logout button {
+    margin-top: 0;
+}
+
 body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
     margin-left: 0;
 }
@@ -216,10 +220,6 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
 
 .list-group button {
     font-size: 14px;
-}
-
-#logoutForm button {
-    margin-top: 0px;
 }
 
 .footer {
