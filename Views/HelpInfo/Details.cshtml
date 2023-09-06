@@ -132,24 +132,7 @@
                                         <br />
                                     </div>
                                 }
-                                @if (Model.Help.IsApproved && !Model.Help.IsCompleted)
-                                {
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col">
-                                                @Html.TextAreaFor(m => m.Response, new { @class = "form-control", @rows = "10", id = "ResponseText", @placeholder =  "Response" })
-                                                @Html.TextBoxFor(m => m.Image, new { @type = "file", @class = "form-control mt-2 mb-2", @id = "ImageFile" })
-                                                <div class="form-group">
-                                                    <div class="col-md-offset-2 col-md-10">
-                                                        <input id="submitButton" type="submit" value="Save" class="btn btn-primary">
-                                                        <a class="btn btn-secondary" href="@Url.Action("Index", "HelpInfo")">Cancel</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                                else if (Model.Help.IsCompleted && !Model.Help.IsRejected)
+                                @if (Model.Help.IsCompleted)
                                 {
                                     <div class="container">
                                         <div class="row">
@@ -179,7 +162,7 @@
                                         </div>
                                     </div>
                                 }
-                                else
+                                else if (!Model.Help.IsApproved)
                                 {
                                     <div class="container">
                                         <div class="row">
@@ -190,6 +173,23 @@
                                                     </strong>
                                                 </p>
                                                 <a class="btn btn-secondary mb-3" href="@Url.Action("Index", "HelpInfo")">Cancel</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col">
+                                                @Html.TextAreaFor(m => m.Response, new { @class = "form-control", @rows = "10", id = "ResponseText", @placeholder =  "Response" })
+                                                @Html.TextBoxFor(m => m.Image, new { @type = "file", @class = "form-control mt-2 mb-2", @id = "ImageFile" })
+                                                <div class="form-group">
+                                                    <div class="col-md-offset-2 col-md-10">
+                                                        <input id="submitButton" type="submit" value="Save" class="btn btn-primary">
+                                                        <a class="btn btn-secondary" href="@Url.Action("Index", "HelpInfo")">Cancel</a>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

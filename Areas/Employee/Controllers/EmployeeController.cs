@@ -176,19 +176,22 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             help.CustomerWasRecentResponse = false;
             help.EmployeeWasRecentResponse = true;
 
-            string wwwRootPath = _hostEnvironment.WebRootPath;
-            string fileName = Path.GetFileNameWithoutExtension(feedback.Image.FileName);
-            string extension = Path.GetExtension(feedback.Image.FileName);
-            feedback.ImageName = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-            string path = Path.Combine(wwwRootPath + "/images/help/responses/", fileName);
-
-            if (!Directory.Exists(wwwRootPath + "/images/help/responses/"))
+            if (viewModel.Image != null)
             {
-                Directory.CreateDirectory(wwwRootPath + "/images/help/responses/");
-            }
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(feedback.Image.FileName);
+                string extension = Path.GetExtension(feedback.Image.FileName);
+                feedback.ImageName = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                string path = Path.Combine(wwwRootPath + "/images/help/responses/", fileName);
 
-            using var fileStream = new FileStream(path, FileMode.Create);
-            await feedback.Image.CopyToAsync(fileStream);
+                if (!Directory.Exists(wwwRootPath + "/images/help/responses/"))
+                {
+                    Directory.CreateDirectory(wwwRootPath + "/images/help/responses/");
+                }
+
+                using var fileStream = new FileStream(path, FileMode.Create);
+                await feedback.Image.CopyToAsync(fileStream);
+            }
 
             _context.Add(feedback);
             await _context.SaveChangesAsync();

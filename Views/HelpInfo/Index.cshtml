@@ -79,17 +79,21 @@
                     }
                 </td>
                 <td>
-                    @if (item.IsPending && !item.IsCompleted)
+                    @if (item.IsPending)
                     {
                         <span class="fa fa-waiting" style="color: orange; font-size: 16px;"></span>
                     }
-                    else if (item.IsApproved && !item.IsCompleted)
+                    else if (item.IsApproved)
                     {
                         <span class="fa fa-check" style="color: green; font-size: 16px;"></span>
                     }
-                    else if (item.IsRejected && !item.IsCompleted)
+                    else if (item.IsRejected)
                     {
                         <span class="fa fa-times" style="color: red; font-size: 16px;"></span>
+                    }
+                    else if (item.IsCompleted)
+                    {
+                        <span class="fa fa-check" style="color: green; font-size: 16px;"></span>
                     }
                 </td>
                 <td>

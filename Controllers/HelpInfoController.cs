@@ -73,19 +73,22 @@ namespace NexusConnectCRM.Controllers
                 helpInfo.CustomerWasRecentResponse = true;
                 helpInfo.EmployeeWasRecentResponse = false;
 
-                string wwwRootPath = _hostEnvironment.WebRootPath;
-                string fileName = Path.GetFileNameWithoutExtension(helpInfo.Image.FileName);
-                string extension = Path.GetExtension(helpInfo.Image.FileName);
-                helpInfo.ImageName = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-                string path = Path.Combine(wwwRootPath + "/images/help/", fileName);
-
-                if (!Directory.Exists(wwwRootPath + "/images/help/"))
+                if (helpInfo.Image != null)
                 {
-                    Directory.CreateDirectory(wwwRootPath + "/images/help/");
-                }
+                    string wwwRootPath = _hostEnvironment.WebRootPath;
+                    string fileName = Path.GetFileNameWithoutExtension(helpInfo.Image.FileName);
+                    string extension = Path.GetExtension(helpInfo.Image.FileName);
+                    helpInfo.ImageName = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                    string path = Path.Combine(wwwRootPath + "/images/help/", fileName);
 
-                using var fileStream = new FileStream(path, FileMode.Create);
-                await helpInfo.Image.CopyToAsync(fileStream);
+                    if (!Directory.Exists(wwwRootPath + "/images/help/"))
+                    {
+                        Directory.CreateDirectory(wwwRootPath + "/images/help/");
+                    }
+
+                    using var fileStream = new FileStream(path, FileMode.Create);
+                    await helpInfo.Image.CopyToAsync(fileStream);
+                }
 
                 _context.Add(helpInfo);
                 await _context.SaveChangesAsync();
@@ -162,19 +165,22 @@ namespace NexusConnectCRM.Controllers
             help.EmployeeWasRecentResponse = false;
             help.EmployeeViewed = false;
 
-            string wwwRootPath = _hostEnvironment.WebRootPath;
-            string fileName = Path.GetFileNameWithoutExtension(feedback.Image.FileName);
-            string extension = Path.GetExtension(feedback.Image.FileName);
-            feedback.ImageName = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-            string path = Path.Combine(wwwRootPath + "/images/help/responses/", fileName);
-
-            if (!Directory.Exists(wwwRootPath + "/images/help/responses/"))
+            if (viewModel.Image != null)
             {
-                Directory.CreateDirectory(wwwRootPath + "/images/help/responses/");
-            }
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(feedback.Image.FileName);
+                string extension = Path.GetExtension(feedback.Image.FileName);
+                feedback.ImageName = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                string path = Path.Combine(wwwRootPath + "/images/help/responses/", fileName);
 
-            using var fileStream = new FileStream(path, FileMode.Create);
-            await feedback.Image.CopyToAsync(fileStream);
+                if (!Directory.Exists(wwwRootPath + "/images/help/responses/"))
+                {
+                    Directory.CreateDirectory(wwwRootPath + "/images/help/responses/");
+                }
+
+                using var fileStream = new FileStream(path, FileMode.Create);
+                await feedback.Image.CopyToAsync(fileStream);
+            }
 
             _context.Add(feedback);
             await _context.SaveChangesAsync();
