@@ -55,6 +55,19 @@
                                     </div>
                                 </div>
                             </div>
+                            @if (Model.Help.ImageName != null)
+                            {
+                                <div class="col">
+                                    <div class="form-group text-center">
+                                        <label class="control-label col-md-2 fw-bold">
+                                            Image
+                                        </label>
+                                        <div class="col">
+                                            <img decoding="async" src="@Url.Content("~/images/help/" + Model.Help.ImageName)" asp-append-version="true" class="img-fluid" alt="@Model.Help.ImageName" />
+                                        </div>
+                                    </div>
+                                </div>
+                            }
                         </div>
                     </div>
                     <hr />
