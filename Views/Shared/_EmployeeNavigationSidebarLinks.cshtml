@@ -12,7 +12,7 @@
 
     var pendingHelpTicketsCount = _context.Help.Where(h => h.IsPending == true && 
                                                           !h.IsRejected && 
-                                                          !h.IsClosed &&
+                                                          !h.IsCompleted &&
                                                           !h.IsRejected).Count();
 
     var ticketNotificationCount = ticketsNeedingAttention + pendingHelpTicketsCount;

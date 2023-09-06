@@ -3,7 +3,7 @@
 @using System.Linq
 
 @{
-    var helpTicketNotifications = _context.Help.Where(h => h.EmployeeWasRecentResponse == true && !h.IsClosed).Count();                                  
+    var helpTicketNotifications = _context.Help.Where(h => h.EmployeeWasRecentResponse == true && !h.IsCompleted).Count();                                  
 }
 
 <a class="list-group-item list-group-item-action list-group-item-light p-3" asp-area="" asp-controller="Home" asp-action="Index">

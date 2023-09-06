@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using NexusConnectCRM.Data.Models.Identity;
 using NexusConnectCRM.Areas.Employee.ViewModels;
 using NexusConnectCRM.Data.Models.Help;
+using Microsoft.Extensions.Hosting;
 
 namespace NexusConnectCRM.Areas.Employee.Controllers
 {
@@ -15,11 +16,15 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public EmployeeController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        public EmployeeController(ApplicationDbContext context, 
+                                  UserManager<ApplicationUser> userManager,
+                                  IWebHostEnvironment hostEnvironment)
         {
             _context = context;
             _userManager = userManager;
+            _hostEnvironment = hostEnvironment;
         }
 
         public async Task<IActionResult> Index()
@@ -163,13 +168,27 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                 IsEmployee = true,
                 CreatedDate = help.CreatedDate,
                 ModifiedDate = DateTime.Now,
-                Image = null,
+                Image = viewModel.Image,
                 ResponseId = help.Id
             };
 
             help.ModifiedDate = feedback.ModifiedDate;
             help.CustomerWasRecentResponse = false;
             help.EmployeeWasRecentResponse = true;
+
+            string wwwRootPath = _hostEnvironment.WebRootPath;
+            string fileName = Path.GetFileNameWithoutExtension(feedback.Image.FileName);
+            string extension = Path.GetExtension(feedback.Image.FileName);
+            feedback.ImageName = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+            string path = Path.Combine(wwwRootPath + "/images/help/responses/", fileName);
+
+            if (!Directory.Exists(wwwRootPath + "/images/help/responses/"))
+            {
+                Directory.CreateDirectory(wwwRootPath + "/images/help/responses/");
+            }
+
+            using var fileStream = new FileStream(path, FileMode.Create);
+            await feedback.Image.CopyToAsync(fileStream);
 
             _context.Add(feedback);
             await _context.SaveChangesAsync();
@@ -205,28 +224,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                 return NotFound();
             }
 
-            help.IsApproved = false;
             help.IsRejected = true;
-            help.IsClosed = false;
-
-            _context.Update(help);
-            await _context.SaveChangesAsync();
-
-            return RedirectToAction(nameof(HelpEdit), new { id = help.Id, author = help.Author });
-        }
-
-        public async Task<IActionResult> HelpClose(int id)
-        {
-            var help = await _context.Help.FirstOrDefaultAsync(m => m.Id == id);
-
-            if (help == null)
-            {
-                return NotFound();
-            }
-
-            help.IsCompleted = true;
-            help.IsClosed = true;
-            help.IsRejected = false;
 
             _context.Update(help);
             await _context.SaveChangesAsync();
@@ -244,8 +242,6 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             }
 
             help.IsCompleted = true;
-            help.IsClosed = false;
-            help.IsRejected = false;
 
             _context.Update(help);
             await _context.SaveChangesAsync();
@@ -267,20 +263,6 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             };
 
             return View("NewHelp", viewModel);
-        }
-
-        public async Task<IActionResult> ClosedHelp()
-        {
-            var helpList = await _context.Help.Where(h => h.IsClosed)
-                                              .OrderByDescending(h => h.CreatedDate)
-                                              .ToListAsync();
-
-            ListHelpViewModel viewModel = new()
-            {
-                HelpList = helpList,
-            };
-
-            return View("ClosedHelp", viewModel);
         }
 
         public async Task<IActionResult> PendingHelp()

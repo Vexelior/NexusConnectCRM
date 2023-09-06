@@ -13,7 +13,7 @@
         <div class="col-xs-12">
             <h1 class="text-center">Ticket Details</h1>
             <hr />
-            @using (Html.BeginForm("SubmitHelpResponse", "Employee", FormMethod.Post, new { id = "helpResponseForm" }))
+            @using (Html.BeginForm("SubmitHelpResponse", "Employee", FormMethod.Post, new { @id = "helpResponseForm", @enctype = "multipart/form-data" }))
             {
                 @Html.HiddenFor(m => m.Id)
                 <div class="form-horizontal">
@@ -101,6 +101,10 @@
                                                         <strong style="white-space: pre-wrap;">@message.Response</strong>
                                                     </p>
                                                     <br />
+                                                    @if (message.ImageName != null)
+                                                    {
+                                                        <img decoding="async" src="@Url.Content("~/images/help/responses/" + message.ImageName)" asp-append-version="true" class="img-fluid" alt="@message.ImageName" width="250" height="250" />
+                                                    }
                                                 </div>
                                             }
                                             else
@@ -110,6 +114,10 @@
                                                         <strong style="white-space: pre-wrap;">@message.Response</strong>
                                                     </p>
                                                     <br />
+                                                    @if (message.ImageName != null)
+                                                    {
+                                                        <img decoding="async" src="@Url.Content("~/images/help/responses/" + message.ImageName)" asp-append-version="true" class="img-fluid" alt="@message.ImageName" width="250" height="250" />
+                                                    }
                                                 </div>
                                             }
                                         }
@@ -128,7 +136,7 @@
                                     <div class="row">
                                         <div class="col">
                                             @Html.TextAreaFor(m => m.Response, new { @class = "form-control", @rows = "10", id = "ResponseText", @placeholder =  "Response" })
-                                            <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#AttachFile"></button>
+                                            @Html.TextBoxFor(m => m.Image, new { @type = "file", @class = "form-control mt-2 mb-2", @id = "ImageFile" })
                                             <div class="form-group">
                                                 <div class="row">
                                                     @if (Model.Help.IsPending)
@@ -190,10 +198,6 @@
                 @if (!Model.Help.IsRejected)
                 {
                     <a href="@Url.Action("HelpReject", "Employee", new { id = Model.Help.Id })" class="btn btn-danger me-1">Reject</a>
-                }
-                @if (!Model.Help.IsClosed)
-                {
-                    <a href="@Url.Action("HelpClose", "Employee", new { id = Model.Help.Id })" class="btn btn-dark me-1">Close</a>
                 }
             </div>
             <div class="modal-footer">

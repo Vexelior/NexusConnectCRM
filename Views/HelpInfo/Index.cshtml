@@ -34,21 +34,13 @@
         </div>
         <p class="ms-1">Rejected</p>
     </div>
-    <div class="d-flex flex-row me-3">
-        <div style="width: 20px; height: 20px;">
-            <span class="fa fa-lock" style="color: black; font-size: 16px;"></span>
-        </div>
-        <p class="ms-1">Closed</p>
-    </div>
 </div>
 
 <table class="table table-hover text-center">
     <thead>
         <tr>
             <th>Ticket #</th>
-            <th>
-                Title
-            </th>
+            <th>Title</th>
             <th>Employee Viewed</th>
             <th>Reply Status</th>
             <th>Ticket Status</th>
@@ -87,21 +79,17 @@
                     }
                 </td>
                 <td>
-                    @if (item.IsPending && !item.IsClosed)
+                    @if (item.IsPending && !item.IsCompleted)
                     {
                         <span class="fa fa-waiting" style="color: orange; font-size: 16px;"></span>
                     }
-                    else if (item.IsApproved && !item.IsClosed)
+                    else if (item.IsApproved && !item.IsCompleted)
                     {
                         <span class="fa fa-check" style="color: green; font-size: 16px;"></span>
                     }
-                    else if (item.IsRejected && !item.IsClosed)
+                    else if (item.IsRejected && !item.IsCompleted)
                     {
                         <span class="fa fa-times" style="color: red; font-size: 16px;"></span>
-                    }
-                    else if (item.IsClosed)
-                    {
-                        <span class="fa fa-lock" style="color: black; font-size: 16px;"></span>
                     }
                 </td>
                 <td>

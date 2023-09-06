@@ -21,7 +21,6 @@ namespace NexusConnectCRM.Data.Models.Help
         public bool IsApproved { get; set; }
         public bool IsRejected { get; set; }
         public bool IsCompleted { get; set; }
-        public bool IsClosed { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
         public bool EmployeeViewed { get; set; }

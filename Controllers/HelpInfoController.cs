@@ -74,7 +74,7 @@ namespace NexusConnectCRM.Controllers
                 helpInfo.EmployeeWasRecentResponse = false;
 
                 string wwwRootPath = _hostEnvironment.WebRootPath;
-                var fileName = Path.GetFileNameWithoutExtension(helpInfo.Image.FileName);
+                string fileName = Path.GetFileNameWithoutExtension(helpInfo.Image.FileName);
                 string extension = Path.GetExtension(helpInfo.Image.FileName);
                 helpInfo.ImageName = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
                 string path = Path.Combine(wwwRootPath + "/images/help/", fileName);
@@ -87,9 +87,9 @@ namespace NexusConnectCRM.Controllers
                 using var fileStream = new FileStream(path, FileMode.Create);
                 await helpInfo.Image.CopyToAsync(fileStream);
 
-
                 _context.Add(helpInfo);
                 await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
             return View(helpInfo);
@@ -127,7 +127,7 @@ namespace NexusConnectCRM.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SubmitHelpResponse(int id, HelpEditViewModel viewModel)
+        public async Task<IActionResult> SubmitHelpResponse(int id, HelpInfoEditViewModel viewModel)
         {
             var help = await _context.Help.FirstOrDefaultAsync(m => m.Id == id);
 
@@ -152,7 +152,7 @@ namespace NexusConnectCRM.Controllers
                 IsEmployee = false,
                 CreatedDate = help.CreatedDate,
                 ModifiedDate = DateTime.Now,
-                Image = null,
+                Image = viewModel.Image,
                 ResponseId = help.Id
             };
 
@@ -161,6 +161,20 @@ namespace NexusConnectCRM.Controllers
             help.CustomerWasRecentResponse = true;
             help.EmployeeWasRecentResponse = false;
             help.EmployeeViewed = false;
+
+            string wwwRootPath = _hostEnvironment.WebRootPath;
+            string fileName = Path.GetFileNameWithoutExtension(feedback.Image.FileName);
+            string extension = Path.GetExtension(feedback.Image.FileName);
+            feedback.ImageName = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+            string path = Path.Combine(wwwRootPath + "/images/help/responses/", fileName);
+
+            if (!Directory.Exists(wwwRootPath + "/images/help/responses/"))
+            {
+                Directory.CreateDirectory(wwwRootPath + "/images/help/responses/");
+            }
+
+            using var fileStream = new FileStream(path, FileMode.Create);
+            await feedback.Image.CopyToAsync(fileStream);
 
             _context.Add(feedback);
             await _context.SaveChangesAsync();
