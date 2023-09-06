@@ -6,6 +6,7 @@ using NexusConnectCRM.Data;
 using NexusConnectCRM.Data.Models.Help;
 using NexusConnectCRM.Data.Models.Identity;
 using NexusConnectCRM.ViewModels.HelpInfoData;
+using Microsoft.AspNetCore.Hosting;
 
 namespace NexusConnectCRM.Controllers
 {
@@ -13,11 +14,15 @@ namespace NexusConnectCRM.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public HelpInfoController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        public HelpInfoController(ApplicationDbContext context, 
+                                  UserManager<ApplicationUser> userManager,
+                                  IWebHostEnvironment hostEnvironment)
         {
             _context = context;
             _userManager = userManager;
+            _hostEnvironment = hostEnvironment;
         }
 
         // GET: HelpInfo/Details/5
@@ -67,6 +72,21 @@ namespace NexusConnectCRM.Controllers
                 helpInfo.EmployeeViewed = false;
                 helpInfo.CustomerWasRecentResponse = true;
                 helpInfo.EmployeeWasRecentResponse = false;
+
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                var fileName = Path.GetFileNameWithoutExtension(helpInfo.Image.FileName);
+                string extension = Path.GetExtension(helpInfo.Image.FileName);
+                helpInfo.ImageName = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                string path = Path.Combine(wwwRootPath + "/images/help/", fileName);
+
+                if (!Directory.Exists(wwwRootPath + "/images/help/"))
+                {
+                    Directory.CreateDirectory(wwwRootPath + "/images/help/");
+                }
+
+                using var fileStream = new FileStream(path, FileMode.Create);
+                await helpInfo.Image.CopyToAsync(fileStream);
+
 
                 _context.Add(helpInfo);
                 await _context.SaveChangesAsync();

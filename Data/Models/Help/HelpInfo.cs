@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NexusConnectCRM.Data.Models.Help
 {
@@ -10,7 +12,10 @@ namespace NexusConnectCRM.Data.Models.Help
         public string Title { get; set; }
         [Required]
         public string Description { get; set; }
-        public byte[] Image { get; set; }
+        [NotMapped]
+        [DisplayName("Upload Image")]
+        public IFormFile Image { get; set; }
+        public string ImageName { get; set; }
         public string Author { get; set; }
         [Display(Name = "Pending")]
         public bool IsPending { get; set; }

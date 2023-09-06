@@ -29,12 +29,18 @@ namespace NexusConnectCRM.Data
             }
         }
 
+        // Identity Tables \\
         public DbSet<ProspectInfo> Prospects { get; set; } = null!;
         public DbSet<CustomerInfo> Customers { get; set; } = null!;
         public DbSet<EmployeeInfo> Employees { get; set; } = null!;
         public DbSet<CompanyInfo> Companies { get; set; } = null!;
+
+        // Help Tables \\
         public DbSet<HelpInfo> Help { get; set; } = null!;
+        public DbSet<HelpImage> HelpImages { get; set; } = null!;
         public DbSet<HelpResponseInfo> HelpFeedback { get; set; } = null!;
+
+        // Relationship Tables \\
         public DbSet<ProspectEmployee> ProspectEmployees { get; set; } = null!;
         public DbSet<CustomerEmployee> CustomerEmployees { get; set; } = null!;
     }
