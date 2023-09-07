@@ -39,6 +39,7 @@
 		<Folder Include="Areas\Prospect\Models\" />
 		<Folder Include="wwwroot\images\help\" />
 		<Folder Include="wwwroot\fonts\" />
+		<Folder Include="wwwroot\lib\vendor\" />
 	</ItemGroup>
 
 	<ItemGroup>

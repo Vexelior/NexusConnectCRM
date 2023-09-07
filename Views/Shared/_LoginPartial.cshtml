@@ -8,68 +8,67 @@
     var firstName = _context.Users.FirstOrDefault(u => u.Id == UserManager.GetUserId(User))?.FirstName;
 }
 
-<ul class="navbar-nav">
-    @if (SignInManager.IsSignedIn(User))
-    {
-        <li class="nav-item" id="userNavigation">
-            <div class="dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                    @if (!string.IsNullOrEmpty(firstName))
-                    {
-                        <span>Hello, @firstName!</span>
-                    }
-                    else
-                    {
-                        <span>Hello, @User.Identity?.Name!</span>
-                    }
-                </a>
-                <ul class="dropdown-menu" id="userNavigationDropdownMenu" aria-labelledby="dropdownMenuLink">
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="nav-link scrollto" id="userNavigation">
+        <div class="dropdown">
+            <a href="#">
+                <span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i>
+                @if (!string.IsNullOrEmpty(firstName))
+                {
+                    <span>Hello, @firstName!</span>
+                }
+                else
+                {
+                    <span>Hello, @User.Identity?.Name!</span>
+                }
+            </a>
+            <ul class="dropdown-menu" id="userNavigationDropdownMenu" aria-labelledby="dropdownMenuLink">
+                <li>
+                    <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Profile</a>
+                </li>
+                @if (User.IsInRole("Admin"))
+                {
                     <li>
-                        <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <a class="dropdown-item" asp-area="Admin" asp-controller="Admin" asp-action="Index">Portal</a>
                     </li>
+                }
+                @if (User.IsInRole("Employee"))
+                {
                     <li>
-                        <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Profile</a>
+                        <a class="dropdown-item" asp-area="Employee" asp-controller="Employee" asp-action="Index">Portal</a>
                     </li>
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <li>
-                            <a class="dropdown-item" asp-area="Admin" asp-controller="Admin" asp-action="Index">Portal</a>
-                        </li>
-                    }
-                    @if (User.IsInRole("Employee"))
-                    {
-                        <li>
-                            <a class="dropdown-item" asp-area="Employee" asp-controller="Employee" asp-action="Index">Portal</a>
-                        </li>
-                    }
-                    @if (User.IsInRole("Customer"))
-                    {
-                        <li>
-                            <a class="dropdown-item" asp-area="Customer" asp-controller="Customer" asp-action="Index">Portal</a>
-                        </li>
-                    }
-                    @if (User.IsInRole("Prospect"))
-                    {
-                        <li>
-                            <a class="dropdown-item" asp-area="Prospect" asp-controller="Prospect" asp-action="Index">Portal</a>
-                        </li>
-                    }
-                </ul>
-            </div>
-        </li>
-        <li class="nav-item">
-            <form class="form-inline" id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="nav-link btn btn-link">Logout</button>
-            </form>
-        </li>
-    }
-    else
-    {
-        <li class="nav-item">
-            <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Register</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Login</a>
-        </li>
-    }
-</ul>
+                }
+                @if (User.IsInRole("Customer"))
+                {
+                    <li>
+                        <a class="dropdown-item" asp-area="Customer" asp-controller="Customer" asp-action="Index">Portal</a>
+                    </li>
+                }
+                @if (User.IsInRole("Prospect"))
+                {
+                    <li>
+                        <a class="dropdown-item" asp-area="Prospect" asp-controller="Prospect" asp-action="Index">Portal</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </li>
+    <li class="nav-item">
+        <form class="form-inline" id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button type="submit" class="nav-link btn btn-link">Logout</button>
+        </form>
+    </li>
+}
+else
+{
+    <li>
+        <a class="nav-link scrollto" asp-area="Identity" asp-page="/Account/Register">Register</a>
+    </li>
+    <li>
+        <a class="nav-link scrollto" asp-area="Identity" asp-page="/Account/Login">Login</a>
+    </li>
+}
