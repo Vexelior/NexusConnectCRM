@@ -1,3 +1,44 @@
+/* 
+    *** Fonts *** 
+    Raleway: https://fonts.google.com/specimen/Raleway?query=raleway
+    Roboto: https://fonts.google.com/specimen/Roboto?query=roboto
+*/
+
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Roboto Bold';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../fonts/Roboto/Roboto-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Roboto Italic';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../fonts/Roboto/Roboto-Italic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/Raleway/Raleway-VariableFont_wght.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Raleway Italic';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../fonts/Raleway/Raleway-Italic-VariableFont_wght.ttf') format('truetype');
+}
+
 html {
     font-size: 14px;
     position: relative;
@@ -24,7 +65,7 @@ html {
     }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: Roboto, sans-serif;
     font-weight: 400;
     line-height: 1.5;
     color: #212529;
@@ -72,10 +113,10 @@ body {
     text-align: center;
 }
 
-#userNavigationDropdownMenu > li {
-    margin-left: 0;
-    margin-right: 0;
-}
+    #userNavigationDropdownMenu > li {
+        margin-left: 0;
+        margin-right: 0;
+    }
 
 .account-login-form,
 .account-register-form,
@@ -219,6 +260,11 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
 }
 
 .list-group button {
+    font-size: 14px;
+}
+
+.help-chat-log {
+    font-family: Raleway, sans-serif;
     font-size: 14px;
 }
 
