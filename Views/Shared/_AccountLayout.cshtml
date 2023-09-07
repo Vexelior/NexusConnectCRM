@@ -10,13 +10,12 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/lib/fontawesome/css/all.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-@*    <link rel="stylesheet" href="~/NexusConnectCRM.styles.css" asp-append-version="true" />
-*@    <link href="./lib/vendor/aos/aos.css" rel="stylesheet">
-    <link href="./lib/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="./lib/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="./lib/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="./lib/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="./lib/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="~/lib/vendor/aos/aos.css" rel="stylesheet">
+    <link href="~/lib/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/lib/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/lib/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="~/lib/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="~/lib/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 </head>
 <body>
     <header id="header" class="fixed-top">
@@ -28,7 +27,7 @@
             </h1>
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a class="nav-link scrollto" href="#header">Home</a></li>
+                    <li><a class="nav-link scrollto" asp-area="" asp-action="Index" asp-controller="Home">Home</a></li>
                     <li><a class="nav-link scrollto" href="#about">About</a></li>
                     <li><a class="nav-link scrollto" href="#services">Services</a></li>
                     <li><a class="nav-link scrollto" href="#faq">FAQ</a></li>
@@ -98,14 +97,14 @@
             </div>
         </div>
     </footer>
-    <script src="./lib/vendor/waypoints/noframework.waypoints.js"></script>
-    <script src="./lib/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="./lib/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="~/lib/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="~/lib/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="~/lib/vendor/glightbox/js/glightbox.min.js"></script>
     <script src="~/lib/fontawesome/js/all.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="./lib/vendor/aos/aos.js"></script>
-    <script src="./lib/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="~/lib/vendor/aos/aos.js"></script>
+    <script src="~/lib/vendor/isotope-layout/isotope.pkgd.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
