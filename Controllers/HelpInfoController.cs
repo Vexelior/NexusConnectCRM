@@ -36,7 +36,8 @@ namespace NexusConnectCRM.Controllers
             }
 
             var userHelpTickets = await _context.Help.Where(u => u.Author == user.Id)
-                                                     .OrderByDescending(u => u.CreatedDate)
+                                                     .OrderByDescending(u => u.EmployeeWasRecentResponse)
+                                                     .ThenByDescending(u => u.CreatedDate)
                                                      .ToListAsync();
 
             HelpInfoIndexViewModel viewModel = new()
