@@ -1531,6 +1531,7 @@ section {
     display: grid;
     padding-bottom: 30;
 }
+
     #login .account-login-form {
         background: #fff;
         top: 0;
@@ -1540,78 +1541,78 @@ section {
         border: 1px solid #f3f5fa;
         border-radius: 10px;
         margin: 30px;
-        position: relative;        
+        position: relative;
     }
 
-    #login .account-login-form .form-group {
-        margin-bottom: 20px;
-    }
-
-    #login .account-login-form .col-md-6 {
-        padding: 0;
-        margin: 0 auto;
-    }
-
-    #login .account-login-form .form-control {
-        border-radius: 0;
-        box-shadow: none;
-        font-size: 14px;
-        border-radius: 4px;
-    }
-
-        #login .account-login-form .form-control:focus {
-            border-color: #47b2e4;
+        #login .account-login-form .form-group {
+            margin-bottom: 20px;
         }
 
-    #login .account-login-form .btn {
-        background: #47b2e4;
-        border: 0;
-        padding: 12px 34px;
-        color: #fff;
-        transition: 0.4s;
-        border-radius: 50px;
-    }
-
-        #login .account-login-form .btn:hover {
-            background: #209dd8;
+        #login .account-login-form .col-md-6 {
+            padding: 0;
+            margin: 0 auto;
         }
 
-    #login .account-login-form #forgot-password {
-        text-align: center;
-        padding-top: 15px;
-    }
-
-        #login .account-login-form #forgot-password a {
-            color: #47b2e4;
+        #login .account-login-form .form-control {
+            border-radius: 0;
+            box-shadow: none;
+            font-size: 14px;
+            border-radius: 4px;
         }
 
-            #login .account-login-form #forgot-password a:hover {
-                color: #209dd8;
+            #login .account-login-form .form-control:focus {
+                border-color: #47b2e4;
             }
 
-    #login .account-login-form #create-account {
-        text-align: center;
-        padding-top: 15px;
-    }
-
-        #login .account-login-form #create-account a {
-            color: #47b2e4;
+        #login .account-login-form .btn {
+            background: #47b2e4;
+            border: 0;
+            padding: 12px 34px;
+            color: #fff;
+            transition: 0.4s;
+            border-radius: 50px;
         }
 
-            #login .account-login-form #create-account a:hover {
-                color: #209dd8;
+            #login .account-login-form .btn:hover {
+                background: #209dd8;
             }
+
+        #login .account-login-form #forgot-password {
+            text-align: center;
+            padding-top: 15px;
+        }
+
+            #login .account-login-form #forgot-password a {
+                color: #47b2e4;
+            }
+
+                #login .account-login-form #forgot-password a:hover {
+                    color: #209dd8;
+                }
+
+        #login .account-login-form #create-account {
+            text-align: center;
+            padding-top: 15px;
+        }
+
+            #login .account-login-form #create-account a {
+                color: #47b2e4;
+            }
+
+                #login .account-login-form #create-account a:hover {
+                    color: #209dd8;
+                }
 
     #login .login-title {
         font-family: 'Raleway', sans-serif;
     }
-    /*--------------------------------------------------------------
+/*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
-    #footer {
-        font-size: 14px;
-        background: #37517e;
-    }
+#footer {
+    font-size: 14px;
+    background: #37517e;
+}
 
 .footer-newsletter {
     padding: 50px 0;
