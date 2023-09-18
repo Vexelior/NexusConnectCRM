@@ -13,7 +13,6 @@
     <li class="nav-link scrollto" id="userNavigation">
         <div class="dropdown">
             <a href="#">
-                <span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i>
                 @if (!string.IsNullOrEmpty(firstName))
                 {
                     <span>Hello, @firstName!</span>
@@ -22,6 +21,7 @@
                 {
                     <span>Hello, @User.Identity?.Name!</span>
                 }
+                <i class="bi bi-chevron-down"></i>
             </a>
             <ul class="dropdown-menu" id="userNavigationDropdownMenu" aria-labelledby="dropdownMenuLink">
                 <li>

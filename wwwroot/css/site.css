@@ -1798,3 +1798,12 @@ section {
         padding-top: 4px;
     }
 }
+
+#logoutForm button {
+    color: #fff;
+    font-size: 15px;
+}
+
+    #logoutForm button:hover {
+        color: #47b2e4;
+    }
