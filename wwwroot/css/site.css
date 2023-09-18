@@ -1201,7 +1201,7 @@ section {
 # Frequently Asked Questions
 --------------------------------------------------------------*/
 .faq {
-    background: #fff;
+    background: #f3f5fa;
 }
 
     .faq .faq-list {
@@ -1290,7 +1290,7 @@ section {
 --------------------------------------------------------------*/
 
 .contact {
-    background: #f3f5fa;
+    background: #fff;
 }
 
     .contact .info {
@@ -1619,6 +1619,7 @@ section {
     text-align: center;
     font-size: 15px;
     color: #444444;
+    border-top: 1px solid #dee2e6;
 }
 
     .footer-newsletter h4 {
