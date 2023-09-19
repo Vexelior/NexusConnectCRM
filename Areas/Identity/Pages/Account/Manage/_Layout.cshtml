@@ -8,11 +8,8 @@
         Layout = "/Areas/Identity/Pages/_Layout.cshtml";
     }
 }
-
-<h1>Manage your account</h1>
-<div>
-    <hr />
-    <div class="row">
+<section id="update-profile-section">
+    <div class="row" id="profile-data-entry" data-aos="fade-up" data-aos-delay="200">
         <div class="col-md-3">
             <partial name="_ManageNav" />
         </div>
@@ -20,7 +17,7 @@
             @RenderBody()
         </div>
     </div>
-</div>
+</section>
 
 @section Scripts {
     @RenderSection("Scripts", required: false)
