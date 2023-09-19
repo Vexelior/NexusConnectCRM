@@ -4,53 +4,62 @@
     ViewData["Title"] = "Register";
 }
 
-
-<div class="row account-register-form">
-    <div class="col-md-6">
-        <h1 class="text-center">@ViewData["Title"]</h1>
-        <section>
-            <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="py-5">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <input asp-for="Input.FirstName" class="form-control" autocomplete="username" placeholder="First name" aria-required="true" autofocus />
-                    <span asp-validation-for="Input.FirstName" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input asp-for="Input.LastName" class="form-control" autocomplete="username" placeholder="Last name" aria-required="true" />
-                    <span asp-validation-for="Input.LastName" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input asp-for="Input.DateOfBirth" class="form-control" autocomplete="username" type="date" aria-required="true" />
-                    <span asp-validation-for="Input.DateOfBirth" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input asp-for="Input.Email" class="form-control" autocomplete="username" placeholder="Email address" aria-required="true" />
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input asp-for="Input.PhoneNumber" class="form-control" autocomplete="username" placeholder="Phone" type="tel" aria-required="true" />
-                    <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input asp-for="Input.Password" class="form-control" autocomplete="new-password" placeholder="Password" aria-required="true" />
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" placeholder="Confrim password" aria-required="true" />
-                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <button id="registerSubmit" type="submit" class="btn btn-primary">Register</button>
-                </div>
-            </form>
-            <div class="row col-12">
-                <p>
-                    <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">Already have an account? Click here to login.</a>
-                </p>
+<section id="register" class="register">
+    <div class="container h-custom account-register-form" data-aos="fade-up" data-aos-delay="200" style="margin: 0 auto; margin-top: 20px;">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-9 col-lg-6">
+                <img src="~/images/Register/register-image.png"
+                     class="img-fluid" alt="register-image" />
             </div>
-        </section>
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                <h1 class="text-center register-title">
+                    @ViewData["Title"]
+                </h1>
+                <div class="text-center text-muted">
+                    Create an account to get started!
+                </div>
+                <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="py-3">
+                    <div class="form-group">
+                        <input asp-for="Input.FirstName" class="form-control" autocomplete="username" placeholder="First Name" aria-required="true" autofocus />
+                        <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Input.LastName" class="form-control" autocomplete="username" placeholder="Last Name" aria-required="true" />
+                        <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Input.DateOfBirth" class="form-control" autocomplete="username" type="date" aria-required="true" />
+                        <span asp-validation-for="Input.DateOfBirth" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Input.Email" class="form-control" autocomplete="username" placeholder="Email Address" aria-required="true" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Input.PhoneNumber" class="form-control" autocomplete="username" placeholder="Phone" type="tel" aria-required="true" />
+                        <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Input.Password" class="form-control" autocomplete="new-password" placeholder="Password" aria-required="true" />
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" placeholder="Confrim Password" aria-required="true" />
+                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <button id="registerSubmit" type="submit" class="btn btn-primary">Register</button>
+                    </div>
+                </form>
+                <div class="row col-12">
+                    <p>
+                        <a id="existing-account" asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">Already have an account? Click here to login.</a>
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</section>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
