@@ -5,8 +5,6 @@ VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NexusConnectCRM", "NexusConnectCRM.csproj", "{11DC5403-6389-453C-B73A-BAF6D0670363}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexusConnectCRM.Tests", "NexusConnectCRM.Tests\NexusConnectCRM.Tests.csproj", "{A0CCF9C8-C85B-4147-886E-AEAC600D8A4E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{11DC5403-6389-453C-B73A-BAF6D0670363}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11DC5403-6389-453C-B73A-BAF6D0670363}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11DC5403-6389-453C-B73A-BAF6D0670363}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A0CCF9C8-C85B-4147-886E-AEAC600D8A4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A0CCF9C8-C85B-4147-886E-AEAC600D8A4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A0CCF9C8-C85B-4147-886E-AEAC600D8A4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A0CCF9C8-C85B-4147-886E-AEAC600D8A4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
