@@ -1606,15 +1606,16 @@ section {
         margin-top: 20px;
     }
 
-        #update-profile-section button {
-            font-family: 'Raleway', sans-serif;
-            background: #47b2e4;
-            border: 0;
-            padding: 12px 34px;
-            color: #fff;
-            transition: 0.4s;
-            border-radius: 50px;
-        }
+    #update-profile-section button {
+        font-family: 'Raleway', sans-serif;
+        background: #47b2e4;
+        border: 0;
+        padding: 12px 34px;
+        color: #fff;
+        transition: 0.4s;
+        border-radius: 50px;
+    }
+
 #enable-authenticator {
     font-family: 'Raleway', sans-serif;
     background: #47b2e4;
@@ -1645,6 +1646,37 @@ section {
     border-radius: 50px;
     margin-top: 10px;
 }
+
+/*--------------------------------------------------------------
+# Back To Top Button
+--------------------------------------------------------------*/
+.back-to-top {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: none;
+    background: rgba(40, 58, 90, 0.9);
+    color: #fff;
+}
+
+    .back-to-top:hover {
+        text-decoration: none;
+        background: #47b2e4;
+    }
+
+    .back-to-top i {
+        font-size: 24px;
+        padding: 10px;
+        transition: 0.5s;
+        background: #47b2e4;
+        color: #fff;
+    }
+
+    .back-to-top:hover i {
+        background: #209dd8;
+        color: #fff;
+    }
+
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
