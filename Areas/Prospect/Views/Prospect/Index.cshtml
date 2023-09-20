@@ -7,7 +7,7 @@
 @using System.Linq
 @{
     ViewData["Title"] = "Prospect";
-    Layout = "~/Views/Shared/_ProspectPortalLayout.cshtml";
+    Layout = "~/Areas/Prospect/Views/Shared/_ProspectPortalLayout.cshtml";
 
     var userCompanyId = Model.User?.CompanyId;
     var userCompany = _context.Companies?.FirstOrDefault(c => c.Id == userCompanyId);

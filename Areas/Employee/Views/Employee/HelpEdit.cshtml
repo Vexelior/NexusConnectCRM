@@ -3,7 +3,7 @@
 
 @{
     ViewBag.Title = "View Ticket";
-    Layout = "~/Views/Shared/_EmployeePortalLayout.cshtml";
+    Layout = "~/Areas/Employee/Views/Shared/_EmployeePortalLayout.cshtml";
 
     var fullName = _context.Users.Where(u => u.Id == Model.Help.Author).Select(u => u.FirstName + " " + u.LastName).FirstOrDefault();
 }
