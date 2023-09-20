@@ -95,6 +95,8 @@
         </div>
     </footer>
 
+    @await Html.PartialAsync("_BackToTopButton")
+
     <!-- Privacy Policy Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" id="privacy-policy-modal">
@@ -175,6 +177,7 @@
     <script src="~/lib/vendor/glightbox/js/glightbox.min.js"></script>
     <script src="~/lib/fontawesome/js/all.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib//jquery/dist/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/vendor/aos/aos.js"></script>
     <script src="~/lib/vendor/isotope-layout/isotope.pkgd.min.js"></script>
@@ -182,12 +185,29 @@
     @await RenderSectionAsync("Scripts", required: false)
 
     <script>
-        let modal = document.getElementById('staticBackdrop')
-        let modalButton = document.getElementById('privacy-policy')
+        $(document).ready(function () {
+            // Back to top button scroll function. \\
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 50) {
+                    $('#back-to-top').fadeIn();
+                } else {
+                    $('#back-to-top').fadeOut();
+                }
+            });
+            $('#back-to-top').click(function () {
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 400);
+                return false;
+            });
 
-        // When the user clicks the button, open the modal
-        $(modalButton).click(function () {
-            $(modal).toggle();
+            // Privacy Policy Modal \\
+            let modal = document.getElementById('staticBackdrop')
+            let modalButton = document.getElementById('privacy-policy')
+
+            $(modalButton).click(function () {
+                $(modal).toggle();
+            });
         });
     </script>
 </body>

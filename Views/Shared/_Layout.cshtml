@@ -10,8 +10,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/lib/fontawesome/css/all.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-@*    <link rel="stylesheet" href="~/NexusConnectCRM.styles.css" asp-append-version="true" />
-*@    <link href="./lib/vendor/aos/aos.css" rel="stylesheet">
+    <link href="./lib/vendor/aos/aos.css" rel="stylesheet">
     <link href="./lib/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link href="./lib/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
     <link href="./lib/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
@@ -190,18 +189,29 @@
 
     <script>
         $(document).ready(function () {
-            $(window).scroll(function () {
-                if ($(this).scrollTop() > 50) {
-                    $('#back-to-top').fadeIn();
-                } else {
-                    $('#back-to-top').fadeOut();
-                }
-            });
-            $('#back-to-top').click(function () {
-                $('body,html').animate({
-                    scrollTop: 0
-                }, 400);
-                return false;
+            $(document).ready(function () {
+                // Back to top button scroll function. \\
+                $(window).scroll(function () {
+                    if ($(this).scrollTop() > 50) {
+                        $('#back-to-top').fadeIn();
+                    } else {
+                        $('#back-to-top').fadeOut();
+                    }
+                });
+                $('#back-to-top').click(function () {
+                    $('body,html').animate({
+                        scrollTop: 0
+                    }, 400);
+                    return false;
+                });
+
+                // Privacy Policy Modal \\
+                let modal = document.getElementById('staticBackdrop')
+                let modalButton = document.getElementById('privacy-policy')
+
+                $(modalButton).click(function () {
+                    $(modal).toggle();
+                });
             });
         });
     </script>
