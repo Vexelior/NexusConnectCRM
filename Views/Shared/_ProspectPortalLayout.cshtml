@@ -9,32 +9,10 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/NexusConnectCRM.styles.css" asp-append-version="true" />
 </head>
-<body class="sb-sidenav-toggled">
-    <div class="d-flex" id="wrapper">
-        <div class="border-end bg-white" id="sidebar-wrapper">
-            <div class="sidebar-heading border-bottom bg-light desktop-nav-logo">
-                <img src="~/logo.png" alt="NexusConnect Logo" style="width: 40px; height: 40px;"/>
-            </div>
-            <div class="list-group list-group-flush">
-                @await Html.PartialAsync("_ProspectNavigationSidebarLinks")
-            </div>
-        </div>
-        <div id="page-content-wrapper">
-            <nav class="navbar portal-navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                <div class="container-fluid">
-                    <button class="btn" id="sidebarToggle" style="background-color: #4099cd;">
-                        <i class="fas fa-bars" style="color: white;"></i>
-                    </button>
-                    <img src="~/logo.png" alt="NexusConnect Logo" style="width: 40px; height: 40px;" class="mobile-nav-logo" />
-                </div>
-            </nav>
-            <div class="container mt-3 profile-info-container">
-                <main role="main" class="pb-3">
-                    @RenderBody()
-                </main>
-            </div>
-        </div>
-    </div>
+<body>
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; @DateTime.Now.Year - NexusConnect - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
