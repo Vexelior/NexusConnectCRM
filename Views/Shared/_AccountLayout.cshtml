@@ -19,21 +19,7 @@
 </head>
 <body>
     <header id="header" class="fixed-top">
-        <div class="container d-flex align-items-center">
-            <h1 class="logo me-auto">
-                <a asp-area="" asp-controller="Home" asp-action="Index">
-                    NexusConnect
-                </a>
-            </h1>
-            <nav id="navbar" class="navbar">
-                <ul>
-                    <li><a class="nav-link scrollto" asp-area="" asp-action="Index" asp-controller="Home">Home</a></li>
-                    <partial name="_LoginPartial" />
-                    <li><a class="getstarted scrollto" asp-area="Identity" asp-page="/Account/Register">Get Started</a></li>
-                </ul>
-                <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav>
-        </div>
+        @await Html.PartialAsync("_NavbarBasic")
     </header>
     <main id="main" role="main">
         @RenderBody()
