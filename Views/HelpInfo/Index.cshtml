@@ -4,19 +4,19 @@
     ViewData["Title"] = "Help Tickets";
     if (User.IsInRole("Prospect"))
     {
-        Layout = "~/Views/Shared/_ProspectPortalLayout.cshtml";
+        Layout = "~/Areas/Prospect/Views/Shared/_ProspectPortalLayout.cshtml";
     }
     else if (User.IsInRole("Customer"))
     {
-        Layout = "~/Views/Shared/_CustomerPortalLayout.cshtml";
+        Layout = "~~/Areas/Customer/Views/Shared/_CustomerPortalLayout.cshtml";
     }
     else if (User.IsInRole("Employee"))
     {
-        Layout = "~/Views/Shared/_EmployeePortalLayout.cshtml";
+        Layout = "~~/Areas/Employee/Views/Shared/_EmployeePortalLayout.cshtml";
     }
     else if (User.IsInRole("Admin"))
     {
-        Layout = "~/Views/Shared/_AdminPortalLayout.cshtml";
+        Layout = "~~/Areas/Admin/Views/Shared/_AdminPortalLayout.cshtml";
     }
     else
     {

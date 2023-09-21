@@ -1,25 +1,4 @@
-﻿// Portal Sidebar \\
-window.addEventListener('DOMContentLoaded', event => {
-    const sidebarToggle = document.body.querySelector('#sidebarToggle');
-    if (sidebarToggle) {
-        if (window.innerWidth < 768) {
-            document.body.classList.add('sb-sidenav-toggled');
-        }
-        sidebarToggle.addEventListener('click', event => {
-            event.preventDefault();
-            document.body.classList.toggle('sb-sidenav-toggled');
-        });
-    }
-});
-
-/**
-* Template Name: Arsha
-* Updated: Aug 30 2023 with Bootstrap v5.3.1
-* Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-(function () {
+﻿(function () {
     "use strict";
 
     /**
@@ -270,3 +249,28 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
 })()
+
+$(document).ready(function () {
+    // Back to top button scroll function. \\
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 50) {
+            $('#back-to-top').fadeIn();
+        } else {
+            $('#back-to-top').fadeOut();
+        }
+    });
+    $('#back-to-top').click(function () {
+        $('body,html').animate({
+            scrollTop: 0
+        }, 400);
+        return false;
+    });
+
+    // Privacy Policy Modal \\
+    let modal = document.getElementById('staticBackdrop')
+    let modalButton = document.getElementById('privacy-policy')
+
+    $(modalButton).click(function () {
+        $(modal).toggle();
+    });
+});

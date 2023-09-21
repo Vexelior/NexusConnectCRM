@@ -41,34 +41,5 @@
     <script src="~/lib/vendor/isotope-layout/isotope.pkgd.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
-
-    <script>
-        $(document).ready(function () {
-            $(document).ready(function () {
-                // Back to top button scroll function. \\
-                $(window).scroll(function () {
-                    if ($(this).scrollTop() > 50) {
-                        $('#back-to-top').fadeIn();
-                    } else {
-                        $('#back-to-top').fadeOut();
-                    }
-                });
-                $('#back-to-top').click(function () {
-                    $('body,html').animate({
-                        scrollTop: 0
-                    }, 400);
-                    return false;
-                });
-
-                // Privacy Policy Modal \\
-                let modal = document.getElementById('staticBackdrop')
-                let modalButton = document.getElementById('privacy-policy')
-
-                $(modalButton).click(function () {
-                    $(modal).toggle();
-                });
-            });
-        });
-    </script>
 </body>
 </html>

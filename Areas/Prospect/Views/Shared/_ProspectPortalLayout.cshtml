@@ -4,15 +4,21 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>@ViewData["Title"] - NexusConnect</title>
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/lib/fontawesome/css/all.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/NexusConnectCRM.styles.css" asp-append-version="true" />
+    <link href="~/lib/vendor/aos/aos.css" rel="stylesheet">
+    <link href="~/lib/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/lib/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/lib/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="~/lib/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="~/lib/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="wrapper d-flex align-items-stretch">
-        @await Html.PartialAsync("_ProspectSidebar")
-        <main role="main">
+    <div class="wrapper d-flex">
+        @await Html.PartialAsync("~/Areas/Prospect/Views/Shared/_ProspectSidebar.cshtml")
+        <main id="sidebar-main" role="main">
             <div id="content" class="p-4 p-md-5 pt-5">
                 @RenderBody()
             </div>
@@ -33,11 +39,7 @@
     <script src="~/lib/vendor/aos/aos.js"></script>
     <script src="~/lib/vendor/isotope-layout/isotope.pkgd.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @*    <script src="~/js/ProspectScripts.js" asp-append-version="true"></script>
-    *@    @await RenderSectionAsync("Scripts", required: false)
-
-    <script>
-        (function ($) { "use strict"; var fullHeight = function () { $('.js-fullheight').css('height', $(window).height()); $(window).resize(function () { $('.js-fullheight').css('height', $(window).height()); }); }; fullHeight(); $('#sidebarCollapse').on('click', function () { $('#sidebar').toggleClass('active'); }); })(jQuery);
-    </script>
+    <script src="~/js/ProspectScripts.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
