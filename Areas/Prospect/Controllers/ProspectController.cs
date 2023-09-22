@@ -33,9 +33,32 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
                 }
                 else
                 {
+                    CompanyInfo userCompany = await _context.Companies.FirstOrDefaultAsync(c => c.Id == verifiedUser.CompanyId);
+
+                    var userRole = await _context.UserRoles.FirstOrDefaultAsync(r => r.UserId == verifiedUser.UserId);
+                    var role = await _context.Roles.FirstOrDefaultAsync(r => r.Id == userRole.RoleId);
+
                     ProspectIndexViewModel viewModel = new()
                     {
-                        User = verifiedUser
+                        // User Details. \\
+                        FirstName = verifiedUser.FirstName,
+                        LastName = verifiedUser.LastName,
+                        Address = verifiedUser.Address,
+                        City = verifiedUser.City,
+                        State = verifiedUser.State,
+                        ZipCode = verifiedUser.ZipCode,
+                        Country = verifiedUser.Country,
+                        PhoneNumber = verifiedUser.PhoneNumber,
+                        EmailAddress = verifiedUser.EmailAddress,
+                        UserRole = role.Name,
+                        // Company Details. \\
+                        CompanyName = userCompany.Name,
+                        CompanyAddress = userCompany.Address,
+                        CompanyCity = userCompany.City,
+                        CompanyState = userCompany.State,
+                        CompanyZipCode = userCompany.Zip,
+                        CompanyPhoneNumber = userCompany.Phone,
+                        CompanyEmailAddress = userCompany.Email
                     };
 
                     if (verifiedUser.CompanyId == 0)
@@ -131,12 +154,7 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
                     await _context.SaveChangesAsync();
                 }
 
-                ProspectIndexViewModel indexViewModel = new()
-                {
-                    User = user
-                };
-
-                return View("Index", indexViewModel);
+                return RedirectToAction("Index", "Prospect");
             }
             else
             {
@@ -191,12 +209,7 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
                 _context.Update(user);
                 await _context.SaveChangesAsync();
 
-                ProspectIndexViewModel indexViewModel = new()
-                {
-                    User = user
-                };
-
-                return View("Index", indexViewModel);
+                return RedirectToAction("Index", "Prospect");
             }
             else
             {
