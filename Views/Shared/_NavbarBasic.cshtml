@@ -8,7 +8,10 @@
         <ul>
             <li><a class="nav-link scrollto" asp-area="" asp-action="Index" asp-controller="Home">Home</a></li>
             <partial name="_LoginPartial" />
-            <li><a class="getstarted scrollto" asp-area="Identity" asp-page="/Account/Register">Get Started</a></li>
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <li><a class="getstarted scrollto" asp-area="Identity" asp-page="/Account/Register">Get Started</a></li>
+            }
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
     </nav>

@@ -60,11 +60,16 @@ body {
     min-height: 100%;
     transition: all 0.3s;
 }
+
     #main #login {
         min-height: 100vh;
     }
 
     #main #register {
+        min-height: 100vh;
+    }
+
+    #main #company-details {
         min-height: 100vh;
     }
 
@@ -2188,3 +2193,82 @@ a[data-toggle="collapse"] {
     -o-transition: all 0.3s;
     transition: all 0.3s;
 }
+
+/*--------------------------------------------------------------
+# Company Details Section
+--------------------------------------------------------------*/
+#company-details {
+    background: #4668a2;
+    position: relative;
+    display: grid;
+    padding-bottom: 70px;
+}
+
+    #company-details .company-details-form {
+        background: #fff;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        padding: 30px;
+        border: 1px solid #f3f5fa;
+        border-radius: 10px;
+        margin: 30px;
+        position: relative;
+        padding-bottom: 0;
+    }
+
+        #company-details .company-details-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        #company-details .company-details-form .col-md-6 {
+            padding: 0;
+            margin: 0 auto;
+        }
+
+        #company-details .company-details-form .form-control {
+            border-radius: 0;
+            box-shadow: none;
+            font-size: 14px;
+            border-radius: 4px;
+        }
+
+            #company-details .company-details-form .form-control:focus {
+                border-color: #47b2e4;
+            }
+
+        #company-details .company-details-form .btn {
+            background: #47b2e4;
+            border: 0;
+            padding: 12px 34px;
+            color: #fff;
+            transition: 0.4s;
+            border-radius: 50px;
+        }
+
+            #company-details .company-details-form .btn:hover {
+                background: #209dd8;
+            }
+
+        #company-details .company-details-form .cancel-button {
+            background: gray;
+            border: 0;
+            padding: 12px 34px;
+            color: #fff;
+            transition: 0.4s;
+            border-radius: 50px;
+        }
+
+            #company-details .company-details-form .cancel-button:hover {
+                background: black;
+            }
+
+            #company-details .company-details-form .cancel-button:focus {
+                background: black;
+                border: 2px solid gray;
+            }
+
+    #company-details .company-details-title {
+        font-family: 'Raleway', sans-serif;
+        color: #fff;
+    }

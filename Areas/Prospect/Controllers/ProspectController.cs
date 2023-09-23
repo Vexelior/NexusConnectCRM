@@ -31,45 +31,50 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
                 {
                     return NotFound();
                 }
-                else
+
+                CompanyInfo userCompany = await _context.Companies.FirstOrDefaultAsync(c => c.Id == verifiedUser.CompanyId);
+
+                if (userCompany == null)
                 {
-                    CompanyInfo userCompany = await _context.Companies.FirstOrDefaultAsync(c => c.Id == verifiedUser.CompanyId);
-
-                    var userRole = await _context.UserRoles.FirstOrDefaultAsync(r => r.UserId == verifiedUser.UserId);
-                    var role = await _context.Roles.FirstOrDefaultAsync(r => r.Id == userRole.RoleId);
-
-                    ProspectIndexViewModel viewModel = new()
-                    {
-                        // User Details. \\
-                        FirstName = verifiedUser.FirstName,
-                        LastName = verifiedUser.LastName,
-                        Address = verifiedUser.Address,
-                        City = verifiedUser.City,
-                        State = verifiedUser.State,
-                        ZipCode = verifiedUser.ZipCode,
-                        Country = verifiedUser.Country,
-                        PhoneNumber = verifiedUser.PhoneNumber,
-                        EmailAddress = verifiedUser.EmailAddress,
-                        UserRole = role.Name,
-                        // Company Details. \\
-                        CompanyName = userCompany.Name,
-                        CompanyAddress = userCompany.Address,
-                        CompanyCity = userCompany.City,
-                        CompanyState = userCompany.State,
-                        CompanyZipCode = userCompany.Zip,
-                        CompanyPhoneNumber = userCompany.Phone,
-                        CompanyEmailAddress = userCompany.Email
-                    };
-
-                    if (verifiedUser.CompanyId == 0)
-                    {
-                        return await ProspectCompanyDetails(verifiedUser.UserId);
-                    }
-                    else
-                    {
-                        return View("Index", viewModel);
-                    }
+                    return await ProspectCompanyDetails(verifiedUser.UserId);
                 }
+                else if (verifiedUser.Address == null ||
+                         verifiedUser.Country == null ||
+                         verifiedUser.City == null ||
+                         verifiedUser.State == null ||
+                         verifiedUser.ZipCode == null ||
+                         verifiedUser.PhoneNumber == null)
+                {
+                    return await CompleteUserDetails(Convert.ToString(verifiedUser.Id));
+                }
+
+                var userRole = await _context.UserRoles.FirstOrDefaultAsync(r => r.UserId == verifiedUser.UserId);
+                var role = await _context.Roles.FirstOrDefaultAsync(r => r.Id == userRole.RoleId);
+
+                ProspectIndexViewModel viewModel = new()
+                {
+                    // User Details. \\
+                    FirstName = verifiedUser.FirstName,
+                    LastName = verifiedUser.LastName,
+                    Address = verifiedUser.Address,
+                    City = verifiedUser.City,
+                    State = verifiedUser.State,
+                    ZipCode = verifiedUser.ZipCode,
+                    Country = verifiedUser.Country,
+                    PhoneNumber = verifiedUser.PhoneNumber,
+                    EmailAddress = verifiedUser.EmailAddress,
+                    UserRole = role.Name,
+                    // Company Details. \\
+                    CompanyName = userCompany.Name,
+                    CompanyAddress = userCompany.Address,
+                    CompanyCity = userCompany.City,
+                    CompanyState = userCompany.State,
+                    CompanyZipCode = userCompany.Zip,
+                    CompanyPhoneNumber = userCompany.Phone,
+                    CompanyEmailAddress = userCompany.Email
+                };
+
+                return View("Index", viewModel);
             }
             else
             {

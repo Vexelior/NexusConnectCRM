@@ -265,6 +265,7 @@ $(document).ready(function () {
         }, 400);
         return false;
     });
+    // End of back to top button scroll function. \\
 
     // Privacy Policy Modal \\
     let modal = document.getElementById('staticBackdrop')
@@ -273,4 +274,36 @@ $(document).ready(function () {
     $(modalButton).click(function () {
         $(modal).toggle();
     });
+    // End of Privacy Policy Modal \\
+
+    // Form validation logic \\
+    $('.company-details-form').submit(function () {
+        let button = $(this).find(':submit');
+        SpinnerButton(button);
+    });
+
+    $('#account-login').submit(function () {
+        let button = $(this).find(':submit');
+        SpinnerButton(button);
+
+        if ($(this).valid() == false) {
+            RevertSpinnerButton(button, 'Sign in');
+        }
+    });
+
+    const SpinnerButton = (button) => {
+        let buttonWidth = $(button).width();
+        let buttonHeight = $(button).height();
+
+        $(button).width(buttonWidth);
+        $(button).height(buttonHeight);
+        $(button).prop('disabled', true);
+        $(button).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
+    }
+
+    const RevertSpinnerButton = (button, text) => {
+        $(button).prop('disabled', false);
+        $(button).html(text);
+    }
+    // End of form validation logic \\
 });
