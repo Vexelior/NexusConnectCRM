@@ -219,7 +219,7 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
             else
             {
                 ModelState.AddModelError("", "Invalid User Details");
-                return View("ProspectEnterUserDetails");
+                return View("EnterUserDetails");
             }
         }
     }

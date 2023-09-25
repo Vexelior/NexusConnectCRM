@@ -9,10 +9,10 @@
 <section id="company-details" class="company-details">
     <div class="container mt-5" data-aos="fade-up" data-aos-delay="200">
         <div class="row">
-            <h3 class="text-center company-details-title" data-aos="fade-up" data-aos-delay="200">Please enter your company's details</h3>
             <div class="col" style="margin: 0 auto;">
                 @using (Html.BeginForm("CompanyDetails", "Prospect", FormMethod.Post, new { @class = "company-details-form" }))
                 {
+                    <h3 class="text-center company-details-title" data-aos="fade-up" data-aos-delay="200">Please enter your company's details</h3>
                     @Html.HiddenFor(m => m.UserId)
                     <div class="form-group">
                         @Html.LabelFor(m => m.Name)

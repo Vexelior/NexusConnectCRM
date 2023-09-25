@@ -2,47 +2,48 @@
 
 @{
     ViewBag.Title = "Enter Your Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
 }
 
-<h3 class="text-center">Please enter your details</h3>
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-6" style="margin: 0 auto;">
-            @using (Html.BeginForm("ProspectDetails", "Prospect", FormMethod.Post))
-            {
-                @Html.HiddenFor(m => m.UserId)
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Address)
-                    @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.City)
-                    @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.City, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.State)
-                    @Html.TextBoxFor(m => m.State, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.State, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.ZipCode)
-                    @Html.TextBoxFor(m => m.ZipCode, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.ZipCode, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Country)
-                    @Html.TextBoxFor(m => m.Country, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Country, "", new { @class = "text-danger" })
-                </div>
-                <div class="button-group">
-                    <button type="submit" class="btn btn-primary w-100">Save</button>
-                    <a href="@Url.Action("Index", "Home")" class="btn btn-danger w-100 mt-2">Cancel</a>
-                </div>
-            }
+<section id="user-details" class="user-details">
+    <div class="container mt-5" data-aos="fade-up" data-aos-delay="200">
+        <div class="row">
+            <div class="col" style="margin: 0 auto;">
+                @using (Html.BeginForm("ProspectDetails", "Prospect", FormMethod.Post, new { @class = "user-details-form" }))
+                {
+                    <h3 class="text-center user-details-title" data-aos="fade-up" data-aos-delay="200">Please enter your details</h3>
+                    @Html.HiddenFor(m => m.UserId)
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Address)
+                        @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.City)
+                        @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.City, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.State)
+                        @Html.TextBoxFor(m => m.State, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.State, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.ZipCode)
+                        @Html.TextBoxFor(m => m.ZipCode, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.ZipCode, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Country)
+                        @Html.TextBoxFor(m => m.Country, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Country, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-primary w-100">Save</button>
+                        <a href="@Url.Action("Index", "Home")" class="btn cancel-button w-100 mt-2">Cancel</a>
+                    </div>
+                }
+            </div>
         </div>
     </div>
-</div>
+</section>

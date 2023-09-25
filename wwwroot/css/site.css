@@ -73,6 +73,10 @@ body {
         min-height: 100vh;
     }
 
+    #main #user-details {
+        min-height: 100vh;
+    }
+
 #sidebar-main {
     min-height: 100vh;
     transition: all 0.3s;
@@ -2270,5 +2274,84 @@ a[data-toggle="collapse"] {
 
     #company-details .company-details-title {
         font-family: 'Raleway', sans-serif;
+        color: black;
+    }
+
+/*--------------------------------------------------------------
+# User Details Section
+--------------------------------------------------------------*/
+#user-details {
+    background: #4668a2;
+    position: relative;
+    display: grid;
+    padding-bottom: 70px;
+}
+
+    #user-details .user-details-form {
+        background: #fff;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        padding: 30px;
+        border: 1px solid #f3f5fa;
+        border-radius: 10px;
+        margin: 30px;
+        position: relative;
+        padding-bottom: 0;
+    }
+
+        #user-details .user-details-form .form-group {
+            margin-bottom: 20px;
+        }
+
+    #user-details .userdetails-form .col-md-6 {
+        padding: 0;
+        margin: 0 auto;
+    }
+
+    #user-details .user-details-form .form-control {
+        border-radius: 0;
+        box-shadow: none;
+        font-size: 14px;
+        border-radius: 4px;
+    }
+
+        #user-details .user-details-form .form-control:focus {
+            border-color: #47b2e4;
+        }
+
+    #user-details .user-details-form .btn {
+        background: #47b2e4;
+        border: 0;
+        padding: 12px 34px;
         color: #fff;
+        transition: 0.4s;
+        border-radius: 50px;
+    }
+
+        #user-details .user-details-form .btn:hover {
+            background: #209dd8;
+        }
+
+    #user-details .user-details-form .cancel-button {
+        background: gray;
+        border: 0;
+        padding: 12px 34px;
+        color: #fff;
+        transition: 0.4s;
+        border-radius: 50px;
+    }
+
+        #user-details .user-details-form .cancel-button:hover {
+            background: black;
+        }
+
+        #user-details .user-details-form .cancel-button:focus {
+            background: black;
+            border: 2px solid gray;
+        }
+
+    #user-details .user-details-title {
+        font-family: 'Raleway', sans-serif;
+        color: black;
     }

@@ -282,12 +282,26 @@ $(document).ready(function () {
         SpinnerButton(button);
     });
 
+    $('.user-details-form').submit(function () {
+        let button = $(this).find(':submit');
+        SpinnerButton(button);
+    });
+
     $('#account-login').submit(function () {
         let button = $(this).find(':submit');
         SpinnerButton(button);
 
         if ($(this).valid() == false) {
             RevertSpinnerButton(button, 'Sign in');
+        }
+    });
+
+    $('#registerForm').submit(function () {
+        let button = $(this).find(':submit');
+        SpinnerButton(button);
+
+        if ($(this).valid() == false) {
+            RevertSpinnerButton(button, 'Register');
         }
     });
 
