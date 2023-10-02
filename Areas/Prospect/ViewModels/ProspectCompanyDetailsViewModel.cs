@@ -9,7 +9,6 @@ namespace NexusConnectCRM.Areas.Prospect.ViewModels
     [Keyless]
     public class ProspectCompanyDetailsViewModel
     {
-        public string UserId { get; set; }
         [Required]
         [Display(Name = "Company Name")]
         public string Name { get; set; }
@@ -23,10 +22,10 @@ namespace NexusConnectCRM.Areas.Prospect.ViewModels
         public string State { get; set; }
         [Required]
         [Display(Name = "Postal Code")]
-        public string ZipCode { get; set; }
+        public string Zip { get; set; }
         [Required]
         [Display(Name = "Phone Number")]
-        public string PhoneNumber { get; set; }
+        public string Phone { get; set; }
         [Required]
         public string Website { get; set; }
         [Required]
@@ -34,13 +33,6 @@ namespace NexusConnectCRM.Areas.Prospect.ViewModels
         [Required]
         public string Industry { get; set; }
 
-        public ProspectCompanyDetailsViewModel()
-        {
-        }
-
-        public ProspectCompanyDetailsViewModel(ProspectInfo user)
-        {
-            UserId = user.UserId;
-        }
+        public ProspectCompanyDetailsViewModel() { }
     }
 }

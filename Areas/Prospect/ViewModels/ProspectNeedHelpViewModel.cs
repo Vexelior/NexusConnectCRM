@@ -15,14 +15,6 @@ namespace NexusConnectCRM.Areas.Prospect.ViewModels
         public string UserId { get; set; }
         
 
-        public ProspectNeedHelpViewModel()
-        {
-        }
-
-        public ProspectNeedHelpViewModel(ProspectInfo info)
-        {
-            UserId = info.UserId;
-            Author = info.FirstName + " " + info.LastName;
-        }
+        public ProspectNeedHelpViewModel() { }
     }
 }

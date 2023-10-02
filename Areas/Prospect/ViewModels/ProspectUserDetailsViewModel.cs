@@ -21,13 +21,6 @@ namespace NexusConnectCRM.Areas.Prospect.ViewModels
         [Display(Name = "Postal Code")]
         public string ZipCode { get; set; }
 
-        public ProspectUserDetailsViewModel()
-        {
-        }
-
-        public ProspectUserDetailsViewModel(ProspectInfo user)
-        {
-            UserId = user.UserId;
-        }
+        public ProspectUserDetailsViewModel() { }
     }
 }

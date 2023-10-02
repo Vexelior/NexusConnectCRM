@@ -13,7 +13,6 @@
                 @using (Html.BeginForm("CompanyDetails", "Prospect", FormMethod.Post, new { @class = "company-details-form" }))
                 {
                     <h3 class="text-center company-details-title" data-aos="fade-up" data-aos-delay="200">Please enter your company's details</h3>
-                    @Html.HiddenFor(m => m.UserId)
                     <div class="form-group">
                         @Html.LabelFor(m => m.Name)
                         @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
@@ -35,9 +34,9 @@
                         @Html.ValidationMessageFor(m => m.State, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(m => m.ZipCode)
-                        @Html.TextBoxFor(m => m.ZipCode, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.ZipCode, "", new { @class = "text-danger" })
+                        @Html.LabelFor(m => m.Zip)
+                        @Html.TextBoxFor(m => m.Zip, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Zip, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(m => m.Country)
@@ -50,9 +49,9 @@
                         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(m => m.PhoneNumber)
-                        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", type = "tel" })
-                        @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+                        @Html.LabelFor(m => m.Phone)
+                        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", type = "tel" })
+                        @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
                     </div>
 
                     <div class="form-group">
