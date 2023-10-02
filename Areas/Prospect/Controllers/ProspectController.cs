@@ -5,10 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using NexusConnectCRM.Areas.Prospect.ViewModels;
 using NexusConnectCRM.Data;
 using NexusConnectCRM.Data.Models.Company;
-using NexusConnectCRM.Data.Models.Help;
 using NexusConnectCRM.Data.Models.Identity;
 using NexusConnectCRM.Data.Models.Prospect;
-using System.Drawing;
 
 namespace NexusConnectCRM.Areas.Prospect.Controllers
 {
@@ -92,7 +90,7 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
         {
             var user = await _context.Prospects.FirstOrDefaultAsync(u => u.UserId == id);
 
-            if (user == null)
+            if (user is null)
             {
                 return NotFound();
             }
@@ -105,7 +103,7 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
         {
             var user = await _context.Prospects.FirstOrDefaultAsync(u => u.UserId == _userManager.GetUserId(User));
 
-            if (user == null)
+            if (user is null)
             {
                 return NotFound();
             }
@@ -131,7 +129,7 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
         {
             var user = await _context.Prospects.FirstOrDefaultAsync(u => u.UserId == id);
 
-            if (user == null)
+            if (user is null)
             {
                 return NotFound();
             }
@@ -145,7 +143,7 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
         {
             var user = await _context.Prospects.FirstOrDefaultAsync(u => u.UserId == _userManager.GetUserId(User));
 
-            if (user == null)
+            if (user is null)
             {
                 return NotFound();
             }
