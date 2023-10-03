@@ -9,7 +9,7 @@
     <div class="container mt-5" data-aos="fade-up" data-aos-delay="200">
         <div class="row">
             <div class="col" style="margin: 0 auto;">
-                @using (Html.BeginForm("ProspectDetails", "Prospect", FormMethod.Post, new { @class = "user-details-form" }))
+                @using (Html.BeginForm("UserDetails", "Details", FormMethod.Post, new { @class = "user-details-form" }))
                 {
                     <h3 class="text-center user-details-title" data-aos="fade-up" data-aos-delay="200">Please enter your details</h3>
                     @Html.HiddenFor(m => m.UserId)

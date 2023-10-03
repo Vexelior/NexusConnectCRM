@@ -23,18 +23,18 @@ namespace NexusConnectCRM.Areas.Customer.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var user = _userManager.GetUserId(User);
-            var customer = await _context.Customers.FirstOrDefaultAsync(c => c.UserId == user);
+            var verifiedUser = await _context.Users.FirstOrDefaultAsync(u => u.Id == _userManager.GetUserId(User));
+            var customer = await _context.Customers.FirstOrDefaultAsync(c => c.UserId == _userManager.GetUserId(User));
             var company = await _context.Companies.FirstOrDefaultAsync(c => c.Id == customer.CompanyId);
 
-            if (string.IsNullOrEmpty(user))
+            if (_userManager.GetUserId(User) is null)
             {
                 return NotFound();
             }
 
             CustomerIndexViewModel viewModel = new()
             {
-                User = await _context.Users.FirstOrDefaultAsync(u => u.Id == user),
+                User = verifiedUser,
                 CustomerInfo = customer,
                 Company = company
             };

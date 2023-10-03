@@ -118,7 +118,7 @@ namespace NexusConnectCRM.Areas.Identity.Pages.Account
 
                     if (user.Roles.Equals("Prospect"))
                     {
-                        return RedirectToAction("Index", "Prospect", new 
+                        return RedirectToAction("Index", "Index", new 
                         { 
                             Area = "Prospect" 
                         });

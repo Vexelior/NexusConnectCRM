@@ -10,7 +10,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Content Remove="Areas\Prospect\Views\Prospect\ProspectNeedHelp.cshtml" />
+	  <Content Remove="Areas\Prospect\Views\Index\ProspectNeedHelp.cshtml" />
 	</ItemGroup>
 
 	<ItemGroup>
