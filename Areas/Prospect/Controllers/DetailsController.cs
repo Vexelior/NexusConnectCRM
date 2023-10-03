@@ -55,7 +55,7 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
             }
         }
 
-        public async Task<IActionResult> UserDetails(string id)
+        public IActionResult UserDetails()
         {
             return View("EnterUserDetails");
         }

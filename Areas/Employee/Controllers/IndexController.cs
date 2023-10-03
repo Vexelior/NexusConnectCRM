@@ -6,19 +6,18 @@ using Microsoft.AspNetCore.Identity;
 using NexusConnectCRM.Data.Models.Identity;
 using NexusConnectCRM.Areas.Employee.ViewModels;
 using NexusConnectCRM.Data.Models.Help;
-using Microsoft.Extensions.Hosting;
 
 namespace NexusConnectCRM.Areas.Employee.Controllers
 {
     [Area("Employee")]
     [Authorize(Roles = "Employee, Admin")]
-    public class EmployeeController : Controller
+    public class IndexController : Controller
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IWebHostEnvironment _hostEnvironment;
 
-        public EmployeeController(ApplicationDbContext context, 
+        public IndexController(ApplicationDbContext context, 
                                   UserManager<ApplicationUser> userManager,
                                   IWebHostEnvironment hostEnvironment)
         {

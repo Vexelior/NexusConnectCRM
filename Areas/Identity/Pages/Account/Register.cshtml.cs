@@ -150,8 +150,7 @@ namespace NexusConnectCRM.Areas.Identity.Pages.Account
                 {
                     await CreateProspect(user);
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    return LocalRedirect(returnUrl);
-                   
+                    return RedirectToAction("Index", "Index", new { area = "Prospect" });  
                 }
                 foreach (var error in result.Errors)
                 {

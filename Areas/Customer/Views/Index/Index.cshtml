@@ -11,19 +11,19 @@
         <div class="col-md-6">
             <div class="card prospect-info-card">
                 <i class="fa fa-solid fa-user mt-3" style="font-size: 24px;"></i>
-                <h1 class="text-center">@Model.User.FirstName @Model.User.LastName</h1>
-                <span class="text-muted text-center">@Model.User.Roles</span>
+                <h1 class="text-center">@Model.Customer.FirstName @Model.Customer.LastName</h1>
+                <span class="text-muted text-center">@Model.Role</span>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
                             <h4 class="text-center"><i class="fa fa-solid fa-map-marker" style="font-size: 16px;"></i> Address</h4>
-                            <p class="text-center">@Model.CustomerInfo.Address</p>
-                            <p class="text-center">@Model.CustomerInfo.City, @Model.CustomerInfo.State @Model.CustomerInfo.ZipCode</p>
+                            <p class="text-center">@Model.Customer.Address</p>
+                            <p class="text-center">@Model.Customer.City, @Model.Customer.State @Model.Customer.ZipCode</p>
                         </div>
                         <div class="col-md-6">
                             <h4 class="text-center">Contact</h4>
-                            <p class="text-center"><i class="fa fa-solid fa-phone"></i> @Model.User.PhoneNumber</p>
-                            <p class="text-center"><i class="fa fa-solid fa-envelope"></i> @Model.User.Email</p>
+                            <p class="text-center"><i class="fa fa-solid fa-phone"></i> @Model.Customer.PhoneNumber</p>
+                            <p class="text-center"><i class="fa fa-solid fa-envelope"></i> @Model.Customer.EmailAddress</p>
                         </div>
                     </div>
                 </div>

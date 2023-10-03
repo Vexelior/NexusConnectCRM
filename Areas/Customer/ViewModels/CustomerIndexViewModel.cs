@@ -6,8 +6,8 @@ namespace NexusConnectCRM.Areas.Customer.ViewModels
 {
     public class CustomerIndexViewModel
     {
-       public ApplicationUser User { get; set; }
-       public CustomerInfo CustomerInfo { get; set; }
-       public CompanyInfo Company { get; set; }
+        public CustomerInfo Customer { get; set; }
+        public CompanyInfo Company { get; set; }
+        public string Role { get; set; }
     }
 }
