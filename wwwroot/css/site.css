@@ -47,8 +47,8 @@ html, body {
 body {
     font-family: "Open Sans", sans-serif;
     color: #444444;
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
 }
 
 .wrapper {
@@ -1983,7 +1983,7 @@ section {
     -o-transition: all 0.3s;
     transition: all 0.3s;
     position: relative;
-    /*    height: 100%;*/
+    height: inherit;
 }
 
     #sidebar .h6 {
@@ -2083,13 +2083,6 @@ section {
         }
 }
 
-/* Mobile view */
-@media (max-width: 767.98px) {
-    #sidebar {
-        height: auto;
-    }
-}
-
 #sidebar .custom-menu {
     display: inline-block;
     position: absolute;
@@ -2110,46 +2103,15 @@ section {
 }
 
 #sidebar .custom-menu .btn {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    position: relative;
+    position: absolute;
     outline: none !important;
     box-shadow: none !important;
     border: none !important;
+    font-size: 20px;
+    background: #37517e;
+    color: white;
+    display: none;
 }
-
-
-    #sidebar .custom-menu .btn i {
-        margin-right: -40px;
-        font-size: 16px;
-    }
-
-
-    #sidebar .custom-menu .btn.btn-primary {
-        background: transparent;
-        border-color: transparent;
-    }
-
-        #sidebar .custom-menu .btn.btn-primary:after {
-            z-index: -1;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            content: '';
-            -webkit-transform: rotate(45deg);
-            -ms-transform: rotate(45deg);
-            transform: rotate(45deg);
-            background: #37517e;
-            border-radius: 10px;
-        }
-
-        #sidebar .custom-menu .btn.btn-primary:hover, #sidebar .custom-menu .btn.btn-primary:focus {
-            background: transparent !important;
-            border-color: transparent !important;
-        }
 
 #sidebar .sidebar-footer {
     position: absolute;
@@ -2188,6 +2150,14 @@ a[data-toggle="collapse"] {
     #sidebarCollapse span {
         display: none;
     }
+
+    #sidebar .custom-menu .btn {
+        display: block;
+    }
+
+    #sidebarCollapse {
+        margin-bottom: 20px;
+    }
 }
 
 #content {
@@ -2197,6 +2167,16 @@ a[data-toggle="collapse"] {
     -webkit-transition: all 0.3s;
     -o-transition: all 0.3s;
     transition: all 0.3s;
+}
+
+@media (max-width: 767.98px) {
+    #content {
+        margin-top: 1.5rem !important;
+    }
+
+    .account-info, .company-info {
+        padding: 3px !important;
+    }
 }
 
 /*--------------------------------------------------------------
@@ -2358,6 +2338,13 @@ a[data-toggle="collapse"] {
     }
 
 /*--------------------------------------------------------------
-# Prospect
+    # Shared
 --------------------------------------------------------------*/
+.small-info-card {
+    transition: all 0.3s ease-in-out;
+}
 
+    .small-info-card:hover {
+        transform: scale(1.05);
+        transition: all 0.3s ease-in-out;
+    }
