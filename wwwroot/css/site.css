@@ -1388,7 +1388,7 @@ section {
 # Login Section
 --------------------------------------------------------------*/
 #login {
-    background: #4668a2;
+    background: #37517e;
     position: relative;
     display: grid;
     padding-bottom: 70px;
@@ -1473,7 +1473,7 @@ section {
 # Register Section
 --------------------------------------------------------------*/
 #register {
-    background: #4668a2;
+    background: #37517e;
     position: relative;
     display: grid;
     height: 100%;
