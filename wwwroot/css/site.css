@@ -2356,3 +2356,11 @@ a[data-toggle="collapse"] {
         font-family: 'Raleway', sans-serif;
         color: black;
     }
+
+/*--------------------------------------------------------------
+# Prospect
+--------------------------------------------------------------*/
+#myAreaChart {
+    width: 100%;
+    height: 450px;
+}

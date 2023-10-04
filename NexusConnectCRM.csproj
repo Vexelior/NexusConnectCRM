@@ -40,7 +40,6 @@
 		<Folder Include="wwwroot\images\help\" />
 		<Folder Include="wwwroot\fonts\" />
 		<Folder Include="wwwroot\images\LogIn\" />
-		<Folder Include="wwwroot\lib\vendor\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -2132,6 +2131,10 @@
 		<None Include="wwwroot\lib\fontawesome\webfonts\fa-regular-400.woff2" />
 		<None Include="wwwroot\lib\fontawesome\webfonts\fa-solid-900.woff2" />
 		<None Include="wwwroot\lib\fontawesome\webfonts\fa-v4compatibility.woff2" />
+		<None Include="wwwroot\lib\vendor\chart.js\Chart.bundle.js" />
+		<None Include="wwwroot\lib\vendor\chart.js\Chart.bundle.min.js" />
+		<None Include="wwwroot\lib\vendor\chart.js\Chart.js" />
+		<None Include="wwwroot\lib\vendor\chart.js\Chart.min.js" />
 	</ItemGroup>
 
 </Project>
