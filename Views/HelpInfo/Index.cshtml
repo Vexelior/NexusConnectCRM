@@ -24,7 +24,7 @@
     }
 }
 
-<h1 class="text-center">My Help Tickets</h1>
+<h1 class="text-center">My Tickets</h1>
 @*<div class="d-flex justify-content-center">
     <div class="d-flex flex-row me-3">
         <div style="width: 20px; height: 20px;">
@@ -53,9 +53,16 @@
 </div>*@
 @if (Model.HelpInfos.Count() == 0)
 {
-    <p>
-        No Tickets
-    </p>
+    <div class="container">
+        <a class="btn btn-secondary mb-2" href="@Url.Action("Create", "HelpInfo")">Create Ticket</a>
+        <div class="row">
+            <div class="col">
+                <h3 class="text-center text-bold">
+                    No Tickets
+                </h3>
+            </div>
+        </div>
+    </div>
 }
 else
 {

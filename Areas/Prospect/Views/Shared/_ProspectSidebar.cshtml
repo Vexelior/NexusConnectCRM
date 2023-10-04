@@ -8,19 +8,22 @@
     <div class="p-4">
         <ul class="list-unstyled components mb-5">
             <li>
-                <a href="@Url.Action("Index", "Home", new { area = "" })"><span class="fa fa-home mr-3"></span>&nbsp;&nbsp;Home</a>
+                <a href="@Url.Action("Index", "Home", new { area = "" })" title="Home"><span class="fa fa-home mr-3"></span>&nbsp;&nbsp;Home</a>
             </li>
             <li>
-                <a href="@Url.Action("Index", "Prospect", new { area = "Prospect" })"><span class="fa fa-user mr-3"></span>&nbsp;&nbsp;Dashboard</a>
+                <a href="@Url.Action("Index", "Index", new { area = "Prospect" })" title="Dashboard"><span class="fa fa-user mr-3"></span>&nbsp;&nbsp;Dashboard</a>
             </li>
             <li>
-                <a href="@Url.Action("Index", "HelpInfo", new { area = "" })"><span class="fa fa-paper-plane mr-3"></span>&nbsp;&nbsp;Help</a>
+                <a href="@Url.Action("Manage", "Account", new { area = "Identity" })" title="Settings"><span class="fa fa-cog mr-3"></span>&nbsp;&nbsp;Settings</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "HelpInfo", new { area = "" })" title="Help"><span class="fa fa-paper-plane mr-3"></span>&nbsp;&nbsp;Help</a>
             </li>
             @await Html.PartialAsync("_PortalLoginPartial")
         </ul>
         <div class="sidebar-footer">
             <p>
-                © Copyright NexusConnect. <br /> All Rights Reserved - @DateTime.Now.Year
+                &copy; Copyright NexusConnect. <br /> All Rights Reserved - @DateTime.Now.Year
             </p>
             <a href="#" id="privacy-policy" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Privacy Policy</a>
         </div>
