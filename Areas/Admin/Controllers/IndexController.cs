@@ -231,7 +231,7 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                                             ));
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Index", new { area = "Admin" });
         }
 
         public async Task<IActionResult> DeleteUser(string id)

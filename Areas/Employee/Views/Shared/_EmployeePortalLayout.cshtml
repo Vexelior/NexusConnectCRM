@@ -4,48 +4,43 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>@ViewData["Title"] - NexusConnect</title>
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/lib/fontawesome/css/all.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/NexusConnectCRM.styles.css" asp-append-version="true" />
+    <link href="~/lib/vendor/aos/aos.css" rel="stylesheet">
+    <link href="~/lib/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/lib/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/lib/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="~/lib/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="~/lib/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 </head>
-<body class="sb-sidenav-toggled">
-    <div class="d-flex" id="wrapper">
-        <div class="border-end bg-white" id="sidebar-wrapper">
-            <div class="sidebar-heading border-bottom bg-light desktop-nav-logo">
-                <img src="~/logo.png" alt="NexusConnect Logo" style="width: 40px; height: 40px;" />
+<body>
+    <div class="wrapper d-flex">
+        @await Html.PartialAsync("~/Areas/Employee/Views/Shared/_EmployeeSidebar.cshtml")
+        <main id="sidebar-main" role="main">
+            <div id="content" class="p-4 p-md-5 pt-5">
+                @RenderBody()
             </div>
-            <div class="list-group list-group-flush">
-                @await Html.PartialAsync("_EmployeeNavigationSidebarLinks")
-            </div>
-        </div>
-        <div id="page-content-wrapper">
-            <nav class="navbar portal-navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                <div class="container-fluid">
-                    <button class="btn" id="sidebarToggle" style="background-color: #4099cd;">
-                        <i class="fas fa-bars" style="color: white;"></i>
-                    </button>
-                    <img src="~/logo.png" alt="NexusConnect Logo" style="width: 40px; height: 40px;" class="mobile-nav-logo" />
-                </div>
-            </nav>
-            <div class="container mt-3 profile-info-container">
-                <main role="main" class="pb-3">
-                    @RenderBody()
-                </main>
-            </div>
-        </div>
+        </main>
     </div>
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; @DateTime.Now.Year - NexusConnect - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+
+    @await Html.PartialAsync("_Preloader")
+    @await Html.PartialAsync("_BackToTopButton")
+    @await Html.PartialAsync("_PrivacyPolicyModal")
+
+    <script src="~/lib/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="~/lib/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="~/lib/vendor/glightbox/js/glightbox.min.js"></script>
     <script src="~/lib/fontawesome/js/all.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/vendor/aos/aos.js"></script>
+    <script src="~/lib/vendor/isotope-layout/isotope.pkgd.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-@*    <script src="~/js/EmployeeScripts.js"></script>
-*@    @await RenderSectionAsync("Scripts", required: false)
+    <script src="~/js/ProspectScripts.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

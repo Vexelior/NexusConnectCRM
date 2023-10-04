@@ -10,7 +10,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6" style="margin: 0 auto;">
-            @using (Html.BeginForm("EditUser", "Admin", FormMethod.Post))
+            @using (Html.BeginForm("EditUser", "Index", FormMethod.Post))
             {
                 @Html.HiddenFor(m => m.UserId)
                 <div class="form-group">
@@ -78,7 +78,7 @@
                     Delete
                 </button>
             }
-            <a href="@Url.Action("Index", "Admin")" class="btn btn-secondary w-100">Cancel</a>
+            <a href="@Url.Action("Index", "Index")" class="btn btn-secondary w-100">Cancel</a>
         </div>
     </div>
 </div>
@@ -95,7 +95,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width: auto;">Close</button>
-                <a href="@Url.Action("DeleteUser", "Admin", new { id = Model.UserId })" class="btn btn-danger">Delete</a>
+                <a href="@Url.Action("DeleteUser", "Index", new { id = Model.UserId })" class="btn btn-danger">Delete</a>
             </div>
         </div>
     </div>
