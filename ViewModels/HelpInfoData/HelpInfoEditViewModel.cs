@@ -8,6 +8,7 @@ namespace NexusConnectCRM.ViewModels.HelpInfoData
     public class HelpInfoEditViewModel
     {
         public int Id { get; set; }
+        public string FullName { get; set; }
         public HelpInfo Help { get; set; }
         [Required]
         public string Response { get; set; }

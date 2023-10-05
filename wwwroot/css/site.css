@@ -40,20 +40,49 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
-html, body {
-    overflow: auto;
+html {
+    font-size: 16px;
+    font-family: Roboto, sans-serif;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    box-sizing: border-box;
 }
+
 
 body {
-    font-family: "Open Sans", sans-serif;
-    color: #444444;
-    height: 100vh;
-    width: 100vw;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    color: #333;
+    font-weight: 400;
+    background: #fff;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    transition: all 0.3s;
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow-y: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
+    body::-webkit-scrollbar {
+        width: 10px;
+        background: #f1f1f1;
+    }
+
+    body::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+
 .wrapper {
-    width: 100%;
-    height: 100%;
+    min-height: 100%;
+    min-width: 100%;
+    position: relative;
 }
 
 #main {
@@ -406,49 +435,28 @@ h6 {
         font-size: 24px;
     }
 
-    #hero .btn-get-started {
-        font-family: "Jost", sans-serif;
-        font-weight: 500;
-        font-size: 16px;
-        letter-spacing: 1px;
-        display: inline-block;
-        padding: 10px 28px 11px 28px;
-        border-radius: 50px;
-        transition: 0.5s;
-        margin: 10px 0 0 0;
+.default-btn,
+.default-btn:focus {
+    padding: 8px 20px;
+    border-radius: 50px;
+    color: #fff;
+    font-size: 14px;
+    border: 2px solid #fff;
+    font-weight: 600;
+    background: #37517e;
+}
+
+    .default-btn:hover,
+    .default-btn:focus:hover {
         color: #fff;
         background: #47b2e4;
+        box-shadow: none;
+        outline: none;
     }
 
-        #hero .btn-get-started:hover {
-            background: #209dd8;
-        }
-
-    #hero .btn-watch-video {
-        font-size: 16px;
-        display: flex;
-        align-items: center;
-        transition: 0.5s;
-        margin: 10px 0 0 25px;
-        color: #fff;
-        line-height: 1;
-    }
-
-        #hero .btn-watch-video i {
-            line-height: 0;
-            color: #fff;
-            font-size: 32px;
-            transition: 0.3s;
-            margin-right: 8px;
-        }
-
-        #hero .btn-watch-video:hover i {
-            color: #47b2e4;
-        }
-
-    #hero .animated {
-        animation: up-down 2s ease-in-out infinite alternate-reverse both;
-    }
+#hero .animated {
+    animation: up-down 2s ease-in-out infinite alternate-reverse both;
+}
 
 @media (max-width: 991px) {
     #hero {
@@ -491,7 +499,7 @@ h6 {
         width: 80%;
     }
 
-    #hero .btn-get-started {
+    .default-btn {
         font-size: 16px;
         padding: 10px 24px 11px 24px;
     }
@@ -1983,7 +1991,7 @@ section {
     -o-transition: all 0.3s;
     transition: all 0.3s;
     position: relative;
-    height: inherit;
+    height: auto;
 }
 
     #sidebar .h6 {
@@ -2163,7 +2171,7 @@ a[data-toggle="collapse"] {
 #content {
     width: 100%;
     padding: 0;
-    height: 100%;
+    height: auto;
     -webkit-transition: all 0.3s;
     -o-transition: all 0.3s;
     transition: all 0.3s;
@@ -2348,3 +2356,8 @@ a[data-toggle="collapse"] {
         transform: scale(1.05);
         transition: all 0.3s ease-in-out;
     }
+
+#homeSubmenu .dropdown-item:hover {
+    background: transparent;
+    color: #fff;
+}

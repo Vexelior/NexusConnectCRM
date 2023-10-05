@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Help Tickets";
+
     if (User.IsInRole("Prospect"))
     {
         Layout = "~/Areas/Prospect/Views/Shared/_ProspectPortalLayout.cshtml";
@@ -24,37 +25,12 @@
     }
 }
 
-<h1 class="text-center">My Tickets</h1>
-@*<div class="d-flex justify-content-center">
-    <div class="d-flex flex-row me-3">
-        <div style="width: 20px; height: 20px;">
-            <span class="fa fa-check" style="color: green; font-size: 16px;"></span>
-        </div>
-        <p class="ms-1">Completed</p>
-    </div>
-    <div class="d-flex flex-row me-3">
-        <div style="width: 20px; height: 20px;">
-            <span class="fa fa-waiting" style="color: orange; font-size: 16px;"></span>
-        </div>
-        <p class="ms-1">Pending</p>
-    </div>
-    <div class="d-flex flex-row me-3">
-        <div style="width: 20px; height: 20px;">
-            <span class="fa fa-exclamation-circle" style="color: red; font-size: 16px;"></span>
-        </div>
-        <p class="ms-1">Responded</p>
-    </div>
-    <div class="d-flex flex-row me-3">
-        <div style="width: 20px; height: 20px;">
-            <span class="fa fa-times" style="color: red; font-size: 16px;"></span>
-        </div>
-        <p class="ms-1">Rejected</p>
-    </div>
-</div>*@
+
 @if (Model.HelpInfos.Count() == 0)
 {
-    <div class="container">
-        <a class="btn btn-secondary mb-2" href="@Url.Action("Create", "HelpInfo")">Create Ticket</a>
+    <div class="container mt-3" data-aos="fade-left" data-aos-duration="1000">
+        <h1 class="text-center">My Tickets</h1>
+        <a class="btn default-btn mb-2" href="@Url.Action("Create", "HelpInfo")">New Ticket</a>
         <div class="row">
             <div class="col">
                 <h3 class="text-center text-bold">
@@ -66,13 +42,14 @@
 }
 else
 {
-    <div class="container">
-        <a class="btn btn-secondary mb-2" href="@Url.Action("Create", "HelpInfo")">Create Ticket</a>
+    <div class="container mt-3" data-aos="fade-left" data-aos-duration="1000">
+        <h1 class="text-center">My Tickets</h1>
+        <a class="btn default-btn mb-2" href="@Url.Action("Create", "HelpInfo")">New Ticket</a>
         <div class="row">
             <div class="col" style="margin: 0 auto;">
                 @foreach (var help in Model.HelpInfos)
                 {
-                    <div class="card mt-4">
+                    <div class="card mt-4 shadow">
                         <div class="card-body">
                             <h5 class="card-title">
                                 @if (help.EmployeeWasRecentResponse)
@@ -82,7 +59,7 @@ else
                                 @help.Title
                             </h5>
                             <p>Submitted: @help.CreatedDate</p>
-                            <a href="@Url.Action("Details", "HelpInfo", new { id = help.Id, author = help.Author })" class="btn btn-primary">View</a>
+                            <a href="@Url.Action("Details", "HelpInfo", new { id = help.Id, author = help.Author })" class="btn default-btn">View</a>
                         </div>
                         <div class="card-footer d-flex d-inline">
                             @if (help.IsApproved)

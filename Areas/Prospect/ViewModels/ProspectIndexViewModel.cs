@@ -24,5 +24,7 @@ namespace NexusConnectCRM.Areas.Prospect.ViewModels
         public string CompanyZipCode { get; set; }
         public string CompanyPhoneNumber { get; set; }
         public string CompanyEmailAddress { get; set; }
+
+        public ProspectIndexViewModel() { }
     }
 }

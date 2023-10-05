@@ -1,4 +1,24 @@
-﻿<nav id="sidebar" data-aos="fade-up-right" data-aos-delay="200">
+﻿@using Microsoft.AspNetCore.Identity
+@inject NexusConnectCRM.Data.ApplicationDbContext _context
+@using System.Linq
+
+@{
+    // Tickets \\
+    var ticketsNeedingAttention = _context.Help.Where(h => h.CustomerWasRecentResponse &&
+                                                          !h.EmployeeWasRecentResponse &&
+                                                          !h.IsCompleted &&
+                                                          !h.IsRejected &&
+                                                           h.IsApproved).Count();
+
+    var pendingHelpTicketsCount = _context.Help.Where(h => h.IsPending == true &&
+                                                          !h.IsRejected &&
+                                                          !h.IsCompleted &&
+                                                          !h.IsRejected).Count();
+
+    var ticketNotificationCount = ticketsNeedingAttention + pendingHelpTicketsCount;
+}
+
+<nav id="sidebar" data-aos="fade-right" data-aos-delay="1000">
     <div class="custom-menu">
         <button type="button" id="sidebarCollapse" class="btn btn-primary">
             <i class="fa fa-bars"></i>
@@ -11,12 +31,73 @@
                 <a href="@Url.Action("Index", "Home", new { area = "" })"><span class="fa fa-home mr-3"></span>&nbsp;&nbsp;Home</a>
             </li>
             <li>
-                <a href="@Url.Action("Index", "Prospect", new { area = "Prospect" })"><span class="fa fa-user mr-3"></span>&nbsp;&nbsp;Dashboard</a>
+                <a href="@Url.Action("Index", "Index", new { area = "Employee" })"><span class="fa fa-user mr-3"></span>&nbsp;&nbsp;Dashboard</a>
             </li>
             <li>
-                <a href="@Url.Action("Index", "HelpInfo", new { area = "" })"><span class="fa fa-paper-plane mr-3"></span>&nbsp;&nbsp;Help</a>
-            </li>
-            @await Html.PartialAsync("_PortalLoginPartial")
+                <a href="#homeSubmenu" data-bs-toggle="collapse" aria-expanded="false"><span class="fa fa-sticky-note mr-3"></span>
+                    &nbsp;&nbsp;Help Tickets
+                    @if (ticketNotificationCount > 0)
+                    {
+                        @if (ticketNotificationCount > 99)
+                        {
+                            <span class="badge bg-danger rounded-pill" style="color: white; font-size: 12px;">99+</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger rounded-pill" style="color: white; font-size: 12px;">@ticketNotificationCount</span>
+                        }
+                    }
+                    </a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li>
+                        <a class="dropdown-item" href="@Url.Action("Index", "Help", new { area = "Employee" })">
+                            All Tickets
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="@Url.Action("NewHelp", "Help", new { area = "Employee" })">
+                            New
+                            @if (ticketsNeedingAttention > 0)
+                            {
+                                @if (ticketsNeedingAttention > 99)
+                                {
+                                    <span class="badge bg-danger rounded-pill">99+</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger rounded-pill">@ticketsNeedingAttention</span>
+                                }
+                            }
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="@Url.Action("PendingHelp", "Help", new { area = "Employee" })">
+                            Pending
+                            @if (pendingHelpTicketsCount > 0)
+                            {
+                                @if (pendingHelpTicketsCount > 99)
+                                {
+                                    <span class="badge bg-danger rounded-pill">99+</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger rounded-pill">@pendingHelpTicketsCount</span>
+                                }
+                            }
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="@Url.Action("RejectedHelp", "Help", new { area = "Employee" })">
+                            Rejected
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="@Url.Action("CompletedHelp", "Help", new { area = "Employee" })">
+                            Completed
+                        </a>
+                    </li>
+                </ul>
+                @await Html.PartialAsync("_PortalLoginPartial")
         </ul>
         <div class="sidebar-footer">
             <p>

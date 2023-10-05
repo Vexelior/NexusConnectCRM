@@ -5,7 +5,7 @@
     Layout = "~/Areas/Employee/Views/Shared/_EmployeePortalLayout.cshtml";
 }
 
-<div class="container">
+<div class="container mt-3">
     <div class="row">
         <div class="row">
             <div class="col-md-4">
@@ -33,50 +33,5 @@
                 </div>
             </div>
         </div>
-
-        <div class="row mt-4">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Task Progress</h5>
-                        <div class="container employeeTaskChart">
-                            <div class="row">
-                                <div class="col">
-                                    <canvas id="employeeTaskProgressChart" width="200" height="400"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Recent Notifications</h5>
-                        <ul class="list-group">
-                            <li class="list-group-item">New task assigned</li>
-                            <li class="list-group-item">Approval required for expense report</li>
-                            <li class="list-group-item">Task completed by team member</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
-<script type="text/javascript">
-    var ctx = document.getElementById('employeeTaskProgressChart').getContext('2d');
-    var taskProgressChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['Completed', 'Pending'],
-            datasets: [{
-                data: [@Model.CompletedTasks, @Model.UncompletedTasks],
-                backgroundColor: ['rgba(75, 192, 192, 0.8)', 'rgba(255, 99, 132, 0.8)']
-            }],
-
-        }
-    });
-</script>

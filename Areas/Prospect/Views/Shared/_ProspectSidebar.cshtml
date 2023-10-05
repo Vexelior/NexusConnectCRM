@@ -1,4 +1,15 @@
-﻿<nav id="sidebar" data-aos="fade-up-right" data-aos-delay="200">
+﻿@inject NexusConnectCRM.Data.ApplicationDbContext _context
+@inject UserManager<NexusConnectCRM.Data.Models.Identity.ApplicationUser> _userManager
+@using System.Linq
+@using Microsoft.AspNetCore.Identity
+
+@{
+    int unreadTickets = _context.Help.Where(x => x.Author == _userManager.GetUserId(User) && 
+                                                 x.EmployeeWasRecentResponse == true)
+                                                 .Count();
+}
+
+<nav id="sidebar" data-aos="fade-right" data-aos-delay="1000">
     <div class="custom-menu">
         <button type="button" id="sidebarCollapse" class="btn btn-primary">
             <i class="fa fa-bars"></i>
@@ -17,7 +28,18 @@
                 <a href="@Url.Action("Manage", "Account", new { area = "Identity" })" title="Settings"><span class="fa fa-cog mr-3"></span>&nbsp;&nbsp;Settings</a>
             </li>
             <li>
-                <a href="@Url.Action("Index", "HelpInfo", new { area = "" })" title="Help"><span class="fa fa-paper-plane mr-3"></span>&nbsp;&nbsp;Help</a>
+                <a href="@Url.Action("Index", "HelpInfo", new { area = "" })" title="Help">
+                    <span class="fa fa-question-circle mr-3"></span>
+                    &nbsp;&nbsp;Help
+                    @if (unreadTickets > 99)
+                    {
+                        <span class="badge bg-danger rounded-pill" style="color: white; font-size: 12px;">99+</span>
+                    }
+                    else if (unreadTickets > 0)
+                    {
+                        <span class="badge bg-danger rounded-pill" style="color: white; font-size: 12px;">@unreadTickets</span>
+                    }
+                </a>
             </li>
             @await Html.PartialAsync("_PortalLoginPartial")
         </ul>

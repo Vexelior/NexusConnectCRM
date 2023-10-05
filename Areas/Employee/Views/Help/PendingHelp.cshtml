@@ -1,19 +1,25 @@
 ﻿@model NexusConnectCRM.Areas.Employee.ViewModels.ListHelpViewModel
 @inject NexusConnectCRM.Data.ApplicationDbContext _context
 @{
-    ViewBag.Title = "Rejected Help Tickets";
+    ViewBag.Title = "Pending Tickets";
     Layout = "~/Areas/Employee/Views/Shared/_EmployeePortalLayout.cshtml";
 }
 
-@if (Model.HelpList.Count() <= 0)
+@if (Model.HelpList.Count() == 0)
 {
-    <h1 class="text-center">
-        No Rejected Tickets
-    </h1>
+    <div class="container mt-3" data-aos="fade-left" data-aos-duration="1000">
+        <div class="row">
+            <div class="col">
+                <h1 class="text-center">
+                    No Pending Tickets
+                </h1>
+            </div>
+        </div>
+    </div>
 }
 else
 {
-    <div class="container">
+    <div class="container mt-3" data-aos="fade-left" data-aos-duration="1000">
         <div class="row">
             <h1 class="text-center">Help Tickets</h1>
             <div class="col" style="margin: 0 auto;">

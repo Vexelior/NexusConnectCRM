@@ -73,7 +73,7 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
                 CompanyState = userCompany.State,
                 CompanyZipCode = userCompany.Zip,
                 CompanyPhoneNumber = userCompany.Phone,
-                CompanyEmailAddress = userCompany.Email
+                CompanyEmailAddress = userCompany.Email,
             };
 
             return View("Index", viewModel);

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NexusConnectCRM.Areas.Employee.ViewModels;
@@ -115,11 +116,16 @@ namespace NexusConnectCRM.Controllers
                 return NotFound();
             }
 
+            var fullName = _context.Users.Where(u => u.Id == user.Id)
+                                         .Select(u => u.FirstName + " " + u.LastName)
+                                         .FirstOrDefault();
+
             List<HelpResponseInfo> feedback = await _context.HelpFeedback.Where(h => h.ResponseId == help.Id).ToListAsync();
 
             HelpInfoEditViewModel viewModel = new()
             {
                 Id = id,
+                FullName = fullName,
                 Help = help,
                 HelpResponses = feedback
             };

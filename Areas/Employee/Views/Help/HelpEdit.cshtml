@@ -8,12 +8,12 @@
     var fullName = _context.Users.Where(u => u.Id == Model.Help.Author).Select(u => u.FirstName + " " + u.LastName).FirstOrDefault();
 }
 
-<div class="container">
+<div class="container mt-3">
     <div class="row">
         <div class="col-xs-12">
             <h1 class="text-center">Ticket Details</h1>
             <hr />
-            @using (Html.BeginForm("SubmitHelpResponse", "Employee", FormMethod.Post, new { @id = "helpResponseForm", @enctype = "multipart/form-data" }))
+            @using (Html.BeginForm("SubmitHelpResponse", "Help", FormMethod.Post, new { @id = "helpResponseForm", @enctype = "multipart/form-data" }))
             {
                 @Html.HiddenFor(m => m.Id)
                 <div class="form-horizontal">
@@ -21,7 +21,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group text-center">
-                                    <label class="control-label col-md-2 fw-bold" for="Title">Name:</label>
+                                    <label class="control-label col-md-2 fw-bold" for="Title">Author:</label>
                                     <div class="col">
                                         @fullName
                                     </div>
@@ -74,9 +74,9 @@
                     <div class="container">
                         <div class="row">
                             <div class="col">
-                                <div class="form-group text-center">
+                                <div class="form-group text-start">
                                     <label class="control-label col-md-2 fw-bold" for="Description">Description:</label>
-                                    <div class="col">
+                                    <div class="col mb-2">
                                         @Model.Help.Description
                                     </div>
                                 </div>
@@ -100,7 +100,6 @@
                                                     <p style="color:black; font-size:16px;" class="pr-5 mb-0">
                                                         <strong style="white-space: pre-wrap;">@message.Response</strong>
                                                     </p>
-                                                    <br />
                                                     @if (message.ImageName != null)
                                                     {
                                                         <img decoding="async" src="@Url.Content("~/images/help/responses/" + message.ImageName)" asp-append-version="true" class="img-fluid" alt="@message.ImageName" width="250" height="250" />
@@ -113,7 +112,6 @@
                                                     <p style="color:black; font-size:16px;" class="pr-5 mb-0">
                                                         <strong style="white-space: pre-wrap;">@message.Response</strong>
                                                     </p>
-                                                    <br />
                                                     @if (message.ImageName != null)
                                                     {
                                                         <img decoding="async" src="@Url.Content("~/images/help/responses/" + message.ImageName)" asp-append-version="true" class="img-fluid" alt="@message.ImageName" width="250" height="250" />
@@ -147,6 +145,7 @@
                                                                     This ticket is pending approval.
                                                                 </strong>
                                                             </p>
+                                                            <a href="@Url.Action("Help", "Help", new { area = "Employee" })" class="btn btn-secondary mb-2">Back</a>
                                                         </div>
                                                         <div class="col" style="margin: 0;">
                                                             <button type="button" class="btn btn-dark" style="float: right; width: auto;" data-bs-toggle="modal" data-bs-target="#TicketOptionsModal">
@@ -156,9 +155,9 @@
                                                     }
                                                     else
                                                     {
-                                                        <div class="col" style="margin: 0;">
+                                                        <div class="col mb-2" style="margin: 0;">
                                                             <input id="submitButton" type="submit" value="Save" class="btn btn-primary">
-                                                            <a class="btn btn-secondary" href="@Url.Action("Help", "Employee")">Cancel</a>
+                                                            <a class="btn btn-secondary" href="@Url.Action("Index", "Help", new { area = "Employee" })">Cancel</a>
                                                             <button type="button" class="btn btn-dark" style="float: right; width: auto;" data-bs-toggle="modal" data-bs-target="#TicketOptionsModal">
                                                                 Options
                                                             </button>
@@ -189,15 +188,15 @@
             <div class="modal-body text-center">
                 @if (!Model.Help.IsApproved)
                 {
-                    <a href="@Url.Action("HelpApprove", "Employee", new { id = Model.Help.Id })" class="btn btn-primary me-1">Approve</a>
+                    <a href="@Url.Action("HelpApprove", "Help", new { area = "Employee", id = Model.Help.Id })" class="btn btn-primary me-1">Approve</a>
                 }
                 @if (!Model.Help.IsCompleted)
                 {
-                    <a href="@Url.Action("HelpCompleted", "Employee", new { id = Model.Help.Id })" class="btn btn-success">Complete</a>
+                    <a href="@Url.Action("HelpCompleted", "Help", new { area = "Employee", id = Model.Help.Id })" class="btn btn-success">Complete</a>
                 }
                 @if (!Model.Help.IsRejected)
                 {
-                    <a href="@Url.Action("HelpReject", "Employee", new { id = Model.Help.Id })" class="btn btn-danger me-1">Reject</a>
+                    <a href="@Url.Action("HelpReject", "Help", new { area = "Employee", id = Model.Help.Id })" class="btn btn-danger me-1">Reject</a>
                 }
             </div>
             <div class="modal-footer">

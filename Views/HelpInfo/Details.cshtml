@@ -1,14 +1,23 @@
 ﻿@model NexusConnectCRM.ViewModels.HelpInfoData.HelpInfoEditViewModel
-@inject NexusConnectCRM.Data.ApplicationDbContext _context
 
 @{
     ViewBag.Title = "View Ticket";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 
-    var fullName = _context.Users.Where(u => u.Id == Model.Help.Author).Select(u => u.FirstName + " " + u.LastName).FirstOrDefault();
+    if (User.IsInRole("Prospect"))
+    {
+        Layout = "~/Areas/Prospect/Views/Shared/_ProspectPortalLayout.cshtml";
+    }
+    else if (User.IsInRole("Customer"))
+    {
+        Layout = "~/Areas/Customer/Views/Shared/_CustomerPortalLayout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 }
 
-<div class="container">
+<div class="container mt-5 mb-5" data-aos="fade-left" data-aos-duration="1000">
     <div class="row">
         <div class="col-xs-12">
             <h1 class="text-center">Ticket Details</h1>
@@ -23,7 +32,7 @@
                                 <div class="form-group text-center">
                                     <label class="control-label col-md-2 fw-bold" for="Title">Name:</label>
                                     <div class="col">
-                                        @fullName
+                                        @Model.FullName
                                     </div>
                                 </div>
                             </div>
@@ -99,10 +108,9 @@
                                             if (message.IsEmployee)
                                             {
                                                 <div class="justify-content-end help-chat-log" style="text-align: right;">
-                                                    <p style="color:black; font-size:16px;" class="pr-5 mb-0">
+                                                    <p style="color:black; font-size:16px;">
                                                         <strong style="white-space: pre-wrap;">@message.Response</strong>
                                                     </p>
-                                                    <br />
                                                     @if (message.ImageName != null)
                                                     {
                                                         <img decoding="async" src="@("~/images/help/responses/" + message.ImageName)" asp-append-version="true" class="img-fluid" alt="@message.ImageName" width="250px" height="250px" />
@@ -111,10 +119,9 @@
                                             }
                                             else
                                             {
-                                                <p class="help-chat-log" style="color:black; font-size:16px;" class="pl-5 mb-0">
+                                                <p class="help-chat-log" style="color:black; font-size:16px;">
                                                     <strong style="white-space: pre-wrap;">@message.Response</strong>
                                                 </p>
-                                                <br />
                                                 @if (message.ImageName != null)
                                                 {
                                                     <img decoding="async" src="@("~/images/help/responses/" + message.ImageName)" asp-append-version="true" class="img-fluid" alt="@message.ImageName" width="250px" height="250px" />
@@ -181,7 +188,7 @@
                                 {
                                     <div class="container">
                                         <div class="row">
-                                            <div class="col">
+                                            <div class="col mb-2">
                                                 @Html.TextAreaFor(m => m.Response, new { @class = "form-control", @rows = "10", id = "ResponseText", @placeholder =  "Response" })
                                                 @Html.TextBoxFor(m => m.Image, new { @type = "file", @class = "form-control mt-2 mb-2", @id = "ImageFile" })
                                                 <div class="form-group">

@@ -7,13 +7,13 @@
 
 @if (Model.HelpList.Count() == 0)
 {
-    <h1 class="text-center">
+    <h1 class="text-center mt-3">
         No Tickets
     </h1>
 }
 else
 {
-    <div class="container">
+    <div class="container mt-3" data-aos="fade-left" data-aos-duration="1000">
         <div class="row">
             <h1 class="text-center">Help Tickets</h1>
             <div class="col" style="margin: 0 auto;">
@@ -34,7 +34,7 @@ else
                             </h5>
                             <p class="mt-3">User: @fullName</p>
                             <p>Submitted: @help.CreatedDate</p>
-                            <a href="@Url.Action("HelpEdit", "Employee", new { id = help.Id, author = help.Author })" class="btn btn-primary">View</a>
+                            <a href="@Url.Action("HelpEdit", "Help", new { area = "Employee", id = help.Id, author = help.Author })" class="btn default-btn">View</a>
                         </div>
                         <div class="card-footer d-flex d-inline">
                             @if (help.IsApproved)
