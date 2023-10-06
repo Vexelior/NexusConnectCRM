@@ -17,36 +17,37 @@
     }
 }
 
-
-<div class="container mt-3">
-    <div class="row">
-        <div class="col-md-10" style="margin: 0 auto;">
-            <h1 class="text-center">Create Ticket</h1>
-            <form asp-action="Create" enctype="multipart/form-data">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Title" class="control-label"></label>
-                    <input asp-for="Title" class="form-control" id="title" />
-                    <span asp-validation-for="Title" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Description" class="control-label"></label>
-                    <textarea asp-for="Description" class="form-control" rows="10" id="description"></textarea>
-                    <span asp-validation-for="Description" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Image" class="control-label"></label>
-                    <input asp-for="Image" class="form-control" accept="image/*" type="file" />
-                    <span asp-validation-for="Image" class="text-danger"></span>
-                </div>
-                <div class="form-group d-flex inline mt-2">
-                    <input type="submit" value="Create" class="btn btn-primary me-2" id="submitForm" />
-                    <a class="btn btn-secondary" asp-action="Index">Back to List</a>
-                </div>
-            </form>
+<section class="create-help-ticket" id="create-help-ticket">
+    <div class="container mt-5" data-aos="fade-left" data-aos-delay="1000">
+        <div class="row">
+            <div class="col-md-10 shadow" style="margin: 0 auto;">
+                <h1 class="text-center">Create Ticket</h1>
+                <form asp-action="Create" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Title" class="control-label"></label>
+                        <input asp-for="Title" class="form-control" id="title" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <textarea asp-for="Description" class="form-control" rows="10" id="description"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Image" class="control-label"></label>
+                        <input asp-for="Image" class="form-control" accept="image/*" type="file" />
+                        <span asp-validation-for="Image" class="text-danger"></span>
+                    </div>
+                    <div class="form-group d-flex inline mt-2 mb-2">
+                        <input type="submit" value="Create" class="default-btn me-2" id="submitForm" />
+                        <a class="btn cancel-btn" asp-action="Index">Back to List</a>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
+</section>
 
 @section Scripts {
     @{

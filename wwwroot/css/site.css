@@ -454,6 +454,24 @@ h6 {
         outline: none;
     }
 
+.cancel-btn {
+    padding: 8px 20px;
+    border-radius: 50px;
+    color: #fff;
+    font-size: 14px;
+    border: 2px solid #fff;
+    font-weight: 600;
+    background: #37517e;
+}
+
+    .cancel-btn:hover,
+    .cancel-btn:focus:hover {
+        color: #fff;
+        background: #47b2e4;
+        box-shadow: none;
+        outline: none;
+    }
+
 #hero .animated {
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
 }
@@ -2344,7 +2362,69 @@ a[data-toggle="collapse"] {
         font-family: 'Raleway', sans-serif;
         color: black;
     }
+/*--------------------------------------------------------------
+    # Help Tickets
+--------------------------------------------------------------*/
+.create-help-ticket .container {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
 
+    .create-help-ticket .container .col-md-10 {
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0 0 10px 0 rgba(100, 100, 100, 0.3);
+        padding: 30px;
+    }
+
+
+    .create-help-ticket .container .form-group input[type="text"],
+    .create-help-ticket .container .form-group textarea {
+        border-radius: 0;
+        box-shadow: none;
+        font-size: 14px;
+        border-radius: 4px;
+    }
+
+        .create-help-ticket .container .form-group inputinput[type="text"]:focus,
+        .create-help-ticket .container .form-group textarea:focus {
+            border-color: #47b2e4;
+        }
+
+    .create-help-ticket .container .form-group textarea {
+        padding: 10px 12px;
+    }
+
+    .create-help-ticket .container .form-group .btn {
+        background: #47b2e4;
+        border: 0;
+        padding: 12px 34px;
+        color: #fff;
+        transition: 0.4s;
+        border-radius: 50px;
+    }
+
+        .create-help-ticket .container .form-group .btn:hover {
+            background: #209dd8;
+        }
+
+    .create-help-ticket .container .cancel-btn {
+        background: gray;
+        border: 0;
+        padding: 12px 34px;
+        color: #fff;
+        transition: 0.4s;
+        border-radius: 50px;
+    }
+
+        .create-help-ticket .container .cancel-btn:hover {
+            background: black;
+        }
+
+        .create-help-ticket .container .cancel-btn:focus {
+            background: black;
+            border: 2px solid gray;
+        }
 /*--------------------------------------------------------------
     # Shared
 --------------------------------------------------------------*/
