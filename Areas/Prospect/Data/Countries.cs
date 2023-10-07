@@ -195,6 +195,7 @@ namespace NexusConnectCRM.Areas.Prospect.Data
                 new Country() { Id = "UA", Name = "Ukraine" },
                 new Country() { Id = "AE", Name = "United Arab Emirates" },
                 new Country() { Id = "GB", Name = "United Kingdom" },
+                new Country() { Id = "US", Name = "United States" },
                 new Country() { Id = "UY", Name = "Uruguay" },
                 new Country() { Id = "UZ", Name = "Uzbekistan" },
                 new Country() { Id = "VU", Name = "Vanuatu" },
