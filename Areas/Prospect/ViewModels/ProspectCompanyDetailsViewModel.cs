@@ -15,15 +15,13 @@ namespace NexusConnectCRM.Areas.Prospect.ViewModels
         [Required]
         public List<SelectListItem> ListOfCountries { get; set; }
         [Required]
-        [Display(Name = "Country")]
-        public string SelectedCountry { get; set; }
+        public string Country { get; set; }
         [Required]
         public string City { get; set; }
         [Required]
         public List<SelectListItem> ListOfStates { get; set; }
         [Required]
-        [Display(Name = "State")]
-        public string SelectedState { get; set; }
+        public string State { get; set; }
         [Required]
         [Display(Name = "Postal Code")]
         public string Zip { get; set; }
