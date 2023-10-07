@@ -35,7 +35,6 @@
 		<Folder Include="Areas\Employee\Data\" />
 		<Folder Include="Areas\Employee\Models\" />
 		<Folder Include="Areas\Identity\ViewModel\" />
-		<Folder Include="Areas\Prospect\Data\" />
 		<Folder Include="Areas\Prospect\Models\" />
 		<Folder Include="wwwroot\images\help\" />
 		<Folder Include="wwwroot\fonts\" />

@@ -5,7 +5,6 @@
     Layout = "~/Views/Shared/_AccountLayout.cshtml";
 }
 
-
 <section id="company-details" class="company-details">
     <div class="container mt-5" data-aos="fade-up" data-aos-delay="200">
         <div class="row">
@@ -19,6 +18,21 @@
                         @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
+                        @Html.LabelFor(m => m.Email)
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Phone)
+                        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", type = "tel" })
+                        @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Website)
+                        @Html.TextBoxFor(m => m.Website, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Website, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
                         @Html.LabelFor(m => m.Address)
                         @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
@@ -29,9 +43,9 @@
                         @Html.ValidationMessageFor(m => m.City, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(m => m.State)
-                        @Html.TextBoxFor(m => m.State, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.State, "", new { @class = "text-danger" })
+                        @Html.LabelFor(m => m.SelectedState)
+                        @Html.DropDownListFor(m => m.SelectedState, Model.ListOfStates, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.SelectedState, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(m => m.Zip)
@@ -39,25 +53,9 @@
                         @Html.ValidationMessageFor(m => m.Zip, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Country)
-                        @Html.TextBoxFor(m => m.Country, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Country, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Email)
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Phone)
-                        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", type = "tel" })
-                        @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Website)
-                        @Html.TextBoxFor(m => m.Website, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Website, "", new { @class = "text-danger" })
+                        @Html.LabelFor(m => m.SelectedCountry)
+                        @Html.DropDownListFor(m => m.SelectedCountry, Model.ListOfCountries, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.SelectedCountry, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(m => m.Industry)

@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using NexusConnectCRM.Areas.Prospect.Data;
+using NexusConnectCRM.Areas.Prospect.ViewModels;
 using NexusConnectCRM.Data;
 using NexusConnectCRM.Data.Models.Company;
 using NexusConnectCRM.Data.Models.Identity;
@@ -25,7 +28,26 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
 
         public IActionResult CompanyDetails()
         {
-            return View("EnterCompanyDetails");
+            var countryDetails = Countries.GetAll();
+            var stateDetails = States.GetAll();
+
+            ProspectCompanyDetailsViewModel model = new()
+            {
+                ListOfCountries = new List<SelectListItem>(),
+                ListOfStates = new List<SelectListItem>()
+            };
+
+            foreach (var country in countryDetails)
+            {
+                model.ListOfCountries.Add(new SelectListItem { Value = country.Id, Text = country.Name });
+            }
+
+            foreach (var state in stateDetails)
+            {
+                model.ListOfStates.Add(new SelectListItem { Value = state.Id, Text = state.Name });
+            }
+
+            return View("EnterCompanyDetails", model);
         }
 
         [HttpPost]
@@ -45,6 +67,7 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
 
                 user.CompanyId = companyInfo.Id;
                 user.CompanyName = companyInfo.Name;
+
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction("Index", "Index", null);

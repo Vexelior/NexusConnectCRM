@@ -1,7 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using NexusConnectCRM.Data.Models.Company;
-using NexusConnectCRM.Data.Models.Identity;
-using NexusConnectCRM.Data.Models.Prospect;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
 namespace NexusConnectCRM.Areas.Prospect.ViewModels
@@ -15,11 +13,17 @@ namespace NexusConnectCRM.Areas.Prospect.ViewModels
         [Required]
         public string Address { get; set; }
         [Required]
-        public string Country { get; set; }
+        public List<SelectListItem> ListOfCountries { get; set; }
+        [Required]
+        [Display(Name = "Country")]
+        public string SelectedCountry { get; set; }
         [Required]
         public string City { get; set; }
         [Required]
-        public string State { get; set; }
+        public List<SelectListItem> ListOfStates { get; set; }
+        [Required]
+        [Display(Name = "State")]
+        public string SelectedState { get; set; }
         [Required]
         [Display(Name = "Postal Code")]
         public string Zip { get; set; }
@@ -32,6 +36,7 @@ namespace NexusConnectCRM.Areas.Prospect.ViewModels
         public string Email { get; set; }
         [Required]
         public string Industry { get; set; }
+
 
         public ProspectCompanyDetailsViewModel() { }
     }
