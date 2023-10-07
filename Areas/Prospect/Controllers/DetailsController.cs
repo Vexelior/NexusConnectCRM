@@ -80,7 +80,26 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
 
         public IActionResult UserDetails()
         {
-            return View("EnterUserDetails");
+            var countryDetails = Countries.GetAll();
+            var stateDetails = States.GetAll();
+
+            ProspectUserDetailsViewModel model = new()
+            {
+                ListOfCountries = new List<SelectListItem>(),
+                ListOfStates = new List<SelectListItem>()
+            };
+
+            foreach (var country in countryDetails)
+            {
+                model.ListOfCountries.Add(new SelectListItem { Value = country.Id, Text = country.Name });
+            }
+
+            foreach (var state in stateDetails)
+            {
+                model.ListOfStates.Add(new SelectListItem { Value = state.Id, Text = state.Name });
+            }
+
+            return View("EnterUserDetails", model);
         }
 
         [HttpPost]
