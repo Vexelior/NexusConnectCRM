@@ -321,7 +321,9 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                             CompanyName = potentialProspect.CompanyName,
                             PhoneNumber = potentialProspect.PhoneNumber,
                             CompanyId = potentialProspect.CompanyId,
-                            UserId = potentialProspect.UserId
+                            UserId = potentialProspect.UserId,
+                            CreatedDate = DateTime.Now,
+
                         };
 
                         _context.Add(customer);
@@ -330,7 +332,10 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                     else
                     {
                         potentialCustomer.IsActive = true;
+                        potentialCustomer.ModifiedDate = DateTime.Now;
+
                         potentialProspect.IsActive = false;
+                        potentialProspect.ModifiedDate = DateTime.Now;
 
                         _context.Update(potentialCustomer);
                     }
@@ -352,7 +357,8 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                             PhoneNumber = potentialProspect.PhoneNumber,
                             Country = potentialProspect.Country,
                             Department = string.Empty,
-                            UserId = potentialProspect.UserId
+                            UserId = potentialProspect.UserId,
+                            CreatedDate = DateTime.Now,
                         };
 
                         _context.Add(employee);
@@ -361,7 +367,10 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                     else
                     {
                         potentialEmployee.IsActive = true;
+                        potentialEmployee.ModifiedDate = DateTime.Now;
+
                         potentialProspect.IsActive = false;
+                        potentialProspect.ModifiedDate = DateTime.Now;
 
                         _context.Update(potentialEmployee);
                     }

@@ -9,7 +9,6 @@ using NexusConnectCRM.Data;
 using NexusConnectCRM.Data.Models.Company;
 using NexusConnectCRM.Data.Models.Identity;
 using NexusConnectCRM.Data.Models.Prospect;
-using System.Globalization;
 
 namespace NexusConnectCRM.Areas.Prospect.Controllers
 {
