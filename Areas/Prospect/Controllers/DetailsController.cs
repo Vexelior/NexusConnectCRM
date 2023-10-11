@@ -9,6 +9,7 @@ using NexusConnectCRM.Data;
 using NexusConnectCRM.Data.Models.Company;
 using NexusConnectCRM.Data.Models.Identity;
 using NexusConnectCRM.Data.Models.Prospect;
+using System.Globalization;
 
 namespace NexusConnectCRM.Areas.Prospect.Controllers
 {
@@ -58,6 +59,25 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
             if (user is null)
             {
                 return NotFound();
+            }
+
+            var countryDetails = Countries.GetAll();
+            var stateDetails = States.GetAll();
+
+            foreach (var country in countryDetails)
+            {
+                if (country.Id == companyInfo.Country)
+                {
+                    companyInfo.Country = country.Name;
+                }
+            }
+
+            foreach (var state in stateDetails)
+            {
+                if (state.Id == companyInfo.State)
+                {
+                    companyInfo.State = state.Name;
+                }
             }
 
             if (ModelState.IsValid)
@@ -110,6 +130,26 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
             if (user is null)
             {
                 return NotFound();
+            }
+
+            var countryDetails = Countries.GetAll();
+            var stateDetails = States.GetAll();
+
+
+            foreach (var country in countryDetails)
+            {
+                if (country.Id == prospectInfo.Country)
+                {
+                    prospectInfo.Country = country.Name;
+                }
+            }
+
+            foreach (var state in stateDetails)
+            {
+                if (state.Id == prospectInfo.State)
+                {
+                    prospectInfo.State = state.Name;
+                }
             }
 
             if (ModelState.IsValid)
