@@ -8,7 +8,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminPortalLayout.cshtml";
 }
 
-<div class="container mt-4">
+<div class="container mt-4" data-aos="fade-up" data-aos-delay="200">
     <div class="row">
         <div class="col-md-4">
             <div class="card">
@@ -58,7 +58,7 @@
                                         <p>@user.UserName</p>
                                     </div>
                                     <div class="col-md-4">
-                                        <a class="btn btn-secondary" href="@Url.Action("EditUser", "Index", new { area = "Admin", id = user.Id })">Edit</a>
+                                        <a class="btn btn-secondary" href="@Url.Action("EditUser", "User", new { area = "Admin", id = user.Id })">Edit</a>
                                     </div>
                                 </div>
                             </li>
