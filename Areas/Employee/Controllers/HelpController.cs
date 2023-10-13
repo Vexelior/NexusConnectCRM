@@ -27,10 +27,57 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             _hostEnvironment = hostEnvironment;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchQuery)
         {
             int pageNumber = 1;
             int pageSize = 10;
+            int totalPages = (int)Math.Ceiling((decimal)_context.Help.Count() / 10);
+
+            if (!string.IsNullOrWhiteSpace(searchQuery))
+            {
+                searchQuery = searchQuery.ToLower();
+
+                string[] splitString = searchQuery.Split(" ").Where(x => x != "").ToArray();
+                string firstWord = splitString[0];
+
+                if (splitString.Length > 1)
+                {
+                    string secondWord = splitString[1];
+
+                    var newQuery = await _context.Help.Where(h => h.Title.ToLower().Contains(firstWord) &&
+                                                                           h.Title.ToLower().Contains(secondWord))
+                                                      .OrderByDescending(h => h.CreatedDate)
+                                                      .ToListAsync();
+                    var newTotalPages = (int)Math.Ceiling((decimal)newQuery.Count() / pageSize);
+
+                    ListHelpViewModel searchModel = new()
+                    {
+                        HelpList = newQuery,
+                        PageNumber = pageNumber,
+                        PageSize = pageSize,
+                        TotalPages = newTotalPages
+                    };
+
+                    return View("Help", searchModel);
+                }
+                else
+                {
+                    var newQuery = await _context.Help.Where(h => h.Title.ToLower().Contains(firstWord))
+                                                      .OrderByDescending(h => h.CreatedDate)
+                                                      .ToListAsync();
+                    var newTotalPages = (int)Math.Ceiling((decimal)newQuery.Count() / pageSize);
+
+                    ListHelpViewModel searchModel = new()
+                    {
+                        HelpList = newQuery,
+                        PageNumber = pageNumber,
+                        PageSize = pageSize,
+                        TotalPages = newTotalPages
+                    };
+
+                    return View("Help", searchModel);
+                }
+            }
 
             ListHelpViewModel viewModel = new()
             {
@@ -39,8 +86,8 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                                                .Take(pageSize)
                                                .ToListAsync(),
                 PageNumber = pageNumber,
-                PageSize = 10,
-                TotalPages = (int)Math.Ceiling((decimal)_context.Help.Count() / 10)
+                PageSize = pageSize,
+                TotalPages = totalPages
             };
 
             return View("Help", viewModel);
@@ -67,7 +114,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                                                .Take(pageSize)
                                                .ToListAsync(),
                 PageNumber = pageNumber,
-                PageSize = 10,
+                PageSize = pageSize,
                 TotalPages = totalPages
             };
 
