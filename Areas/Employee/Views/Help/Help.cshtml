@@ -16,7 +16,7 @@ else
     <div class="container mt-3 tickets" data-aos="fade-left" data-aos-duration="1000">
         <div class="row">
             <h1 class="text-center">Help Tickets</h1>
-            @using (Html.BeginForm())
+            @using (Html.BeginForm("Index", "Help", FormMethod.Post, new { area = "Employee" }))
             {
                 <div class="container mt-2">
                     <div class="row">

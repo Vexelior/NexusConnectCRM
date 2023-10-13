@@ -29,10 +29,6 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
 
         public async Task<IActionResult> Index(string searchQuery)
         {
-            int pageNumber = 1;
-            int pageSize = 10;
-            int totalPages = (int)Math.Ceiling((decimal)_context.Help.Count() / 10);
-
             if (!string.IsNullOrWhiteSpace(searchQuery))
             {
                 searchQuery = searchQuery.ToLower();
@@ -48,14 +44,13 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                                                                            h.Title.ToLower().Contains(secondWord))
                                                       .OrderByDescending(h => h.CreatedDate)
                                                       .ToListAsync();
-                    var newTotalPages = (int)Math.Ceiling((decimal)newQuery.Count() / pageSize);
 
                     ListHelpViewModel searchModel = new()
                     {
                         HelpList = newQuery,
-                        PageNumber = pageNumber,
-                        PageSize = pageSize,
-                        TotalPages = newTotalPages
+                        PageNumber = 1,
+                        PageSize = int.MaxValue,
+                        TotalPages = 1
                     };
 
                     return View("Help", searchModel);
@@ -65,19 +60,22 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                     var newQuery = await _context.Help.Where(h => h.Title.ToLower().Contains(firstWord))
                                                       .OrderByDescending(h => h.CreatedDate)
                                                       .ToListAsync();
-                    var newTotalPages = (int)Math.Ceiling((decimal)newQuery.Count() / pageSize);
 
                     ListHelpViewModel searchModel = new()
                     {
                         HelpList = newQuery,
-                        PageNumber = pageNumber,
-                        PageSize = pageSize,
-                        TotalPages = newTotalPages
+                        PageNumber = 1,
+                        PageSize = int.MaxValue,
+                        TotalPages = 1
                     };
 
                     return View("Help", searchModel);
                 }
             }
+
+            int pageNumber = 1;
+            int pageSize = 10;
+            int totalPages = (int)Math.Ceiling((decimal)_context.Help.Count() / pageSize);
 
             ListHelpViewModel viewModel = new()
             {
