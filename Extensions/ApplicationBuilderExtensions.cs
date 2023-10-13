@@ -289,14 +289,15 @@ namespace NexusConnectCRM.Extensions
             if (!context.Help.Any())
             {
                 List<HelpInfo> helpInfos = new();
+                string testAccountUserId = context.Users.Where(u => u.Email == "asanderson1994s@gmail.com").FirstOrDefault().Id;
 
-                for (int i = 0; i <= 100; i++)
+                for (int i = 1; i <= 100; i++)
                 {
                     HelpInfo helpInfo = new()
                     {
                         Title = $"Help Title {i}",
                         Description = $"Help Description {i}",
-                        Author = "40c97e31-d849-40d7-a634-4fd9e4e871ca",
+                        Author = testAccountUserId,
                         IsPending = true,
                         IsApproved = false,
                         IsRejected = false,
