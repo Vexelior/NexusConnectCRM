@@ -29,17 +29,16 @@
     @await Html.PartialAsync("_BackToTopButton")
     @await Html.PartialAsync("_PrivacyPolicyModal")
 
+    <script src="~/lib/jquery/jquery.js"></script>
     <script src="~/lib/vendor/waypoints/noframework.waypoints.js"></script>
     <script src="~/lib/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="~/lib/vendor/glightbox/js/glightbox.min.js"></script>
     <script src="~/lib/fontawesome/js/all.js"></script>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/vendor/aos/aos.js"></script>
     <script src="~/lib/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="~/lib/vendor/chart.js/Chart.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="~/js/ProspectScripts.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

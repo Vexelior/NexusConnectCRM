@@ -5,7 +5,7 @@ using NexusConnectCRM.Data.Models.Identity;
 using NexusConnectCRM.Data.Models.Prospect;
 using NexusConnectCRM.Data.Models.Company;
 using NexusConnectCRM.Data.Models.Customer;
-
+using NexusConnectCRM.Data.Models.Help;
 
 namespace NexusConnectCRM.Extensions
 {
@@ -128,85 +128,85 @@ namespace NexusConnectCRM.Extensions
                 }
             }
 
-            if (!context.Prospects.Any())
-            {
-                for (int i = 0; i < 100; i++)
-                {
-                    ProspectInfo prospectInfo = new()
-                    {
-                        FirstName = "Prospect",
-                        LastName = $"User{i}",
-                        EmailAddress = $"prospect{i}@mail.com",
-                        DateOfBirth = DateTime.Now,
-                        Address = $"123 Prospect St, Unit {i}",
-                        City = $"Prospect City {i}",
-                        State = $"Prospect State {i}",
-                        ZipCode = $"1234{i}",
-                        Country = $"Prospect Country {i}",
-                        CompanyName = $"Company{i}",
-                        PhoneNumber = $"555-555-555{i}",
-                        IsActive = true,
-                        IsContacted = false,
-                        CreatedDate = DateTime.Now,
-                        ModifiedDate = DateTime.Now
-                    };
+            //if (!context.Prospects.Any())
+            //{
+            //    for (int i = 0; i < 100; i++)
+            //    {
+            //        ProspectInfo prospectInfo = new()
+            //        {
+            //            FirstName = "Prospect",
+            //            LastName = $"User{i}",
+            //            EmailAddress = $"prospect{i}@mail.com",
+            //            DateOfBirth = DateTime.Now,
+            //            Address = $"123 Prospect St, Unit {i}",
+            //            City = $"Prospect City {i}",
+            //            State = $"Prospect State {i}",
+            //            ZipCode = $"1234{i}",
+            //            Country = $"Prospect Country {i}",
+            //            CompanyName = $"Company{i}",
+            //            PhoneNumber = $"555-555-555{i}",
+            //            IsActive = true,
+            //            IsContacted = false,
+            //            CreatedDate = DateTime.Now,
+            //            ModifiedDate = DateTime.Now
+            //        };
 
-                    context.Prospects.Add(prospectInfo);
-                    context.SaveChanges();
-                }
-            }
+            //        context.Prospects.Add(prospectInfo);
+            //        context.SaveChanges();
+            //    }
+            //}
 
-            if (!context.Companies.Any())
-            {
-                for (int i = 0; i < 22; i++)
-                {
-                    CompanyInfo companyInfo = new()
-                    {
-                        Name = $"Company{i}",
-                        Address = $"123 Company St, Unit {i}",
-                        City = $"Company City {i}",
-                        State = $"Company State {i}",
-                        Zip = $"1234{i}",
-                        Country = $"Company Country {i}",
-                        Phone = $"555-555-555{i}",
-                        Website = $"www.company{i}.com",
-                        Email = $"company{i}@mail.com",
-                        Industry = $"Company Industry {i}",
-                        NeedsContact = true
-                    };
+            //if (!context.Companies.Any())
+            //{
+            //    for (int i = 0; i < 22; i++)
+            //    {
+            //        CompanyInfo companyInfo = new()
+            //        {
+            //            Name = $"Company{i}",
+            //            Address = $"123 Company St, Unit {i}",
+            //            City = $"Company City {i}",
+            //            State = $"Company State {i}",
+            //            Zip = $"1234{i}",
+            //            Country = $"Company Country {i}",
+            //            Phone = $"555-555-555{i}",
+            //            Website = $"www.company{i}.com",
+            //            Email = $"company{i}@mail.com",
+            //            Industry = $"Company Industry {i}",
+            //            NeedsContact = true
+            //        };
 
-                    context.Companies.Add(companyInfo);
-                    context.SaveChanges();
-                }
-            }
+            //        context.Companies.Add(companyInfo);
+            //        context.SaveChanges();
+            //    }
+            //}
 
-            if (!context.Customers.Any())
-            {
-                for (int i = 0; i < 42; i++)
-                {
-                    CustomerInfo customer = new()
-                    {
-                        FirstName = "Customer",
-                        LastName = $"Customer {i}",
-                        EmailAddress = $"Customer{i}@mail.com",
-                        DateOfBirth = DateTime.Now,
-                        Address = $"123 Prospect St, Unit {i}",
-                        City = $"Customer City {i}",
-                        State = $"Customer State {i}",
-                        ZipCode = $"1234{i}",
-                        Country = $"Customer Country {i}",
-                        CompanyName = $"Customer{i}",
-                        PhoneNumber = $"555-555-555{i}",
-                        IsActive = true,
-                        CreatedDate = DateTime.Now,
-                        ModifiedDate = DateTime.Now,
-                        NeedsContact = true
-                    };
+            //if (!context.Customers.Any())
+            //{
+            //    for (int i = 0; i < 42; i++)
+            //    {
+            //        CustomerInfo customer = new()
+            //        {
+            //            FirstName = "Customer",
+            //            LastName = $"Customer {i}",
+            //            EmailAddress = $"Customer{i}@mail.com",
+            //            DateOfBirth = DateTime.Now,
+            //            Address = $"123 Prospect St, Unit {i}",
+            //            City = $"Customer City {i}",
+            //            State = $"Customer State {i}",
+            //            ZipCode = $"1234{i}",
+            //            Country = $"Customer Country {i}",
+            //            CompanyName = $"Customer{i}",
+            //            PhoneNumber = $"555-555-555{i}",
+            //            IsActive = true,
+            //            CreatedDate = DateTime.Now,
+            //            ModifiedDate = DateTime.Now,
+            //            NeedsContact = true
+            //        };
 
-                    context.Customers.Add(customer);
-                    context.SaveChanges();
-                }
-            }
+            //        context.Customers.Add(customer);
+            //        context.SaveChanges();
+            //    }
+            //}
 
             // My testing account. \\
             if (context.Users.Where(u => u.Email == "asanderson1994s@gmail.com").FirstOrDefault() == null)
@@ -283,6 +283,36 @@ namespace NexusConnectCRM.Extensions
                 };
 
                 context.Prospects.Add(prospectInfo);
+                context.SaveChanges();
+            }
+
+            if (!context.Help.Any())
+            {
+                List<HelpInfo> helpInfos = new();
+
+                for (int i = 0; i <= 100; i++)
+                {
+                    HelpInfo helpInfo = new()
+                    {
+                        Title = $"Help Title {i}",
+                        Description = $"Help Description {i}",
+                        Author = "40c97e31-d849-40d7-a634-4fd9e4e871ca",
+                        IsPending = true,
+                        IsApproved = false,
+                        IsRejected = false,
+                        IsCompleted = false,
+                        CreatedDate = DateTime.Now,
+                        ModifiedDate = DateTime.Now,
+                        EmployeeViewed = false,
+                        CustomerViewed = true,
+                        CustomerWasRecentResponse = true,
+                        EmployeeWasRecentResponse = false
+                    };
+
+                    helpInfos.Add(helpInfo);
+                }
+
+                context.Help.AddRange(helpInfos);
                 context.SaveChanges();
             }
 

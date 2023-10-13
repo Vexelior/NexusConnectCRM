@@ -29,16 +29,46 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var helpList = await _context.Help.OrderByDescending(h => h.CreatedDate).ToListAsync();
+            int pageNumber = 1;
+            int pageSize = 10;
 
-            if (helpList == null)
+            ListHelpViewModel viewModel = new()
             {
-                return NotFound();
+                HelpList = await _context.Help.OrderByDescending(x => x.CreatedDate)
+                                               .Skip((pageNumber - 1) * 10)
+                                               .Take(pageSize)
+                                               .ToListAsync(),
+                PageNumber = pageNumber,
+                PageSize = 10,
+                TotalPages = (int)Math.Ceiling((decimal)_context.Help.Count() / 10)
+            };
+
+            return View("Help", viewModel);
+        }
+
+        public async Task<IActionResult> ShowTickets(int pageNumber)
+        {
+            int pageSize = 10;
+            int totalPages = (int)Math.Ceiling((decimal)_context.Help.Count() / 10);
+
+            if (pageNumber < 1)
+            {
+                pageNumber = 1;
+            }
+            else if (pageNumber > totalPages)
+            {
+                pageNumber = totalPages;
             }
 
             ListHelpViewModel viewModel = new()
             {
-                HelpList = helpList,
+                HelpList = await _context.Help.OrderByDescending(x => x.CreatedDate)
+                                               .Skip((pageNumber - 1) * 10)
+                                               .Take(pageSize)
+                                               .ToListAsync(),
+                PageNumber = pageNumber,
+                PageSize = 10,
+                TotalPages = totalPages
             };
 
             return View("Help", viewModel);

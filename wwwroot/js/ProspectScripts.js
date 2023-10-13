@@ -17,7 +17,7 @@
 Chart.defaults.global.defaultFontFamily = 'Roboto, sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
 
-const number_format = (number, decimals, dec_point, thousands_sep) => {
+const format_number = (number, decimals, dec_point, thousands_sep) => {
     // *     example: number_format(1234.56, 2, ',', ' ');
     // *     return: '1 234,56'
     number = (number + '').replace(',', '').replace(' ', '');
