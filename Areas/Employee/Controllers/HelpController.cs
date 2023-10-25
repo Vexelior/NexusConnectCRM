@@ -49,7 +49,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                     {
                         HelpList = newQuery,
                         PageNumber = 1,
-                        PageSize = int.MaxValue,
+                        PageSize = 10,
                         TotalPages = 1
                     };
 
@@ -65,7 +65,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                     {
                         HelpList = newQuery,
                         PageNumber = 1,
-                        PageSize = int.MaxValue,
+                        PageSize = 10,
                         TotalPages = 1
                     };
 
