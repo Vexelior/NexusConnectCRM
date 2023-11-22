@@ -134,7 +134,6 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
             var countryDetails = Countries.GetAll();
             var stateDetails = States.GetAll();
 
-
             foreach (var country in countryDetails)
             {
                 if (country.Id == prospectInfo.Country)

@@ -28,7 +28,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
 
             var user = await _context.Users.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (id == null || user == null)
+            if (id is null || user is null)
             {
                 return NotFound();
             }

@@ -1,13 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using NexusConnectCRM.Areas.Employee.ViewModels;
 using NexusConnectCRM.Data;
 using NexusConnectCRM.Data.Models.Help;
 using NexusConnectCRM.Data.Models.Identity;
 using NexusConnectCRM.ViewModels.HelpInfoData;
-using Microsoft.AspNetCore.Hosting;
 
 namespace NexusConnectCRM.Controllers
 {
@@ -31,7 +28,7 @@ namespace NexusConnectCRM.Controllers
         {
             var user = await _userManager.GetUserAsync(User);
 
-            if (user == null)
+            if (user is null)
             {
                 return NotFound();
             }
@@ -75,7 +72,7 @@ namespace NexusConnectCRM.Controllers
                 helpInfo.CustomerWasRecentResponse = true;
                 helpInfo.EmployeeWasRecentResponse = false;
 
-                if (helpInfo.Image != null)
+                if (helpInfo.Image is not null)
                 {
                     string wwwRootPath = _hostEnvironment.WebRootPath;
                     string fileName = Path.GetFileNameWithoutExtension(helpInfo.Image.FileName);
@@ -104,7 +101,7 @@ namespace NexusConnectCRM.Controllers
         {
             var user = await _userManager.GetUserAsync(User);
 
-            if (user == null)
+            if (user is null)
             {
                 return NotFound();
             }
@@ -120,7 +117,7 @@ namespace NexusConnectCRM.Controllers
                                          .Select(u => u.FirstName + " " + u.LastName)
                                          .FirstOrDefault();
 
-            List<HelpResponseInfo> feedback = await _context.HelpFeedback.Where(h => h.ResponseId == help.Id).ToListAsync();
+            var feedback = await _context.HelpFeedback.Where(h => h.ResponseId == help.Id).ToListAsync();
 
             HelpInfoEditViewModel viewModel = new()
             {
@@ -172,7 +169,7 @@ namespace NexusConnectCRM.Controllers
             help.EmployeeWasRecentResponse = false;
             help.EmployeeViewed = false;
 
-            if (viewModel.Image != null)
+            if (viewModel.Image is not null)
             {
                 string wwwRootPath = _hostEnvironment.WebRootPath;
                 string fileName = Path.GetFileNameWithoutExtension(feedback.Image.FileName);
@@ -197,7 +194,7 @@ namespace NexusConnectCRM.Controllers
 
         public async Task SetCustomerViewed(int id)
         {
-            HelpInfo helpTicket = await _context.Help.FirstOrDefaultAsync(m => m.Id == id);
+            var helpTicket = await _context.Help.FirstOrDefaultAsync(m => m.Id == id);
 
             try
             {

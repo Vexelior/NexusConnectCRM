@@ -36,7 +36,7 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
 
             CompanyInfo userCompany = await _context.Companies.FirstOrDefaultAsync(c => c.Id == verifiedUser.CompanyId);
 
-            if (userCompany == null)
+            if (userCompany is null)
             {
                 return RedirectToAction("CompanyDetails", "Details", null);
             }

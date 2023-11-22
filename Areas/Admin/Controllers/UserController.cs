@@ -28,12 +28,12 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
         {
             var user = await _userManager.FindByIdAsync(id);
 
-            if (user == null)
+            if (user is null)
             {
                 return NotFound();
             }
 
-            IList<string> userRoles = await _userManager.GetRolesAsync(user);
+            var userRoles = await _userManager.GetRolesAsync(user);
             List<SelectListItem> selectListItems = new();
 
             foreach (var role in _context.Roles)
@@ -135,7 +135,7 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
         {
             var user = await _userManager.FindByIdAsync(viewModel.UserId);
 
-            if (user == null)
+            if (user is null)
             {
                 return NotFound();
             }
@@ -162,7 +162,7 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                     return View("EditUser", viewModel);
                 }
 
-                IList<string> userRoles = await _userManager.GetRolesAsync(user);
+                var userRoles = await _userManager.GetRolesAsync(user);
                 var result = await _userManager.RemoveFromRolesAsync(user, userRoles);
                 var secondResult = await _userManager.AddToRoleAsync(user, viewModel.SelectedRole);
 
@@ -187,7 +187,7 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                 return View("EditUser", viewModel);
             }
 
-            IList<string> newUserRoles = await _userManager.GetRolesAsync(user);
+            var newUserRoles = await _userManager.GetRolesAsync(user);
             List<SelectListItem> selectListItems = new();
 
             foreach (var role in _context.Roles)
@@ -249,7 +249,7 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
             var potentialCustomer = _context.Customers.Where(c => c.UserId == user.Id).FirstOrDefault();
             var potentialEmployee = _context.Employees.Where(e => e.UserId == user.Id).FirstOrDefault();
 
-            if (user == null || potentialProspect == null)
+            if (user is null || potentialProspect is null)
             {
                 throw new NullReferenceException();
             }
@@ -274,7 +274,7 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                     break;
                 case "Customer":
 
-                    if (potentialCustomer == null)
+                    if (potentialCustomer is null)
                     {
                         CustomerInfo customer = new()
                         {
@@ -311,7 +311,7 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                     break;
                 case "Employee":
 
-                    if (potentialEmployee == null)
+                    if (potentialEmployee is null)
                     {
                         EmployeeInfo employee = new()
                         {

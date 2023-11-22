@@ -19,8 +19,8 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
         private readonly IWebHostEnvironment _hostEnvironment;
 
         public HelpController(ApplicationDbContext context,
-                                  UserManager<ApplicationUser> userManager,
-                                  IWebHostEnvironment hostEnvironment)
+                              UserManager<ApplicationUser> userManager,
+                              IWebHostEnvironment hostEnvironment)
         {
             _context = context;
             _userManager = userManager;
@@ -80,9 +80,9 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             ListHelpViewModel viewModel = new()
             {
                 HelpList = await _context.Help.OrderByDescending(x => x.CreatedDate)
-                                               .Skip((pageNumber - 1) * 10)
-                                               .Take(pageSize)
-                                               .ToListAsync(),
+                                              .Skip((pageNumber - 1) * pageSize)
+                                              .Take(pageSize)
+                                              .ToListAsync(),
                 PageNumber = pageNumber,
                 PageSize = pageSize,
                 TotalPages = totalPages
@@ -123,12 +123,12 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
         {
             var help = await _context.Help.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (help == null)
+            if (help is null)
             {
                 return NotFound();
             }
 
-            List<HelpResponseInfo> feedback = await _context.HelpFeedback.Where(h => h.ResponseId == help.Id).ToListAsync();
+            var feedback = await _context.HelpFeedback.Where(h => h.ResponseId == help.Id).ToListAsync();
 
             HelpEditViewModel viewModel = new()
             {
@@ -144,9 +144,9 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
 
         public async Task SetEmployeeViewed(int id)
         {
-            HelpInfo help = await _context.Help.FirstOrDefaultAsync(m => m.Id == id);
+            var help = await _context.Help.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (help == null)
+            if (help is null)
             {
                 return;
             }
@@ -175,7 +175,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
         {
             var help = await _context.Help.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (help == null)
+            if (help is null)
             {
                 return NotFound();
             }
@@ -230,7 +230,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
         {
             var help = await _context.Help.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (help == null)
+            if (help is null)
             {
                 return NotFound();
             }
@@ -248,7 +248,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
         {
             var help = await _context.Help.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (help == null)
+            if (help is null)
             {
                 return NotFound();
             }
@@ -265,7 +265,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
         {
             var help = await _context.Help.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (help == null)
+            if (help is null)
             {
                 return NotFound();
             }

@@ -23,11 +23,11 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            List<ApplicationUser> users = await _context.Users.ToListAsync();
+            var users = await _context.Users.ToListAsync();
 
             foreach (ApplicationUser user in users)
             {
-                IList<string> userRoles = await _userManager.GetRolesAsync(user);
+                var userRoles = await _userManager.GetRolesAsync(user);
                 user.Roles = userRoles.FirstOrDefault();
             }
 
@@ -55,7 +55,7 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
         {
             var users = await _context.Prospects.ToListAsync();
 
-            if (users == null)
+            if (users is null)
             {
                 return NotFound();
             }
@@ -72,7 +72,7 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
         {
             var users = await _context.Customers.ToListAsync();
 
-            if (users == null)
+            if (users is null)
             {
                 return NotFound();
             }
@@ -89,7 +89,7 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
         {
             var companies = await _context.Companies.ToListAsync();
 
-            if (companies == null)
+            if (companies is null)
             {
                 return NotFound();
             }
