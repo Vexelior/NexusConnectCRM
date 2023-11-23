@@ -11,6 +11,11 @@
 
 	<ItemGroup>
 	  <Content Remove="Areas\Prospect\Views\Index\ProspectNeedHelp.cshtml" />
+	  <Content Remove="wwwroot\js\PasswordStrength.js" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <_ContentIncludedByDefault Remove="wwwroot\js\PasswordStrength.js" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -42,6 +47,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Include="wwwroot\js\PasswordStrength.js" />
 		<None Include="wwwroot\lib\fontawesome\js\all.js" />
 		<None Include="wwwroot\lib\fontawesome\js\all.min.js" />
 		<None Include="wwwroot\lib\fontawesome\js\brands.js" />

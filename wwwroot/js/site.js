@@ -296,15 +296,6 @@ $(document).ready(function () {
         }
     });
 
-    $('#registerForm').submit(function () {
-        let button = $(this).find(':submit');
-        SpinnerButton(button);
-
-        if ($(this).valid() == false) {
-            RevertSpinnerButton(button, 'Register');
-        }
-    });
-
     const SpinnerButton = (button) => {
         let buttonWidth = $(button).width();
         let buttonHeight = $(button).height();

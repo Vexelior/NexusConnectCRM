@@ -40,7 +40,11 @@
                         <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <input asp-for="Input.Password" class="form-control" autocomplete="new-password" placeholder="Password" aria-required="true" />
+                        <input asp-for="Input.Password" class="form-control" id="password" autocomplete="new-password" placeholder="Password" aria-required="true" />
+                        <div class="progress mt-2 d-none" id="progress">
+                            <div class="progress-bar" id="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <span class="password-strength-text" style="font-size: 12px;"></span>
                         <span asp-validation-for="Input.Password" class="text-danger"></span>
                     </div>
                     <div class="form-group">
@@ -65,7 +69,12 @@
     <partial name="_ValidationScriptsPartial" />
 }
 
+<script src="~/js/PasswordStrength.js" asp-append-version="true"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+
 <script type="text/javascript">
+    // Phone number formatting \\
     const isNumericInput = (event) => {
         const key = event.keyCode;
         return ((key >= 48 && key <= 57) ||
@@ -106,4 +115,39 @@
     const inputElement = document.getElementById('phoneNumber');
     inputElement.addEventListener('keydown', enforceFormat);
     inputElement.addEventListener('keyup', formatToPhone);
+
+    $(document).ready(function () {
+        let strengthValue = ReturnStrength();
+
+        $('#registerForm').submit(function (e) {
+            let button = $(this).find(':submit');
+            let strengthValue = ReturnStrength();
+            SpinnerButton(button);
+
+            console.log(strengthValue);
+
+            if (strengthValue < 4) {
+                e.preventDefault();
+                alert('Password must be at least 8 characters long and contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character.');
+                RevertSpinnerButton(button, 'Register');
+            } else if ($(this).valid() == false) {
+                RevertSpinnerButton(button, 'Register');
+            }
+        });
+
+        const SpinnerButton = (button) => {
+            let buttonWidth = $(button).width();
+            let buttonHeight = $(button).height();
+
+            $(button).width(buttonWidth);
+            $(button).height(buttonHeight);
+            $(button).prop('disabled', true);
+            $(button).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
+        }
+
+        const RevertSpinnerButton = (button, text) => {
+            $(button).prop('disabled', false);
+            $(button).html(text);
+        }
+    });
 </script>
