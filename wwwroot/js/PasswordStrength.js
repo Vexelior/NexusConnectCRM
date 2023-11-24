@@ -1,4 +1,5 @@
 const password = document.getElementById("password");
+const passwordStrengthText = document.getElementById("password-strength-text");
 const progressContainer = document.getElementById("progress");
 const progressBar = document.getElementById("progress-bar");
 let strengthValue = 0;
@@ -24,30 +25,50 @@ const CheckPasswordStrength = () => {
     if (password.value.match(/[$@#&!]+/)) {
         strength += 1;
     }
+    if (password.value.length > 5) {
+        strength += 1;
+    }
 
     switch (strength) {
         case 0:
             progressBar.style.width = "0%";
+            passwordStrengthText.innerText = "";
+            progressContainer.classList.add("d-none");
             break;
         case 1:
-            progressBar.style.width = "25%";
+            progressBar.style.width = "20%";
+            progressBar.classList.remove("bg-danger");
             progressBar.classList.remove("bg-warning");
             progressBar.classList.add("bg-danger");
+            passwordStrengthText.innerText = "Weak";
             break;
         case 2:
-            progressBar.style.width = "50%";
+            progressBar.style.width = "40%";
             progressBar.classList.remove("bg-danger");
-            progressBar.classList.add("bg-warning");
+            progressBar.classList.remove("bg-warning");
+            progressBar.classList.add("bg-danger");
+            passwordStrengthText.innerText = "Weak";
             break;
         case 3:
-            progressBar.style.width = "75%";
+            progressBar.style.width = "60%";
+            progressBar.classList.remove("bg-danger");
             progressBar.classList.remove("bg-warning");
-            progressBar.classList.add("bg-primary");
+            progressBar.classList.add("bg-warning");
+            passwordStrengthText.innerText = "Medium";
             break;
         case 4:
+            progressBar.style.width = "80%";
+            progressBar.classList.remove("bg-danger");
+            progressBar.classList.remove("bg-warning");
+            progressBar.classList.add("bg-warning");
+            passwordStrengthText.innerText = "Medium";
+            break;
+        case 5:
             progressBar.style.width = "100%";
-            progressBar.classList.remove("bg-primary");
+            progressBar.classList.remove("bg-danger");
+            progressBar.classList.remove("bg-warning");
             progressBar.classList.add("bg-success");
+            passwordStrengthText.innerText = "Strong";
             break;
     }
 
