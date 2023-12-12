@@ -1,19 +1,4 @@
-﻿(function ($) {
-    "use strict";
-    var fullHeight = function () {
-        $('.js-fullheight').css('height', $(window).height());
-        $(window).resize(function () {
-            $('.js-fullheight').css('height', $(window).height());
-        });
-    };
-
-    fullHeight();
-    $('#sidebarCollapse').on('click', function () {
-        $('#sidebar').toggleClass('active');
-    });
-})(jQuery);
-
-// Charts \\
+﻿// Charts \\
 Chart.defaults.global.defaultFontFamily = 'Roboto, sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
 

@@ -22,13 +22,13 @@ namespace NexusConnectCRM.Extensions
 
             if (!context.Roles.Any())
             {
-                List<IdentityRole> roles = new()
-                {
+                List<IdentityRole> roles =
+                [
                         new IdentityRole { Name = "Admin", NormalizedName = "ADMIN" },
                         new IdentityRole { Name = "Customer", NormalizedName = "USER" },
                         new IdentityRole { Name = "Employee", NormalizedName = "EMPLOYEE" },
                         new IdentityRole { Name = "Prospect", NormalizedName = "PROSPECT" }
-                    };
+                    ];
 
                 foreach (IdentityRole role in roles)
                 {
@@ -288,7 +288,7 @@ namespace NexusConnectCRM.Extensions
 
             if (!context.Help.Any())
             {
-                List<HelpInfo> helpInfos = new();
+                List<HelpInfo> helpInfos = [];
                 string testAccountUserId = context.Users.Where(u => u.Email == "asanderson1994s@gmail.com").FirstOrDefault().Id;
 
                 for (int i = 1; i <= 100; i++)

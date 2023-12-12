@@ -311,23 +311,4 @@ $(document).ready(function () {
         $(button).html(text);
     }
     // End of form validation logic \\
-
-    // Sidebar logic \\
-    let sidebarButton = document.getElementById('sidebar');
-    if (sidebarButton) {
-        $(sidebarButton).on('click', function () {
-            let hasActiveClass = sidebarButton.classList.contains('active');
-            if (hasActiveClass) {
-                if ($(window).width() < 768) {
-                    $('html, body').animate({
-                        scrollTop: 0
-                    }, 0);
-                    $('body').css('overflow', 'hidden');
-                }
-            } else {
-                $('body').css('overflow', 'scroll');
-            }
-        });
-    }
-    // End of sidebar logic \\
 });
