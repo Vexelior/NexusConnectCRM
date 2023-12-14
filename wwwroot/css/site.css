@@ -89,12 +89,6 @@ body::-webkit-scrollbar-thumb {
         min-height: 100vh;
     }
 
-#sidebar-main {
-    min-height: 100vh;
-    transition: all 0.3s;
-    width: 100%;
-}
-
 a {
     color: #47b2e4;
     text-decoration: none;
@@ -1990,8 +1984,8 @@ section {
     font-size: 20px;
 }
 
-    #sidebar span {
-        margin-left: 5px;
+    #sidebar .spacer {
+        margin-left: 1.5rem !important;
     }
 
     #sidebar svg {
@@ -2041,6 +2035,19 @@ section {
             border: none;
             border-color: none;
         }
+
+    #sidebar ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+
+    #sidebar li {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 10px 0;
+        width: 100%;
+    }
 
 @media (min-width: 576px) {
     .h-sm-100 {
