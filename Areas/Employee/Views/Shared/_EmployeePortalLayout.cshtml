@@ -16,29 +16,34 @@
     <link href="~/lib/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="wrapper d-flex">
-        @await Html.PartialAsync("~/Areas/Employee/Views/Shared/_EmployeeSidebar.cshtml")
-        <main id="sidebar-main" role="main">
-            <div id="content" class="ps-5 pe-5 pb-5">
-                @RenderBody()
+    <div class="container-fluid overflow-hidden">
+        <div class="row vh-100 overflow-auto">
+            @await Html.PartialAsync("~/Areas/Employee/Views/Shared/_EmployeeSidebar.cshtml")
+            <div class="col d-flex flex-column h-sm-100">
+                <main class="row overflow-auto">
+                    <div class="col pt-4">
+                        @RenderBody()
+                    </div>
+                </main>
             </div>
-        </main>
+        </div>
     </div>
 
     @await Html.PartialAsync("_Preloader")
     @await Html.PartialAsync("_BackToTopButton")
     @await Html.PartialAsync("_PrivacyPolicyModal")
 
-    <script src="~/lib/jquery/jquery.js"></script>
     <script src="~/lib/vendor/waypoints/noframework.waypoints.js"></script>
     <script src="~/lib/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="~/lib/vendor/glightbox/js/glightbox.min.js"></script>
     <script src="~/lib/fontawesome/js/all.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/vendor/aos/aos.js"></script>
     <script src="~/lib/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="~/lib/vendor/chart.js/Chart.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/vendor/chart.js/Chart.min.js"></script>
     <script src="~/js/EmployeeScripts.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

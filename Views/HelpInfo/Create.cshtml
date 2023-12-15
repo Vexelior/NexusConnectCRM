@@ -20,7 +20,7 @@
 <section class="create-help-ticket" id="create-help-ticket">
     <div class="container mt-5" data-aos="fade-left" data-aos-delay="1000">
         <div class="row">
-            <div class="col-md-10 shadow" style="margin: 0 auto;">
+            <div class="col-md-10 shadow border border-secondary-subtle" style="margin: 0 auto;">
                 <h1 class="text-center">Create Ticket</h1>
                 <form asp-action="Create" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -40,8 +40,10 @@
                         <span asp-validation-for="Image" class="text-danger"></span>
                     </div>
                     <div class="form-group d-flex inline mt-2 mb-2">
-                        <input type="submit" value="Create" class="default-btn me-2" id="submitForm" />
-                        <a class="btn cancel-btn" asp-action="Index">Back to List</a>
+                        <button type="submit" class="default-btn" id="submitForm">
+                            Create
+                        </button>
+                        <input class="cancel-btn" onclick="window.history.back()" value="Cancel" type="button" />
                     </div>
                 </form>
             </div>

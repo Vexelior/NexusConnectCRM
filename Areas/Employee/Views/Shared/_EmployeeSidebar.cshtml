@@ -1,47 +1,57 @@
-﻿@using Microsoft.AspNetCore.Identity
-@inject NexusConnectCRM.Data.ApplicationDbContext _context
+﻿@inject NexusConnectCRM.Data.ApplicationDbContext _context
+@inject UserManager<NexusConnectCRM.Data.Models.Identity.ApplicationUser> _userManager
 @using System.Linq
+@using Microsoft.AspNetCore.Identity
 
 @{
     // Tickets \\
-    var ticketsNeedingAttention = _context.Help.Where(h => h.CustomerWasRecentResponse &&
+    int ticketsNeedingAttention = _context.Help.Where(h => h.CustomerWasRecentResponse &&
                                                           !h.EmployeeWasRecentResponse &&
                                                           !h.IsCompleted &&
                                                           !h.IsRejected &&
                                                            h.IsApproved).Count();
 
-    var pendingHelpTicketsCount = _context.Help.Where(h => h.IsPending == true &&
+    int pendingHelpTicketsCount = _context.Help.Where(h => h.IsPending == true &&
                                                           !h.IsRejected &&
                                                           !h.IsCompleted &&
                                                           !h.IsRejected).Count();
 
-    var ticketNotificationCount = ticketsNeedingAttention + pendingHelpTicketsCount;
+    int ticketNotificationCount = ticketsNeedingAttention + pendingHelpTicketsCount;
+
+    string firstName = _context.Users.Where(x => x.Id == _userManager.GetUserId(User))
+                                 .Select(x => x.FirstName)
+                                 .FirstOrDefault();
 }
 
-<nav id="sidebar" data-aos="fade-right" data-aos-delay="1000">
-    <div class="custom-menu">
-        <button type="button" id="sidebarCollapse" class="btn btn-primary">
-            <i class="fa fa-bars"></i>
-            <span class="sr-only">Toggle Menu</span>
-        </button>
-    </div>
-    <div class="p-4">
-        <ul class="list-unstyled components mb-5">
-            <li>
-                <a href="@Url.Action("Index", "Home", new { area = "" })"><span class="fa fa-home mr-3"></span>&nbsp;&nbsp;Home</a>
+<div class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0 d-flex sticky-top" id="sidebar" data-aos="fade-right" data-aos-delay="100">
+    <div class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 pt-2 text-white">
+        <ul class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start" id="menu">
+            <li class="nav-link">
+                <a href="@Url.Action("Index", "Home", new { area = "" })" class="nav-link px-sm-0 px-2">
+                    <i class="fa fa-home"></i><span class="spacer d-none d-sm-inline">Home</span>
+                </a>
             </li>
             <li>
                 @if (User.IsInRole("Employee"))
                 {
-                    <a href="@Url.Action("Index", "Index", new { area = "Employee" })"><span class="fa fa-user mr-3"></span>&nbsp;&nbsp;Dashboard</a>
+                    <a href="@Url.Action("Index", "Index", new { area = "Employee" })" class="nav-link px-sm-0 px-2">
+                        <span class="fa fa-dashboard">
+                        </span>
+                        &nbsp; &nbsp; Dashboard
+                    </a>
                 }
                 else if (User.IsInRole("Admin"))
                 {
-                    <a href="@Url.Action("Index", "Index", new { area = "Admin" })"><span class="fa fa-user mr-3"></span>&nbsp;&nbsp;Dashboard</a>
+                    <a href="@Url.Action("Index", "Index", new { area = "Admin" })" class="nav-link px-sm-0 px-2">
+                        <span class="fa fa-dashboard">
+                        </span>
+                        &nbsp; &nbsp; Dashboard
+                    </a>
                 }
             </li>
             <li>
-                <a href="#homeSubmenu" data-bs-toggle="collapse" aria-expanded="false"><span class="fa fa-sticky-note mr-3"></span>
+                <a href="#homeSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="nav-link px-sm-0 px-2">
+                    <span class="fa fa-sticky-note mr-3"></span>
                     &nbsp;&nbsp;Help Tickets
                     @if (ticketNotificationCount > 0)
                     {
@@ -54,14 +64,14 @@
                             <span class="badge bg-danger rounded-pill" style="color: white; font-size: 12px;">@ticketNotificationCount</span>
                         }
                     }
-                    </a>
+                </a>
                 <ul class="collapse list-unstyled" id="homeSubmenu">
-                    <li>
+                    <li class="nav-item">
                         <a class="dropdown-item" href="@Url.Action("Index", "Help", new { area = "Employee" })">
                             All Tickets
                         </a>
                     </li>
-                    <li>
+                    <li class="nav-item">
                         <a class="dropdown-item" href="@Url.Action("NewHelp", "Help", new { area = "Employee" })">
                             New
                             @if (ticketsNeedingAttention > 0)
@@ -77,7 +87,7 @@
                             }
                         </a>
                     </li>
-                    <li>
+                    <li class="nav-item">
                         <a class="dropdown-item" href="@Url.Action("PendingHelp", "Help", new { area = "Employee" })">
                             Pending
                             @if (pendingHelpTicketsCount > 0)
@@ -93,24 +103,33 @@
                             }
                         </a>
                     </li>
-                    <li>
+                    <li class="nav-item">
                         <a class="dropdown-item" href="@Url.Action("RejectedHelp", "Help", new { area = "Employee" })">
                             Rejected
                         </a>
                     </li>
-                    <li>
+                    <li class="nav-item">
                         <a class="dropdown-item" href="@Url.Action("CompletedHelp", "Help", new { area = "Employee" })">
                             Completed
                         </a>
                     </li>
                 </ul>
-                @await Html.PartialAsync("_PortalLoginPartial")
+            </li>
         </ul>
-        <div class="sidebar-footer">
-            <p>
-                © Copyright NexusConnect. <br /> All Rights Reserved - @DateTime.Now.Year
-            </p>
-            <a href="#" id="privacy-policy" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Privacy Policy</a>
+        <div class="dropdown py-sm-4 mt-sm-auto ms-auto ms-sm-0 flex-shrink-1">
+            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="~/images/Account/no_user_pic.jpg" alt="user" width="28" height="28" class="rounded-circle">
+                <span class="d-none d-sm-inline mx-1 ms-2" style="font-size: 16px;">@firstName</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark text-small shadow mb-1" aria-labelledby="dropdownUser1">
+                <li>
+                    <a class="dropdown-item" href="@Url.Action("Manage", "Account", new { area = "Identity" })">
+                        <i class="fa fa-cog"></i><span class="ms-2 d-sm-inline">Settings</span>
+                    </a>
+                </li>
+                @await Html.PartialAsync("_PortalLoginPartial")
+            </ul>
         </div>
+        @await Html.PartialAsync("_FooterPortal")
     </div>
-</nav>
+</div>

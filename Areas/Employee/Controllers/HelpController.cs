@@ -40,8 +40,8 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                 {
                     string secondWord = splitString[1];
 
-                    var newQuery = await _context.Help.Where(h => h.Title.ToLower().Contains(firstWord) &&
-                                                                           h.Title.ToLower().Contains(secondWord))
+                    var newQuery = await _context.Help.Where(h => h.Title.Contains(firstWord, StringComparison.CurrentCultureIgnoreCase) &&
+                                                                           h.Title.Contains(secondWord, StringComparison.CurrentCultureIgnoreCase))
                                                       .OrderByDescending(h => h.CreatedDate)
                                                       .ToListAsync();
 
@@ -57,7 +57,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                 }
                 else
                 {
-                    var newQuery = await _context.Help.Where(h => h.Title.ToLower().Contains(firstWord))
+                    var newQuery = await _context.Help.Where(h => h.Title.Contains(firstWord, StringComparison.CurrentCultureIgnoreCase))
                                                       .OrderByDescending(h => h.CreatedDate)
                                                       .ToListAsync();
 

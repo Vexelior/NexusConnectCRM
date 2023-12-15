@@ -43,7 +43,7 @@
 html {
     padding: 0;
     margin: 0;
-    font-family: "Roboto", sans-serif;
+    font-family: Roboto, sans-serif;
     font-size: 16px;
     color: #666;
     font-weight: 400;
@@ -55,14 +55,28 @@ html {
     scroll-behavior: smooth;
 }
 
-body::-webkit-scrollbar {
-    width: 10px;
-    background: #f1f1f1;
+body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.7;
+    background: #fff;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
-body::-webkit-scrollbar-thumb {
-    background: #888;
-}
+    body::-webkit-scrollbar {
+        width: 10px;
+        background: #f1f1f1;
+    }
+
+    body::-webkit-scrollbar-thumb {
+        background: #888;
+    }
 
 .wrapper {
     display: flex;
@@ -1905,10 +1919,19 @@ section {
     width: 100%;
 }
 
+.portal-footer {
+    font-size: small;
+    font-weight: 300;
+}
+
 @media (max-width: 768px) {
     #footer .footer-bottom {
         padding-top: 20px;
         padding-bottom: 20px;
+    }
+
+    .portal-footer {
+        display: none;
     }
 
     #footer .copyright,
@@ -1981,11 +2004,11 @@ section {
     -o-transition: all 0.3s;
     transition: all 0.3s;
     height: auto;
-    font-size: 20px;
+    font-size: 16px;
 }
 
     #sidebar .spacer {
-        margin-left: 1.5rem !important;
+        margin-left: 1.0rem !important;
     }
 
     #sidebar svg {
@@ -2045,7 +2068,7 @@ section {
 
     #sidebar li {
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 10px 0;
+        padding: 5px 0;
         width: 100%;
     }
 
@@ -2280,11 +2303,12 @@ section {
 
     .create-help-ticket .container .cancel-btn {
         background: gray;
-        border: 0;
-        padding: 12px 34px;
-        color: #fff;
-        transition: 0.4s;
+        padding: 8px 20px;
         border-radius: 50px;
+        color: #fff;
+        font-size: 14px;
+        border: 2px solid #fff;
+        font-weight: 600;
     }
 
         .create-help-ticket .container .cancel-btn:hover {
@@ -2295,6 +2319,10 @@ section {
             background: black;
             border: 2px solid gray;
         }
+
+.tickets {
+    margin-bottom: 20px;
+}
 /*--------------------------------------------------------------
     # Shared
 --------------------------------------------------------------*/

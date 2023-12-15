@@ -13,7 +13,7 @@
 }
 else
 {
-    <div class="container mt-3 tickets" data-aos="fade-left" data-aos-duration="1000">
+    <div class="container mt-3" data-aos="fade-left" data-aos-duration="1000">
         <div class="row">
             <h1 class="text-center">Help Tickets</h1>
             @using (Html.BeginForm("Index", "Help", FormMethod.Post, new { area = "Employee" }))
@@ -24,7 +24,7 @@ else
                             <div class="input-group mb-2">
                                 @Html.TextBox("searchQuery", null, new { @class = "form-control", @placeholder = "Search..." })
                                 <div class="input-group-append">
-                                    <button class="btn btn-secondary" type="submit">
+                                    <button class="btn btn-secondary default-btn ms-1" type="submit">
                                         <span class="fa fa-search"></span>
                                     </button>
                                 </div>
@@ -33,12 +33,12 @@ else
                     </div>
                 </div>
             }
-            <div class="col" style="margin: 0 auto;">
+            <div class="col tickets" style="margin: 0 auto;">
                 @foreach (var help in Model.HelpList)
                 {
                     string fullName = _context.Users.Where(u => u.Id == help.Author)
-                    .Select(u => u.FirstName + " " + u.LastName)
-                    .FirstOrDefault();
+                                                    .Select(u => u.FirstName + " " + u.LastName)
+                                                    .FirstOrDefault();
 
                     <div class="card mt-4">
                         <div class="card-body">

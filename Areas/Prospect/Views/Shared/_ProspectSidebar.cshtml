@@ -44,7 +44,7 @@
                 <img src="~/images/Account/no_user_pic.jpg" alt="user" width="28" height="28" class="rounded-circle">
                 <span class="d-none d-sm-inline mx-1 ms-2" style="font-size: 16px;">@firstName</span>
             </a>
-            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+            <ul class="dropdown-menu dropdown-menu-dark text-small shadow mb-1" aria-labelledby="dropdownUser1">
                 <li>
                     <a class="dropdown-item" href="@Url.Action("Manage", "Account", new { area = "Identity" })">
                         <i class="fa fa-cog"></i><span class="ms-2 d-sm-inline">Settings</span>
@@ -53,5 +53,6 @@
                 @await Html.PartialAsync("_PortalLoginPartial")
             </ul>
         </div>
+        @await Html.PartialAsync("_FooterPortal")
     </div>
 </div>
