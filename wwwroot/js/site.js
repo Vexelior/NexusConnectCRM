@@ -252,65 +252,62 @@
 
 })()
 
-$(document).ready(function () {
-    // Back to top button scroll function. \\
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 50) {
-            $('#back-to-top').fadeIn();
-        } else {
-            $('#back-to-top').fadeOut();
-        }
-    });
-    $('#back-to-top').click(function () {
-        $('body,html').animate({
-            scrollTop: 0
-        }, 400);
-        return false;
-    });
-    // End of back to top button scroll function. \\
 
-    // Privacy Policy Modal \\
-    let modal = document.getElementById('staticBackdrop')
-    let modalButton = document.getElementById('privacy-policy')
-
-    $(modalButton).click(function () {
-        $(modal).toggle();
-    });
-    // End of Privacy Policy Modal \\
-
-    // Form validation logic \\
-    $('.company-details-form').submit(function () {
-        let button = $(this).find(':submit');
-        SpinnerButton(button);
-    });
-
-    $('.user-details-form').submit(function () {
-        let button = $(this).find(':submit');
-        SpinnerButton(button);
-    });
-
-    $('#account-login').submit(function () {
-        let button = $(this).find(':submit');
-        SpinnerButton(button);
-
-        if ($(this).valid() == false) {
-            RevertSpinnerButton(button, 'Sign in');
-        }
-    });
-
-    const SpinnerButton = (button) => {
-        let buttonWidth = $(button).width();
-        let buttonHeight = $(button).height();
-
-        $(button).width(buttonWidth);
-        $(button).height(buttonHeight);
-        $(button).prop('disabled', true);
-        $(button).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
+$(window).on('scroll', function () {
+    if ($(this).scrollTop() > 50) {
+        $('#back-to-top').fadeIn();
+    } else {
+        $('#back-to-top').fadeOut();
     }
-
-    const RevertSpinnerButton = (button, text) => {
-        $(button).prop('disabled', false);
-        $(button).html(text);
-    }
-    // End of form validation logic \\
 });
+$('#back-to-top').on('click', function () {
+    $('body,html').animate({
+        scrollTop: 0
+    }, 400);
+    return false;
+});
+// End of back to top button scroll function. \\
+
+// Privacy Policy Modal \\
+let modal = document.getElementById('staticBackdrop')
+let modalButton = document.getElementById('privacy-policy')
+
+$(modalButton).on('click', function () {
+    $(modal).toggle();
+});
+// End of Privacy Policy Modal \\
+
+// Form validation logic \\
+$('.company-details-form').on('submit', function () {
+    let button = $(this).find(':submit');
+    SpinnerButton(button);
+});
+
+$('.user-details-form').on('submit', function () {
+    let button = $(this).find(':submit');
+    SpinnerButton(button);
+});
+
+$('#account-login').on('submit', function () {
+    let button = $(this).find(':submit');
+    SpinnerButton(button);
+
+    if ($(this).valid() == false) {
+        RevertSpinnerButton(button, 'Sign in');
+    }
+});
+
+const SpinnerButton = (button) => {
+    let buttonWidth = $(button).width();
+    let buttonHeight = $(button).height();
+
+    $(button).width(buttonWidth);
+    $(button).height(buttonHeight);
+    $(button).prop('disabled', true);
+    $(button).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
+}
+
+const RevertSpinnerButton = (button, text) => {
+    $(button).prop('disabled', false);
+    $(button).html(text);
+}

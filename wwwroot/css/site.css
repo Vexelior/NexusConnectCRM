@@ -65,7 +65,6 @@ body {
     font-weight: 400;
     line-height: 1.7;
     background: #fff;
-    overflow-x: hidden;
     scroll-behavior: smooth;
 }
 
@@ -445,24 +444,24 @@ h6 {
         outline: none;
     }
 
-#staticBackdrop .default-btn,
-.default-btn:focus {
-    padding: 8px 20px;
-    border-radius: 50px;
-    color: #fff;
-    font-size: 14px;
-    border: 2px solid #fff;
-    font-weight: 600;
-    background: #37517e;
-}
-
-    #staticBackdrop .default-btn:hover,
-    .default-btn:focus:hover {
+    #staticBackdrop .default-btn,
+    .default-btn:focus {
+        padding: 8px 20px;
+        border-radius: 50px;
         color: #fff;
-        background: #47b2e4;
-        box-shadow: none;
-        outline: none;
+        font-size: 14px;
+        border: 2px solid #fff;
+        font-weight: 600;
+        background: #37517e;
     }
+
+        #staticBackdrop .default-btn:hover,
+        .default-btn:focus:hover {
+            color: #fff;
+            background: #47b2e4;
+            box-shadow: none;
+            outline: none;
+        }
 
 .getstarted,
 .getstarted:focus {
