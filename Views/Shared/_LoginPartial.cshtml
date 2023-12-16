@@ -27,7 +27,7 @@
                 <li>
                     <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Profile</a>
                 </li>
-                @if (User.IsInRole("Admin"))
+                @if (User.IsInRole("Admin") || User.IsInRole("HeadAdmin"))
                 {
                     <li>
                         <a class="dropdown-item" asp-area="Admin" asp-controller="Index" asp-action="Index" title="Portal">Portal</a>

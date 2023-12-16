@@ -9,17 +9,11 @@ using NexusConnectCRM.Data.Models.Identity;
 namespace NexusConnectCRM.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "Admin")]
-    public class IndexController : Controller
+    [Authorize(Roles = "Admin,HeadAdmin")]
+    public class IndexController(ApplicationDbContext context, UserManager<ApplicationUser> userManager) : Controller
     {
-        private readonly ApplicationDbContext _context;
-        private readonly UserManager<ApplicationUser> _userManager;
-
-        public IndexController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
-        {
-            _context = context;
-            _userManager = userManager;
-        }
+        private readonly ApplicationDbContext _context = context;
+        private readonly UserManager<ApplicationUser> _userManager = userManager;
 
         public async Task<IActionResult> Index()
         {
@@ -49,6 +43,23 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
             };
 
             return View("Index", viewModel);
+        }
+
+        public async Task<IActionResult> ViewUsers()
+        {
+            var users = await _context.Users.OrderBy(u => u.FirstName).ToListAsync();
+
+            if (users is null)
+            {
+                return NotFound();
+            }
+
+            AdminListUsersViewModel viewModel = new()
+            {
+                Users = users
+            };
+
+            return View("ViewUsers", viewModel);
         }
 
         public async Task<IActionResult> ViewProspects()

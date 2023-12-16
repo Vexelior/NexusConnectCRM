@@ -12,7 +12,7 @@ using NexusConnectCRM.Data.Models.Employee;
 namespace NexusConnectCRM.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,HeadAdmin")]
     public class UserController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -28,13 +28,16 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
         {
             var user = await _userManager.FindByIdAsync(id);
 
+            bool IsAdmin = User.IsInRole("Admin");
+            bool IsHeadAdmin = User.IsInRole("HeadAdmin");
+
             if (user is null)
             {
                 return NotFound();
             }
 
             var userRoles = await _userManager.GetRolesAsync(user);
-            List<SelectListItem> selectListItems = new();
+            List<SelectListItem> selectListItems = [];
 
             foreach (var role in _context.Roles)
             {
@@ -43,7 +46,16 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                 {
                     isSelected = true;
                 }
-                selectListItems.Add(new SelectListItem(role.Name.Humanize(LetterCasing.Title), role.Name, isSelected));
+
+                if (IsAdmin && !role.Name.Equals("Admin") && !role.Name.Equals("HeadAdmin"))
+                {
+                    selectListItems.Add(new SelectListItem(role.Name.Humanize(LetterCasing.Title), role.Name, isSelected));
+                }
+
+                if (IsHeadAdmin && !role.Name.Equals("HeadAdmin"))
+                {
+                    selectListItems.Add(new SelectListItem(role.Name.Humanize(LetterCasing.Title), role.Name, isSelected));
+                }
             }
 
             if (user.Roles == "Prospect")

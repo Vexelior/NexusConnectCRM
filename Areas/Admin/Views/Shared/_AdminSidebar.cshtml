@@ -16,6 +16,38 @@
                     <i class="fa fa-paper-plane mr-3"></i><span class="spacer d-none d-sm-inline">Help Area</span>
                 </a>
             </li>
+            <li>
+                <a class="nav-link px-sm-0 px-2" href="#homeSubmenu" data-bs-toggle="collapse" aria-expanded="false">
+                    <i class="fa fa-users mr-3"></i><span class="spacer d-none d-sm-inline"></span>
+                    Users
+                </a>
+                <ul class="collapse list-unstyled" id="homeSubmenu" style="font-size: inherit;">
+                    <li class="nav-item">
+                        <a class="dropdown-item" href="@Url.Action("ViewUsers", "Index", new { area = "Admin" })">
+                            <i class="fa fa-user mr-3"></i><span class="spacer d-none d-sm-inline"></span>
+                            All Users
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="dropdown-item" href="@Url.Action("ViewProspects", "Index", new { area = "Admin" })">
+                            <i class="fa fa-user mr-3"></i><span class="spacer d-none d-sm-inline"></span>
+                            Prospects
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="dropdown-item" href="@Url.Action("ViewCustomers", "Index", new { area = "Admin" })">
+                            <i class="fa fa-user mr-3"></i><span class="spacer d-none d-sm-inline"></span>
+                            Customers
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a class="nav-link px-sm-0 px-2" href="@Url.Action("ViewCompanies", "Index", new { area = "Admin" })">
+                    <i class="fa fa-building mr-3"></i><span class="spacer d-none d-sm-inline"></span>
+                    Companies
+                </a>
+            </li>
         </ul>
         @await Html.PartialAsync("_PortalAccountOptions")
         @await Html.PartialAsync("_FooterPortal")

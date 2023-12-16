@@ -24,6 +24,7 @@ namespace NexusConnectCRM.Extensions
             {
                 List<IdentityRole> roles =
                 [
+                        new IdentityRole { Name = "HeadAdmin", NormalizedName = "HEADADMIN" },
                         new IdentityRole { Name = "Admin", NormalizedName = "ADMIN" },
                         new IdentityRole { Name = "Customer", NormalizedName = "USER" },
                         new IdentityRole { Name = "Employee", NormalizedName = "EMPLOYEE" },
@@ -47,6 +48,27 @@ namespace NexusConnectCRM.Extensions
 
             if (!context.Users.Any())
             {
+                // Create HeadAdmin \\
+                ApplicationUser headAdminUser = new()
+                {
+                    UserName = "headadmin@mail.com",
+                    Email = "headadmin@mail.com",
+                    EmailConfirmed = true,
+                    FirstName = "HeadAdmin",
+                    LastName = "User",
+                    Roles = "HeadAdmin"
+                };
+                IdentityResult headadminResult = userManager.CreateAsync(headAdminUser, "Pass1234!").Result;
+
+                if (headadminResult.Succeeded)
+                {
+                    userManager.AddToRoleAsync(headAdminUser, "HeadAdmin").Wait();
+                }
+                else
+                {
+                    throw new Exception("HeadAdmin account creation failed.");
+                }
+
                 // Create Admin \\
                 ApplicationUser adminUser = new() { 
                     UserName = "admin@mail.com", 
