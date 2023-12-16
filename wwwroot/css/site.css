@@ -445,6 +445,41 @@ h6 {
         outline: none;
     }
 
+#staticBackdrop .default-btn,
+.default-btn:focus {
+    padding: 8px 20px;
+    border-radius: 50px;
+    color: #fff;
+    font-size: 14px;
+    border: 2px solid #fff;
+    font-weight: 600;
+    background: #37517e;
+}
+
+    #staticBackdrop .default-btn:hover,
+    .default-btn:focus:hover {
+        color: #fff;
+        background: #47b2e4;
+        box-shadow: none;
+        outline: none;
+    }
+
+.getstarted,
+.getstarted:focus {
+    padding: 8px 20px;
+    border-radius: 50px;
+    color: #fff;
+    font-size: 14px;
+    border: 2px solid #47b2e4;
+    font-weight: 600;
+}
+
+    .getstarted:hover,
+    .getstarted:focus:hover {
+        color: #fff;
+        background: #31a9e1;
+    }
+
 .cancel-btn {
     padding: 8px 20px;
     border-radius: 50px;
@@ -1956,6 +1991,13 @@ section {
         color: #47b2e4;
     }
 
+    #logoutForm button:focus {
+        outline: none;
+        border: none;
+        border-color: transparent;
+    }
+
+
 /*--------------------------------------------------------------
 # Preloader
 --------------------------------------------------------------*/
@@ -2323,6 +2365,23 @@ section {
 .tickets {
     margin-bottom: 20px;
 }
+
+/*--------------------------------------------------------------
+    # Portal Account Options
+--------------------------------------------------------------*/
+.account-options li, span {
+    font-size: 14px !important;
+}
+
+.account-options svg {
+    width: 1.0em !important;
+    height: 1.0em !important;
+}
+
+.account-options li form button {
+    padding: .25rem 1rem;
+}
+
 /*--------------------------------------------------------------
     # Shared
 --------------------------------------------------------------*/
@@ -2339,3 +2398,50 @@ section {
     background: transparent;
     color: #fff;
 }
+
+/* Remove all outlines from buttons on-click*/
+button:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/*--------------------------------------------------------------
+    # Admin - Edit User
+--------------------------------------------------------------*/
+.admin-edituser .cancel-btn {
+    background: gray;
+    padding: 8px 20px;
+    border-radius: 50px;
+    color: #fff;
+    font-size: 14px;
+    border: 2px solid #fff;
+    font-weight: 600;
+}
+
+    .admin-edituser .cancel-btn:hover {
+        background: black;
+    }
+
+    .admin-edituser .cancel-btn:focus {
+        background: black;
+        border: 2px solid gray;
+    }
+
+.admin-edituser .delete-button {
+    background: #dc3545;
+    padding: 8px 20px;
+    border-radius: 50px;
+    color: #fff;
+    font-size: 14px;
+    border: 2px solid #fff;
+    font-weight: 600;
+}
+
+    .admin-edituser .delete-button:hover {
+        background: #c73f3f;
+    }
+
+    .admin-edituser .delete-button:focus {
+        background: #c73f3f;
+        border: 2px solid #dc3545;
+    }

@@ -16,13 +16,17 @@
     <link href="~/lib/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="wrapper d-flex">
-        @await Html.PartialAsync("~/Areas/Admin/Views/Shared/_AdminSidebar.cshtml")
-        <main id="sidebar-main" role="main">
-            <div id="content" class="ps-5 pe-5 pb-5">
-                @RenderBody()
+    <div class="container-fluid overflow-hidden">
+        <div class="row vh-100 overflow-auto">
+            @await Html.PartialAsync("~/Areas/Admin/Views/Shared/_AdminSidebar.cshtml")
+            <div class="col d-flex flex-column h-sm-100">
+                <main class="row overflow-auto">
+                    <div class="col pt-4">
+                        @RenderBody()
+                    </div>
+                </main>
             </div>
-        </main>
+        </div>
     </div>
 
     @await Html.PartialAsync("_Preloader")

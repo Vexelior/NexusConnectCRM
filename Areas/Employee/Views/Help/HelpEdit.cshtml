@@ -8,7 +8,7 @@
     var fullName = _context.Users.Where(u => u.Id == Model.Help.Author).Select(u => u.FirstName + " " + u.LastName).FirstOrDefault();
 }
 
-<div class="container mt-3">
+<div class="container mt-5 mb-5">
     <div class="row">
         <div class="col-xs-12">
             <h1 class="text-center">Ticket Details</h1>
@@ -133,28 +133,35 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col">
-                                            @Html.TextAreaFor(m => m.Response, new { @class = "form-control", @rows = "10", id = "ResponseText", @placeholder =  "Response" })
-                                            @Html.TextBoxFor(m => m.Image, new { @type = "file", @class = "form-control mt-2 mb-2", @id = "ImageFile" })
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    @if (Model.Help.IsPending)
-                                                    {
-                                                        <div class="col" style="margin: 0;">
-                                                            <p style="color: red;">
-                                                                <strong>
-                                                                    This ticket is pending approval.
-                                                                </strong>
-                                                            </p>
-                                                            <a href="@Url.Action("Index", "Help", new { area = "Employee" })" class="btn btn-secondary mb-2">Back</a>
-                                                        </div>
-                                                        <div class="col" style="margin: 0;">
-                                                            <button type="button" class="btn btn-dark" style="float: right; width: auto;" data-bs-toggle="modal" data-bs-target="#TicketOptionsModal">
-                                                                Options
-                                                            </button>
-                                                        </div>
-                                                    }
-                                                    else
-                                                    {
+                                            @if (Model.Help.IsCompleted)
+                                            {
+                                                <p class="fw-bold text-center">
+                                                    This ticket has been completed. <i class="fa fa-check text-success"></i>
+                                                </p>
+                                            }
+                                            else if (Model.Help.IsRejected && !Model.Help.IsApproved)
+                                            {
+                                                <p class="fw-bold text-center">
+                                                    This ticket has been rejected. <i class="fa fa-times text-danger"></i>
+                                                </p>
+                                            }
+                                            else if (Model.Help.IsPending)
+                                            {
+                                                <div class="mb-2 text-center mb-2">
+                                                    <p class="fw-bold text-center">
+                                                        This ticket is pending approval. <i class="fa fa-exclamation-circle text-warning"></i>
+                                                    </p>
+                                                    <button type="button" class="btn btn-dark" style="width: auto;" data-bs-toggle="modal" data-bs-target="#TicketOptionsModal">
+                                                        Options
+                                                    </button>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                @Html.TextAreaFor(m => m.Response, new { @class = "form-control", @rows = "10", id = "ResponseText", @placeholder = "Response" })
+                                                @Html.TextBoxFor(m => m.Image, new { @type = "file", @class = "form-control mt-2 mb-2", @id = "ImageFile" })
+                                                <div class="form-group">
+                                                    <div class="row">
                                                         <div class="col mb-2" style="margin: 0;">
                                                             <input id="submitButton" type="submit" value="Save" class="btn btn-primary">
                                                             <a class="btn btn-secondary" href="@Url.Action("Index", "Help", new { area = "Employee" })">Cancel</a>
@@ -162,9 +169,9 @@
                                                                 Options
                                                             </button>
                                                         </div>
-                                                    }
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -190,11 +197,11 @@
                 {
                     <a href="@Url.Action("HelpApprove", "Help", new { area = "Employee", id = Model.Help.Id })" class="btn btn-primary me-1">Approve</a>
                 }
-                @if (!Model.Help.IsCompleted)
+                @if (!Model.Help.IsCompleted && Model.Help.IsApproved)
                 {
                     <a href="@Url.Action("HelpCompleted", "Help", new { area = "Employee", id = Model.Help.Id })" class="btn btn-success">Complete</a>
                 }
-                @if (!Model.Help.IsRejected)
+                @if (!Model.Help.IsApproved)
                 {
                     <a href="@Url.Action("HelpReject", "Help", new { area = "Employee", id = Model.Help.Id })" class="btn btn-danger me-1">Reject</a>
                 }

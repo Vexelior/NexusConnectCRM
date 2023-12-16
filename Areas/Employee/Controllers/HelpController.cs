@@ -296,7 +296,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
 
         public async Task<IActionResult> PendingHelp()
         {
-            var helpList = await _context.Help.Where(h => h.IsPending)
+            var helpList = await _context.Help.Where(h => h.IsPending && !h.IsRejected)
                                               .OrderByDescending(h => h.CreatedDate)
                                               .ToListAsync();
 
@@ -310,7 +310,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
 
         public async Task<IActionResult> RejectedHelp()
         {
-            var helpList = await _context.Help.Where(h => h.IsRejected)
+            var helpList = await _context.Help.Where(h => h.IsRejected && !h.IsApproved)
                                               .OrderByDescending(h => h.CreatedDate)
                                               .ToListAsync();
 

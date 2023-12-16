@@ -116,20 +116,7 @@
                 </ul>
             </li>
         </ul>
-        <div class="dropdown py-sm-4 mt-sm-auto ms-auto ms-sm-0 flex-shrink-1">
-            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="~/images/Account/no_user_pic.jpg" alt="user" width="28" height="28" class="rounded-circle">
-                <span class="d-none d-sm-inline mx-1 ms-2" style="font-size: 16px;">@firstName</span>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-dark text-small shadow mb-1" aria-labelledby="dropdownUser1">
-                <li>
-                    <a class="dropdown-item" href="@Url.Action("Manage", "Account", new { area = "Identity" })">
-                        <i class="fa fa-cog"></i><span class="ms-2 d-sm-inline">Settings</span>
-                    </a>
-                </li>
-                @await Html.PartialAsync("_PortalLoginPartial")
-            </ul>
-        </div>
+        @await Html.PartialAsync("_PortalAccountOptions")
         @await Html.PartialAsync("_FooterPortal")
     </div>
 </div>

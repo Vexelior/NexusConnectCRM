@@ -52,7 +52,7 @@ else
                     <div class="card mt-4 shadow">
                         <div class="card-body">
                             <h5 class="card-title">
-                                @if (help.EmployeeWasRecentResponse)
+                                @if (help.EmployeeWasRecentResponse && !help.IsCompleted)
                                 {
                                     <span class="fa fa-exclamation-circle" title="Is Waiting For Response..." style="color: red;"></span>
                                 }

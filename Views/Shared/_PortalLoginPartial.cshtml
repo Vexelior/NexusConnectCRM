@@ -1,7 +1,8 @@
 ﻿<li>
     <form class="form-inline" id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-        <button type="submit" class="nav-link btn btn-link dropdown-item" title="Logout">
-            <span class="fa fa-sign-out-alt"></span>&nbsp;&nbsp;Logout
+        <button type="submit" class="nav-link btn btn-link dropdown-item pb-2" title="Logout">
+            <i class="fa fa-sign-out-alt"></i>
+            <span class="ms-1 mb-1">Logout</span>
         </button>
     </form>
 </li>

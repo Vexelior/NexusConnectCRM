@@ -1,28 +1,23 @@
-﻿<nav id="sidebar" data-aos="fade-up-right" data-aos-delay="200">
-    <div class="custom-menu">
-        <button type="button" id="sidebarCollapse" class="btn btn-primary">
-            <i class="fa fa-bars"></i>
-            <span class="sr-only">Toggle Menu</span>
-        </button>
-    </div>
-    <div class="p-4">
-        <ul class="list-unstyled components mb-5">
-            <li>
-                <a href="@Url.Action("Index", "Home", new { area = "" })"><span class="fa fa-home mr-3"></span>&nbsp;&nbsp;Home</a>
+﻿<div class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0 d-flex sticky-top" id="sidebar" data-aos="fade-right" data-aos-delay="100">
+    <div class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 pt-2 text-white">
+        <ul class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start" id="menu">
+            <li class="nav-item">
+                <a href="@Url.Action("Index", "Home", new { area = "" })" class="nav-link px-sm-0 px-2">
+                    <i class="fa fa-home"></i><span class="spacer d-none d-sm-inline">Home</span>
+                </a>
             </li>
             <li>
-                <a href="@Url.Action("Index", "Index", new { area = "Admin" })"><span class="fa fa-user mr-3"></span>&nbsp;&nbsp;Dashboard</a>
+                <a href="@Url.Action("Index", "Index", new { area = "Admin" })" class="nav-link px-sm-0 px-2">
+                    <i class="fa fa-dashboard"></i><span class="spacer d-none d-sm-inline">Dashboard</span>
+                </a>
             </li>
             <li>
-                <a href="@Url.Action("Index", "Help", new { area = "Employee" })"><span class="fa fa-paper-plane mr-3"></span>&nbsp;&nbsp;Help Area</a>
+                <a href="@Url.Action("Index", "Help", new { area = "Employee" })" class="nav-link px-sm-0 px-2">
+                    <i class="fa fa-paper-plane mr-3"></i><span class="spacer d-none d-sm-inline">Help Area</span>
+                </a>
             </li>
-            @await Html.PartialAsync("_PortalLoginPartial")
         </ul>
-        <div class="sidebar-footer">
-            <p>
-                © Copyright NexusConnect. <br /> All Rights Reserved - @DateTime.Now.Year
-            </p>
-            <a href="#" id="privacy-policy" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Privacy Policy</a>
-        </div>
+        @await Html.PartialAsync("_PortalAccountOptions")
+        @await Html.PartialAsync("_FooterPortal")
     </div>
-</nav>
+</div>
