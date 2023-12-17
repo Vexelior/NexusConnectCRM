@@ -1,11 +1,14 @@
 ﻿@model NexusConnectCRM.Areas.Admin.ViewModels.AdminListUsersViewModel
 
 @{
-    ViewData["Title"] = "View Prospects";
+    ViewData["Title"] = "All Users";
     Layout = "~/Areas/Admin/Views/Shared/_AdminPortalLayout.cshtml";
 }
 
-<div class="container">
+<div class="container mt-3 mb-3">
+    <h2 class="text-center">
+        All Users
+    </h2>
     <div class="row">
         <div class="col text-center">
             <table class="table table-hover">
@@ -16,7 +19,8 @@
                         <th scope="col">Email</th>
                         <th scope="col">Date Of Birth</th>
                         <th scope="col">Phone Number</th>
-                        <th scope="col">Roles</th>
+                        <th scope="col">Role</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,15 +33,14 @@
                             <td>@user.DateOfBirth</td>
                             <td>@user.PhoneNumber</td>
                             <td>@user.Roles</td>
+                            <td>
+                                <a href="@Url.Action("EditUser", "User", new { id = user.Id })" class="default-btn">Edit</a>
+                            </td>
                         </tr>
                     }
                 </tbody>
             </table>
         </div>
     </div>
-    <div class="row">
-        <div class="col">
-            <a href="@Url.Action("Index", "Admin")" class="btn btn-secondary">Back</a>
-        </div>
-    </div>
+    <a href="@Url.Action("Index", "Index")" class="cancel-btn">Back</a>
 </div>

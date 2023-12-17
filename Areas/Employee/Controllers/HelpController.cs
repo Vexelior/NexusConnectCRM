@@ -7,11 +7,12 @@ using System.Data;
 using Microsoft.EntityFrameworkCore;
 using NexusConnectCRM.Areas.Employee.ViewModels;
 using NexusConnectCRM.Data.Models.Help;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace NexusConnectCRM.Areas.Employee.Controllers
 {
     [Area("Employee")]
-    [Authorize(Roles = "Employee, Admin")]
+    [Authorize(Roles = "Employee,Admin,HeadAdmin")]
     public class HelpController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -180,50 +181,56 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                 return NotFound();
             }
 
-            string name = _context.Users.Where(u => u.Id == _userManager.GetUserId(User)).Select(u => u.FirstName + " " + u.LastName).FirstOrDefault();
-
-            DateTime date = DateTime.Now;
-            string dateString = date.ToString("MM/dd/yyyy h:mmtt");
-
-            string message = $"[{dateString}] {name}: \n {viewModel.Response}";
-
-            HelpResponseInfo feedback = new()
+            if (ModelState.IsValid)
             {
-                Response = message,
-                Author = _userManager.GetUserId(User),
-                IsEmployee = true,
-                CreatedDate = help.CreatedDate,
-                ModifiedDate = DateTime.Now,
-                Image = viewModel.Image,
-                ResponseId = help.Id
-            };
+                string name = _context.Users.Where(u => u.Id == _userManager.GetUserId(User)).Select(u => u.FirstName + " " + u.LastName).FirstOrDefault();
 
-            help.ModifiedDate = feedback.ModifiedDate;
-            help.CustomerWasRecentResponse = false;
-            help.EmployeeWasRecentResponse = true;
+                DateTime date = DateTime.Now;
+                string dateString = date.ToString("MM/dd/yyyy h:mmtt");
 
-            if (viewModel.Image != null)
-            {
-                string wwwRootPath = _hostEnvironment.WebRootPath;
-                string fileName = Path.GetFileNameWithoutExtension(feedback.Image.FileName);
-                string extension = Path.GetExtension(feedback.Image.FileName);
-                feedback.ImageName = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-                string path = Path.Combine(wwwRootPath + "/images/help/responses/", fileName);
+                string message = $"[{dateString}] {name}: \n {viewModel.Response}";
 
-                if (!Directory.Exists(wwwRootPath + "/images/help/responses/"))
+                HelpResponseInfo feedback = new()
                 {
-                    Directory.CreateDirectory(wwwRootPath + "/images/help/responses/");
+                    Response = message,
+                    Author = _userManager.GetUserId(User),
+                    IsEmployee = true,
+                    CreatedDate = help.CreatedDate,
+                    ModifiedDate = DateTime.Now,
+                    Image = viewModel.Image,
+                    ResponseId = help.Id
+                };
+
+                help.ModifiedDate = feedback.ModifiedDate;
+                help.CustomerWasRecentResponse = false;
+                help.EmployeeWasRecentResponse = true;
+
+                if (viewModel.Image != null)
+                {
+                    string wwwRootPath = _hostEnvironment.WebRootPath;
+                    string fileName = Path.GetFileNameWithoutExtension(feedback.Image.FileName);
+                    string extension = Path.GetExtension(feedback.Image.FileName);
+                    feedback.ImageName = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                    string path = Path.Combine(wwwRootPath + "/images/help/responses/", fileName);
+
+                    if (!Directory.Exists(wwwRootPath + "/images/help/responses/"))
+                    {
+                        Directory.CreateDirectory(wwwRootPath + "/images/help/responses/");
+                    }
+
+                    using var fileStream = new FileStream(path, FileMode.Create);
+                    await feedback.Image.CopyToAsync(fileStream);
                 }
 
-                using var fileStream = new FileStream(path, FileMode.Create);
-                await feedback.Image.CopyToAsync(fileStream);
+                _context.Add(feedback);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                return NotFound();
             }
 
-            _context.Add(feedback);
-            await _context.SaveChangesAsync();
-
             return RedirectToAction(nameof(HelpEdit), new { id = help.Id, author = help.Author });
-
         }
 
         public async Task<IActionResult> HelpApprove(int id)

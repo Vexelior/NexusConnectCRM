@@ -8,6 +8,8 @@
     var fullName = _context.Users.Where(u => u.Id == Model.Help.Author).Select(u => u.FirstName + " " + u.LastName).FirstOrDefault();
 }
 
+<div class="alert-area"></div>
+
 <div class="container mt-5 mb-5">
     <div class="row">
         <div class="col-xs-12">
@@ -138,22 +140,27 @@
                                                 <p class="fw-bold text-center">
                                                     This ticket has been completed. <i class="fa fa-check text-success"></i>
                                                 </p>
+                                                <a class="btn btn-secondary mb-2" href="@Url.Action("Index", "Help", new { area = "Employee" })">Cancel</a>
                                             }
                                             else if (Model.Help.IsRejected && !Model.Help.IsApproved)
                                             {
                                                 <p class="fw-bold text-center">
                                                     This ticket has been rejected. <i class="fa fa-times text-danger"></i>
                                                 </p>
+                                                <a class="btn btn-secondary mb-2" href="@Url.Action("Index", "Help", new { area = "Employee" })">Cancel</a>
                                             }
                                             else if (Model.Help.IsPending)
                                             {
-                                                <div class="mb-2 text-center mb-2">
+                                                <div class="mb-2">
                                                     <p class="fw-bold text-center">
                                                         This ticket is pending approval. <i class="fa fa-exclamation-circle text-warning"></i>
                                                     </p>
-                                                    <button type="button" class="btn btn-dark" style="width: auto;" data-bs-toggle="modal" data-bs-target="#TicketOptionsModal">
-                                                        Options
-                                                    </button>
+                                                    <div class="d-grid gap-2 d-md-block">
+                                                        <a class="btn btn-secondary" href="@Url.Action("Index", "Help", new { area = "Employee" })">Cancel</a>
+                                                        <button type="button" class="btn btn-dark" style="width: auto;" data-bs-toggle="modal" data-bs-target="#TicketOptionsModal">
+                                                            Options
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             }
                                             else
@@ -213,18 +220,26 @@
     </div>
 </div>
 
-<script>
+<script type="text/javascript">
     const responseText = document.getElementById("ResponseText");
     const helpResponseForm = document.getElementById("helpResponseForm");
-    let submitButton = document.getElementById("submitButton");
+    const submitButton = document.getElementById("submitButton");
 
     helpResponseForm.addEventListener("submit", function (event) {
         if (responseText.value === "") {
             event.preventDefault();
-            alert("Please enter a response.");
-            submitButton.disabled = false;
-            submitButton.innerHTML = "Save";
-            submitButton.style.cursor = 'default';
+            const alert = document.createElement("div");
+            alert.classList.add("alert", "alert-danger", "alert-dismissible", "fade", "show", "mt-2");
+            alert.setAttribute("role", "alert");
+            alert.innerHTML = "<strong>Response</strong> is required.";
+
+            const alertButton = document.createElement("button");
+            alertButton.setAttribute("type", "button");
+            alertButton.classList.add("btn-close");
+            alertButton.setAttribute("data-bs-dismiss", "alert");
+            alertButton.setAttribute("aria-label", "Close");
+            alert.appendChild(alertButton);
+            $('.alert-area').prepend(alert);
         }
         else {
             submitButton.disabled = true;

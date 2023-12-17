@@ -10,16 +10,10 @@ namespace NexusConnectCRM.Areas.Customer.Controllers
 {
     [Area("Customer")]
     [Authorize(Roles = "Customer,Admin,Employee")]
-    public class IndexController : Controller
+    public class IndexController(ApplicationDbContext context, UserManager<ApplicationUser> userManager) : Controller
     {
-        private readonly ApplicationDbContext _context;
-        private readonly UserManager<ApplicationUser> _userManager;
-
-        public IndexController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
-        {
-            _context = context;
-            _userManager = userManager;
-        }
+        private readonly ApplicationDbContext _context = context;
+        private readonly UserManager<ApplicationUser> _userManager = userManager;
 
         public async Task<IActionResult> Index()
         {

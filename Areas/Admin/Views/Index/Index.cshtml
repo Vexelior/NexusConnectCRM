@@ -45,27 +45,5 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">User Management</h5>
-                    <ul class="list-group">
-                        @foreach (var user in Model.Users)
-                        {
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <p>@user.UserName</p>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <a class="btn btn-secondary" href="@Url.Action("EditUser", "User", new { area = "Admin", id = user.Id })">Edit</a>
-                                    </div>
-                                </div>
-                            </li>
-                        }
-                    </ul>
-                </div>
-            </div>
-        </div>
     </div>
 </div>

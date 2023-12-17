@@ -17,23 +17,21 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var users = await _context.Users.ToListAsync();
+            List<ApplicationUser> users = [];
 
-            foreach (ApplicationUser user in users)
+            var IsAdmin = User.IsInRole("Admin");
+            var IsHeadAdmin = User.IsInRole("HeadAdmin");
+
+            if (IsAdmin)
             {
-                var userRoles = await _userManager.GetRolesAsync(user);
-                user.Roles = userRoles.FirstOrDefault();
+                users = await _context.Users.Where(x => !x.Roles.Contains("Employee") &&
+                                                     !x.Roles.Contains("Admin"))
+                                                    .OrderBy(x => x.FirstName)
+                                                    .ToListAsync();
             }
-
-            if (User.IsInRole("Admin"))
+            else if (IsHeadAdmin)
             {
-                foreach (var user in users.ToList())
-                {
-                    if (user.Roles == "Admin")
-                    {
-                        users.Remove(user);
-                    }
-                }
+                users = await _context.Users.ToListAsync();
             }
 
             AdminIndexViewModel viewModel = new()
@@ -47,7 +45,22 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
 
         public async Task<IActionResult> ViewUsers()
         {
-            var users = await _context.Users.OrderBy(u => u.FirstName).ToListAsync();
+            List<ApplicationUser> users = [];
+
+            var IsAdmin = User.IsInRole("Admin");
+            var IsHeadAdmin = User.IsInRole("HeadAdmin");
+
+            if (IsAdmin)
+            {
+                users = await _context.Users.Where(x => !x.Roles.Contains("Employee") &&
+                                                     !x.Roles.Contains("Admin"))
+                                                    .OrderBy(x => x.FirstName)
+                                                    .ToListAsync();
+            }
+            else if (IsHeadAdmin)
+            {
+                users = await _context.Users.ToListAsync();
+            }
 
             if (users is null)
             {

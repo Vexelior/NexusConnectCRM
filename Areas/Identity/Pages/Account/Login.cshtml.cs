@@ -115,41 +115,17 @@ namespace NexusConnectCRM.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     var user = await _signInManager.UserManager.FindByEmailAsync(Input.Email);
+                    var userRoles = await _signInManager.UserManager.GetRolesAsync(user);
 
-                    if (user.Roles.Equals("Prospect"))
+                    return userRoles[0] switch
                     {
-                        return RedirectToAction("Index", "Index", new 
-                        { 
-                            Area = "Prospect" 
-                        });
-                    }
-                    else if (user.Roles.Equals("Customer"))
-                    {
-                        return RedirectToAction("Index", "Index", new
-                        { 
-                            Area = "Customer" 
-                        });
-                    }
-                    else if (user.Roles.Equals("Employee"))
-                    {
-                        return RedirectToAction("Index", "Index", new { 
-                            Area = "Employee" 
-                        });
-                    }
-                    else if (user.Roles.Equals("Admin"))
-                    {
-                        return RedirectToAction("Index", "Index", new
-                        {
-                            Area = "Admin"
-                        });
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", "Home", new
-                        {
-                            Area = "Home"
-                        });
-                    }
+                        "HeadAdmin" => RedirectToAction("Index", "Index", new { Area = "Admin" }),
+                        "Admin" => RedirectToAction("Index", "Index", new { Area = "Admin" }),
+                        "Employee" => RedirectToAction("Index", "Index", new { Area = "Employee" }),
+                        "Customer" => RedirectToAction("Index", "Index", new { Area = "Customer" }),
+                        "Prospect" => RedirectToAction("Index", "Index", new { Area = "Prospect" }),
+                        _ => RedirectToAction("Index", "Home", new { Area = "" }),
+                    };
                 }
                 if (result.RequiresTwoFactor)
                 {

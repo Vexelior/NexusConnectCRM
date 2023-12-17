@@ -23,7 +23,7 @@
                                  .FirstOrDefault();
 }
 
-<div class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0 d-flex sticky-top" id="sidebar" data-aos="fade-right" data-aos-delay="100">
+<div class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0 d-flex sticky-top" id="sidebar" data-aos="fade-right" data-aos-delay="100" style="font-size: 14px !important;">
     <div class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 pt-2 text-white">
         <ul class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start" id="menu">
             <li class="nav-link">
@@ -35,82 +35,80 @@
                 @if (User.IsInRole("Employee"))
                 {
                     <a href="@Url.Action("Index", "Index", new { area = "Employee" })" class="nav-link px-sm-0 px-2">
-                        <span class="fa fa-dashboard">
-                        </span>
-                        &nbsp; &nbsp; Dashboard
+                        <i class="fa fa-dashboard"></i>
+                        <span class="spacer d-none d-sm-inline">Dashboard</span>
                     </a>
                 }
-                else if (User.IsInRole("Admin"))
+                else if (User.IsInRole("Admin") || User.IsInRole("HeadAdmin"))
                 {
                     <a href="@Url.Action("Index", "Index", new { area = "Admin" })" class="nav-link px-sm-0 px-2">
-                        <span class="fa fa-dashboard">
-                        </span>
-                        &nbsp; &nbsp; Dashboard
+                        <i class="fa fa-dashboard"></i>
+                        <span class="spacer d-none d-sm-inline">Dashboard</span>
                     </a>
                 }
             </li>
             <li>
                 <a href="#homeSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="nav-link px-sm-0 px-2">
-                    <span class="fa fa-sticky-note mr-3"></span>
-                    &nbsp;&nbsp;Help Tickets
+                    <i class="fa fa-ticket"></i>
+                    <span class="spacer d-none d-sm-inline">Help Tickets</span>
                     @if (ticketNotificationCount > 0)
                     {
                         @if (ticketNotificationCount > 99)
                         {
-                            <span class="badge bg-danger rounded-pill" style="color: white; font-size: 12px;">99+</span>
+                            <i class="badge bg-danger rounded-pill" style="color: white; font-size: 12px !important; font-style:normal;">99+</i>
                         }
                         else
                         {
-                            <span class="badge bg-danger rounded-pill" style="color: white; font-size: 12px;">@ticketNotificationCount</span>
+                            <i class="badge bg-danger rounded-pill" style="color: white; font-size: 12px !important;">@ticketNotificationCount</i>
                         }
                     }
                 </a>
                 <ul class="collapse list-unstyled" id="homeSubmenu">
                     <li class="nav-item">
                         <a class="dropdown-item" href="@Url.Action("Index", "Help", new { area = "Employee" })">
-                            All Tickets
+                            <span class="spacer d-none d-sm-inline">All Tickets</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="dropdown-item" href="@Url.Action("NewHelp", "Help", new { area = "Employee" })">
-                            New
+                            <span class="spacer d-none d-sm-inline">New</span>
                             @if (ticketsNeedingAttention > 0)
                             {
                                 @if (ticketsNeedingAttention > 99)
                                 {
-                                    <span class="badge bg-danger rounded-pill">99+</span>
+                                    <span class="badge bg-danger rounded-pill" style="color: white; font-size: 12px !important;">99+</span>
                                 }
                                 else
                                 {
-                                    <span class="badge bg-danger rounded-pill">@ticketsNeedingAttention</span>
+                                    <span class="badge bg-danger rounded-pill" style="color: white; font-size: 12px !important;">@ticketsNeedingAttention</span>
                                 }
                             }
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="dropdown-item" href="@Url.Action("PendingHelp", "Help", new { area = "Employee" })">
-                            Pending
+                            <span class="spacer d-none d-sm-inline">Pending</span>
                             @if (pendingHelpTicketsCount > 0)
                             {
                                 @if (pendingHelpTicketsCount > 99)
                                 {
-                                    <span class="badge bg-danger rounded-pill">99+</span>
+                                    <span class="badge bg-danger rounded-pill" style="color: white; font-size: 12px !important;">99+</span>
                                 }
                                 else
                                 {
-                                    <span class="badge bg-danger rounded-pill">@pendingHelpTicketsCount</span>
+                                    <span class="badge bg-danger rounded-pill" style="color: white; font-size: 12px !important;">@pendingHelpTicketsCount</span>
                                 }
                             }
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="dropdown-item" href="@Url.Action("RejectedHelp", "Help", new { area = "Employee" })">
-                            Rejected
+                            <span class="spacer d-none d-sm-inline">Rejected</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="dropdown-item" href="@Url.Action("CompletedHelp", "Help", new { area = "Employee" })">
-                            Completed
+                            <span class="spacer d-none d-sm-inline">Completed</span>
                         </a>
                     </li>
                 </ul>

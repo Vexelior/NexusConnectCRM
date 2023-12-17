@@ -9,7 +9,7 @@ namespace NexusConnectCRM.Areas.Employee.ViewModels
     {
         public int Id { get; set; }
         public HelpInfo Help { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Please enter a response.")]
         public string Response { get; set; }
         [NotMapped]
         [DisplayName("Upload Image")]
