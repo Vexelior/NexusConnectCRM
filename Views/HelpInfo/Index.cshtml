@@ -1,6 +1,4 @@
-﻿@model NexusConnectCRM.ViewModels.HelpInfoData.HelpInfoIndexViewModel
-
-@{
+﻿@{
     ViewData["Title"] = "Help Tickets";
 
     if (User.IsInRole("Prospect"))
@@ -25,79 +23,37 @@
     }
 }
 
+<div class="container mt-3 mb-3" data-aos="fade-left" data-aos-duration="1000">
+    <h1 class="text-center">My Tickets</h1>
+    <a class="btn default-btn mb-2" href="@Url.Action("Create", "HelpInfo")">New Ticket</a>
+    <div class="row mt-3">
+        <div class="col">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" id="openTickets" aria-current="page" href="#">All</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="newTickets" href="#">New</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pendingTickets" href="#">Pending</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="closedTickets" href="#">Closed</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="rejectedTickets" href="#">Rejected</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="col" id="ticketsDisplay">
+                @*Partial View Content Will Go Here*@
+            </div>
+        </div>
+    </div>
+</div>
 
-@if (Model.HelpInfos.Count() == 0)
-{
-    <div class="container mt-3" data-aos="fade-left" data-aos-duration="1000">
-        <h1 class="text-center">My Tickets</h1>
-        <a class="btn default-btn mb-2" href="@Url.Action("Create", "HelpInfo")">New Ticket</a>
-        <div class="row">
-            <div class="col">
-                <h3 class="text-center text-bold">
-                    No Tickets
-                </h3>
-            </div>
-        </div>
-    </div>
-}
-else
-{
-    <div class="container mt-3 mb-3" data-aos="fade-left" data-aos-duration="1000">
-        <h1 class="text-center">My Tickets</h1>
-        <a class="btn default-btn mb-2" href="@Url.Action("Create", "HelpInfo")">New Ticket</a>
-        <div class="row">
-            <div class="col" style="margin: 0 auto;">
-                @foreach (var help in Model.HelpInfos)
-                {
-                    <div class="card mt-4 shadow">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                @if (help.EmployeeWasRecentResponse && !help.IsCompleted)
-                                {
-                                    <span class="fa fa-exclamation-circle" title="Is Waiting For Response..." style="color: red;"></span>
-                                }
-                                @help.Title
-                            </h5>
-                            <p>Submitted: @help.CreatedDate</p>
-                            <a href="@Url.Action("Details", "HelpInfo", new { id = help.Id, author = help.Author })" class="btn default-btn">View</a>
-                        </div>
-                        <div class="card-footer d-flex d-inline">
-                            @if (help.IsApproved)
-                            {
-                                <p class="m-lg-2">Approved: <i class="fas fa-check-circle" style="color: green;"></i></p>
-                            }
-                            else
-                            {
-                                <p class="m-lg-2">Approved: <i class="fas fa-times-circle" style="color: red;"></i></p>
-                            }
-                            @if (help.IsCompleted)
-                            {
-                                <p class="m-lg-2">Completed: <i class="fas fa-check-circle" style="color: green;"></i></p>
-                            }
-                            else
-                            {
-                                <p class="m-lg-2">Completed: <i class="fas fa-times-circle" style="color: red;"></i></p>
-                            }
-                            @if (help.IsPending)
-                            {
-                                <p class="m-lg-2">Pending: <i class="fas fa-check-circle" style="color: green;"></i></p>
-                            }
-                            else
-                            {
-                                <p class="m-lg-2">Pending: <i class="fas fa-times-circle" style="color: red;"></i></p>
-                            }
-                            @if (help.IsRejected)
-                            {
-                                <p class="m-lg-2">Rejected: <i class="fas fa-check-circle" style="color: green;"></i></p>
-                            }
-                            else
-                            {
-                                <p class="m-lg-2">Rejected: <i class="fas fa-times-circle" style="color: red;"></i></p>
-                            }
-                        </div>
-                    </div>
-                }
-            </div>
-        </div>
-    </div>
-}
+<script src="~/js/HelpIndex.js" asp-append-version="true" defer></script>

@@ -1,0 +1,46 @@
+﻿@model List<NexusConnectCRM.Data.Models.Help.HelpInfo>
+@{
+
+}
+
+@if (Model.Count() == 0)
+{
+    <p class="text-center">
+        No Tickets
+    </p>
+}
+else
+{
+    @foreach (var help in Model)
+    {
+        <div class="card mt-4 shadow">
+            <div class="card-body">
+                <h5 class="card-title">
+                    @if (help.IsRejected)
+                    {
+                        <span class="fa fa-xmark-circle text-danger" title="Rejected..."></span>
+                    }
+                    else if (help.IsCompleted)
+                    {
+                        <span class="fa fa-check-circle text-success" title="Completed..."></span>
+                    }
+                    else if (help.IsApproved && help.CustomerWasRecentResponse)
+                    {
+                        <span class="fa fa-check text-success" title="Approved..."></span>
+                    }
+                    else if (help.IsPending && help.CustomerWasRecentResponse)
+                    {
+                        <span class="fa fa-clock-rotate-left text-warning" title="Pending..."></span>
+                    }
+                    else if (help.EmployeeWasRecentResponse && !help.IsCompleted)
+                    {
+                        <span class="fa fa-exclamation-circle text-danger" title="New Response..."></span>
+                    }
+                    @help.Title
+                </h5>
+                <p>Submitted: @help.CreatedDate</p>
+                <a href="@Url.Action("Details", "HelpInfo", new { id = help.Id, author = help.Author })" class="btn default-btn">View</a>
+            </div>
+        </div>
+    }
+}

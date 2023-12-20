@@ -5,11 +5,12 @@
 
 @{
     int unreadTickets = _context.Help.Where(x => x.Author == _userManager.GetUserId(User) &&
-                                                 x.EmployeeWasRecentResponse == true)
+                                                 x.EmployeeWasRecentResponse == true &&
+                                                 x.IsRejected != true)
                                                  .Count();
 }
 
-<div class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0 d-flex sticky-top" id="sidebar" data-aos="fade-right" data-aos-delay="100">
+<div class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0 d-flex sticky-top" id="sidebar" data-aos="fade-right" data-aos-delay="100" style="font-size: 12px !important;">
     <div class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 pt-2 text-white">
         <ul class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start" id="menu">
             <li class="nav-item">
@@ -27,11 +28,11 @@
                     <i class="fa fa-ticket"></i><span class="spacer d-none d-sm-inline">Help</span>
                     @if (unreadTickets > 99)
                     {
-                        <span class="badge bg-danger rounded-pill" style="color: white; font-size: 12px;">99+</span>
+                        <span class="badge bg-danger rounded-pill" style="color: white; font-size: 12px !important;">99+</span>
                     }
                     else if (unreadTickets > 0)
                     {
-                        <span class="badge bg-danger rounded-pill" style="color: white; font-size: 12px;">@unreadTickets</span>
+                        <span class="badge bg-danger rounded-pill" style="color: white; font-size: 12px !important;">@unreadTickets</span>
                     }
                 </a>
             </li>

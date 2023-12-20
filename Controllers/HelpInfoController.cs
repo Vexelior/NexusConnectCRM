@@ -8,20 +8,13 @@ using NexusConnectCRM.ViewModels.HelpInfoData;
 
 namespace NexusConnectCRM.Controllers
 {
-    public class HelpInfoController : Controller
+    public class HelpInfoController(ApplicationDbContext context,
+                                    UserManager<ApplicationUser> userManager,
+                                    IWebHostEnvironment hostEnvironment) : Controller
     {
-        private readonly ApplicationDbContext _context;
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly IWebHostEnvironment _hostEnvironment;
-
-        public HelpInfoController(ApplicationDbContext context, 
-                                  UserManager<ApplicationUser> userManager,
-                                  IWebHostEnvironment hostEnvironment)
-        {
-            _context = context;
-            _userManager = userManager;
-            _hostEnvironment = hostEnvironment;
-        }
+        private readonly ApplicationDbContext _context = context;
+        private readonly UserManager<ApplicationUser> _userManager = userManager;
+        private readonly IWebHostEnvironment _hostEnvironment = hostEnvironment;
 
         // GET: HelpInfo/Details/5
         public async Task<IActionResult> Index()
@@ -33,17 +26,7 @@ namespace NexusConnectCRM.Controllers
                 return NotFound();
             }
 
-            var userHelpTickets = await _context.Help.Where(u => u.Author == user.Id)
-                                                     .OrderByDescending(u => u.EmployeeWasRecentResponse)
-                                                     .ThenByDescending(u => u.CreatedDate)
-                                                     .ToListAsync();
-
-            HelpInfoIndexViewModel viewModel = new()
-            {
-                HelpInfos = userHelpTickets,
-            };
-
-            return View("Index", viewModel);
+            return View();
         }
 
         // GET: HelpInfo/Create
@@ -213,6 +196,99 @@ namespace NexusConnectCRM.Controllers
                     throw;
                 }
             }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetOpenTickets()
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var openTickets = await _context.Help.Where(u => u.Author == user.Id)
+                                                 .OrderByDescending(u => u.CreatedDate)
+                                                 .ToListAsync();
+
+            return PartialView("_Tickets", openTickets);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetRejectedTickets()
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var rejectedTickets = await _context.Help.Where(u => u.Author == user.Id &&
+                                                                          u.IsRejected)
+                                                     .OrderByDescending(u => u.CreatedDate)
+                                                     .ToListAsync();
+
+
+            return PartialView("_Tickets", rejectedTickets);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetPendingTickets()
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var pendingTickets = await _context.Help.Where(u => u.Author == user.Id &&
+                                                                         u.IsPending && u.CustomerWasRecentResponse)
+                                                    .OrderByDescending(u => u.CreatedDate)
+                                                    .ToListAsync();
+
+            return PartialView("_Tickets", pendingTickets);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetRespondedTickets()
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var respondedTickets = await _context.Help.Where(u => u.Author == user.Id &&
+                                                                         u.IsApproved && u.EmployeeWasRecentResponse)
+                                                      .OrderByDescending(u => u.CreatedDate)
+                                                      .ToListAsync();
+
+
+            return PartialView("_Tickets", respondedTickets);
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> GetClosedTickets()
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var closedTickets = await _context.Help.Where(u => u.Author == user.Id &&
+                                                                        u.IsCompleted)
+                                                   .OrderByDescending(u => u.CreatedDate)
+                                                   .ToListAsync();
+
+
+            return PartialView("_Tickets", closedTickets);
         }
 
         private bool HelpInfoExists(int id)
