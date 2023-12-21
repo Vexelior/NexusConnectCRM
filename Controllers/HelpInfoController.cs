@@ -21,12 +21,22 @@ namespace NexusConnectCRM.Controllers
         {
             var user = await _userManager.GetUserAsync(User);
 
+            int newResponses = await _context.Help.Where(h => h.Author == user.Id &&
+                                                                       h.IsApproved &&
+                                                                       h.EmployeeWasRecentResponse)
+                                                  .CountAsync();
+
+            HelpInfoIndexViewModel viewModel = new()
+            {
+                NewResponses = newResponses
+            };
+
             if (user is null)
             {
                 return NotFound();
             }
 
-            return View();
+            return View("Index", viewModel);
         }
 
         // GET: HelpInfo/Create

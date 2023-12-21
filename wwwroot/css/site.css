@@ -2365,6 +2365,24 @@ section {
     margin-bottom: 20px;
 }
 
+.help-ticket-tabs {
+    font-size: 16px;
+}
+
+    .help-ticket-tabs span {
+        font-size: 12px !important;
+    }
+
+    .help-ticket-tabs a {
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        color: black;
+    }
+
+        .help-ticket-tabs a:hover {
+            color: #47b2e4;
+        }
+
 /*--------------------------------------------------------------
     # Portal Account Options
 --------------------------------------------------------------*/

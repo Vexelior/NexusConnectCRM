@@ -1,4 +1,6 @@
-﻿@{
+﻿@model NexusConnectCRM.ViewModels.HelpInfoData.HelpInfoIndexViewModel
+
+@{
     ViewData["Title"] = "Help Tickets";
 
     if (User.IsInRole("Prospect"))
@@ -26,14 +28,17 @@
 <div class="container mt-3 mb-3" data-aos="fade-left" data-aos-duration="1000">
     <h1 class="text-center">My Tickets</h1>
     <a class="btn default-btn mb-2" href="@Url.Action("Create", "HelpInfo")">New Ticket</a>
-    <div class="row mt-3">
+    <div class="row mt-3 help-ticket-tabs">
         <div class="col">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
                     <a class="nav-link active" id="openTickets" aria-current="page" href="#">All</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="newTickets" href="#">New</a>
+                    <a class="nav-link" id="newTickets" href="#">
+                        New
+                        <span class="badge rounded-pill bg-danger">@Model.NewResponses</span>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="pendingTickets" href="#">Pending</a>
