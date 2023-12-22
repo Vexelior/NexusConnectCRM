@@ -37,7 +37,17 @@
                 <li class="nav-item">
                     <a class="nav-link" id="newTickets" href="#">
                         New
-                        <span class="badge rounded-pill bg-danger">@Model.NewResponses</span>
+                        @if (Model.NewResponses > 0)
+                        {
+                            @if (Model.NewResponses > 99)
+                            {
+                                <span class="badge rounded-pill bg-danger">99+</span>
+                            }
+                            else
+                            {
+                                <span class="badge rounded-pill bg-danger">@Model.NewResponses</span>
+                            }
+                        }
                     </a>
                 </li>
                 <li class="nav-item">
