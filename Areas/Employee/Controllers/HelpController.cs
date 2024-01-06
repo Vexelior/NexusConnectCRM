@@ -183,7 +183,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
 
             if (ModelState.IsValid)
             {
-                string name = _context.Users.Where(u => u.Id == _userManager.GetUserId(User)).Select(u => u.FirstName + " " + u.LastName).FirstOrDefault();
+                string name = _context.Users.Where(u => u.Id == _userManager.GetUserId(User)).Select(u => u.FirstName).FirstOrDefault();
 
                 DateTime date = DateTime.Now;
                 string dateString = date.ToString("MM/dd/yyyy h:mmtt");

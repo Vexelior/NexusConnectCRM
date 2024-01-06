@@ -255,7 +255,10 @@ namespace NexusConnectCRM.Controllers
             }
 
             var pendingTickets = await _context.Help.Where(u => u.Author == user.Id &&
-                                                                         u.IsPending && u.CustomerWasRecentResponse)
+                                                                         u.IsPending && u.CustomerWasRecentResponse &&
+                                                                         !u.IsRejected &&
+                                                                         !u.IsCompleted &&
+                                                                         !u.IsApproved)
                                                     .OrderByDescending(u => u.CreatedDate)
                                                     .ToListAsync();
 
