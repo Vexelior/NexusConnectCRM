@@ -25,6 +25,11 @@ document.getElementsByClassName("chat-btn")[0].addEventListener("click", functio
 
 document.getElementById("sendMessage").addEventListener("click", function (event) {
     var message = document.getElementById("Message").value;
+
+    if (message == "") {
+        return;
+    }
+
     connection.invoke("SendMessage", fullName, message).catch(function (err) {
         return console.error(err.toString());
     });
@@ -36,9 +41,10 @@ connection.on("ReceiveMessage", function (user, message) {
         $(`<li><strong><u><i>You</u></i></strong>: ${message}</li>`).appendTo("#chat-messages");
     } else {
         $(`<li><strong><u>${user}</u></strong>: ${message}</li>`).appendTo("#chat-messages");
-        // clear 
         document.getElementsByClassName("chat-btn")[0].innerHTML = "";
         $('.chat-btn')[0].innerHTML = `<span class="badge rounded-pill bg-danger">!</span>`;
+        document.getElementById("chat-notification").muted = false;
+        document.getElementById("chat-notification").play();
     }
     document.getElementById("Message").value = "";
 });

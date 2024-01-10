@@ -39,6 +39,7 @@
     <Folder Include="wwwroot\fonts\" />
     <Folder Include="wwwroot\images\LogIn\" />
     <Folder Include="wwwroot\images\Account\" />
+    <Folder Include="wwwroot\sounds\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="wwwroot\js\PasswordStrength.js" />
