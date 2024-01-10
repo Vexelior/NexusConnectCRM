@@ -1,6 +1,6 @@
 ﻿using NexusConnectCRM.Areas.Prospect.Helper;
 
-namespace NexusConnectCRM.Areas.Prospect.Data
+namespace NexusConnectCRM.Helpers
 {
     public class Countries
     {

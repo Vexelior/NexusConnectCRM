@@ -3,12 +3,12 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using NexusConnectCRM.Areas.Prospect.Data;
 using NexusConnectCRM.Areas.Prospect.ViewModels;
 using NexusConnectCRM.Data;
 using NexusConnectCRM.Data.Models.Company;
 using NexusConnectCRM.Data.Models.Identity;
 using NexusConnectCRM.Data.Models.Prospect;
+using NexusConnectCRM.Helpers;
 
 namespace NexusConnectCRM.Areas.Prospect.Controllers
 {
@@ -33,8 +33,8 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
 
             ProspectCompanyDetailsViewModel model = new()
             {
-                ListOfCountries = new List<SelectListItem>(),
-                ListOfStates = new List<SelectListItem>()
+                ListOfCountries = [],
+                ListOfStates = []
             };
 
             foreach (var country in countryDetails)

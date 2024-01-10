@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NexusConnectCRM.Data;
@@ -8,6 +9,7 @@ using NexusConnectCRM.ViewModels.HelpInfoData;
 
 namespace NexusConnectCRM.Controllers
 {
+    [Authorize]
     public class HelpInfoController(ApplicationDbContext context,
                                     UserManager<ApplicationUser> userManager,
                                     IWebHostEnvironment hostEnvironment) : Controller
@@ -16,7 +18,6 @@ namespace NexusConnectCRM.Controllers
         private readonly UserManager<ApplicationUser> _userManager = userManager;
         private readonly IWebHostEnvironment _hostEnvironment = hostEnvironment;
 
-        // GET: HelpInfo/Details/5
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -39,7 +40,6 @@ namespace NexusConnectCRM.Controllers
             return View("Index", viewModel);
         }
 
-        // GET: HelpInfo/Create
         public IActionResult Create()
         {
             return View();

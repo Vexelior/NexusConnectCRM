@@ -72,59 +72,6 @@
             </div>
         </div>
     </div>
-    @*Bootstrap Chatbox Modal*@
-    <input type="checkbox" id="check">
-    <label class="chat-btn" for="check">
-        <i class="fa fa-comment comment"></i>
-        <i class="fa fa-x close"></i>
-    </label>
-    <div class="chat-wrapper">
-        <div class="chat-header">
-            <h6>Chat</h6>
-        </div>
-        <div class="ps-3">
-            <ul id="chat-messages"></ul>
-        </div>
-        <div class="chat-form">
-            <textarea class="form-control" id="Message" placeholder="Message"></textarea>
-            <button class="btn default-btn" id="sendMessage">Submit</button>
-        </div>
-    </div>
 </div>
 
 <script src="~/js/HelpIndex.js" asp-append-version="true" defer></script>
-<script src='https://cdn.jsdelivr.net/npm/@@microsoft/signalr@8.0.0/dist/browser/signalr.js'></script>
-
-<script>
-    const connection = new signalR.HubConnectionBuilder().withUrl("/chat").build();
-
-    connection.start().catch(function (err) {
-        return console.error(err.toString());
-    });
-
-    document.getElementsByClassName("chat-btn")[0].addEventListener("click", function () {
-        document.getElementsByClassName("chat-btn")[0].innerHTML = `<i class="fa fa-comment comment"></i><i class="fa fa-x close"></i>`;
-    });
-
-    document.getElementById("sendMessage").addEventListener("click", function (event) {
-        var user = "@firstAndLastName";
-        var message = document.getElementById("Message").value;
-        connection.invoke("SendMessage", user, message).catch(function (err) {
-            return console.error(err.toString());
-        });
-        event.preventDefault();
-    });
-
-    connection.on("ReceiveMessage", function (user, message) {
-        // Make the user's name bold and underline it
-        if (user == "@firstAndLastName") {
-            $(`<li><strong><u><i>You</u></i></strong>: ${message}</li>`).appendTo("#chat-messages");
-        } else {
-            $(`<li><strong><u>${user}</u></strong>: ${message}</li>`).appendTo("#chat-messages");
-            // clear 
-            document.getElementsByClassName("chat-btn")[0].innerHTML = "";
-            $('.chat-btn')[0].innerHTML = `<span class="badge rounded-pill bg-danger">!</span>`;
-        }
-        document.getElementById("Message").value = "";
-    });
-</script>
