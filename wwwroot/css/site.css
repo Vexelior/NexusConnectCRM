@@ -2462,3 +2462,102 @@ button:focus {
         background: #c73f3f;
         border: 2px solid #dc3545;
     }
+
+/*--------------------------------------------------------------
+    # Chat App
+--------------------------------------------------------------*/
+.chat-btn {
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+    cursor: pointer
+}
+
+    .chat-btn .close {
+        display: none
+    }
+
+    .chat-btn i {
+        transition: all 0.9s ease
+    }
+
+#check:checked ~ .chat-btn i {
+    display: block;
+    pointer-events: auto;
+    transform: rotate(180deg);
+}
+
+#check:checked ~ .chat-btn .comment {
+    display: none;
+}
+
+#check:checked ~ .chat-btn .close {
+    display: block;
+}
+
+.chat-btn i {
+    font-size: 22px;
+    color: #fff !important
+}
+
+.chat-btn {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    background-color: #37517e;
+    color: #fff;
+    font-size: 22px;
+    border: none
+}
+
+.chat-wrapper {
+    position: absolute;
+    right: 20px;
+    bottom: 100px;
+    width: 300px;
+    background-color: #fff;
+    border-radius: 5px;
+    opacity: 0;
+    transition: all 0.4s;
+    border-left: 1px solid #37517e;
+    border-right: 1px solid #37517e;
+    border-bottom: 1px solid #37517e;
+}
+
+#check:checked ~ .chat-wrapper {
+    opacity: 1
+}
+
+.chat-header {
+    padding: 13px;
+    background-color: #37517e;
+    border-radius: 5px 5px 0px 0px;
+    margin-bottom: 10px;
+    color: #fff
+}
+
+.chat-form {
+    padding: 15px
+}
+
+    .chat-form input,
+    textarea,
+    button {
+        margin-bottom: 10px
+    }
+
+    .chat-form textarea {
+        resize: none
+    }
+
+.form-control:focus,
+.btn:focus {
+    box-shadow: none
+}
+
+#check {
+    display: none !important
+}

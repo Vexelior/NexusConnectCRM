@@ -27,6 +27,8 @@ namespace NexusConnectCRM
                 options.EnableEndpointRouting = false
             );
 
+            builder.Services.AddSignalR();
+
             var app = builder.Build();
 
             // Create a service scope to get an ApplicationDbContext instance \\
