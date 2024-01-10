@@ -2525,6 +2525,14 @@ button:focus {
     border-left: 1px solid #37517e;
     border-right: 1px solid #37517e;
     border-bottom: 1px solid #37517e;
+    height: 400px;
+    overflow: hidden
+}
+
+#chat-messages {
+    list-style: none;
+    padding: 0;
+    margin: 0
 }
 
 #check:checked ~ .chat-wrapper {
@@ -2540,7 +2548,10 @@ button:focus {
 }
 
 .chat-form {
-    padding: 15px
+    padding: 15px;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
 }
 
     .chat-form input,
@@ -2549,9 +2560,9 @@ button:focus {
         margin-bottom: 10px
     }
 
-    .chat-form textarea {
-        resize: none
-    }
+        .chat-form input[type=text] {
+            width: 100%;
+        }
 
 .form-control:focus,
 .btn:focus {

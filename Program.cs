@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using NexusConnectCRM.Data;
 using NexusConnectCRM.Data.Models.Identity;
 using NexusConnectCRM.Extensions;
+using NexusConnectCRM.Extensions.SignalR;
 
 namespace NexusConnectCRM
 {
@@ -71,6 +72,11 @@ namespace NexusConnectCRM
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapHub<ChatHub>("/chat");
+            });
 
             app.MapControllerRoute(
                 name: "areas",
