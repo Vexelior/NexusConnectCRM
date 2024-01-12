@@ -1,6 +1,21 @@
 ﻿const chatConnection = new signalR.HubConnectionBuilder().withUrl("/chat").build();
 const notifyConnection = new signalR.HubConnectionBuilder().withUrl("/notify").build();
 
+var fullName = "";
+
+$(function () {
+    $.ajax({
+        url: "/IdentityHelper/GetName",
+        type: "GET",
+        success: function (result) {
+            fullName = result;
+        },
+        error: function (error) {
+            return "Invalid User";
+        }
+    });
+});
+
 chatConnection.start().catch(function (err) {
     return console.error(err.toString());
 });
@@ -14,21 +29,7 @@ document.getElementsByClassName("chat-btn")[0].addEventListener("click", functio
 });
 
 document.getElementById("sendMessage").addEventListener("click", function (event) {
-    var fullName = "";
     var message = document.getElementById("Message").value;
-
-    $(function () {
-        $.ajax({
-            url: "/IdentityHelper/GetName",
-            type: "GET",
-            success: function (result) {
-                fullName = result;
-            },
-            error: function (error) {
-                return "Invalid User";
-            }
-        });
-    });
 
     if (message == "") {
         return;
