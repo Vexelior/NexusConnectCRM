@@ -73,12 +73,8 @@ namespace NexusConnectCRM
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapHub<ChatHub>("/chat");
-                endpoints.MapHub<NotificationHub>("/notify");
-
-            });
+            app.MapHub<ChatHub>("/chat");
+            app.MapHub<NotificationHub>("/notify");
 
             app.MapControllerRoute(
                 name: "areas",

@@ -27,6 +27,19 @@ namespace NexusConnectCRM.Controllers
         }
 
         [HttpGet]
+        public async Task<string> GetUserId(string usersName)
+        {
+            var user = await _userManager.Users.FirstOrDefaultAsync(x => x.FirstName + " " + x.LastName == usersName);
+
+            if (user is null)
+            {
+                return null;
+            }
+
+            return user.Id;
+        }
+
+        [HttpGet]
         public async Task<int> GetTotalEmployeeRespondedTickets(string userId)
         {
             return await _context.Help.Where(h => h.Author == userId && h.EmployeeWasRecentResponse).CountAsync();
