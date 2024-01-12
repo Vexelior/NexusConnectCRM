@@ -56,7 +56,12 @@ namespace NexusConnectCRM.Extensions
                     EmailConfirmed = true,
                     FirstName = "HeadAdmin",
                     LastName = "User",
-                    Roles = "HeadAdmin"
+                    Roles = "HeadAdmin",
+                    SecurityStamp = Guid.NewGuid().ToString("D"),
+                    ConcurrencyStamp = Guid.NewGuid().ToString("D"),
+                    LockoutEnabled = false,
+                    PhoneNumberConfirmed = false,
+                    TwoFactorEnabled = false
                 };
                 IdentityResult headadminResult = userManager.CreateAsync(headAdminUser, "Pass1234!").Result;
 
@@ -76,7 +81,12 @@ namespace NexusConnectCRM.Extensions
                     EmailConfirmed = true,
                     FirstName = "Admin",
                     LastName = "User",
-                    Roles = "Admin"
+                    Roles = "Admin",
+                    SecurityStamp = Guid.NewGuid().ToString("D"),
+                    ConcurrencyStamp = Guid.NewGuid().ToString("D"),
+                    LockoutEnabled = false,
+                    PhoneNumberConfirmed = false,
+                    TwoFactorEnabled = false
                 };
                 IdentityResult adminResult = userManager.CreateAsync(adminUser, "Pass1234!").Result;
 
@@ -96,7 +106,12 @@ namespace NexusConnectCRM.Extensions
                     EmailConfirmed = true,
                     FirstName = "Customer",
                     LastName = "User",
-                    Roles = "Customer"
+                    Roles = "Customer",
+                    SecurityStamp = Guid.NewGuid().ToString("D"),
+                    ConcurrencyStamp = Guid.NewGuid().ToString("D"),
+                    LockoutEnabled = false,
+                    PhoneNumberConfirmed = false,
+                    TwoFactorEnabled = false
                 };
                 IdentityResult customerResult = userManager.CreateAsync(customerUser, "Pass1234!").Result;
 
@@ -116,7 +131,12 @@ namespace NexusConnectCRM.Extensions
                     EmailConfirmed = true,
                     FirstName = "Employee",
                     LastName = "User",
-                    Roles = "Employee"
+                    Roles = "Employee",
+                    SecurityStamp = Guid.NewGuid().ToString("D"),
+                    ConcurrencyStamp = Guid.NewGuid().ToString("D"),
+                    LockoutEnabled = false,
+                    PhoneNumberConfirmed = false,
+                    TwoFactorEnabled = false
                 };
                 IdentityResult employeeResult = userManager.CreateAsync(employeeUser, "Pass1234!").Result;
 
@@ -136,7 +156,12 @@ namespace NexusConnectCRM.Extensions
                     EmailConfirmed = true,
                     FirstName = "Prospect",
                     LastName = "User",
-                    Roles = "Prospect"
+                    Roles = "Prospect",
+                    SecurityStamp = Guid.NewGuid().ToString("D"),
+                    ConcurrencyStamp = Guid.NewGuid().ToString("D"),
+                    LockoutEnabled = false,
+                    PhoneNumberConfirmed = false,
+                    TwoFactorEnabled = false
                 };
                 IdentityResult prospectResult = userManager.CreateAsync(prospectUser, "Pass1234!").Result;
 

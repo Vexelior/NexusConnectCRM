@@ -76,6 +76,8 @@ namespace NexusConnectCRM
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHub<ChatHub>("/chat");
+                endpoints.MapHub<NotificationHub>("/notify");
+
             });
 
             app.MapControllerRoute(

@@ -28,11 +28,15 @@
                     <i class="fa fa-ticket"></i><span class="spacer d-none d-sm-inline">Help</span>
                     @if (unreadTickets > 99)
                     {
-                        <span class="badge bg-danger rounded-pill" style="color: white; font-size: 12px !important;">99+</span>
+                        <span id="notification-count" class="badge bg-danger rounded-pill" style="color: white; font-size: 12px !important;">
+                            99+
+                        </span>
                     }
                     else if (unreadTickets > 0)
                     {
-                        <span class="badge bg-danger rounded-pill" style="color: white; font-size: 12px !important;">@unreadTickets</span>
+                        <span id="notification-count" class="badge bg-danger rounded-pill" style="color: white; font-size: 12px !important;">
+                            @unreadTickets
+                        </span>
                     }
                 </a>
             </li>
@@ -40,4 +44,5 @@
         @await Html.PartialAsync("_PortalAccountOptions")
         @await Html.PartialAsync("_FooterPortal")
     </div>
+    <audio id="ticket-notification" src="~/sounds/ticket-notify.mp3" muted></audio>
 </div>

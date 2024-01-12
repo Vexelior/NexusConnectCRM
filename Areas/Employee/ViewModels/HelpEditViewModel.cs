@@ -15,6 +15,7 @@ namespace NexusConnectCRM.Areas.Employee.ViewModels
         [DisplayName("Upload Image")]
         public IFormFile Image { get; set; }
         public List<HelpResponseInfo> HelpResponses { get; set; }
+        public string Responder { get; set; }
         public HelpEditViewModel() { }
     }
 }

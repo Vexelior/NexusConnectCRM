@@ -8,25 +8,22 @@ using Microsoft.EntityFrameworkCore;
 using NexusConnectCRM.Areas.Employee.ViewModels;
 using NexusConnectCRM.Data.Models.Help;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.SignalR;
+using NexusConnectCRM.Extensions.SignalR;
 
 namespace NexusConnectCRM.Areas.Employee.Controllers
 {
     [Area("Employee")]
     [Authorize(Roles = "Employee,Admin,HeadAdmin")]
-    public class HelpController : Controller
+    public class HelpController(ApplicationDbContext context,
+                          UserManager<ApplicationUser> userManager,
+                          IWebHostEnvironment hostEnvironment,
+                          IHubContext<NotificationHub> hubContext) : Controller
     {
-        private readonly ApplicationDbContext _context;
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly IWebHostEnvironment _hostEnvironment;
-
-        public HelpController(ApplicationDbContext context,
-                              UserManager<ApplicationUser> userManager,
-                              IWebHostEnvironment hostEnvironment)
-        {
-            _context = context;
-            _userManager = userManager;
-            _hostEnvironment = hostEnvironment;
-        }
+        private readonly ApplicationDbContext _context = context;
+        private readonly UserManager<ApplicationUser> _userManager = userManager;
+        private readonly IWebHostEnvironment _hostEnvironment = hostEnvironment;
+        private readonly IHubContext<NotificationHub> _hubContext = hubContext;
 
         public async Task<IActionResult> Index(string searchQuery)
         {
@@ -135,7 +132,8 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             {
                 Id = id,
                 Help = help,
-                HelpResponses = feedback
+                HelpResponses = feedback,
+                Responder = await _userManager.GetUserIdAsync(await _userManager.GetUserAsync(User))
             };
 
             await SetEmployeeViewed(id);
