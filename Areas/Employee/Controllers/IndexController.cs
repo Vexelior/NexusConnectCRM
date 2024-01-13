@@ -9,7 +9,7 @@ using NexusConnectCRM.Areas.Employee.ViewModels;
 namespace NexusConnectCRM.Areas.Employee.Controllers
 {
     [Area("Employee")]
-    [Authorize(Roles = "Employee, Admin")]
+    [Authorize(Roles = "Employee,Admin,HeadAdmin,Help Desk")]
     public class IndexController : Controller
     {
         private readonly ApplicationDbContext _context;

@@ -14,7 +14,7 @@ using NexusConnectCRM.Extensions.SignalR;
 namespace NexusConnectCRM.Areas.Employee.Controllers
 {
     [Area("Employee")]
-    [Authorize(Roles = "Employee,Admin,HeadAdmin")]
+    [Authorize(Roles = "Employee,Admin,HeadAdmin,Help Desk")]
     public class HelpController(ApplicationDbContext context,
                           UserManager<ApplicationUser> userManager,
                           IWebHostEnvironment hostEnvironment,

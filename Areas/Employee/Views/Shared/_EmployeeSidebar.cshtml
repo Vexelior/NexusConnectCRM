@@ -32,7 +32,7 @@
                 </a>
             </li>
             <li>
-                @if (User.IsInRole("Employee"))
+                @if (User.IsInRole("Employee") || User.IsInRole("Help Desk"))
                 {
                     <a href="@Url.Action("Index", "Index", new { area = "Employee" })" class="nav-link px-sm-0 px-2">
                         <i class="fa fa-dashboard"></i>

@@ -121,6 +121,7 @@ namespace NexusConnectCRM.Areas.Identity.Pages.Account
                     {
                         "HeadAdmin" => RedirectToAction("Index", "Index", new { Area = "Admin" }),
                         "Admin" => RedirectToAction("Index", "Index", new { Area = "Admin" }),
+                        "Help Desk" => RedirectToAction("Index", "Index", new { Area = "Employee" }),
                         "Employee" => RedirectToAction("Index", "Index", new { Area = "Employee" }),
                         "Customer" => RedirectToAction("Index", "Index", new { Area = "Customer" }),
                         "Prospect" => RedirectToAction("Index", "Index", new { Area = "Prospect" }),

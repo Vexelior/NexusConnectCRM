@@ -33,7 +33,7 @@
                         <a class="dropdown-item" asp-area="Admin" asp-controller="Index" asp-action="Index" title="Portal">Portal</a>
                     </li>
                 }
-                @if (User.IsInRole("Employee"))
+                @if (User.IsInRole("Employee") || User.IsInRole("Help Desk"))
                 {
                     <li>
                         <a class="dropdown-item" asp-area="Employee" asp-controller="Index" asp-action="Index" title="Portal">Portal</a>

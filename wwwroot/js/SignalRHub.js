@@ -32,7 +32,7 @@ document.getElementsByClassName("chat-btn")[0].addEventListener("click", functio
 });
 
 var senderName = "";
-var employeeName = "Employee User";
+var employeeName = "Help Desk";
 var receiverId = "";
 var newReceiverId = "";
 
