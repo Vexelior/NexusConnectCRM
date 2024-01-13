@@ -24,12 +24,13 @@ namespace NexusConnectCRM.Extensions
             {
                 List<IdentityRole> roles =
                 [
-                        new IdentityRole { Name = "HeadAdmin", NormalizedName = "HEADADMIN" },
-                        new IdentityRole { Name = "Admin", NormalizedName = "ADMIN" },
-                        new IdentityRole { Name = "Customer", NormalizedName = "USER" },
-                        new IdentityRole { Name = "Employee", NormalizedName = "EMPLOYEE" },
-                        new IdentityRole { Name = "Prospect", NormalizedName = "PROSPECT" }
-                    ];
+                    new IdentityRole { Name = "HeadAdmin", NormalizedName = "HEADADMIN" },
+                    new IdentityRole { Name = "Admin", NormalizedName = "ADMIN" },
+                    new IdentityRole { Name = "Customer", NormalizedName = "CUSTOMER" },
+                    new IdentityRole { Name = "Employee", NormalizedName = "EMPLOYEE" },
+                    new IdentityRole { Name = "Prospect", NormalizedName = "PROSPECT" },
+                    new IdentityRole { Name = "Help Desk", NormalizedName = "HELP DESK" }
+                ];
 
                 foreach (IdentityRole role in roles)
                 {
@@ -53,6 +54,7 @@ namespace NexusConnectCRM.Extensions
                 {
                     UserName = "headadmin@mail.com",
                     Email = "headadmin@mail.com",
+                    PhoneNumber = "555-555-5555",
                     EmailConfirmed = true,
                     FirstName = "HeadAdmin",
                     LastName = "User",
@@ -75,9 +77,11 @@ namespace NexusConnectCRM.Extensions
                 }
 
                 // Create Admin \\
-                ApplicationUser adminUser = new() { 
-                    UserName = "admin@mail.com", 
-                    Email = "admin@mail.com", 
+                ApplicationUser adminUser = new()
+                {
+                    UserName = "admin@mail.com",
+                    Email = "admin@mail.com",
+                    PhoneNumber = "555-555-5555",
                     EmailConfirmed = true,
                     FirstName = "Admin",
                     LastName = "User",
@@ -99,35 +103,39 @@ namespace NexusConnectCRM.Extensions
                     throw new Exception("Admin account creation failed.");
                 }
 
-                // Create Customer \\
-                ApplicationUser customerUser = new() { 
-                    UserName = "customer@mail.com", 
-                    Email = "customer@mail.com", 
+                // Create Help Desk \\
+                ApplicationUser helpDeskUser = new()
+                {
+                    UserName = "helpdesk@mail.com",
+                    Email = "helpdesk@mail.com",
+                    PhoneNumber = "555-555-5555",
                     EmailConfirmed = true,
-                    FirstName = "Customer",
+                    FirstName = "Help Desk",
                     LastName = "User",
-                    Roles = "Customer",
+                    Roles = "Help Desk",
                     SecurityStamp = Guid.NewGuid().ToString("D"),
                     ConcurrencyStamp = Guid.NewGuid().ToString("D"),
                     LockoutEnabled = false,
                     PhoneNumberConfirmed = false,
                     TwoFactorEnabled = false
                 };
-                IdentityResult customerResult = userManager.CreateAsync(customerUser, "Pass1234!").Result;
+                IdentityResult helpdeskResult = userManager.CreateAsync(helpDeskUser, "Pass1234!").Result;
 
-                if (customerResult.Succeeded)
+                if (helpdeskResult.Succeeded)
                 {
-                    userManager.AddToRoleAsync(customerUser, "Customer").Wait();
+                    userManager.AddToRoleAsync(helpDeskUser, "Help Desk").Wait();
                 }
                 else
                 {
-                    throw new Exception("Customer account creation failed.");
+                    throw new Exception("Help Desk account creation failed.");
                 }
 
                 // Create Employee \\
-                ApplicationUser employeeUser = new() { 
-                    UserName = "employee@mail.com", 
-                    Email = "employee@mail.com", 
+                ApplicationUser employeeUser = new()
+                {
+                    UserName = "employee@mail.com",
+                    Email = "employee@mail.com",
+                    PhoneNumber = "555-555-5555",
                     EmailConfirmed = true,
                     FirstName = "Employee",
                     LastName = "User",
@@ -148,112 +156,170 @@ namespace NexusConnectCRM.Extensions
                 {
                     throw new Exception("Employee account creation failed.");
                 }
+            }
 
-                // Create Prospect \\
-                ApplicationUser prospectUser = new() { 
-                    UserName = "prospect@mail.com", 
-                    Email = "prospect@mail.com", 
-                    EmailConfirmed = true,
-                    FirstName = "Prospect",
-                    LastName = "User",
-                    Roles = "Prospect",
-                    SecurityStamp = Guid.NewGuid().ToString("D"),
-                    ConcurrencyStamp = Guid.NewGuid().ToString("D"),
-                    LockoutEnabled = false,
-                    PhoneNumberConfirmed = false,
-                    TwoFactorEnabled = false
-                };
-                IdentityResult prospectResult = userManager.CreateAsync(prospectUser, "Pass1234!").Result;
+            if (!context.Companies.Any())
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    CompanyInfo companyInfo = new()
+                    {
+                        Name = $"Company{i}",
+                        Address = $"123 Company St, Unit {i}",
+                        City = $"Company City {i}",
+                        State = $"Company State {i}",
+                        Zip = $"1234{i}",
+                        Country = $"Company Country {i}",
+                        Phone = $"555-555-555{i}",
+                        Website = $"https://www.company{i}.com",
+                        Email = $"company{i}@mail.com",
+                        Industry = $"Company Industry {i}",
+                        NeedsContact = false
+                    };
 
-                if (prospectResult.Succeeded)
-                {
-                    userManager.AddToRoleAsync(prospectUser, "Prospect").Wait();
-                }
-                else
-                {
-                    throw new Exception("Prospect account creation failed.");
+                    context.Companies.Add(companyInfo);
+                    context.SaveChanges();
                 }
             }
 
-            //if (!context.Prospects.Any())
-            //{
-            //    for (int i = 0; i < 100; i++)
-            //    {
-            //        ProspectInfo prospectInfo = new()
-            //        {
-            //            FirstName = "Prospect",
-            //            LastName = $"User{i}",
-            //            EmailAddress = $"prospect{i}@mail.com",
-            //            DateOfBirth = DateTime.Now,
-            //            Address = $"123 Prospect St, Unit {i}",
-            //            City = $"Prospect City {i}",
-            //            State = $"Prospect State {i}",
-            //            ZipCode = $"1234{i}",
-            //            Country = $"Prospect Country {i}",
-            //            CompanyName = $"Company{i}",
-            //            PhoneNumber = $"555-555-555{i}",
-            //            IsActive = true,
-            //            IsContacted = false,
-            //            CreatedDate = DateTime.Now,
-            //            ModifiedDate = DateTime.Now
-            //        };
+            if (!context.Prospects.Any())
+            {
+                int totalCompanies = context.Companies.Count();
 
-            //        context.Prospects.Add(prospectInfo);
-            //        context.SaveChanges();
-            //    }
-            //}
+                for (int i = 0; i < 10; i++)
+                {
+                    Random random = new();
+                    int randomCompanyId = random.Next(1, totalCompanies);
 
-            //if (!context.Companies.Any())
-            //{
-            //    for (int i = 0; i < 22; i++)
-            //    {
-            //        CompanyInfo companyInfo = new()
-            //        {
-            //            Name = $"Company{i}",
-            //            Address = $"123 Company St, Unit {i}",
-            //            City = $"Company City {i}",
-            //            State = $"Company State {i}",
-            //            Zip = $"1234{i}",
-            //            Country = $"Company Country {i}",
-            //            Phone = $"555-555-555{i}",
-            //            Website = $"www.company{i}.com",
-            //            Email = $"company{i}@mail.com",
-            //            Industry = $"Company Industry {i}",
-            //            NeedsContact = true
-            //        };
+                    CompanyInfo randomCompany = context.Companies.Where(c => c.Id == randomCompanyId).FirstOrDefault();
 
-            //        context.Companies.Add(companyInfo);
-            //        context.SaveChanges();
-            //    }
-            //}
+                    ProspectInfo prospectInfo = new()
+                    {
+                        FirstName = "Prospect",
+                        LastName = $"User{i}",
+                        CompanyId = randomCompany.Id,
+                        EmailAddress = $"prospect{i}@mail.com",
+                        DateOfBirth = DateTime.Now,
+                        Address = $"123 Prospect St, Unit {i}",
+                        City = $"Prospect City {i}",
+                        State = $"Prospect State {i}",
+                        ZipCode = $"1234{i}",
+                        Country = $"Prospect Country {i}",
+                        CompanyName = randomCompany.Name,
+                        PhoneNumber = $"555-555-555{i}",
+                        IsActive = true,
+                        IsContacted = false,
+                        CreatedDate = DateTime.Now,
+                        ModifiedDate = DateTime.Now,
+                        NeedsHelp = false,
+                        IsHelped = false,
+                        NeedsContact = false
+                    };
 
-            //if (!context.Customers.Any())
-            //{
-            //    for (int i = 0; i < 42; i++)
-            //    {
-            //        CustomerInfo customer = new()
-            //        {
-            //            FirstName = "Customer",
-            //            LastName = $"Customer {i}",
-            //            EmailAddress = $"Customer{i}@mail.com",
-            //            DateOfBirth = DateTime.Now,
-            //            Address = $"123 Prospect St, Unit {i}",
-            //            City = $"Customer City {i}",
-            //            State = $"Customer State {i}",
-            //            ZipCode = $"1234{i}",
-            //            Country = $"Customer Country {i}",
-            //            CompanyName = $"Customer{i}",
-            //            PhoneNumber = $"555-555-555{i}",
-            //            IsActive = true,
-            //            CreatedDate = DateTime.Now,
-            //            ModifiedDate = DateTime.Now,
-            //            NeedsContact = true
-            //        };
+                    context.Prospects.Add(prospectInfo);
 
-            //        context.Customers.Add(customer);
-            //        context.SaveChanges();
-            //    }
-            //}
+                    // Create an application user for each prospect. \\
+                    ApplicationUser prospectUser = new()
+                    {
+                        UserName = prospectInfo.EmailAddress,
+                        Email = prospectInfo.EmailAddress,
+                        EmailConfirmed = true,
+                        PhoneNumber = prospectInfo.PhoneNumber,
+                        FirstName = prospectInfo.FirstName,
+                        LastName = prospectInfo.LastName,
+                        Roles = "Prospect",
+                        SecurityStamp = Guid.NewGuid().ToString("D"),
+                        ConcurrencyStamp = Guid.NewGuid().ToString("D"),
+                        LockoutEnabled = false,
+                        PhoneNumberConfirmed = false,
+                        TwoFactorEnabled = false
+                    };
+                    IdentityResult prospectResult = userManager.CreateAsync(prospectUser, "Pass1234!").Result;
+
+                    if (prospectResult.Succeeded)
+                    {
+                        userManager.AddToRoleAsync(prospectUser, "Prospect").Wait();
+                    }
+                    else
+                    {
+                        throw new Exception("Prospect account creation failed.");
+                    }
+
+                    prospectInfo.UserId = prospectUser.Id;
+
+                    context.SaveChanges();
+                }
+            }
+
+            if (!context.Customers.Any())
+            {
+                int totalCompanies = context.Companies.Count();
+
+                for (int i = 0; i < 10; i++)
+                {
+                    Random random = new();
+                    int randomCompanyId = random.Next(1, totalCompanies);
+
+                    CompanyInfo randomCompany = context.Companies.Where(c => c.Id == randomCompanyId).FirstOrDefault();
+
+                    CustomerInfo customer = new()
+                    {
+                        FirstName = "Customer",
+                        LastName = $"Customer {i}",
+                        CompanyId = randomCompany.Id,
+                        EmailAddress = $"Customer{i}@mail.com",
+                        DateOfBirth = DateTime.Now,
+                        Address = $"123 Prospect St, Unit {i}",
+                        City = $"Customer City {i}",
+                        State = $"Customer State {i}",
+                        ZipCode = $"1234{i}",
+                        Country = $"Customer Country {i}",
+                        CompanyName = randomCompany.Name,
+                        PhoneNumber = $"555-555-555{i}",
+                        IsActive = true,
+                        CreatedDate = DateTime.Now,
+                        ModifiedDate = DateTime.Now,
+                        NeedsHelp = false,
+                        IsHelped = false,
+                        IsContacted = false,
+                        NeedsContact = false
+                    };
+
+                    context.Customers.Add(customer);
+
+                    // Create an application user for each customer. \\
+                    ApplicationUser customerUser = new()
+                    {
+                        UserName = customer.EmailAddress,
+                        Email = customer.EmailAddress,
+                        PhoneNumber = customer.PhoneNumber,
+                        EmailConfirmed = true,
+                        FirstName = customer.FirstName,
+                        LastName = customer.LastName,
+                        Roles = "Customer",
+                        SecurityStamp = Guid.NewGuid().ToString("D"),
+                        ConcurrencyStamp = Guid.NewGuid().ToString("D"),
+                        LockoutEnabled = false,
+                        PhoneNumberConfirmed = false,
+                        TwoFactorEnabled = false
+                    };
+
+                    IdentityResult customerResult = userManager.CreateAsync(customerUser, "Pass1234!").Result;
+
+                    if (customerResult.Succeeded)
+                    {
+                        userManager.AddToRoleAsync(customerUser, "Customer").Wait();
+                    }
+                    else
+                    {
+                        throw new Exception("Customer account creation failed.");
+                    }
+
+                    customer.UserId = customerUser.Id;
+
+                    context.SaveChanges();
+                }
+            }
 
             // My testing account. \\
             if (context.Users.Where(u => u.Email == "asanderson1994s@gmail.com").FirstOrDefault() == null)
@@ -267,6 +333,7 @@ namespace NexusConnectCRM.Extensions
                     FirstName = "Alexander",
                     LastName = "Sanderson",
                     Roles = "Prospect",
+                    PhoneNumber = "360-281-9758",
                     NormalizedUserName = "ASANDERSON1994S@GMAIL.COM",
                     SecurityStamp = Guid.NewGuid().ToString("D"),
                     ConcurrencyStamp = Guid.NewGuid().ToString("D"),
@@ -286,7 +353,7 @@ namespace NexusConnectCRM.Extensions
                 }
 
                 CompanyInfo company = new()
-                { 
+                {
                     Name = "The Tech Academy",
                     Address = "310 SW 4th Ave, Suite 200",
                     City = "Portland",
@@ -308,9 +375,9 @@ namespace NexusConnectCRM.Extensions
 
                 ProspectInfo prospectInfo = new()
                 {
-                    FirstName = "Alexander",
-                    LastName = "Sanderson",
-                    EmailAddress = "asanderson1994s@gmail.com",
+                    FirstName = testUser.FirstName,
+                    LastName = testUser.LastName,
+                    EmailAddress = testUser.Email,
                     DateOfBirth = new DateTime(1994, 8, 19),
                     Address = "4602 Boise Ct",
                     City = "Vancouver",
@@ -318,13 +385,13 @@ namespace NexusConnectCRM.Extensions
                     ZipCode = "98661",
                     Country = "United States",
                     CompanyName = "The Tech Academy",
-                    PhoneNumber = "360-281-9758",
+                    PhoneNumber = testUser.PhoneNumber,
                     UserId = userId,
                     CompanyId = techAcademyId,
                     IsActive = true,
-                    IsContacted = null,
-                    IsHelped = null,
-                    NeedsHelp = null,
+                    IsContacted = false,
+                    IsHelped = false,
+                    NeedsHelp = false,
                     CreatedDate = DateTime.Now,
                     ModifiedDate = DateTime.Now
                 };
@@ -338,7 +405,7 @@ namespace NexusConnectCRM.Extensions
                 List<HelpInfo> helpInfos = [];
                 string testAccountUserId = context.Users.Where(u => u.Email == "asanderson1994s@gmail.com").FirstOrDefault().Id;
 
-                for (int i = 1; i <= 100; i++)
+                for (int i = 1; i < 10; i++)
                 {
                     HelpInfo helpInfo = new()
                     {

@@ -53,13 +53,18 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
             if (IsAdmin)
             {
                 users = await _context.Users.Where(x => !x.Roles.Contains("Employee") &&
-                                                     !x.Roles.Contains("Admin"))
-                                                    .OrderBy(x => x.FirstName)
-                                                    .ToListAsync();
+                                                                 !x.Roles.Contains("Admin") &&
+                                                                 !x.Roles.Contains("Help Desk"))
+                                            .OrderBy(x => x.Roles)
+                                            .ThenBy(x => x.FirstName)
+                                            .ToListAsync();
             }
             else if (IsHeadAdmin)
             {
-                users = await _context.Users.ToListAsync();
+                // Sort by both Roles and FirstName
+                users = await _context.Users.OrderBy(x => x.Roles)
+                                                    .ThenBy(x => x.FirstName)
+                                                    .ToListAsync();
             }
 
             if (users is null)
