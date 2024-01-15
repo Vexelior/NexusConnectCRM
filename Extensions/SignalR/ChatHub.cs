@@ -16,6 +16,7 @@ namespace NexusConnectCRM.Extensions.SignalR
 
         public async Task DisplayMessageToSelf(string senderName, string senderId, string message)
         {
+            senderName = "You";
             await Clients.Caller.SendAsync("ReceiveMessageFromSelf", senderName, senderId, message);
         }
     }

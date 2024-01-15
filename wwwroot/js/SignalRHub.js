@@ -137,7 +137,7 @@ chatConnection.on("ReceiveMessageFromEmployee", function (senderName, senderId, 
 });
 
 chatConnection.on("ReceiveMessageFromSelf", function (senderName, senderId, message) {
-    $(`<li><strong><u><i><span id="receiverName" style="font-size: 16px !important;">You</span></i></u></strong>: ${message}</li>`).appendTo("#chat-messages");
+    $(`<li><strong><u><i><span id="receiverName" style="font-size: 16px !important;">${senderName}</span></i></u></strong>: ${message}</li>`).appendTo("#chat-messages");
 });
 
 
