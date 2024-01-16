@@ -12,16 +12,10 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
 {
     [Area("Prospect")]
     [Authorize(Roles = "Admin,Employee,Prospect")]
-    public class IndexController : Controller
+    public class IndexController(ApplicationDbContext context, UserManager<ApplicationUser> userManager) : Controller
     {
-        private readonly ApplicationDbContext _context;
-        private readonly UserManager<ApplicationUser> _userManager;
-
-        public IndexController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
-        {
-            _context = context;
-            _userManager = userManager;
-        }
+        private readonly ApplicationDbContext _context = context;
+        private readonly UserManager<ApplicationUser> _userManager = userManager;
 
         public async Task<IActionResult> Index()
         {
@@ -40,12 +34,7 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
             {
                 return RedirectToAction("CompanyDetails", "Details", null);
             }
-            else if (verifiedUser.Address is null ||
-                     verifiedUser.Country is null ||
-                     verifiedUser.City is null ||
-                     verifiedUser.State is null ||
-                     verifiedUser.ZipCode is null ||
-                     verifiedUser.PhoneNumber is null)
+            else if (IsUserDetailsIncomplete(verifiedUser))
             {
                 return RedirectToAction("UserDetails", "Details", null);
             }
@@ -77,6 +66,16 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
             };
 
             return View("Index", viewModel);
+        }
+
+        private bool IsUserDetailsIncomplete(ProspectInfo user)
+        {
+            return user.Address is null ||
+                   user.Country is null ||
+                   user.City is null ||
+                   user.State is null ||
+                   user.ZipCode is null ||
+                   user.PhoneNumber is null;
         }
     }
 }
