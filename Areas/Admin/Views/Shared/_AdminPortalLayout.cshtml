@@ -33,7 +33,6 @@
     @await Html.PartialAsync("_BackToTopButton")
     @await Html.PartialAsync("_PrivacyPolicyModal")
 
-    <script src='https://cdn.jsdelivr.net/npm/@@microsoft/signalr@8.0.0/dist/browser/signalr.js'></script>
     <script src="~/lib/vendor/waypoints/noframework.waypoints.js"></script>
     <script src="~/lib/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="~/lib/vendor/glightbox/js/glightbox.min.js"></script>
@@ -45,7 +44,6 @@
     <script src="~/lib/vendor/isotope-layout/isotope.pkgd.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/lib/vendor/chart.js/Chart.min.js"></script>
-    <script src="~/js/SignalRHub.js" asp-append-version="true" defer></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

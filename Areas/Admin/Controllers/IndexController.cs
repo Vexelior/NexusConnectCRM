@@ -25,9 +25,9 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
             if (IsAdmin)
             {
                 users = await _context.Users.Where(x => !x.Roles.Contains("Employee") &&
-                                                     !x.Roles.Contains("Admin"))
-                                                    .OrderBy(x => x.FirstName)
-                                                    .ToListAsync();
+                                                                !x.Roles.Contains("Admin"))
+                                            .OrderBy(x => x.FirstName)
+                                            .ToListAsync();
             }
             else if (IsHeadAdmin)
             {
@@ -43,29 +43,50 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
             return View("Index", viewModel);
         }
 
-        public async Task<IActionResult> ViewUsers()
+        public async Task<IActionResult> ViewUsers(string searchQuery, int page = 1, int pageSize = 10)
         {
             List<ApplicationUser> users = [];
 
             var IsAdmin = User.IsInRole("Admin");
             var IsHeadAdmin = User.IsInRole("HeadAdmin");
 
+            searchQuery ??= "";
+
+            IQueryable<ApplicationUser> query = _context.Users;
+
             if (IsAdmin)
             {
-                users = await _context.Users.Where(x => !x.Roles.Contains("Employee") &&
-                                                                 !x.Roles.Contains("Admin") &&
-                                                                 !x.Roles.Contains("Help Desk"))
-                                            .OrderBy(x => x.Roles)
-                                            .ThenBy(x => x.FirstName)
-                                            .ToListAsync();
+                query = query.Where(x => !x.Roles.Contains("Employee") &&
+                                         !x.Roles.Contains("Admin") &&
+                                         !x.Roles.Contains("Help Desk") &&
+                                         (x.FirstName.Contains(searchQuery) || 
+                                         x.LastName.Contains(searchQuery)) ||
+                                         x.Email.Contains(searchQuery));
             }
             else if (IsHeadAdmin)
             {
-                // Sort by both Roles and FirstName
-                users = await _context.Users.OrderBy(x => x.Roles)
-                                                    .ThenBy(x => x.FirstName)
-                                                    .ToListAsync();
+                query = query.Where(x => x.FirstName.Contains(searchQuery) ||
+                                                  x.LastName.Contains(searchQuery) ||
+                                                  x.Email.Contains(searchQuery));
             }
+
+            int totalUsers = await query.CountAsync();
+            int totalPages = (int)Math.Ceiling((double)totalUsers / pageSize);
+
+            if (page < 1)
+            {
+                page = 1;
+            }
+            else if (page > totalPages)
+            {
+                page = totalPages;
+            }
+
+            users = await query.OrderBy(x => x.Roles)
+                               .ThenBy(x => x.FirstName)
+                               .Skip((page - 1) * pageSize)
+                               .Take(pageSize)
+                               .ToListAsync();
 
             if (users is null)
             {
@@ -74,7 +95,12 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
 
             AdminListUsersViewModel viewModel = new()
             {
-                Users = users
+                Users = users,
+                SearchQuery = searchQuery,
+                CurrentPage = page,
+                PageSize = pageSize,
+                TotalPages = totalPages,
+                TotalUsers = totalUsers
             };
 
             return View("ViewUsers", viewModel);

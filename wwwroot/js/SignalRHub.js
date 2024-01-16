@@ -27,9 +27,13 @@ notifyConnection.start().catch(function (err) {
     return console.error(err.toString());
 });
 
-document.getElementsByClassName("chat-btn")[0].addEventListener("click", function () {
-    document.getElementsByClassName("chat-btn")[0].innerHTML = `<i class="fa fa-comment comment"></i><i class="fa fa-x close"></i>`;
-});
+try {
+    document.getElementsByClassName("chat-btn")[0].addEventListener("click", function () {
+        document.getElementsByClassName("chat-btn")[0].innerHTML = `<i class="fa fa-comment comment"></i><i class="fa fa-x close"></i>`;
+    });
+} catch (e) {
+    // Do nothing
+}
 
 var senderName = "";
 var employeeName = "Help Desk";
@@ -65,60 +69,64 @@ $(function () {
     });
 });
 
-document.getElementById("sendMessage").addEventListener("click", function (event) {
-    var message = document.getElementById("Message").value;
+try {
+    document.getElementById("sendMessage").addEventListener("click", function (event) {
+        var message = document.getElementById("Message").value;
 
-    if (message == "") {
-        return;
-    }
+        if (message == "") {
+            return;
+        }
 
-    if (senderId == undefined || senderId == "") {
-        $(function () {
+        if (senderId == undefined || senderId == "") {
+            $(function () {
+                $.ajax({
+                    url: "/IdentityHelper/GetUserId",
+                    type: "GET",
+                    data: { usersName: fullName },
+                    success: function (result) {
+                        senderId = result;
+                    },
+                    error: function (error) {
+                        return `Error: ${error}`;
+                    }
+                });
+            });
+        }
+
+        if (fullName == employeeName) {
+            var receiverName = document.getElementById("receiverName").innerHTML;
             $.ajax({
                 url: "/IdentityHelper/GetUserId",
                 type: "GET",
-                data: { usersName: fullName },
+                data: { usersName: receiverName },
                 success: function (result) {
-                    senderId = result;
+                    newReceiverId = result;
+                    chatConnection.invoke("SendMessageToUser", newReceiverId, fullName, senderId, message).catch(function (err) {
+                        return console.error(err.toString());
+                    });
+                    chatConnection.invoke("DisplayMessageToSelf", fullName, senderId, message).catch(function (err) {
+                        return console.error(err.toString());
+                    });
                 },
                 error: function (error) {
                     return `Error: ${error}`;
                 }
             });
-        });
-    }
+        } else {
+            chatConnection.invoke("SendMessageToEmployee", receiverId, fullName, senderId, message).catch(function (err) {
+                return console.error(err.toString());
+            });
+            chatConnection.invoke("DisplayMessageToSelf", fullName, senderId, message).catch(function (err) {
+                return console.error(err.toString());
+            });
+        }
 
-    if (fullName == employeeName) {
-        var receiverName = document.getElementById("receiverName").innerHTML;
-        $.ajax({
-            url: "/IdentityHelper/GetUserId",
-            type: "GET",
-            data: { usersName: receiverName },
-            success: function (result) {
-                newReceiverId = result;
-                chatConnection.invoke("SendMessageToUser", newReceiverId, fullName, senderId, message).catch(function (err) {
-                    return console.error(err.toString());
-                });
-                chatConnection.invoke("DisplayMessageToSelf", fullName, senderId, message).catch(function (err) {
-                    return console.error(err.toString());
-                });
-            },
-            error: function (error) {
-                return `Error: ${error}`;
-            }
-        });
-    } else {
-        chatConnection.invoke("SendMessageToEmployee", receiverId, fullName, senderId, message).catch(function (err) {
-            return console.error(err.toString());
-        });
-        chatConnection.invoke("DisplayMessageToSelf", fullName, senderId, message).catch(function (err) {
-            return console.error(err.toString());
-        });
-    }
-
-    document.getElementById("Message").value = "";
-    event.preventDefault();
-});
+        document.getElementById("Message").value = "";
+        event.preventDefault();
+    });
+} catch (e) {
+    // Do nothing
+}
 
 chatConnection.on("ReceiveMessageFromUser", function (senderName, senderId, message) {
     $(`<li><strong><u><span id="receiverName" style="font-size: 16px !important;">${senderName}</span></u></strong>: ${message}</li>`).appendTo("#chat-messages");

@@ -25,69 +25,82 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
         private readonly IWebHostEnvironment _hostEnvironment = hostEnvironment;
         private readonly IHubContext<NotificationHub> _hubContext = hubContext;
 
-        public async Task<IActionResult> Index(string searchQuery)
+        public async Task<IActionResult> Index(string searchQuery, string statusFilter, int page = 1, int pageSize = 10)
         {
-            if (!string.IsNullOrWhiteSpace(searchQuery))
+            List<HelpInfo> help = [];
+
+            searchQuery ??= "";
+
+            IQueryable<HelpInfo> query = _context.Help;
+
+            if (!string.IsNullOrEmpty(searchQuery))
             {
-                searchQuery = searchQuery.ToLower();
+                query = query.Where(x => x.Title.Contains(searchQuery));
+            }
 
-                string[] splitString = searchQuery.Split(" ").Where(x => x != "").ToArray();
-                string firstWord = splitString[0];
-
-                if (splitString.Length > 1)
+            if (!string.IsNullOrEmpty(statusFilter))
+            {
+                switch (statusFilter)
                 {
-                    string secondWord = splitString[1];
-
-                    var newQuery = await _context.Help.Where(h => h.Title.Contains(firstWord, StringComparison.CurrentCultureIgnoreCase) &&
-                                                                           h.Title.Contains(secondWord, StringComparison.CurrentCultureIgnoreCase))
-                                                      .OrderByDescending(h => h.CreatedDate)
-                                                      .ToListAsync();
-
-                    ListHelpViewModel searchModel = new()
-                    {
-                        HelpList = newQuery,
-                        PageNumber = 1,
-                        PageSize = 10,
-                        TotalPages = 1
-                    };
-
-                    return View("Help", searchModel);
-                }
-                else
-                {
-                    var newQuery = await _context.Help.Where(h => h.Title.Contains(firstWord, StringComparison.CurrentCultureIgnoreCase))
-                                                      .OrderByDescending(h => h.CreatedDate)
-                                                      .ToListAsync();
-
-                    ListHelpViewModel searchModel = new()
-                    {
-                        HelpList = newQuery,
-                        PageNumber = 1,
-                        PageSize = 10,
-                        TotalPages = 1
-                    };
-
-                    return View("Help", searchModel);
+                    case "All":
+                        query = query.Where(x => x.IsApproved ||
+                                                    x.IsPending ||
+                                                    x.IsRejected ||
+                                                    x.IsCompleted);
+                        break;
+                    case "Approved":
+                        query = query.Where(x => x.IsApproved);
+                        break;
+                    case "Pending":
+                        query = query.Where(x => x.IsPending);
+                        break;
+                    case "Rejected":
+                        query = query.Where(x => x.IsRejected);
+                        break;
+                    case "Completed":
+                        query = query.Where(x => x.IsCompleted);
+                        break;
+                        // If "All" or any other value is selected, no filter is applied.
+                    default:
+                        break;
                 }
             }
 
-            int pageNumber = 1;
-            int pageSize = 10;
-            int totalPages = (int)Math.Ceiling((decimal)_context.Help.Count() / pageSize);
+            help = await query.OrderByDescending(x => x.CreatedDate)
+                             .Skip((page - 1) * pageSize)
+                             .Take(pageSize)
+                             .ToListAsync();
+
+            if (help is null)
+            {
+                return NotFound();
+            }
+
+            int totalHelp = await query.CountAsync();
+            int totalPages = (int)Math.Ceiling((decimal)totalHelp / pageSize);
+
+            if (page < 1)
+            {
+                page = 1;
+            }
+            else if (page > totalPages)
+            {
+                page = totalPages;
+            }
 
             ListHelpViewModel viewModel = new()
             {
-                HelpList = await _context.Help.OrderByDescending(x => x.CreatedDate)
-                                              .Skip((pageNumber - 1) * pageSize)
-                                              .Take(pageSize)
-                                              .ToListAsync(),
-                PageNumber = pageNumber,
+                HelpList = help,
+                SearchQuery = searchQuery,
+                CurrentPage = page,
                 PageSize = pageSize,
-                TotalPages = totalPages
+                TotalPages = totalPages,
+                TotalHelp = totalHelp
             };
 
             return View("Help", viewModel);
         }
+
 
         public async Task<IActionResult> ShowTickets(int pageNumber)
         {
@@ -109,7 +122,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                                                .Skip((pageNumber - 1) * 10)
                                                .Take(pageSize)
                                                .ToListAsync(),
-                PageNumber = pageNumber,
+                CurrentPage = pageNumber,
                 PageSize = pageSize,
                 TotalPages = totalPages
             };
