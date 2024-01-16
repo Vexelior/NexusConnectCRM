@@ -11,6 +11,7 @@ namespace NexusConnectCRM.Data.Models.Company
         public string Country { get; set; }
         public string City { get; set; }
         public string State { get; set; }
+        [Display(Name = "Zip Code")]
         public string Zip { get; set; }
         public string Phone { get; set; }
         public string Website { get; set; }

@@ -486,7 +486,7 @@ h6 {
     font-size: 14px;
     border: 2px solid #fff;
     font-weight: 600;
-    background: #37517e;
+    background: gray;
 }
 
     .cancel-btn:hover,
@@ -2459,6 +2459,25 @@ button:focus {
     }
 
     .admin-edituser .delete-button:focus {
+        background: #c73f3f;
+        border: 2px solid #dc3545;
+    }
+
+.delete-button {
+    background: #dc3545;
+    padding: 8px 20px;
+    border-radius: 50px;
+    color: #fff;
+    font-size: 14px;
+    border: 2px solid #fff;
+    font-weight: 600;
+}
+
+    .delete-button:hover {
+        background: #c73f3f;
+    }
+
+    .delete-button:focus {
         background: #c73f3f;
         border: 2px solid #dc3545;
     }

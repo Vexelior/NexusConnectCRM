@@ -24,6 +24,7 @@
                         <th scope="col">Phone</th>
                         <th scope="col">Website</th>
                         <th scope="col">Industry</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,6 +41,9 @@
                             <td>@company.Phone</td>
                             <td>@company.Website</td>
                             <td>@company.Industry</td>
+                            <td>
+                                <a href="@Url.Action("EditCompany", "Company", new { area = "Admin", id = company.Id })" class="btn default-btn">Edit</a>
+                            </td>
                         </tr>
                     }
                 </tbody>
