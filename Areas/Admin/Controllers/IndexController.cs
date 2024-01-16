@@ -17,22 +17,10 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            List<ApplicationUser> users = [];
-
-            var IsAdmin = User.IsInRole("Admin");
-            var IsHeadAdmin = User.IsInRole("HeadAdmin");
-
-            if (IsAdmin)
-            {
-                users = await _context.Users.Where(x => !x.Roles.Contains("Employee") &&
+            var users = await _context.Users.Where(x => !x.Roles.Contains("Employee") &&
                                                                 !x.Roles.Contains("Admin"))
                                             .OrderBy(x => x.FirstName)
                                             .ToListAsync();
-            }
-            else if (IsHeadAdmin)
-            {
-                users = await _context.Users.ToListAsync();
-            }
 
             AdminIndexViewModel viewModel = new()
             {
