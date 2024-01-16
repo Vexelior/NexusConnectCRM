@@ -2526,7 +2526,8 @@ button:focus {
     border-right: 1px solid #37517e;
     border-bottom: 1px solid #37517e;
     height: 400px;
-    overflow: hidden
+    overflow: hidden;
+    z-index: -1;
 }
 
 #chat-messages {
@@ -2536,7 +2537,8 @@ button:focus {
 }
 
 #check:checked ~ .chat-wrapper {
-    opacity: 1
+    opacity: 1;
+    z-index: 99;
 }
 
 .chat-header {
