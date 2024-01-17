@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NexusConnectCRM.Areas.Admin.ViewModels;
 using NexusConnectCRM.Data;
+using NexusConnectCRM.Data.Models.Customer;
 using NexusConnectCRM.Data.Models.Identity;
 using NexusConnectCRM.Data.Models.Prospect;
 
@@ -143,18 +144,49 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
             return View("ViewProspects", viewModel);
         }
 
-        public async Task<IActionResult> ViewCustomers()
+        public async Task<IActionResult> ViewCustomers(string searchQuery, int page = 1, int pageSize = 10)
         {
-            var users = await _context.Customers.ToListAsync();
+            List<CustomerInfo> customers = [];
 
-            if (users is null)
+            searchQuery ??= "";
+
+            IQueryable<CustomerInfo> query = _context.Customers;
+
+            query = query.Where(x => x.FirstName.Contains(searchQuery) ||
+                                              x.LastName.Contains(searchQuery) ||
+                                              x.EmailAddress.Contains(searchQuery) ||
+                                              x.PhoneNumber.Contains(searchQuery));
+
+            int totalCustomers = await query.CountAsync();
+            int totalPages = (int)Math.Ceiling((double)totalCustomers / pageSize);
+
+            if (page < 1)
+            {
+                page = 1;
+            }
+            else if (page > totalPages)
+            {
+                page = totalPages;
+            }
+
+            customers = await query.OrderBy(x => x.FirstName)
+                                   .Skip((page - 1) * pageSize)
+                                   .Take(pageSize)
+                                   .ToListAsync();
+
+            if (customers is null)
             {
                 return NotFound();
             }
 
             AdminListCustomersViewModel viewModel = new()
             {
-                Users = users
+                Customers = customers,
+                SearchQuery = searchQuery,
+                CurrentPage = page,
+                PageSize = pageSize,
+                TotalPages = totalPages,
+                TotalCustomers = totalCustomers
             };
 
             return View("ViewCustomers", viewModel);
