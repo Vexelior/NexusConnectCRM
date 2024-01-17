@@ -285,15 +285,47 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             return View("NewHelp", viewModel);
         }
 
-        public async Task<IActionResult> PendingHelp()
+        public async Task<IActionResult> PendingHelp(string searchQuery, int page = 1, int pageSize = 10)
         {
-            var helpList = await _context.Help.Where(h => h.IsPending && !h.IsRejected)
-                                              .OrderByDescending(h => h.CreatedDate)
-                                              .ToListAsync();
+            List<HelpInfo> pendingHelp = [];
+
+            searchQuery ??= "";
+
+            IQueryable<HelpInfo> query = _context.Help.Where(h => h.IsPending && !h.IsRejected);
+
+            query = query.Where(x => x.Title.Contains(searchQuery) ||
+                                              x.AuthorName.Contains(searchQuery));
+
+            pendingHelp = await query.OrderByDescending(x => x.CreatedDate)
+                                     .Skip((page - 1) * pageSize)
+                                     .Take(pageSize)
+                                     .ToListAsync();
+
+            if (pendingHelp is null)
+            {
+                return NotFound();
+            }
+
+            int totalHelp = await query.CountAsync();
+            int totalPages = (int)Math.Ceiling((decimal)totalHelp / pageSize);
+
+            if (page < 1)
+            {
+                page = 1;
+            }
+            else if (page > totalPages)
+            {
+                page = totalPages;
+            }
 
             ListHelpViewModel viewModel = new()
             {
-                HelpList = helpList,
+                HelpList = pendingHelp,
+                SearchQuery = searchQuery,
+                CurrentPage = page,
+                PageSize = pageSize,
+                TotalPages = totalPages,
+                TotalHelp = totalHelp
             };
 
             return View("PendingHelp", viewModel);
