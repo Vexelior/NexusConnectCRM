@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NexusConnectCRM.Areas.Admin.ViewModels;
 using NexusConnectCRM.Data;
+using NexusConnectCRM.Data.Models.Company;
 using NexusConnectCRM.Data.Models.Customer;
 using NexusConnectCRM.Data.Models.Identity;
 using NexusConnectCRM.Data.Models.Prospect;
@@ -192,9 +193,35 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
             return View("ViewCustomers", viewModel);
         }
 
-        public async Task<IActionResult> ViewCompanies()
+        public async Task<IActionResult> ViewCompanies(string searchQuery, int page = 1, int pageSize = 10)
         {
-            var companies = await _context.Companies.ToListAsync();
+            List<CompanyInfo> companies = [];
+
+            searchQuery ??= "";
+
+            IQueryable<CompanyInfo> query = _context.Companies;
+
+            query = query.Where(x => x.Name.Contains(searchQuery) ||
+                                             x.Email.Contains(searchQuery) ||
+                                             x.Phone.Contains(searchQuery) ||
+                                             x.Website.Contains(searchQuery));
+
+            int totalCompanies = await query.CountAsync();
+            int totalPages = (int)Math.Ceiling((double)totalCompanies / pageSize);
+
+            if (page < 1)
+            {
+                page = 1;
+            }
+            else if (page > totalPages)
+            {
+                page = totalPages;
+            }
+
+            companies = await query.OrderByDescending(x => x.Name)
+                                   .Skip((page - 1) * pageSize)
+                                   .Take(pageSize)
+                                   .ToListAsync();
 
             if (companies is null)
             {
@@ -203,7 +230,12 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
 
             AdminListCompaniesViewModel viewModel = new()
             {
-                Companies = companies
+                Companies = companies,
+                SearchQuery = searchQuery,
+                CurrentPage = page,
+                PageSize = pageSize,
+                TotalPages = totalPages,
+                TotalCompanies = totalCompanies
             };
 
             return View("ViewCompanies", viewModel);
