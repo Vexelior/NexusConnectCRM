@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using NexusConnectCRM.Areas.Admin.ViewModels;
 using NexusConnectCRM.Data;
 using NexusConnectCRM.Data.Models.Identity;
+using NexusConnectCRM.Data.Models.Prospect;
 
 namespace NexusConnectCRM.Areas.Admin.Controllers
 {
@@ -94,18 +95,49 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
             return View("ViewUsers", viewModel);
         }
 
-        public async Task<IActionResult> ViewProspects()
+        public async Task<IActionResult> ViewProspects(string searchQuery, int page = 1, int pageSize = 10)
         {
-            var users = await _context.Prospects.ToListAsync();
+            List<ProspectInfo> prospects = [];
 
-            if (users is null)
+            IQueryable<ProspectInfo> query = _context.Prospects;
+
+            searchQuery ??= "";
+
+            query = query.Where(x => x.FirstName.Contains(searchQuery) ||
+                                              x.LastName.Contains(searchQuery) ||
+                                              x.EmailAddress.Contains(searchQuery) ||
+                                              x.PhoneNumber.Contains(searchQuery));
+
+            int totalProspects = await query.CountAsync();
+            int totalPages = (int)Math.Ceiling((double)totalProspects / pageSize);
+
+            if (page < 1)
+            {
+                page = 1;
+            }
+            else if (page > totalPages)
+            {
+                page = totalPages;
+            }
+
+            prospects = await query.OrderBy(x => x.FirstName)
+                                   .Skip((page - 1) * pageSize)
+                                   .Take(pageSize)
+                                   .ToListAsync();
+
+            if (prospects is null)
             {
                 return NotFound();
             }
 
             AdminListProspectsViewModel viewModel = new()
             {
-                Users = users
+                Prospects = prospects,
+                SearchQuery = searchQuery,
+                CurrentPage = page,
+                PageSize = pageSize,
+                TotalPages = totalPages,
+                TotalProspects = totalProspects
             };
 
             return View("ViewProspects", viewModel);

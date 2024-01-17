@@ -15,12 +15,10 @@
                 @using (Html.BeginForm("ViewUsers", "Index", FormMethod.Post, new { area = "Admin" }))
                 {
                     <div class="input-group mb-2">
-                        @Html.TextBox("searchQuery", null, new { @class = "form-control", @placeholder = "Search..." })
-                        <div class="input-group-append">
-                            <button class="btn btn-secondary default-btn ms-1" type="submit">
-                                <span class="fa fa-search"></span>
-                            </button>
-                        </div>
+                        @Html.TextBox("searchQuery", null, new { @class = "form-control", @placeholder = "Search...", @type = "Search" })
+                        <button class="btn btn-secondary h-100 mb-0" type="submit" id="search-button">
+                            <span class="fa fa-search"></span>
+                        </button>
                     </div>
                 }
             </div>
