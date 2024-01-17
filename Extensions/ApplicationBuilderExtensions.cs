@@ -25,12 +25,12 @@ namespace NexusConnectCRM.Extensions
             {
                 List<IdentityRole> roles =
                 [
-                    new IdentityRole { Name = "HeadAdmin", NormalizedName = "HEADADMIN" },
-                    new IdentityRole { Name = "Admin", NormalizedName = "ADMIN" },
-                    new IdentityRole { Name = "Customer", NormalizedName = "CUSTOMER" },
-                    new IdentityRole { Name = "Employee", NormalizedName = "EMPLOYEE" },
-                    new IdentityRole { Name = "Prospect", NormalizedName = "PROSPECT" },
-                    new IdentityRole { Name = "Help Desk", NormalizedName = "HELP DESK" }
+                    new IdentityRole { Name = "HeadAdmin", NormalizedName = "HEADADMIN", ConcurrencyStamp = Guid.NewGuid().ToString("D") },
+                    new IdentityRole { Name = "Admin", NormalizedName = "ADMIN", ConcurrencyStamp = Guid.NewGuid().ToString("D") },
+                    new IdentityRole { Name = "Customer", NormalizedName = "CUSTOMER", ConcurrencyStamp = Guid.NewGuid().ToString("D") },
+                    new IdentityRole { Name = "Employee", NormalizedName = "EMPLOYEE", ConcurrencyStamp = Guid.NewGuid().ToString("D") },
+                    new IdentityRole { Name = "Prospect", NormalizedName = "PROSPECT", ConcurrencyStamp = Guid.NewGuid().ToString("D") },
+                    new IdentityRole { Name = "Help Desk", NormalizedName = "HELP DESK", ConcurrencyStamp = Guid.NewGuid().ToString("D") }
                 ];
 
                 foreach (IdentityRole role in roles)
@@ -64,7 +64,8 @@ namespace NexusConnectCRM.Extensions
                     ConcurrencyStamp = Guid.NewGuid().ToString("D"),
                     LockoutEnabled = false,
                     PhoneNumberConfirmed = false,
-                    TwoFactorEnabled = false
+                    TwoFactorEnabled = false,
+                    IsOnline = false
                 };
                 IdentityResult headadminResult = userManager.CreateAsync(headAdminUser, "Pass1234!").Result;
 
@@ -91,7 +92,8 @@ namespace NexusConnectCRM.Extensions
                     ConcurrencyStamp = Guid.NewGuid().ToString("D"),
                     LockoutEnabled = false,
                     PhoneNumberConfirmed = false,
-                    TwoFactorEnabled = false
+                    TwoFactorEnabled = false,
+                    IsOnline = false
                 };
                 IdentityResult adminResult = userManager.CreateAsync(adminUser, "Pass1234!").Result;
 
@@ -118,7 +120,8 @@ namespace NexusConnectCRM.Extensions
                     ConcurrencyStamp = Guid.NewGuid().ToString("D"),
                     LockoutEnabled = false,
                     PhoneNumberConfirmed = false,
-                    TwoFactorEnabled = false
+                    TwoFactorEnabled = false,
+                    IsOnline = false
                 };
                 IdentityResult helpdeskResult = userManager.CreateAsync(helpDeskUser, "Pass1234!").Result;
 
@@ -168,7 +171,8 @@ namespace NexusConnectCRM.Extensions
                     ConcurrencyStamp = Guid.NewGuid().ToString("D"),
                     LockoutEnabled = false,
                     PhoneNumberConfirmed = false,
-                    TwoFactorEnabled = false
+                    TwoFactorEnabled = false,
+                    IsOnline = false
                 };
                 IdentityResult employeeResult = userManager.CreateAsync(employeeUser, "Pass1234!").Result;
 
@@ -256,7 +260,8 @@ namespace NexusConnectCRM.Extensions
                         ConcurrencyStamp = Guid.NewGuid().ToString("D"),
                         LockoutEnabled = false,
                         PhoneNumberConfirmed = false,
-                        TwoFactorEnabled = false
+                        TwoFactorEnabled = false,
+                        IsOnline = false
                     };
                     IdentityResult prospectResult = userManager.CreateAsync(prospectUser, "Pass1234!").Result;
 
@@ -325,7 +330,8 @@ namespace NexusConnectCRM.Extensions
                         ConcurrencyStamp = Guid.NewGuid().ToString("D"),
                         LockoutEnabled = false,
                         PhoneNumberConfirmed = false,
-                        TwoFactorEnabled = false
+                        TwoFactorEnabled = false,
+                        IsOnline = false
                     };
 
                     IdentityResult customerResult = userManager.CreateAsync(customerUser, "Pass1234!").Result;
@@ -363,7 +369,8 @@ namespace NexusConnectCRM.Extensions
                     ConcurrencyStamp = Guid.NewGuid().ToString("D"),
                     LockoutEnabled = false,
                     PhoneNumberConfirmed = false,
-                    TwoFactorEnabled = false
+                    TwoFactorEnabled = false,
+                    IsOnline = false
                 };
                 IdentityResult accountResult = userManager.CreateAsync(testUser, "Pass1234!").Result;
 
@@ -441,7 +448,8 @@ namespace NexusConnectCRM.Extensions
                     ConcurrencyStamp = Guid.NewGuid().ToString("D"),
                     LockoutEnabled = false,
                     PhoneNumberConfirmed = false,
-                    TwoFactorEnabled = false
+                    TwoFactorEnabled = false,
+                    IsOnline = false
                 };
                 IdentityResult accountResult = userManager.CreateAsync(testUser, "Pass1234!").Result;
 

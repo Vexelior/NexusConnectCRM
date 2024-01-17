@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using NexusConnectCRM.Data.Models.Identity;
+using NexusConnectCRM.Data;
 
 namespace NexusConnectCRM.Areas.Identity.Pages.Account
 {
@@ -114,8 +115,16 @@ namespace NexusConnectCRM.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+                    ApplicationDbContext _context = new();
                     var user = await _signInManager.UserManager.FindByEmailAsync(Input.Email);
                     var userRoles = await _signInManager.UserManager.GetRolesAsync(user);
+
+                    if (!user.IsOnline)
+                    {
+                        user.IsOnline = true;
+                        _context.Update(user);
+                        await _context.SaveChangesAsync();
+                    }
 
                     return userRoles[0] switch
                     {

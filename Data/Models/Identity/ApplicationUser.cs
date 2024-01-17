@@ -8,5 +8,6 @@ namespace NexusConnectCRM.Data.Models.Identity
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Roles { get; set; }
+        public bool IsOnline { get; set; }
     }
 }

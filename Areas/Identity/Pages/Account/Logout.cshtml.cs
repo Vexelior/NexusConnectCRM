@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using NexusConnectCRM.Data;
 using NexusConnectCRM.Data.Models.Identity;
 
 namespace NexusConnectCRM.Areas.Identity.Pages.Account
@@ -26,6 +27,13 @@ namespace NexusConnectCRM.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPost(string returnUrl = null)
         {
+            ApplicationDbContext _context = new();
+            var user = await _signInManager.UserManager.GetUserAsync(User);
+
+            user.IsOnline = false;
+            _context.Update(user);
+            await _context.SaveChangesAsync();
+
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
             if (returnUrl != null)
