@@ -47,7 +47,7 @@
                             <td>@user.PhoneNumber</td>
                             <td>@user.Roles</td>
                             <td>
-                                <a class="btn default-btn" href="@Url.Action("EditUser", "User", new { id = user.Id })">Edit</a>
+                                <a class="btn btn-primary" href="@Url.Action("EditUser", "User", new { id = user.Id })">Edit</a>
                             </td>
                         </tr>
                     }
@@ -57,10 +57,10 @@
         <div class="container mt-3">
             <div class="row">
                 <div class="col justify-content-center text-center">
-                    <a id="prev" data-info="@Model.CurrentPage" class="btn default-btn @(Model.CurrentPage <= 1 ? "d-none" : "")" href="/Admin/Index/ViewUsers?page=@(Model.CurrentPage - 1)">
+                    <a id="prev" data-info="@Model.CurrentPage" class="btn btn-primary @(Model.CurrentPage <= 1 ? "d-none" : "")" href="/Admin/Index/ViewUsers?page=@(Model.CurrentPage - 1)">
                         <span class="fa fa-arrow-left"></span>
                     </a>
-                    <a id="next" data-info="@Model.CurrentPage" class="btn default-btn @(Model.CurrentPage >= Model.TotalPages ? "d-none" : "")" href="/Admin/Index/ViewUsers?page=@(Model.CurrentPage + 1)">
+                    <a id="next" data-info="@Model.CurrentPage" class="btn btn-primary @(Model.CurrentPage >= Model.TotalPages ? "d-none" : "")" href="/Admin/Index/ViewUsers?page=@(Model.CurrentPage + 1)">
                         <span class="fa fa-arrow-right"></span>
                     </a>
                 </div>
@@ -74,5 +74,5 @@
             </div>
         </div>
     </div>
-    <a href="@Url.Action("Index", "Index")" class="cancel-btn">Back</a>
+    <a href="@Url.Action("Index", "Index")" class="btn btn-secondary">Back</a>
 </div>

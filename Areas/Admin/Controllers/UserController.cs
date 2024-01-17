@@ -138,6 +138,33 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                     return View("EditUser", viewModel);
                 }
             }
+            else if (user.Roles == "Help Desk")
+            {
+                var potentialEmployee = _context.Employees.Where(e => e.UserId == user.Id).FirstOrDefault();
+
+                if (potentialEmployee != null)
+                {
+                    AdminEditViewModel viewModel = new()
+                    {
+
+                        FirstName = potentialEmployee.FirstName,
+                        LastName = potentialEmployee.LastName,
+                        EmailAddress = potentialEmployee.EmailAddress,
+                        DateOfBirth = potentialEmployee.DateOfBirth.ToString(),
+                        Address = potentialEmployee.Address,
+                        City = potentialEmployee.City,
+                        State = potentialEmployee.State,
+                        ZipCode = potentialEmployee.ZipCode,
+                        Country = potentialEmployee.Country,
+                        CompanyName = "NexusConnect",
+                        PhoneNumber = potentialEmployee.PhoneNumber,
+                        UserId = potentialEmployee.UserId,
+                        Roles = selectListItems
+                    };
+
+                    return View("EditUser", viewModel);
+                }
+            }
 
             return NotFound();
         }

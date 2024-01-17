@@ -6,6 +6,7 @@ using NexusConnectCRM.Data.Models.Prospect;
 using NexusConnectCRM.Data.Models.Company;
 using NexusConnectCRM.Data.Models.Customer;
 using NexusConnectCRM.Data.Models.Help;
+using NexusConnectCRM.Data.Models.Employee;
 
 namespace NexusConnectCRM.Extensions
 {
@@ -110,8 +111,8 @@ namespace NexusConnectCRM.Extensions
                     Email = "helpdesk@mail.com",
                     PhoneNumber = "(555) 555-5555",
                     EmailConfirmed = true,
-                    FirstName = "Help Desk",
-                    LastName = "User",
+                    FirstName = "Help",
+                    LastName = "Desk",
                     Roles = "Help Desk",
                     SecurityStamp = Guid.NewGuid().ToString("D"),
                     ConcurrencyStamp = Guid.NewGuid().ToString("D"),
@@ -124,6 +125,29 @@ namespace NexusConnectCRM.Extensions
                 if (helpdeskResult.Succeeded)
                 {
                     userManager.AddToRoleAsync(helpDeskUser, "Help Desk").Wait();
+
+                    // Create Help Desk Employee \\
+                    EmployeeInfo helpDeskEmployee = new()
+                    {
+                        FirstName = helpDeskUser.FirstName,
+                        LastName = helpDeskUser.LastName,
+                        Department = "Help Desk",
+                        UserId = helpDeskUser.Id,
+                        EmailAddress = helpDeskUser.Email,
+                        DateOfBirth = new DateTime(1994, 3, 14),
+                        Address = "123 Help Desk St",
+                        City = "Help Desk City",
+                        State = "Help Desk State",
+                        ZipCode = "12345",
+                        Country = "United States",
+                        PhoneNumber = helpDeskUser.PhoneNumber,
+                        IsActive = true,
+                        CreatedDate = DateTime.Now,
+                        ModifiedDate = DateTime.Now
+                    };
+
+                    context.Employees.Add(helpDeskEmployee);
+                    context.SaveChanges();
                 }
                 else
                 {

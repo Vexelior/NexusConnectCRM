@@ -74,15 +74,13 @@
                     @Html.ValidationMessageFor(m => m.Roles, "", new { @class = "text-danger" })
                 </div>
                 <div class="gap-2 mt-2" role="group" aria-label="Edit User Group">
-                    <button type="submit" class="default-btn">Save</button>
-                    <button href="@Url.Action("Index", "Index")" class="cancel-btn">Cancel</button>
-                    <div class="float-end">
-                        <button type="button" class="delete-button" data-bs-toggle="modal" data-bs-target="#deleteUserModal">Delete</button>
-                    </div>
+                    <button type="submit" class="btn btn-primary mb-0">Save</button>
+                    <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteUserModal">Delete</a>
                 </div>
             }
         </div>
     </div>
+    <a href="@Url.Action("Index", "Index")" class="btn btn-secondary">Cancel</a>
 </div>
 
 <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserLabel" aria-hidden="true">

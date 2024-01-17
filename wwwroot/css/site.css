@@ -3,38 +3,38 @@
 --------------------------------------------------------------*/
 
 @font-face {
-    font-family: 'Roboto';
+    font-family: "Roboto";
     font-style: normal;
     font-weight: 400;
-    src: url('../fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+    src: url("../fonts/Roboto/Roboto-Regular.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: 'Roboto Bold';
+    font-family: "Roboto Bold";
     font-style: normal;
     font-weight: 700;
-    src: url('../fonts/Roboto/Roboto-Bold.ttf') format('truetype');
+    src: url("../fonts/Roboto/Roboto-Bold.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: 'Roboto Italic';
+    font-family: "Roboto Italic";
     font-style: normal;
     font-weight: 700;
-    src: url('../fonts/Roboto/Roboto-Italic.ttf') format('truetype');
+    src: url("../fonts/Roboto/Roboto-Italic.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: 'Raleway';
+    font-family: "Raleway";
     font-style: normal;
     font-weight: 400;
-    src: url('../fonts/Raleway/Raleway-VariableFont_wght.ttf') format('truetype');
+    src: url("../fonts/Raleway/Raleway-VariableFont_wght.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: 'Raleway Italic';
+    font-family: "Raleway Italic";
     font-style: normal;
     font-weight: 700;
-    src: url('../fonts/Raleway/Raleway-Italic-VariableFont_wght.ttf') format('truetype');
+    src: url("../fonts/Raleway/Raleway-Italic-VariableFont_wght.ttf") format("truetype");
 }
 
 /*--------------------------------------------------------------
@@ -103,7 +103,7 @@ body {
     }
 
 a {
-    color: #47b2e4;
+    color: #fff;
     text-decoration: none;
 }
 
@@ -425,43 +425,17 @@ h6 {
         font-size: 24px;
     }
 
-.default-btn,
-.default-btn:focus {
-    padding: 8px 20px;
-    border-radius: 50px;
-    color: #fff;
-    font-size: 14px;
-    border: 2px solid #fff;
-    font-weight: 600;
+.btn-primary {
     background: #37517e;
 }
 
-    .default-btn:hover,
-    .default-btn:focus:hover {
-        color: #fff;
-        background: #47b2e4;
-        box-shadow: none;
-        outline: none;
+    .btn-primary:hover {
+        background: #2b3f5c;
     }
 
-    #staticBackdrop .default-btn,
-    .default-btn:focus {
-        padding: 8px 20px;
-        border-radius: 50px;
-        color: #fff;
-        font-size: 14px;
-        border: 2px solid #fff;
-        font-weight: 600;
-        background: #37517e;
+    .btn-primary:focus {
+        background: #2b3f5c;
     }
-
-        #staticBackdrop .default-btn:hover,
-        .default-btn:focus:hover {
-            color: #fff;
-            background: #47b2e4;
-            box-shadow: none;
-            outline: none;
-        }
 
 .getstarted,
 .getstarted:focus {
@@ -479,56 +453,23 @@ h6 {
         background: #31a9e1;
     }
 
-.cancel-btn {
-    padding: 8px 20px;
-    border-radius: 50px;
-    color: #fff;
-    font-size: 14px;
-    border: 2px solid #fff;
-    font-weight: 600;
-    background: gray;
-}
-
-    .cancel-btn:hover,
-    .cancel-btn:focus:hover {
-        color: #fff;
-        background: #47b2e4;
-        box-shadow: none;
-        outline: none;
-    }
-
-.options-btn {
-    padding: 8px 20px;
-    border-radius: 50px;
-    color: #fff;
-    font-size: 14px;
-    border: 2px solid #fff;
-    font-weight: 600;
-    background: black;
-}
-
-    .options-btn:hover,
-    .options-btn:focus:hover {
-        color: #fff;
-        background: gray;
-        box-shadow: none;
-        outline: none;
-        cursor: pointer;
-    }
-
-a.btn {
-    border-radius: 50px;
-    border: 2px solid #fff;
-    padding: 8px 20px;
-    color: #fff;
-}
-
 .btn {
     border-radius: 50px;
     border: 2px solid #fff;
     padding: 8px 20px;
     color: #fff;
+    font-weight: 400;
 }
+
+    .btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    .btn:hover,
+    .btn:focus {
+        color: #fff;
+    }
 
 #hero .animated {
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
@@ -573,11 +514,6 @@ a.btn {
 @media (max-width: 575px) {
     #hero .hero-img img {
         width: 80%;
-    }
-
-    .default-btn {
-        font-size: 16px;
-        padding: 10px 24px 11px 24px;
     }
 }
 
@@ -1550,7 +1486,7 @@ section {
                 }
 
     #login .login-title {
-        font-family: 'Raleway', sans-serif;
+        font-family: "Raleway", sans-serif;
     }
 
 /*--------------------------------------------------------------
@@ -1608,7 +1544,6 @@ section {
                 background: #209dd8;
             }
 
-
         #register .account-register-form #existing-account {
             text-align: center;
             padding-top: 15px;
@@ -1623,7 +1558,7 @@ section {
                 }
 
     #register .register-title {
-        font-family: 'Raleway', sans-serif;
+        font-family: "Raleway", sans-serif;
     }
 
 /*--------------------------------------------------------------
@@ -1683,18 +1618,18 @@ section {
             }
 
     #forgot-password-section .forgot-password-title {
-        font-family: 'Raleway', sans-serif;
+        font-family: "Raleway", sans-serif;
     }
 
 /*--------------------------------------------------------------
 # Privacy Policy Modal
 --------------------------------------------------------------*/
 #privacy-policy-modal {
-    font-family: 'Raleway', sans-serif;
+    font-family: "Raleway", sans-serif;
 }
 
     #privacy-policy-modal button {
-        font-family: 'Raleway', sans-serif;
+        font-family: "Raleway", sans-serif;
         background: #47b2e4;
         border: 0;
         padding: 12px 34px;
@@ -1728,7 +1663,7 @@ section {
     }
 
     #update-profile-section button {
-        font-family: 'Raleway', sans-serif;
+        font-family: "Raleway", sans-serif;
         background: #47b2e4;
         border: 0;
         padding: 12px 34px;
@@ -1738,7 +1673,7 @@ section {
     }
 
 #enable-authenticator {
-    font-family: 'Raleway', sans-serif;
+    font-family: "Raleway", sans-serif;
     background: #47b2e4;
     border: 0;
     padding: 12px 34px;
@@ -1748,7 +1683,7 @@ section {
 }
 
 #reset-authenticator {
-    font-family: 'Raleway', sans-serif;
+    font-family: "Raleway", sans-serif;
     background: #47b2e4;
     border: 0;
     padding: 12px 34px;
@@ -1758,7 +1693,7 @@ section {
 }
 
 #personal-data-delete {
-    font-family: 'Raleway', sans-serif;
+    font-family: "Raleway", sans-serif;
     background: #c73f3f;
     border: 0;
     padding: 12px 34px;
@@ -1807,12 +1742,11 @@ section {
 }
 
 .footer-newsletter {
-    padding: 50px 0;
-    background: #fff;
+    padding-top: 10px;
+    padding-bottom: 40px;
     text-align: center;
     font-size: 15px;
     color: #444444;
-    border-top: 1px solid #dee2e6;
 }
 
     .footer-newsletter h4 {
@@ -1861,7 +1795,7 @@ section {
             }
 
 #footer .footer-top {
-    padding: 60px 0 30px 0;
+    padding: 60px 10px 10px 10px;
     background: #f3f5fa;
 }
 
@@ -2032,7 +1966,6 @@ section {
         border-color: transparent;
     }
 
-
 /*--------------------------------------------------------------
 # Preloader
 --------------------------------------------------------------*/
@@ -2085,7 +2018,7 @@ section {
 }
 
     #sidebar .spacer {
-        margin-left: 1.0rem !important;
+        margin-left: 1rem !important;
     }
 
     #sidebar svg {
@@ -2169,7 +2102,8 @@ section {
         margin-top: 1.5rem !important;
     }
 
-    .account-info, .company-info {
+    .account-info,
+    .company-info {
         padding: 3px !important;
     }
 }
@@ -2249,7 +2183,7 @@ section {
             }
 
     #company-details .company-details-title {
-        font-family: 'Raleway', sans-serif;
+        font-family: "Raleway", sans-serif;
         color: black;
     }
 
@@ -2328,7 +2262,7 @@ section {
         }
 
     #user-details .user-details-title {
-        font-family: 'Raleway', sans-serif;
+        font-family: "Raleway", sans-serif;
         color: black;
     }
 
@@ -2347,7 +2281,6 @@ section {
         padding: 30px;
     }
 
-
     .create-help-ticket .container .form-group input[type="text"],
     .create-help-ticket .container .form-group textarea {
         border-radius: 0;
@@ -2364,38 +2297,6 @@ section {
     .create-help-ticket .container .form-group textarea {
         padding: 10px 12px;
     }
-
-    .create-help-ticket .container .form-group .btn {
-        background: #47b2e4;
-        border: 0;
-        padding: 12px 34px;
-        color: #fff;
-        transition: 0.4s;
-        border-radius: 50px;
-    }
-
-        .create-help-ticket .container .form-group .btn:hover {
-            background: #209dd8;
-        }
-
-    .create-help-ticket .container .cancel-btn {
-        background: gray;
-        padding: 8px 20px;
-        border-radius: 50px;
-        color: #fff;
-        font-size: 14px;
-        border: 2px solid #fff;
-        font-weight: 600;
-    }
-
-        .create-help-ticket .container .cancel-btn:hover {
-            background: black;
-        }
-
-        .create-help-ticket .container .cancel-btn:focus {
-            background: black;
-            border: 2px solid gray;
-        }
 
 .tickets {
     margin-bottom: 20px;
@@ -2422,17 +2323,18 @@ section {
 /*--------------------------------------------------------------
     # Portal Account Options
 --------------------------------------------------------------*/
-.account-options li, span {
+.account-options li,
+span {
     font-size: 14px !important;
 }
 
 .account-options svg {
-    width: 1.0em !important;
-    height: 1.0em !important;
+    width: 1em !important;
+    height: 1em !important;
 }
 
 .account-options li form button {
-    padding: .25rem 1rem;
+    padding: 0.25rem 1rem;
 }
 
 /*--------------------------------------------------------------
@@ -2459,81 +2361,21 @@ button:focus {
 }
 
 /*--------------------------------------------------------------
-    # Admin - Edit User
---------------------------------------------------------------*/
-.admin-edituser .cancel-btn {
-    background: gray;
-    padding: 8px 20px;
-    border-radius: 50px;
-    color: #fff;
-    font-size: 14px;
-    border: 2px solid #fff;
-    font-weight: 600;
-}
-
-    .admin-edituser .cancel-btn:hover {
-        background: black;
-    }
-
-    .admin-edituser .cancel-btn:focus {
-        background: black;
-        border: 2px solid gray;
-    }
-
-.admin-edituser .delete-button {
-    background: #dc3545;
-    padding: 8px 20px;
-    border-radius: 50px;
-    color: #fff;
-    font-size: 14px;
-    border: 2px solid #fff;
-    font-weight: 600;
-}
-
-    .admin-edituser .delete-button:hover {
-        background: #c73f3f;
-    }
-
-    .admin-edituser .delete-button:focus {
-        background: #c73f3f;
-        border: 2px solid #dc3545;
-    }
-
-.delete-button {
-    background: #dc3545;
-    padding: 8px 20px;
-    border-radius: 50px;
-    color: #fff;
-    font-size: 14px;
-    border: 2px solid #fff;
-    font-weight: 600;
-}
-
-    .delete-button:hover {
-        background: #c73f3f;
-    }
-
-    .delete-button:focus {
-        background: #c73f3f;
-        border: 2px solid #dc3545;
-    }
-
-/*--------------------------------------------------------------
     # Chat App
 --------------------------------------------------------------*/
 .chat-btn {
     position: absolute;
     right: 30px;
     bottom: 30px;
-    cursor: pointer
+    cursor: pointer;
 }
 
     .chat-btn .close {
-        display: none
+        display: none;
     }
 
     .chat-btn i {
-        transition: all 0.9s ease
+        transition: all 0.9s ease;
     }
 
 #check:checked ~ .chat-btn i {
@@ -2552,7 +2394,7 @@ button:focus {
 
 .chat-btn i {
     font-size: 22px;
-    color: #fff !important
+    color: #fff !important;
 }
 
 .chat-btn {
@@ -2565,7 +2407,7 @@ button:focus {
     background-color: #37517e;
     color: #fff;
     font-size: 22px;
-    border: none
+    border: none;
 }
 
 .chat-wrapper {
@@ -2588,7 +2430,7 @@ button:focus {
 #chat-messages {
     list-style: none;
     padding: 0;
-    margin: 0
+    margin: 0;
 }
 
 #check:checked ~ .chat-wrapper {
@@ -2601,7 +2443,7 @@ button:focus {
     background-color: #37517e;
     border-radius: 5px 5px 0px 0px;
     margin-bottom: 10px;
-    color: #fff
+    color: #fff;
 }
 
 .chat-form {
@@ -2614,18 +2456,18 @@ button:focus {
     .chat-form input,
     textarea,
     button {
-        margin-bottom: 10px
+        margin-bottom: 10px;
     }
 
-        .chat-form input[type=text] {
+        .chat-form input[type="text"] {
             width: 100%;
         }
 
 .form-control:focus,
 .btn:focus {
-    box-shadow: none
+    box-shadow: none;
 }
 
 #check {
-    display: none !important
+    display: none !important;
 }
