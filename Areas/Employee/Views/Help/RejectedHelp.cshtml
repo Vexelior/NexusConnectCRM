@@ -25,16 +25,12 @@ else
             <div class="col" style="margin: 0 auto;">
                 @foreach (var help in Model.HelpList)
                 {
-                    string fullName = _context.Users.Where(u => u.Id == help.Author)
-                                                    .Select(u => u.FirstName + " " + u.LastName)
-                                                    .FirstOrDefault();
-
                     <div class="card mt-4">
                         <div class="card-body">
                             <h5 class="card-title">
                                 @help.Title
                             </h5>
-                            <p class="mt-3">User: @fullName</p>
+                            <p class="mt-3">User: @help.AuthorName</p>
                             <p>Submitted: @help.CreatedDate</p>
                             <a href="@Url.Action("HelpEdit", "Help", new { id = help.Id, author = help.Author })" class="btn default-btn">View</a>
                         </div>

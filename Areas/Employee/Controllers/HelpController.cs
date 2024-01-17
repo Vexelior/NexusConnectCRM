@@ -25,7 +25,7 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
         private readonly IWebHostEnvironment _hostEnvironment = hostEnvironment;
         private readonly IHubContext<NotificationHub> _hubContext = hubContext;
 
-        public async Task<IActionResult> Index(string searchQuery, string statusFilter, int page = 1, int pageSize = 10)
+        public async Task<IActionResult> Index(string searchQuery, int page = 1, int pageSize = 10)
         {
             List<HelpInfo> help = [];
 
@@ -38,38 +38,10 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                 query = query.Where(x => x.Title.Contains(searchQuery));
             }
 
-            if (!string.IsNullOrEmpty(statusFilter))
-            {
-                switch (statusFilter)
-                {
-                    case "All":
-                        query = query.Where(x => x.IsApproved ||
-                                                    x.IsPending ||
-                                                    x.IsRejected ||
-                                                    x.IsCompleted);
-                        break;
-                    case "Approved":
-                        query = query.Where(x => x.IsApproved);
-                        break;
-                    case "Pending":
-                        query = query.Where(x => x.IsPending);
-                        break;
-                    case "Rejected":
-                        query = query.Where(x => x.IsRejected);
-                        break;
-                    case "Completed":
-                        query = query.Where(x => x.IsCompleted);
-                        break;
-                        // If "All" or any other value is selected, no filter is applied.
-                    default:
-                        break;
-                }
-            }
-
             help = await query.OrderByDescending(x => x.CreatedDate)
-                             .Skip((page - 1) * pageSize)
-                             .Take(pageSize)
-                             .ToListAsync();
+                              .Skip((page - 1) * pageSize)
+                              .Take(pageSize)
+                              .ToListAsync();
 
             if (help is null)
             {
@@ -96,35 +68,6 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                 PageSize = pageSize,
                 TotalPages = totalPages,
                 TotalHelp = totalHelp
-            };
-
-            return View("Help", viewModel);
-        }
-
-
-        public async Task<IActionResult> ShowTickets(int pageNumber)
-        {
-            int pageSize = 10;
-            int totalPages = (int)Math.Ceiling((decimal)_context.Help.Count() / 10);
-
-            if (pageNumber < 1)
-            {
-                pageNumber = 1;
-            }
-            else if (pageNumber > totalPages)
-            {
-                pageNumber = totalPages;
-            }
-
-            ListHelpViewModel viewModel = new()
-            {
-                HelpList = await _context.Help.OrderByDescending(x => x.CreatedDate)
-                                               .Skip((pageNumber - 1) * 10)
-                                               .Take(pageSize)
-                                               .ToListAsync(),
-                CurrentPage = pageNumber,
-                PageSize = pageSize,
-                TotalPages = totalPages
             };
 
             return View("Help", viewModel);

@@ -497,6 +497,39 @@ h6 {
         outline: none;
     }
 
+.options-btn {
+    padding: 8px 20px;
+    border-radius: 50px;
+    color: #fff;
+    font-size: 14px;
+    border: 2px solid #fff;
+    font-weight: 600;
+    background: black;
+}
+
+    .options-btn:hover,
+    .options-btn:focus:hover {
+        color: #fff;
+        background: gray;
+        box-shadow: none;
+        outline: none;
+        cursor: pointer;
+    }
+
+a.btn {
+    border-radius: 50px;
+    border: 2px solid #fff;
+    padding: 8px 20px;
+    color: #fff;
+}
+
+.btn {
+    border-radius: 50px;
+    border: 2px solid #fff;
+    padding: 8px 20px;
+    color: #fff;
+}
+
 #hero .animated {
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
 }

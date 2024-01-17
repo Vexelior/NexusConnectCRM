@@ -47,13 +47,17 @@ namespace NexusConnectCRM.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ResponseId,Title,Description,Image,Author,IsPending,IsApproved,IsRejected,IsCompleted")] HelpInfo helpInfo)
+        public async Task<IActionResult> Create([Bind("Id,ResponseId,Title,Description,Image,Author,AuthorName,IsPending,IsApproved,IsRejected,IsCompleted")] HelpInfo helpInfo)
         {
             string authorId = _userManager.GetUserId(User);
+            string authorName = _context.Users.Where(u => u.Id == authorId)
+                                              .Select(u => u.FirstName + " " + u.LastName)
+                                              .FirstOrDefault();
 
             if (ModelState.IsValid)
             {
                 helpInfo.Author = authorId;
+                helpInfo.AuthorName = authorName;
                 helpInfo.IsPending = true;
                 helpInfo.IsApproved = false;
                 helpInfo.IsCompleted = false;

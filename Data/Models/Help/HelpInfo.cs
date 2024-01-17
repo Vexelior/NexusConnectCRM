@@ -17,6 +17,7 @@ namespace NexusConnectCRM.Data.Models.Help
         public IFormFile Image { get; set; }
         public string ImageName { get; set; }
         public string Author { get; set; }
+        public string AuthorName { get; set; }
         public bool IsPending { get; set; }
         public bool IsApproved { get; set; }
         public bool IsRejected { get; set; }
