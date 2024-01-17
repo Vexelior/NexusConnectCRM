@@ -404,6 +404,7 @@ namespace NexusConnectCRM.Extensions
             {
                 List<HelpInfo> helpInfos = [];
                 string testAccountUserId = context.Users.Where(u => u.Email == "asanderson1994s@gmail.com").FirstOrDefault().Id;
+                string testAccountName = context.Prospects.Where(p => p.UserId == testAccountUserId).Select(p => p.FirstName + " " + p.LastName).FirstOrDefault();
 
                 for (int i = 1; i < 10; i++)
                 {
@@ -412,6 +413,7 @@ namespace NexusConnectCRM.Extensions
                         Title = $"Help Title {i}",
                         Description = $"Help Description {i}",
                         Author = testAccountUserId,
+                        AuthorName = testAccountName,
                         IsPending = true,
                         IsApproved = false,
                         IsRejected = false,
