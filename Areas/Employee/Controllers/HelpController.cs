@@ -239,17 +239,47 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             return RedirectToAction(nameof(HelpEdit), new { id = help.Id, author = help.Author });
         }
 
-        public async Task<IActionResult> NewHelp()
+        public async Task<IActionResult> NewHelp(string searchQuery, int page = 1, int pageSize = 10)
         {
-            var helpList = await _context.Help.Where(h => h.CustomerWasRecentResponse &&
-                                                                   h.IsApproved &&
-                                                                  !h.IsCompleted)
-                                              .OrderByDescending(h => h.CreatedDate)
-                                              .ToListAsync();
+            List<HelpInfo> newHelp = [];
 
+            searchQuery ??= "";
+
+            IQueryable<HelpInfo> query = _context.Help.Where(h => h.IsPending && !h.IsRejected);
+
+            query = query.Where(x => x.Title.Contains(searchQuery) ||
+                                              x.AuthorName.Contains(searchQuery));
+
+            newHelp = await query.OrderByDescending(x => x.CreatedDate)
+                                 .Skip((page - 1) * pageSize)
+                                 .Take(pageSize)
+                                 .ToListAsync();
+
+            if (newHelp is null)
+            {
+                return NotFound();
+            }
+
+            int totalHelp = await query.CountAsync();
+            int totalPages = (int)Math.Ceiling((decimal)totalHelp / pageSize);
+
+            if (page < 1)
+            {
+                page = 1;
+            }
+            else if (page > totalPages)
+            {
+                page = totalPages;
+            }
+            
             ListHelpViewModel viewModel = new()
             {
-                HelpList = helpList,
+                HelpList = newHelp,
+                SearchQuery = searchQuery,
+                CurrentPage = page,
+                PageSize = pageSize,
+                TotalPages = totalPages,
+                TotalHelp = totalHelp
             };
 
             return View("NewHelp", viewModel);
