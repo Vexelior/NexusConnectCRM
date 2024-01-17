@@ -39,7 +39,7 @@
 
     @if (User.IsInRole("Help Desk"))
     {
-        <script src='https://cdn.jsdelivr.net/npm/@@microsoft/signalr@8.0.0/dist/browser/signalr.js'></script>
+        <script src='~/lib/signalr/signalr.js'></script>
         <script src="~/js/SignalRHub.js" asp-append-version="true" defer></script>
     }
     <script src="~/lib/vendor/waypoints/noframework.waypoints.js"></script>
