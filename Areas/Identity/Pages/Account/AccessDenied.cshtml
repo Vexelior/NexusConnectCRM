@@ -4,11 +4,35 @@
     ViewData["Title"] = "Access denied";
 }
 
-<div class="container">
-    <div class="row">
-        <div class="col text-center text-danger">
-            <p style="font-size: 60px;"><i class="fa fa-solid fa-exclamation-triangle"></i></p>
+<div class="container text-center">
+    <div class="row mb-5">
+        <div class="col text-danger">
+            <p style="font-size: 120px;"><i class="fa fa-solid fa-exclamation-triangle"></i></p>
             <h1>Access Denied</h1>
         </div>
     </div>
+    <div class="row">
+        <div class="col" style="margin: 0 auto;">
+            <h3 class="mb-2">You are not authorized to access this page.</h3>
+            <h3 class="mb-2">You will be redirected to the home page in 10 seconds.</h3>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col">
+            <h3><span id="timer" style="font-size: inherit !important">10</span></h3>
+        </div>
+    </div>
 </div>
+
+<script>
+    var timerDisplay = document.getElementById("timer");
+    var timer = setInterval(function () {
+        var count = parseInt(timerDisplay.textContent);
+        count--;
+        timerDisplay.textContent = count;
+        if (count <= 0) {
+            clearInterval(timer);
+            window.location.href = "/";
+        }
+    }, 1000);
+</script>
