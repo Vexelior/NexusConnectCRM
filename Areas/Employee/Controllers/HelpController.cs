@@ -377,15 +377,47 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
             return View("RejectedHelp", viewModel);
         }
 
-        public async Task<IActionResult> CompletedHelp()
+        public async Task<IActionResult> CompletedHelp(string searchQuery, int page = 1, int pageSize = 10)
         {
-            var helpList = await _context.Help.Where(h => h.IsCompleted)
-                                              .OrderByDescending(h => h.CreatedDate)
-                                              .ToListAsync();
+            List<HelpInfo> completedHelp = [];
+
+            searchQuery ??= "";
+
+            IQueryable<HelpInfo> query = _context.Help.Where(h => h.IsCompleted);
+
+            query = query.Where(x => x.Title.Contains(searchQuery) ||
+                                              x.AuthorName.Contains(searchQuery));
+            
+            completedHelp = await query.OrderByDescending(x => x.CreatedDate)
+                                       .Skip((page - 1) * pageSize)
+                                       .Take(pageSize)
+                                       .ToListAsync();
+
+            if (completedHelp is null)
+            {
+                return NotFound();
+            }
+
+            int totalHelp = await query.CountAsync();
+            int totalPages = (int)Math.Ceiling((decimal)totalHelp / pageSize);
+
+            if (page < 1)
+            {
+                page = 1;
+            }
+            else if (page > totalPages)
+            {
+                page = totalPages;
+            }
 
             ListHelpViewModel viewModel = new()
             {
-                HelpList = helpList,
+                HelpList = completedHelp,
+                SearchQuery = searchQuery,
+                CurrentPage = page,
+                PageSize = pageSize,
+                TotalPages = totalPages,
+                TotalHelp = totalHelp
             };
 
             return View("CompletedHelp", viewModel);
