@@ -400,20 +400,98 @@ namespace NexusConnectCRM.Extensions
                 context.SaveChanges();
             }
 
+            if (context.Users.Where(u => u.Email == "b.johnson@gmail.com").FirstOrDefault() == null)
+            {
+                ApplicationUser testUser = new()
+                {
+                    UserName = "b.johnson@gmail.com",
+                    Email = "b.johnson@gmail.com",
+                    NormalizedEmail = "B.JOHNSON@GMAIL.COM",
+                    EmailConfirmed = true,
+                    FirstName = "Bill",
+                    LastName = "Johnson",
+                    Roles = "Prospect",
+                    PhoneNumber = "(619) 283-5240",
+                    NormalizedUserName = "B.JOHNSON@GMAIL.COM",
+                    SecurityStamp = Guid.NewGuid().ToString("D"),
+                    ConcurrencyStamp = Guid.NewGuid().ToString("D"),
+                    LockoutEnabled = false,
+                    PhoneNumberConfirmed = false,
+                    TwoFactorEnabled = false
+                };
+                IdentityResult accountResult = userManager.CreateAsync(testUser, "Pass1234!").Result;
+
+                if (accountResult.Succeeded)
+                {
+                    userManager.AddToRoleAsync(testUser, "Prospect").Wait();
+                }
+                else
+                {
+                    throw new Exception("Test account creation failed");
+                }
+
+                CompanyInfo company = new()
+                {
+                    Name = "Google",
+                    Address = "1600 Amphitheatre Parkway",
+                    City = "Mountain View",
+                    State = "California",
+                    Zip = "94043",
+                    Country = "United States",
+                    Phone = "(650) 253-0000",
+                    Website = "https://www.google.com",
+                    Email = "support-in@google.com",
+                    Industry = "Technology",
+                    NeedsContact = false
+                };
+
+                context.Companies.Add(company);
+                context.SaveChanges();
+
+                var userId = context.Users.Where(u => u.Email == "b.johnson@gmail.com").FirstOrDefault().Id;
+                var techAcademyId = context.Companies.Where(c => c.Name == "Google").FirstOrDefault().Id;
+
+                ProspectInfo prospectInfo = new()
+                {
+                    FirstName = testUser.FirstName,
+                    LastName = testUser.LastName,
+                    EmailAddress = testUser.Email,
+                    DateOfBirth = new DateTime(1994, 8, 19),
+                    Address = "123 Main St",
+                    City = "San Diego",
+                    State = "California",
+                    ZipCode = "91941",
+                    Country = "United States",
+                    CompanyName = "Google",
+                    PhoneNumber = testUser.PhoneNumber,
+                    UserId = userId,
+                    CompanyId = techAcademyId,
+                    IsActive = true,
+                    IsContacted = false,
+                    IsHelped = false,
+                    NeedsHelp = false,
+                    CreatedDate = DateTime.Now,
+                    ModifiedDate = DateTime.Now
+                };
+
+                context.Prospects.Add(prospectInfo);
+                context.SaveChanges();
+            }
+
             if (!context.Help.Any())
             {
-                List<HelpInfo> helpInfos = [];
-                string testAccountUserId = context.Users.Where(u => u.Email == "asanderson1994s@gmail.com").FirstOrDefault().Id;
-                string testAccountName = context.Prospects.Where(p => p.UserId == testAccountUserId).Select(p => p.FirstName + " " + p.LastName).FirstOrDefault();
+                List<HelpInfo> helpInfos1 = [];
+                string testAccountUserId1 = context.Users.Where(u => u.Email == "asanderson1994s@gmail.com").FirstOrDefault().Id;
+                string testAccountName1 = context.Prospects.Where(p => p.UserId == testAccountUserId1).Select(p => p.FirstName + " " + p.LastName).FirstOrDefault();
 
-                for (int i = 1; i < 10; i++)
+                for (int i = 1; i <= 20; i++)
                 {
-                    HelpInfo helpInfo = new()
+                    HelpInfo pendingHelpInfo = new()
                     {
                         Title = $"Help Title {i}",
                         Description = $"Help Description {i}",
-                        Author = testAccountUserId,
-                        AuthorName = testAccountName,
+                        Author = testAccountUserId1,
+                        AuthorName = testAccountName1,
                         IsPending = true,
                         IsApproved = false,
                         IsRejected = false,
@@ -426,12 +504,162 @@ namespace NexusConnectCRM.Extensions
                         EmployeeWasRecentResponse = false
                     };
 
-                    helpInfos.Add(helpInfo);
+                    helpInfos1.Add(pendingHelpInfo);
+
+                    HelpInfo approvedHelpInfo = new()
+                    {
+                        Title = $"Help Title {i}",
+                        Description = $"Help Description {i}",
+                        Author = testAccountUserId1,
+                        AuthorName = testAccountName1,
+                        IsPending = false,
+                        IsApproved = true,
+                        IsRejected = false,
+                        IsCompleted = false,
+                        CreatedDate = DateTime.Now,
+                        ModifiedDate = DateTime.Now,
+                        EmployeeViewed = false,
+                        CustomerViewed = true,
+                        CustomerWasRecentResponse = true,
+                        EmployeeWasRecentResponse = false
+                    };
+
+                    helpInfos1.Add(approvedHelpInfo);
+
+                    HelpInfo rejectedHelpInfo = new()
+                    {
+                        Title = $"Help Title {i}",
+                        Description = $"Help Description {i}",
+                        Author = testAccountUserId1,
+                        AuthorName = testAccountName1,
+                        IsPending = false,
+                        IsApproved = false,
+                        IsRejected = true,
+                        IsCompleted = false,
+                        CreatedDate = DateTime.Now,
+                        ModifiedDate = DateTime.Now,
+                        EmployeeViewed = false,
+                        CustomerViewed = true,
+                        CustomerWasRecentResponse = true,
+                        EmployeeWasRecentResponse = false
+                    };
+
+                    helpInfos1.Add(rejectedHelpInfo);
+
+                    HelpInfo completedHelpInfo = new()
+                    {
+                        Title = $"Help Title {i}",
+                        Description = $"Help Description {i}",
+                        Author = testAccountUserId1,
+                        AuthorName = testAccountName1,
+                        IsPending = false,
+                        IsApproved = false,
+                        IsRejected = false,
+                        IsCompleted = true,
+                        CreatedDate = DateTime.Now,
+                        ModifiedDate = DateTime.Now,
+                        EmployeeViewed = false,
+                        CustomerViewed = true,
+                        CustomerWasRecentResponse = true,
+                        EmployeeWasRecentResponse = false
+                    };
+
+                    helpInfos1.Add(completedHelpInfo);
                 }
 
-                context.Help.AddRange(helpInfos);
+                context.Help.AddRange(helpInfos1);
                 context.SaveChanges();
             }
+
+            List<HelpInfo> helpInfos2 = [];
+            string testAccountUserId2 = context.Users.Where(u => u.Email == "b.johnson@gmail.com").FirstOrDefault().Id;
+            string testAccountName2 = context.Prospects.Where(p => p.UserId == testAccountUserId2).Select(p => p.FirstName + " " + p.LastName).FirstOrDefault();
+
+            for (int i = 1; i <= 20; i++)
+            {
+                HelpInfo pendingHelpInfo = new()
+                {
+                    Title = $"Help Title {i}",
+                    Description = $"Help Description {i}",
+                    Author = testAccountUserId2,
+                    AuthorName = testAccountName2,
+                    IsPending = true,
+                    IsApproved = false,
+                    IsRejected = false,
+                    IsCompleted = false,
+                    CreatedDate = DateTime.Now,
+                    ModifiedDate = DateTime.Now,
+                    EmployeeViewed = false,
+                    CustomerViewed = true,
+                    CustomerWasRecentResponse = true,
+                    EmployeeWasRecentResponse = false
+                };
+
+                helpInfos2.Add(pendingHelpInfo);
+
+                HelpInfo approvedHelpInfo = new()
+                {
+                    Title = $"Help Title {i}",
+                    Description = $"Help Description {i}",
+                    Author = testAccountUserId2,
+                    AuthorName = testAccountName2,
+                    IsPending = false,
+                    IsApproved = true,
+                    IsRejected = false,
+                    IsCompleted = false,
+                    CreatedDate = DateTime.Now,
+                    ModifiedDate = DateTime.Now,
+                    EmployeeViewed = false,
+                    CustomerViewed = true,
+                    CustomerWasRecentResponse = true,
+                    EmployeeWasRecentResponse = false
+                };
+
+                helpInfos2.Add(approvedHelpInfo);
+
+                HelpInfo rejectedHelpInfo = new()
+                {
+                    Title = $"Help Title {i}",
+                    Description = $"Help Description {i}",
+                    Author = testAccountUserId2,
+                    AuthorName = testAccountName2,
+                    IsPending = false,
+                    IsApproved = false,
+                    IsRejected = true,
+                    IsCompleted = false,
+                    CreatedDate = DateTime.Now,
+                    ModifiedDate = DateTime.Now,
+                    EmployeeViewed = false,
+                    CustomerViewed = true,
+                    CustomerWasRecentResponse = true,
+                    EmployeeWasRecentResponse = false
+                };
+
+                helpInfos2.Add(rejectedHelpInfo);
+
+                HelpInfo completedHelpInfo = new()
+                {
+                    Title = $"Help Title {i}",
+                    Description = $"Help Description {i}",
+                    Author = testAccountUserId2,
+                    AuthorName = testAccountName2,
+                    IsPending = false,
+                    IsApproved = false,
+                    IsRejected = false,
+                    IsCompleted = true,
+                    CreatedDate = DateTime.Now,
+                    ModifiedDate = DateTime.Now,
+                    EmployeeViewed = false,
+                    CustomerViewed = true,
+                    CustomerWasRecentResponse = true,
+                    EmployeeWasRecentResponse = false
+                };
+
+                helpInfos2.Add(completedHelpInfo);
+            }
+
+            context.Help.AddRange(helpInfos2);
+            context.SaveChanges();
 
             return app;
         }
