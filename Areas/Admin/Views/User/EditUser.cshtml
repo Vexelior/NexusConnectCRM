@@ -73,6 +73,11 @@
                     @Html.DropDownListFor(m => m.SelectedRole, Model.Roles, new { @class = "form-control form-select" })
                     @Html.ValidationMessageFor(m => m.Roles, "", new { @class = "text-danger" })
                 </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.IsOnline)
+                    @Html.DropDownListFor(m => m.IsOnline, Model.OnlineStatuses, new { @class = "form-control form-select" })
+                    @Html.ValidationMessageFor(m => m.Roles, "", new { @class = "text-danger" })
+                </div>
                 <div class="gap-2 mt-2" role="group" aria-label="Edit User Group">
                     <button type="submit" class="btn btn-primary mb-0">Save</button>
                     <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteUserModal">Delete</a>

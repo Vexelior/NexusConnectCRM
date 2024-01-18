@@ -52,42 +52,14 @@ namespace NexusConnectCRM.Areas.Admin.ViewModels
         [Required(ErrorMessage = "Phone Number is required")]
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
-
+        public List<SelectListItem> OnlineStatuses { get; set; }
+        [Display(Name = "Online Status")]
+        public string IsOnline { get; set; }
         public string SelectedRole { get; set; }
         public List<SelectListItem> Roles { get; set; }
 
         public AdminEditViewModel()
         {
-        }
-
-        public AdminEditViewModel(ProspectInfo user)
-        {
-            FirstName = user.FirstName;
-            LastName = user.LastName;
-            EmailAddress = user.EmailAddress;
-            DateOfBirth = Convert.ToDateTime(user.DateOfBirth).ToString("MM/dd/yyyy");
-            PhoneNumber = user.PhoneNumber;
-            Address = user.Address;
-            City = user.City;
-            State = user.State;
-            ZipCode = user.ZipCode;
-            Country = user.Country;
-            CompanyName = user.CompanyName;
-        }
-
-        public AdminEditViewModel(CustomerInfo user)
-        {
-            FirstName = user.FirstName;
-            LastName = user.LastName;
-            EmailAddress = user.EmailAddress;
-            DateOfBirth = Convert.ToDateTime(user.DateOfBirth).ToString("MM/dd/yyyy");
-            PhoneNumber = user.PhoneNumber;
-            Address = user.Address;
-            City = user.City;
-            State = user.State;
-            ZipCode = user.ZipCode;
-            Country = user.Country;
-            CompanyName = user.CompanyName;
         }
     }
 }

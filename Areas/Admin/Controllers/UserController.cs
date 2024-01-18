@@ -58,6 +58,35 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                 }
             }
 
+            string[] onlineStatuses = ["True", "False"];
+            List<SelectListItem> onlineSelectListItems = [];
+
+            if (user.IsOnline)
+            {
+                onlineStatuses[0] = "True";
+                onlineStatuses[1] = "False";
+            }
+            else
+            {
+                onlineStatuses[0] = "False";
+                onlineStatuses[1] = "True";
+            }
+
+            foreach (var status in onlineStatuses)
+            {
+                bool isSelected = false;
+                if (user.IsOnline && status.Equals("True"))
+                {
+                    isSelected = true;
+                }
+                else if (!user.IsOnline && status.Equals("False"))
+                {
+                    isSelected = true;
+                }
+
+                onlineSelectListItems.Add(new SelectListItem(status, status, isSelected));
+            }
+
             if (user.Roles == "Prospect")
             {
                 var potentialProspect = _context.Prospects.Where(p => p.UserId == user.Id).FirstOrDefault();
@@ -78,7 +107,9 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                         CompanyName = potentialProspect.CompanyName,
                         PhoneNumber = potentialProspect.PhoneNumber,
                         UserId = potentialProspect.UserId,
-                        Roles = selectListItems
+                        Roles = selectListItems,
+                        IsOnline = user.IsOnline.ToString(),
+                        OnlineStatuses = onlineSelectListItems
                     };
 
                     return View("EditUser", viewModel);
@@ -105,7 +136,9 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                         CompanyName = potentialCustomer.CompanyName,
                         PhoneNumber = potentialCustomer.PhoneNumber,
                         UserId = potentialCustomer.UserId,
-                        Roles = selectListItems
+                        Roles = selectListItems,
+                        IsOnline = user.IsOnline.ToString(),
+                        OnlineStatuses = onlineSelectListItems
                     };
 
                     return View("EditUser", viewModel);
@@ -132,7 +165,9 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                         CompanyName = "NexusConnect",
                         PhoneNumber = potentialEmployee.PhoneNumber,
                         UserId = potentialEmployee.UserId,
-                        Roles = selectListItems
+                        Roles = selectListItems,
+                        IsOnline = user.IsOnline.ToString(),
+                        OnlineStatuses = onlineSelectListItems
                     };
 
                     return View("EditUser", viewModel);
@@ -159,7 +194,9 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                         CompanyName = "NexusConnect",
                         PhoneNumber = potentialEmployee.PhoneNumber,
                         UserId = potentialEmployee.UserId,
-                        Roles = selectListItems
+                        Roles = selectListItems,
+                        IsOnline = user.IsOnline.ToString(),
+                        OnlineStatuses = onlineSelectListItems
                     };
 
                     return View("EditUser", viewModel);
@@ -179,14 +216,13 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            viewModel.Roles = new List<SelectListItem>
-            {
-                new SelectListItem
-                {
+            viewModel.Roles =
+            [
+                new() {
                     Value = viewModel.SelectedRole,
                     Text = viewModel.SelectedRole
                 }
-            };
+            ];
 
             if (ModelState.IsValid)
             {
@@ -194,6 +230,16 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                 user.LastName = viewModel.LastName;
                 user.Email = viewModel.EmailAddress;
                 user.DateOfBirth = Convert.ToDateTime(viewModel.DateOfBirth);
+                
+                //Check which online status is selected
+                if (viewModel.IsOnline == "True")
+                {
+                    user.IsOnline = true;
+                }
+                else
+                {
+                    user.IsOnline = false;
+                }
 
                 if (string.IsNullOrEmpty(viewModel.SelectedRole))
                 {
