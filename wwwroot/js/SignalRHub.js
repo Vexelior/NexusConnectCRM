@@ -137,15 +137,27 @@ chatConnection.on("ReceiveMessageFromUser", function (senderName, senderId, mess
 });
 
 chatConnection.on("ReceiveMessageFromEmployee", function (senderName, senderId, message) {
-    $(`<li><strong><u><span id="receiverName" style="font-size: 16px !important;">${senderName}</span></u></strong>: ${message}</li>`).appendTo("#chat-messages");
-    document.getElementsByClassName("chat-btn")[0].innerHTML = "";
-    $('.chat-btn')[0].innerHTML = `<span class="badge rounded-pill bg-danger">!</span>`;
-    document.getElementById("chat-notification").muted = false;
-    document.getElementById("chat-notification").play();
+    switch (senderName) {
+        case "System":
+            $(`<p class="text-danger" id="errorMessage">${message}</p>`).appendTo("#chat-messages");
+            document.getElementById("sendMessage").disabled = true;
+            document.getElementById("Message").disabled = true;
+            setTimeout(() => {
+                document.getElementById("yourMessage").style.fontSize = "12px";
+                document.getElementById("yourMessage").innerHTML = "";
+                document.getElementById("Message").attributes.placeholder.value = "You have been disconnected from the chat.";
+            }, 1000);
+            break;
+        case employeeName:
+            $(`<li><strong><u><i><span id="receiverName" style="font-size: 16px !important;">${senderName}</span></i></u></strong>: ${message}</li>`).appendTo("#chat-messages");
+            break;
+        default:
+            break;
+    }
 });
 
 chatConnection.on("ReceiveMessageFromSelf", function (senderName, senderId, message) {
-    $(`<li><strong><u><i><span id="receiverName" style="font-size: 16px !important;">${senderName}</span></i></u></strong>: ${message}</li>`).appendTo("#chat-messages");
+    $(`<li id="yourMessage"><strong><u><i><span id="receiverName" style="font-size: 16px !important;">${senderName}</span></i></u></strong>: ${message}</li>`).appendTo("#chat-messages");
 });
 
 
