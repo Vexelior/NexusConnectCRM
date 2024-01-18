@@ -35,7 +35,8 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
 
             if (!string.IsNullOrEmpty(searchQuery))
             {
-                query = query.Where(x => x.Title.Contains(searchQuery));
+                query = query.Where(x => x.Title.Contains(searchQuery) ||
+                                                  x.AuthorName.Contains(searchQuery));
             }
 
             help = await query.OrderByDescending(x => x.CreatedDate)

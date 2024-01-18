@@ -1,7 +1,7 @@
 ﻿@model NexusConnectCRM.Areas.Admin.ViewModels.AdminListUsersViewModel
 
 @{
-    ViewData["Title"] = "All Users";
+    ViewData["Title"] = "Manage Users";
     Layout = "~/Areas/Admin/Views/Shared/_AdminPortalLayout.cshtml";
 }
 
@@ -43,7 +43,7 @@
                             <td>@user.FirstName</td>
                             <td>@user.LastName</td>
                             <td>@user.Email</td>
-                            <td>@user.DateOfBirth</td>
+                            <td>@user.DateOfBirth.ToString("MM/dd/yyyy")</td>
                             <td>@user.PhoneNumber</td>
                             <td>@user.Roles</td>
                             <td>

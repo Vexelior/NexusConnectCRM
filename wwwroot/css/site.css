@@ -2494,4 +2494,7 @@ button:focus {
         border-radius: 20px;
         border: 3px solid #fff;
     }
+
+#search-button {
+    border: none !important;
 }

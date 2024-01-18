@@ -1,7 +1,7 @@
 ﻿@model NexusConnectCRM.Areas.Admin.ViewModels.AdminListProspectsViewModel
 
 @{
-    ViewData["Title"] = "View Prospects";
+    ViewData["Title"] = "Prospects";
     Layout = "~/Areas/Admin/Views/Shared/_AdminPortalLayout.cshtml";
 }
 
@@ -38,23 +38,27 @@
                         <th scope="col">Zip Code</th>
                         <th scope="col">Country</th>
                         <th scope="col">Company Name</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var customer in Model.Prospects)
+                    @foreach (var prospect in Model.Prospects)
                     {
                         <tr>
-                            <td>@customer.FirstName</td>
-                            <td>@customer.LastName</td>
-                            <td>@customer.EmailAddress</td>
-                            <td>@customer.DateOfBirth</td>
-                            <td>@customer.PhoneNumber</td>
-                            <td>@customer.Address</td>
-                            <td>@customer.City</td>
-                            <td>@customer.State</td>
-                            <td>@customer.ZipCode</td>
-                            <td>@customer.Country</td>
-                            <td>@customer.CompanyName</td>
+                            <td>@prospect.FirstName</td>
+                            <td>@prospect.LastName</td>
+                            <td>@prospect.EmailAddress</td>
+                            <td>@prospect.DateOfBirth</td>
+                            <td>@prospect.PhoneNumber</td>
+                            <td>@prospect.Address</td>
+                            <td>@prospect.City</td>
+                            <td>@prospect.State</td>
+                            <td>@prospect.ZipCode</td>
+                            <td>@prospect.Country</td>
+                            <td>@prospect.CompanyName</td>
+                            <td>
+                                <a class="btn btn-primary" href="@Url.Action("EditUser", "User", new { id = prospect.UserId })">Edit</a>
+                            </td>
                         </tr>
                     }
                 </tbody>

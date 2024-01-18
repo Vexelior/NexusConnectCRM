@@ -55,7 +55,8 @@ namespace NexusConnectCRM.Extensions
                 {
                     UserName = "headadmin@mail.com",
                     Email = "headadmin@mail.com",
-                    PhoneNumber = "(555) 555-5555",
+                    PhoneNumber = "(555) 555 - 5555",
+                    DateOfBirth = new DateTime(1982, 10, 22).Date,
                     EmailConfirmed = true,
                     FirstName = "HeadAdmin",
                     LastName = "User",
@@ -83,11 +84,12 @@ namespace NexusConnectCRM.Extensions
                 {
                     UserName = "admin@mail.com",
                     Email = "admin@mail.com",
-                    PhoneNumber = "(555) 555-5555",
+                    PhoneNumber = "(555) 555 - 5555",
                     EmailConfirmed = true,
                     FirstName = "Admin",
                     LastName = "User",
                     Roles = "Admin",
+                    DateOfBirth = new DateTime(1982, 10, 22).Date,
                     SecurityStamp = Guid.NewGuid().ToString("D"),
                     ConcurrencyStamp = Guid.NewGuid().ToString("D"),
                     LockoutEnabled = false,
@@ -111,7 +113,8 @@ namespace NexusConnectCRM.Extensions
                 {
                     UserName = "helpdesk@mail.com",
                     Email = "helpdesk@mail.com",
-                    PhoneNumber = "(555) 555-5555",
+                    PhoneNumber = "(555) 555 - 5555",
+                    DateOfBirth = new DateTime(1982, 10, 22).Date,
                     EmailConfirmed = true,
                     FirstName = "Help",
                     LastName = "Desk",
@@ -137,11 +140,11 @@ namespace NexusConnectCRM.Extensions
                         Department = "Help Desk",
                         UserId = helpDeskUser.Id,
                         EmailAddress = helpDeskUser.Email,
-                        DateOfBirth = new DateTime(1994, 3, 14),
-                        Address = "123 Help Desk St",
-                        City = "Help Desk City",
-                        State = "Help Desk State",
-                        ZipCode = "12345",
+                        DateOfBirth = helpDeskUser.DateOfBirth.Date,
+                        Address = "123 Support St",
+                        City = "Portland",
+                        State = "Oregon",
+                        ZipCode = "97515",
                         Country = "United States",
                         PhoneNumber = helpDeskUser.PhoneNumber,
                         IsActive = true,
@@ -162,7 +165,8 @@ namespace NexusConnectCRM.Extensions
                 {
                     UserName = "employee@mail.com",
                     Email = "employee@mail.com",
-                    PhoneNumber = "(555) 555-5555",
+                    PhoneNumber = "(555) 555 - 5555",
+                    DateOfBirth = new DateTime(1991, 6, 12).Date,
                     EmailConfirmed = true,
                     FirstName = "Employee",
                     LastName = "User",
@@ -197,8 +201,8 @@ namespace NexusConnectCRM.Extensions
                         City = $"Company City {i}",
                         State = $"Company State {i}",
                         Zip = $"1234{i}",
-                        Country = $"Company Country {i}",
-                        Phone = $"(555) 555-555{i}",
+                        Country = $"United States",
+                        Phone = $"(555) 555 - 555{i}",
                         Website = $"https://www.company{i}.com",
                         Email = $"company{i}@mail.com",
                         Industry = $"Company Industry {i}",
@@ -217,9 +221,13 @@ namespace NexusConnectCRM.Extensions
                 for (int i = 0; i < 10; i++)
                 {
                     Random random = new();
-                    int randomCompanyId = random.Next(1, totalCompanies);
 
+                    int randomCompanyId = random.Next(1, totalCompanies);
                     CompanyInfo randomCompany = context.Companies.Where(c => c.Id == randomCompanyId).FirstOrDefault();
+
+                    DateTime randomDateOfBirth = DateTime.Now.AddYears(-random.Next(18, 65));
+                    randomDateOfBirth = randomDateOfBirth.AddMonths(-randomDateOfBirth.Month + random.Next(1, 12));
+                    randomDateOfBirth = randomDateOfBirth.AddDays(-randomDateOfBirth.Day + random.Next(1, 28));
 
                     ProspectInfo prospectInfo = new()
                     {
@@ -227,14 +235,14 @@ namespace NexusConnectCRM.Extensions
                         LastName = $"User{i}",
                         CompanyId = randomCompany.Id,
                         EmailAddress = $"prospect{i}@mail.com",
-                        DateOfBirth = DateTime.Now,
+                        DateOfBirth = randomDateOfBirth.Date,
                         Address = $"123 Prospect St, Unit {i}",
                         City = $"Prospect City {i}",
                         State = $"Prospect State {i}",
                         ZipCode = $"1234{i}",
-                        Country = $"Prospect Country {i}",
+                        Country = $"United States",
                         CompanyName = randomCompany.Name,
-                        PhoneNumber = $"(555) 555-555{i}",
+                        PhoneNumber = $"(555) 555 - 555{i}",
                         IsActive = true,
                         CreatedDate = DateTime.Now,
                         ModifiedDate = DateTime.Now,
@@ -248,6 +256,7 @@ namespace NexusConnectCRM.Extensions
                         UserName = prospectInfo.EmailAddress,
                         Email = prospectInfo.EmailAddress,
                         EmailConfirmed = true,
+                        DateOfBirth = prospectInfo.DateOfBirth.Date,
                         PhoneNumber = prospectInfo.PhoneNumber,
                         FirstName = prospectInfo.FirstName,
                         LastName = prospectInfo.LastName,
@@ -287,20 +296,24 @@ namespace NexusConnectCRM.Extensions
 
                     CompanyInfo randomCompany = context.Companies.Where(c => c.Id == randomCompanyId).FirstOrDefault();
 
+                    DateTime randomDateOfBirth = DateTime.Now.AddYears(-random.Next(18, 65));
+                    randomDateOfBirth = randomDateOfBirth.AddMonths(-randomDateOfBirth.Month + random.Next(1, 12));
+                    randomDateOfBirth = randomDateOfBirth.AddDays(-randomDateOfBirth.Day + random.Next(1, 28));
+
                     CustomerInfo customer = new()
                     {
                         FirstName = "Customer",
                         LastName = $"Customer {i}",
                         CompanyId = randomCompany.Id,
                         EmailAddress = $"Customer{i}@mail.com",
-                        DateOfBirth = DateTime.Now,
+                        DateOfBirth = randomDateOfBirth.Date,
                         Address = $"123 Prospect St, Unit {i}",
                         City = $"Customer City {i}",
                         State = $"Customer State {i}",
                         ZipCode = $"1234{i}",
-                        Country = $"Customer Country {i}",
+                        Country = $"United States",
                         CompanyName = randomCompany.Name,
-                        PhoneNumber = $"(555) 555-555{i}",
+                        PhoneNumber = $"(555) 555 - 555{i}",
                         IsActive = true,
                         CreatedDate = DateTime.Now,
                         ModifiedDate = DateTime.Now,
@@ -315,6 +328,7 @@ namespace NexusConnectCRM.Extensions
                         Email = customer.EmailAddress,
                         PhoneNumber = customer.PhoneNumber,
                         EmailConfirmed = true,
+                        DateOfBirth = randomDateOfBirth.Date,
                         FirstName = customer.FirstName,
                         LastName = customer.LastName,
                         Roles = "Customer",
@@ -351,11 +365,12 @@ namespace NexusConnectCRM.Extensions
                     UserName = "asanderson1994s@gmail.com",
                     Email = "asanderson1994s@gmail.com",
                     NormalizedEmail = "ASANDERSON1994S@GMAIL.COM",
+                    DateOfBirth = new DateTime(1994, 8, 19).Date,
                     EmailConfirmed = true,
                     FirstName = "Alexander",
                     LastName = "Sanderson",
                     Roles = "Prospect",
-                    PhoneNumber = "(360) 281-9758",
+                    PhoneNumber = "(360) 281 - 9758",
                     NormalizedUserName = "ASANDERSON1994S@GMAIL.COM",
                     SecurityStamp = Guid.NewGuid().ToString("D"),
                     ConcurrencyStamp = Guid.NewGuid().ToString("D"),
@@ -383,7 +398,7 @@ namespace NexusConnectCRM.Extensions
                     State = "Oregon",
                     Zip = "97204",
                     Country = "United States",
-                    Phone = "(503) 206-6915",
+                    Phone = "(503) 206 - 6915",
                     Website = "https://www.learncodinganywhere.com",
                     Email = "info@learncodinganywhere.com",
                     Industry = "Education",
@@ -393,21 +408,21 @@ namespace NexusConnectCRM.Extensions
                 context.Companies.Add(company);
                 context.SaveChanges();
 
-                var userId = context.Users.Where(u => u.Email == "asanderson1994s@gmail.com").FirstOrDefault().Id;
-                var techAcademyId = context.Companies.Where(c => c.Name == "The Tech Academy").FirstOrDefault().Id;
+                var userId = context.Users.Where(u => u.Email == testUser.Email).FirstOrDefault().Id;
+                var techAcademyId = context.Companies.Where(c => c.Name == company.Name).FirstOrDefault().Id;
 
                 ProspectInfo prospectInfo = new()
                 {
                     FirstName = testUser.FirstName,
                     LastName = testUser.LastName,
                     EmailAddress = testUser.Email,
-                    DateOfBirth = new DateTime(1994, 8, 19),
+                    DateOfBirth = testUser.DateOfBirth.Date,
                     Address = "4602 Boise Ct",
                     City = "Vancouver",
                     State = "Washington",
                     ZipCode = "98661",
                     Country = "United States",
-                    CompanyName = "The Tech Academy",
+                    CompanyName = company.Name,
                     PhoneNumber = testUser.PhoneNumber,
                     UserId = userId,
                     CompanyId = techAcademyId,
@@ -422,11 +437,14 @@ namespace NexusConnectCRM.Extensions
 
             if (context.Users.Where(u => u.Email == "b.johnson@gmail.com").FirstOrDefault() == null)
             {
+                Random random = new();
+
                 ApplicationUser testUser = new()
                 {
                     UserName = "b.johnson@gmail.com",
                     Email = "b.johnson@gmail.com",
                     NormalizedEmail = "B.JOHNSON@GMAIL.COM",
+                    DateOfBirth = DateTime.Now.AddYears(-random.Next(18, 65)),
                     EmailConfirmed = true,
                     FirstName = "Bill",
                     LastName = "Johnson",
@@ -469,21 +487,21 @@ namespace NexusConnectCRM.Extensions
                 context.Companies.Add(company);
                 context.SaveChanges();
 
-                var userId = context.Users.Where(u => u.Email == "b.johnson@gmail.com").FirstOrDefault().Id;
-                var techAcademyId = context.Companies.Where(c => c.Name == "Google").FirstOrDefault().Id;
+                var userId = context.Users.Where(u => u.Email == testUser.Email).FirstOrDefault().Id;
+                var techAcademyId = context.Companies.Where(c => c.Name == company.Name).FirstOrDefault().Id;
 
                 ProspectInfo prospectInfo = new()
                 {
                     FirstName = testUser.FirstName,
                     LastName = testUser.LastName,
                     EmailAddress = testUser.Email,
-                    DateOfBirth = new DateTime(1994, 8, 19),
+                    DateOfBirth = testUser.DateOfBirth.Date,
                     Address = "123 Main St",
                     City = "San Diego",
                     State = "California",
                     ZipCode = "91941",
                     Country = "United States",
-                    CompanyName = "Google",
+                    CompanyName = company.Name,
                     PhoneNumber = testUser.PhoneNumber,
                     UserId = userId,
                     CompanyId = techAcademyId,

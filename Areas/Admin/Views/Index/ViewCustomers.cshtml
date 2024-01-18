@@ -1,7 +1,7 @@
 ﻿@model NexusConnectCRM.Areas.Admin.ViewModels.AdminListCustomersViewModel
 
 @{
-    ViewData["Title"] = "View Customers";
+    ViewData["Title"] = "Customers";
     Layout = "~/Areas/Admin/Views/Shared/_AdminPortalLayout.cshtml";
 }
 
@@ -38,6 +38,7 @@
                         <th scope="col">Zip Code</th>
                         <th scope="col">Country</th>
                         <th scope="col">Company Name</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,6 +56,9 @@
                             <td>@customer.ZipCode</td>
                             <td>@customer.Country</td>
                             <td>@customer.CompanyName</td>
+                            <td>
+                                <a class="btn btn-primary" href="@Url.Action("EditUser", "User", new { id = customer.UserId })">Edit</a>
+                            </td>
                         </tr>
                     }
                 </tbody>
