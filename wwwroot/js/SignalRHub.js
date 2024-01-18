@@ -143,13 +143,22 @@ chatConnection.on("ReceiveMessageFromEmployee", function (senderName, senderId, 
             document.getElementById("sendMessage").disabled = true;
             document.getElementById("Message").disabled = true;
             setTimeout(() => {
-                document.getElementById("yourMessage").style.fontSize = "12px";
-                document.getElementById("yourMessage").innerHTML = "";
+                document.querySelectorAll("#yourMessage").forEach(function (a) {
+                    a.remove();
+                });
+                document.querySelectorAll("#employeeMessage").forEach(function (a) {
+                    a.remove();
+                });
+                document.getElementById("Message").style.fontSize = "12px";
                 document.getElementById("Message").attributes.placeholder.value = "You have been disconnected from the chat.";
-            }, 1000);
+            }, 500);
             break;
         case employeeName:
-            $(`<li><strong><u><i><span id="receiverName" style="font-size: 16px !important;">${senderName}</span></i></u></strong>: ${message}</li>`).appendTo("#chat-messages");
+            $(`<li id="employeeMessage"><strong><u><span id="receiverName" style="font-size: 16px !important;">${senderName}</span></u></strong>: ${message}</li>`).appendTo("#chat-messages");
+            document.getElementsByClassName("chat-btn")[0].innerHTML = "";
+            $('.chat-btn')[0].innerHTML = `<span class="badge rounded-pill bg-danger">!</span>`;
+            document.getElementById("chat-notification").muted = false;
+            document.getElementById("chat-notification").play();
             break;
         default:
             break;
