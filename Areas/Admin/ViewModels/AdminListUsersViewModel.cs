@@ -10,5 +10,9 @@ namespace NexusConnectCRM.Areas.Admin.ViewModels
         public int PageSize { get; set; }
         public int TotalPages { get; set; }
         public int TotalUsers { get; set; }
+
+        public AdminListUsersViewModel()
+        {
+        }
     }
 }

@@ -25,7 +25,6 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
         public async Task<IActionResult> Index()
         {
             string id = _userManager.GetUserId(User);
-
             var user = await _context.Users.FirstOrDefaultAsync(m => m.Id == id);
 
             if (id is null || user is null)
@@ -33,39 +32,10 @@ namespace NexusConnectCRM.Areas.Employee.Controllers
                 return NotFound();
             }
 
-            var prospectsNeededContact = _context.Prospects.Where(p => p.IsContacted == false &&
-                                                                               p.Address != null &&
-                                                                               p.City != null &&
-                                                                               p.State != null &&
-                                                                               p.Country != null &&
-                                                                               p.ZipCode != null).Count();
-
-            var customersNeededContact = _context.Customers.Where(c => c.NeedsContact == true).Count();
-            var companiesNeededContact = _context.Companies.Where(c => c.NeedsContact == true).Count();
-
-
-            var prospectsNotNeededContact = _context.Prospects.Where(p => p.IsContacted == true &&
-                                                                                  p.Address != null &&
-                                                                                  p.City != null &&
-                                                                                  p.State != null &&
-                                                                                  p.Country != null &&
-                                                                                  p.ZipCode != null).Count();
-
-            var customersNotNeededContact = _context.Customers.Where(c => c.NeedsContact == false).Count();
-            var companiesNotNeededContact = _context.Companies.Where(c => c.NeedsContact == false).Count();
-
-            var totalNeededContactCount = prospectsNeededContact + customersNeededContact + companiesNeededContact;
-            var totalNotNeededContactCount = prospectsNotNeededContact + customersNotNeededContact + companiesNotNeededContact;
-
-
             EmployeeIndexViewModel viewModel = new()
             {
-                EmployeeId = user.Id,
                 FirstName = user.FirstName,
-                LastName = user.LastName,
-                TotalTasks = totalNeededContactCount + totalNotNeededContactCount,
-                UncompletedTasks = totalNeededContactCount,
-                CompletedTasks = totalNotNeededContactCount
+                LastName = user.LastName
             };
 
             return View("Index", viewModel);

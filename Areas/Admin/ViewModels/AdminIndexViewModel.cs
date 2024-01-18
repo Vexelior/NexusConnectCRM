@@ -7,5 +7,9 @@ namespace NexusConnectCRM.Areas.Admin.ViewModels
     {
         public List<ApplicationUser> Users { get; set; }
         public int TotalUsers { get; set; }
+
+        public AdminIndexViewModel()
+        {
+        }
     }
 }

@@ -236,12 +236,8 @@ namespace NexusConnectCRM.Extensions
                         CompanyName = randomCompany.Name,
                         PhoneNumber = $"(555) 555-555{i}",
                         IsActive = true,
-                        IsContacted = false,
                         CreatedDate = DateTime.Now,
                         ModifiedDate = DateTime.Now,
-                        NeedsHelp = false,
-                        IsHelped = false,
-                        NeedsContact = false
                     };
 
                     context.Prospects.Add(prospectInfo);
@@ -308,10 +304,6 @@ namespace NexusConnectCRM.Extensions
                         IsActive = true,
                         CreatedDate = DateTime.Now,
                         ModifiedDate = DateTime.Now,
-                        NeedsHelp = false,
-                        IsHelped = false,
-                        IsContacted = false,
-                        NeedsContact = false
                     };
 
                     context.Customers.Add(customer);
@@ -420,9 +412,6 @@ namespace NexusConnectCRM.Extensions
                     UserId = userId,
                     CompanyId = techAcademyId,
                     IsActive = true,
-                    IsContacted = false,
-                    IsHelped = false,
-                    NeedsHelp = false,
                     CreatedDate = DateTime.Now,
                     ModifiedDate = DateTime.Now
                 };
@@ -499,9 +488,6 @@ namespace NexusConnectCRM.Extensions
                     UserId = userId,
                     CompanyId = techAcademyId,
                     IsActive = true,
-                    IsContacted = false,
-                    IsHelped = false,
-                    NeedsHelp = false,
                     CreatedDate = DateTime.Now,
                     ModifiedDate = DateTime.Now
                 };

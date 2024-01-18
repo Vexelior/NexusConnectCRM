@@ -5,75 +5,77 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminPortalLayout.cshtml";
 }
 
-<div class="container">
-    <h1 class="text-center">Edit Company</h1>
-    <hr />
-    @using (Html.BeginForm("EditCompany", "Company", FormMethod.Post, new { area = "Admin" }))
-    {
-        @Html.HiddenFor(m => m.Id)
-        @Html.HiddenFor(m => m.NeedsContact)
-        <div class="row">
-            <div class="form-group col-md-6">
-                @Html.LabelFor(m => m.Name)
-                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
-            </div>
-            <div class="form-group col-md-6">
-                @Html.LabelFor(m => m.Industry)
-                @Html.TextBoxFor(m => m.Industry, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="row mt-5">
-            <h2 class="text-center">
-                <i class="fas fa-map-marker-alt"></i> Address Information
-            </h2>
-            <div class="form-group col-md-4">
-                @Html.LabelFor(m => m.Address)
-                @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
-            </div>
-            <div class="form-group col-md-4">
-                @Html.LabelFor(m => m.City)
-                @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
-            </div>
-            <div class="form-group col-md-4">
-                @Html.LabelFor(m => m.State)
-                @Html.TextBoxFor(m => m.State, new { @class = "form-control" })
-            </div>
-            <div class="row justify-content-center">
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(m => m.Zip)
-                    @Html.TextBoxFor(m => m.Zip, new { @class = "form-control" })
+<div class="container mt-2 mb-2" data-aos="fade-left" data-aos-delay="200">
+    <div class="row">
+        <div class="col-md-10" style="margin: 0 auto;">
+            <h1 class="text-center">Edit Company</h1>
+            <hr />
+            @using (Html.BeginForm("EditCompany", "Company", FormMethod.Post, new { area = "Admin" }))
+            {
+                @Html.HiddenFor(m => m.Id)
+                @Html.HiddenFor(m => m.NeedsContact)
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(m => m.Name)
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(m => m.Industry)
+                        @Html.TextBoxFor(m => m.Industry, new { @class = "form-control" })
+                    </div>
                 </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(m => m.Country)
-                    @Html.TextBoxFor(m => m.Country, new { @class = "form-control" })
+                <div class="row mt-5">
+                    <h2 class="text-center">
+                        <i class="fas fa-map-marker-alt"></i> Address Information
+                    </h2>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(m => m.Address)
+                        @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(m => m.City)
+                        @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(m => m.State)
+                        @Html.TextBoxFor(m => m.State, new { @class = "form-control" })
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(m => m.Zip)
+                            @Html.TextBoxFor(m => m.Zip, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(m => m.Country)
+                            @Html.TextBoxFor(m => m.Country, new { @class = "form-control" })
+                        </div>
+                    </div>
                 </div>
-            </div>
+                <div class="row mt-5">
+                    <h2 class="text-center">
+                        <i class="fa fa-phone"></i> Contact Information
+                    </h2>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(m => m.Phone)
+                        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", @id = "phoneNumber" })
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(m => m.Email)
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(m => m.Website)
+                        @Html.TextBoxFor(m => m.Website, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="gap-2 mt-2" role="group" aria-label="Edit Company Group">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCompanyModal">Delete</button>
+                </div>
+            }
         </div>
-        <div class="row mt-5">
-            <h2 class="text-center">
-                <i class="fa fa-phone"></i> Contact Information
-            </h2>
-            <div class="form-group col-md-4">
-                @Html.LabelFor(m => m.Phone)
-                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", @id = "phoneNumber" })
-            </div>
-            <div class="form-group col-md-4">
-                @Html.LabelFor(m => m.Email)
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-            </div>
-            <div class="form-group col-md-4">
-                @Html.LabelFor(m => m.Website)
-                @Html.TextBoxFor(m => m.Website, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="gap-2 mt-2" role="group" aria-label="Edit Company Group">
-            <button type="submit" class="btn btn-primary">Save</button>
-            <button type="button" class="btn btn-secondary" onclick="history.back()">Cancel</button>
-            <div class="float-end">
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCompanyModal">Delete</button>
-            </div>
-        </div>
-    }
+    </div>
+    <a href="@Url.Action("ViewCompanies", "Index")" class="btn btn-secondary">Cancel</a>
 </div>
 
 <script src="~/js/PhoneNumberFormat.js" asp-append-version="true" defer></script>
@@ -82,7 +84,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="deleteCompanyLabel">Delete User</h5>
+                <h5 class="modal-title" id="deleteCompanyLabel">Delete Company</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

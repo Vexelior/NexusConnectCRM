@@ -181,8 +181,7 @@ namespace NexusConnectCRM.Areas.Identity.Pages.Account
                     UserId = user.Id,
                     CreatedDate = DateTime.Now,
                     ModifiedDate = DateTime.Now,
-                    IsActive = true,
-                    IsContacted = false,
+                    IsActive = true
                 };
 
                 if (_context.Prospects != null && _context.Prospects.Any(p => p.EmailAddress == user.Email))

@@ -5,12 +5,12 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminPortalLayout.cshtml";
 }
 
-
-<div class="container mt-2 mb-2 admin-edituser">
+<div class="container mt-2 mb-2" data-aos="fade-left" data-aos-delay="200">
     <div class="row">
-        <div class="col-md-10" style="margin: 0 auto;" data-aos="fade-left" data-aos-delay="200">
-            <h3 class="text-center">Edit User</h3>
-            @using (Html.BeginForm("EditUser", "User", FormMethod.Post))
+        <div class="col-md-10" style="margin: 0 auto;">
+            <h1 class="text-center">Edit User</h1>
+            <hr />
+            @using (Html.BeginForm("EditUser", "User", FormMethod.Post, new { id = Model.UserId }))
             {
                 @Html.HiddenFor(m => m.UserId)
                 <div class="form-group">
@@ -35,7 +35,7 @@
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(m => m.PhoneNumber)
-                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", type = "tel" })
+                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", type = "tel", id = "phoneNumber" })
                     @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
@@ -85,8 +85,10 @@
             }
         </div>
     </div>
-    <a href="@Url.Action("Index", "Index")" class="btn btn-secondary">Cancel</a>
+    <a href="@Url.Action("ViewUsers", "Index")" class="btn btn-secondary">Cancel</a>
 </div>
+
+<script src="~/js/PhoneNumberFormat.js" asp-append-version="true" defer></script>
 
 <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserLabel" aria-hidden="true">
     <div class="modal-dialog">

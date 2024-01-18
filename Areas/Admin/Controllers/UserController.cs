@@ -218,7 +218,8 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
 
             viewModel.Roles =
             [
-                new() {
+                new()
+                {
                     Value = viewModel.SelectedRole,
                     Text = viewModel.SelectedRole
                 }
@@ -230,15 +231,104 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                 user.LastName = viewModel.LastName;
                 user.Email = viewModel.EmailAddress;
                 user.DateOfBirth = Convert.ToDateTime(viewModel.DateOfBirth);
-                
-                //Check which online status is selected
+                user.PhoneNumber = viewModel.PhoneNumber;
+                user.Email = viewModel.EmailAddress;
+
                 if (viewModel.IsOnline == "True")
                 {
                     user.IsOnline = true;
                 }
-                else
+                else if (viewModel.IsOnline == "False")
                 {
                     user.IsOnline = false;
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Something went wrong...");
+                    return View("EditUser", viewModel);
+                }
+
+                switch (viewModel.SelectedRole)
+                {
+                    case "Prospect":
+                        var potentialProspect = _context.Prospects.Where(p => p.UserId == user.Id).FirstOrDefault();
+
+                        if (potentialProspect != null)
+                        {
+                            potentialProspect.FirstName = viewModel.FirstName;
+                            potentialProspect.LastName = viewModel.LastName;
+                            potentialProspect.EmailAddress = viewModel.EmailAddress;
+                            potentialProspect.DateOfBirth = Convert.ToDateTime(viewModel.DateOfBirth);
+                            potentialProspect.Address = viewModel.Address;
+                            potentialProspect.City = viewModel.City;
+                            potentialProspect.State = viewModel.State;
+                            potentialProspect.ZipCode = viewModel.ZipCode;
+                            potentialProspect.Country = viewModel.Country;
+                            potentialProspect.CompanyName = viewModel.CompanyName;
+                            potentialProspect.PhoneNumber = viewModel.PhoneNumber;
+                            potentialProspect.UserId = viewModel.UserId;
+                            potentialProspect.ModifiedDate = DateTime.Now;
+
+                            _context.Update(potentialProspect);
+                        }
+                        else 
+                        {
+                            await AdvanceUser(user.Id, viewModel.SelectedRole);
+                        }
+                        break;
+                    case "Customer":
+                        var potentialCustomer = _context.Customers.Where(c => c.UserId == user.Id).FirstOrDefault();
+
+                        if (potentialCustomer != null)
+                        {
+                            potentialCustomer.FirstName = viewModel.FirstName;
+                            potentialCustomer.LastName = viewModel.LastName;
+                            potentialCustomer.EmailAddress = viewModel.EmailAddress;
+                            potentialCustomer.DateOfBirth = Convert.ToDateTime(viewModel.DateOfBirth);
+                            potentialCustomer.Address = viewModel.Address;
+                            potentialCustomer.City = viewModel.City;
+                            potentialCustomer.State = viewModel.State;
+                            potentialCustomer.ZipCode = viewModel.ZipCode;
+                            potentialCustomer.Country = viewModel.Country;
+                            potentialCustomer.CompanyName = viewModel.CompanyName;
+                            potentialCustomer.PhoneNumber = viewModel.PhoneNumber;
+                            potentialCustomer.UserId = viewModel.UserId;
+                            potentialCustomer.ModifiedDate = DateTime.Now;
+
+                            _context.Update(potentialCustomer);
+                        }
+                        else
+                        {
+                            await AdvanceUser(user.Id, viewModel.SelectedRole);
+                        }
+                        break;
+                    case "Employee":
+                        var potentialEmployee = _context.Employees.Where(e => e.UserId == user.Id).FirstOrDefault();
+
+                        if (potentialEmployee != null)
+                        {
+                            potentialEmployee.FirstName = viewModel.FirstName;
+                            potentialEmployee.LastName = viewModel.LastName;
+                            potentialEmployee.EmailAddress = viewModel.EmailAddress;
+                            potentialEmployee.DateOfBirth = Convert.ToDateTime(viewModel.DateOfBirth);
+                            potentialEmployee.Address = viewModel.Address;
+                            potentialEmployee.City = viewModel.City;
+                            potentialEmployee.State = viewModel.State;
+                            potentialEmployee.ZipCode = viewModel.ZipCode;
+                            potentialEmployee.Country = viewModel.Country;
+                            potentialEmployee.PhoneNumber = viewModel.PhoneNumber;
+                            potentialEmployee.UserId = viewModel.UserId;
+                            potentialEmployee.ModifiedDate = DateTime.Now;
+
+                            _context.Update(potentialEmployee);
+                        }
+                        else
+                        {
+                            await AdvanceUser(user.Id, viewModel.SelectedRole);
+                        }
+                        break;
+                    default:
+                        break;
                 }
 
                 if (string.IsNullOrEmpty(viewModel.SelectedRole))
@@ -248,20 +338,13 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                 }
 
                 var userRoles = await _userManager.GetRolesAsync(user);
-                var result = await _userManager.RemoveFromRolesAsync(user, userRoles);
-                var secondResult = await _userManager.AddToRoleAsync(user, viewModel.SelectedRole);
+                var removeRoleResult = await _userManager.RemoveFromRolesAsync(user, userRoles);
+                var addRoleResult = await _userManager.AddToRoleAsync(user, viewModel.SelectedRole);
 
-                if (result.Succeeded && secondResult.Succeeded)
+                if (removeRoleResult.Succeeded && addRoleResult.Succeeded)
                 {
                     user.Roles = viewModel.SelectedRole;
                 }
-                else
-                {
-                    ModelState.AddModelError("", "Something went wrong...");
-                    return View("EditUser", viewModel);
-                }
-
-                await AdvanceUser(user.Id);
 
                 _context.Update(user);
                 await _context.SaveChangesAsync();
@@ -272,20 +355,7 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                 return View("EditUser", viewModel);
             }
 
-            var newUserRoles = await _userManager.GetRolesAsync(user);
-            List<SelectListItem> selectListItems = new();
-
-            foreach (var role in _context.Roles)
-            {
-                selectListItems.Add(new SelectListItem
-                                            (
-                                                role.Name.Humanize(LetterCasing.Title),
-                                                role.Name,
-                                                newUserRoles.Contains(role.Name)
-                                            ));
-            }
-
-            return RedirectToAction("Index", "Index", new { area = "Admin" });
+            return RedirectToAction("ViewUsers", "Index", new { area = "Admin" });
         }
 
         public async Task<IActionResult> DeleteUser(string id)
@@ -322,13 +392,12 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToAction("Index", "Index", new { area = "Admin" });
+            return RedirectToAction("ViewUsers", "Index", new { area = "Admin" });
         }
 
-        private async Task AdvanceUser(string id)
+        private async Task AdvanceUser(string id, string newRole)
         {
             var user = await _userManager.FindByIdAsync(id);
-            var userCurrentRole = await _userManager.GetRolesAsync(user);
 
             var potentialProspect = _context.Prospects.Where(p => p.UserId == user.Id).FirstOrDefault();
             var potentialCustomer = _context.Customers.Where(c => c.UserId == user.Id).FirstOrDefault();
@@ -339,7 +408,7 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                 throw new NullReferenceException();
             }
 
-            switch (userCurrentRole[0])
+            switch (newRole)
             {
                 case "Prospect":
                     if (potentialEmployee != null)
@@ -377,11 +446,10 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                             CompanyId = potentialProspect.CompanyId,
                             UserId = potentialProspect.UserId,
                             CreatedDate = DateTime.Now,
-
+                            ModifiedDate = DateTime.Now,
                         };
 
                         _context.Add(customer);
-                        _context.SaveChanges();
                     }
                     else
                     {
@@ -416,7 +484,6 @@ namespace NexusConnectCRM.Areas.Admin.Controllers
                         };
 
                         _context.Add(employee);
-                        _context.SaveChanges();
                     }
                     else
                     {
