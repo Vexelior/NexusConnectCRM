@@ -6,6 +6,11 @@ const notifyConnection = new signalR.HubConnectionBuilder().withUrl("/notify").b
 ------------------------------ */
 var fullName = "";
 
+function scrollToBottom() {
+    var chatMessageArea = document.getElementById("chat-message-area");
+    chatMessageArea.scrollTop = chatMessageArea.scrollHeight;
+}
+
 $(function () {
     $.ajax({
         url: "/IdentityHelper/GetName",
@@ -122,6 +127,7 @@ try {
         }
 
         document.getElementById("Message").value = "";
+        scrollToBottom();
         event.preventDefault();
     });
 } catch (e) {
@@ -134,6 +140,7 @@ chatConnection.on("ReceiveMessageFromUser", function (senderName, senderId, mess
     $('.chat-btn')[0].innerHTML = `<span class="badge rounded-pill bg-danger">!</span>`;
     document.getElementById("chat-notification").muted = false;
     document.getElementById("chat-notification").play();
+    scrollToBottom();
 });
 
 chatConnection.on("ReceiveMessageFromEmployee", function (senderName, senderId, message) {
@@ -159,6 +166,7 @@ chatConnection.on("ReceiveMessageFromEmployee", function (senderName, senderId, 
             $('.chat-btn')[0].innerHTML = `<span class="badge rounded-pill bg-danger">!</span>`;
             document.getElementById("chat-notification").muted = false;
             document.getElementById("chat-notification").play();
+            scrollToBottom();
             break;
         default:
             break;
@@ -167,6 +175,7 @@ chatConnection.on("ReceiveMessageFromEmployee", function (senderName, senderId, 
 
 chatConnection.on("ReceiveMessageFromSelf", function (senderName, senderId, message) {
     $(`<li id="yourMessage"><strong><u><i><span id="receiverName" style="font-size: 16px !important;">${senderName}</span></i></u></strong>: ${message}</li>`).appendTo("#chat-messages");
+    scrollToBottom();
 });
 
 

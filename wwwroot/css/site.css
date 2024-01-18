@@ -2447,7 +2447,6 @@ button:focus {
 }
 
 .chat-form {
-    padding: 15px;
     bottom: 0;
     position: absolute;
     width: 100%;
@@ -2459,9 +2458,10 @@ button:focus {
         margin-bottom: 10px;
     }
 
-        .chat-form input[type="text"] {
-            width: 100%;
-        }
+    .chat-form textarea {
+        resize: none;
+        width: 86%;
+    }
 
 .form-control:focus,
 .btn:focus {
@@ -2470,4 +2470,28 @@ button:focus {
 
 #check {
     display: none !important;
+}
+
+#chat-message-area {
+    height: 215px;
+    overflow-y: scroll;
+    padding: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: #37517e #fff;
+    scroll-behavior: smooth;
+}
+
+    #chat-message-area::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    #chat-message-area::-webkit-scrollbar-track {
+        background: #fff;
+    }
+
+    #chat-message-area::-webkit-scrollbar-thumb {
+        background-color: #37517e;
+        border-radius: 20px;
+        border: 3px solid #fff;
+    }
 }
