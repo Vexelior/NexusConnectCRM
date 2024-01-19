@@ -40,8 +40,6 @@ namespace NexusConnectCRM
                 try
                 {
                     ApplicationDbContext context = services.GetRequiredService<ApplicationDbContext>();
-                    UserManager<ApplicationUser> userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
-                    RoleManager<IdentityRole> roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
 
                     context.Database.Migrate();
                     app.SeedData();
@@ -67,6 +65,8 @@ namespace NexusConnectCRM
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseStatusCodePagesWithRedirects("/error/{0}");
 
             app.UseRouting();
 

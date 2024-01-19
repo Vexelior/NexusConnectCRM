@@ -1,0 +1,52 @@
+﻿@model NexusConnectCRM.ViewModels.CustomErrorViewModel
+
+@{
+    ViewData["Title"] = $"Error - {Model.StatusCode}";
+    Layout = "~/Views/Shared/_ErrorLayout.cshtml";
+}
+
+<div class="container text-center">
+    <div class="row mb-5">
+        <div class="col">
+            @if (Model.StatusCode == 404)
+            {
+                <img class="img-fluid" src="~/images/Error/404_error.jpg" alt="404_error_image" />
+            }
+            else
+            {
+                <p class="text-warning" style="font-size: 120px;">
+                    <i class="fa fa-solid fa-exclamation-triangle"></i>
+                </p>
+                <h1>Error @Model.StatusCode</h1>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col" style="margin: 0 auto;">
+            <h3 class="mb-2">@Model.Message</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col" style="margin: 0 auto;">
+            <h3 class="mt-4 mb-2">You will be redirected to the home page in 10 seconds.</h3>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col">
+            <h3><span id="timer" style="font-size: inherit !important">10</span></h3>
+        </div>
+    </div>
+</div>
+
+<script>
+    var timerDisplay = document.getElementById("timer");
+    var timer = setInterval(function () {
+        var count = parseInt(timerDisplay.textContent);
+        count--;
+        timerDisplay.textContent = count;
+        if (count <= 0) {
+            clearInterval(timer);
+            window.location.href = "/";
+        }
+    }, 1000);
+</script>

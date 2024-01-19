@@ -40,6 +40,7 @@
     <Folder Include="wwwroot\fonts\" />
     <Folder Include="wwwroot\images\LogIn\" />
     <Folder Include="wwwroot\images\Account\" />
+    <Folder Include="wwwroot\images\Error\" />
     <Folder Include="wwwroot\sounds\" />
   </ItemGroup>
   <ItemGroup>
