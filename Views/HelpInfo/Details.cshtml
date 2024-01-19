@@ -99,7 +99,7 @@
                     <div class="row">
                         <div class="col">
                             <div class="card scrollbar-primary">
-                                @if (Model.HelpResponses.Count() > 0)
+                                @if (Model.HelpResponses.Count() > 0 && Model.Help.IsApproved)
                                 {
                                     <div class="card-body scrollbar" id="chatlogs" style="padding-left: 20px; padding-right: 20px">
 
@@ -130,23 +130,15 @@
                                         }
                                     </div>
                                 }
-                                else
-                                {
-                                    <div class="card-body scrollbar" id="chatlogs">
-                                        <p style="color:black;font-size:19px;" class="text-center pr-5 mb-0">
-                                            <strong>No responses yet.</strong>
-                                        </p>
-                                        <br />
-                                    </div>
-                                }
                                 @if (Model.Help.IsCompleted)
                                 {
-                                    <div class="container">
+                                    <div class="container mt-5">
                                         <div class="row">
                                             <div class="col">
                                                 <p class="text-center">
                                                     <strong>
                                                         This ticket has been completed.
+                                                        <i class="fa fa-check-circle text-success"></i>
                                                     </strong>
                                                 </p>
                                                 <a class="btn btn-secondary mb-3" href="@Url.Action("Index", "HelpInfo")">Cancel</a>
@@ -156,12 +148,13 @@
                                 }
                                 else if (Model.Help.IsRejected)
                                 {
-                                    <div class="container">
+                                    <div class="container mt-5">
                                         <div class="row">
                                             <div class="col">
                                                 <p class="text-center">
                                                     <strong>
                                                         This ticket has been rejected.
+                                                        <i class="fa fa-times-circle text-danger"></i>
                                                     </strong>
                                                 </p>
                                                 <a class="btn btn-secondary mb-3" href="@Url.Action("Index", "HelpInfo")">Cancel</a>
@@ -171,12 +164,13 @@
                                 }
                                 else if (!Model.Help.IsApproved)
                                 {
-                                    <div class="container">
+                                    <div class="container mt-5">
                                         <div class="row">
                                             <div class="col">
                                                 <p class="text-center">
                                                     <strong>
                                                         This ticket has not yet been approved.
+                                                        <i class="fa fa-exclamation-circle text-warning"></i>
                                                     </strong>
                                                 </p>
                                                 <a class="btn btn-secondary mb-3" href="@Url.Action("Index", "HelpInfo")">Cancel</a>
@@ -186,10 +180,10 @@
                                 }
                                 else
                                 {
-                                    <div class="container">
+                                    <div class="container mt-5">
                                         <div class="row">
                                             <div class="col mb-2">
-                                                @Html.TextAreaFor(m => m.Response, new { @class = "form-control", @rows = "10", id = "ResponseText", @placeholder =  "Response" })
+                                                @Html.TextAreaFor(m => m.Response, new { @class = "form-control", @rows = "10", id = "ResponseText", @placeholder = "Response" })
                                                 @Html.TextBoxFor(m => m.Image, new { @type = "file", @class = "form-control mt-2 mb-2", @id = "ImageFile" })
                                                 <div class="form-group">
                                                     <div class="col-md-offset-2 col-md-10">
