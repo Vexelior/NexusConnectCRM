@@ -278,24 +278,24 @@ $(modalButton).on('click', function () {
 // End of Privacy Policy Modal \\
 
 // Form validation logic \\
-$('.company-details-form').on('submit', function () {
-    let button = $(this).find(':submit');
-    SpinnerButton(button);
-});
+try {
+    var form = document.querySelector('form:not(#logoutForm)');
+    var formSubmitButton = form.querySelector('button[type=submit]');
+    var formSubmitButtonText = formSubmitButton.innerHTML;
 
-$('.user-details-form').on('submit', function () {
-    let button = $(this).find(':submit');
-    SpinnerButton(button);
-});
+    form.addEventListener('submit', function (event) {
+        SpinnerButton(formSubmitButton);
 
-$('#account-login').on('submit', function () {
-    let button = $(this).find(':submit');
-    SpinnerButton(button);
-
-    if ($(this).valid() == false) {
-        RevertSpinnerButton(button, 'Sign in');
-    }
-});
+        if (!form.checkValidity()) {
+            console.log("Form is not valid");
+            event.preventDefault();
+            event.stopPropagation();
+            RevertSpinnerButton(formSubmitButton, formSubmitButtonText);
+        }
+    });
+} catch (error) {
+    // Do nothing
+}
 
 const SpinnerButton = (button) => {
     let buttonWidth = $(button).width();
