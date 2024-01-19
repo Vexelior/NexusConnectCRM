@@ -5,8 +5,8 @@
     Layout = "~/Views/Shared/_ErrorLayout.cshtml";
 }
 
-<div class="container text-center">
-    <div class="row mb-5">
+<div class="container mt-5 text-center">
+    <div class="row">
         <div class="col">
             @if (Model.StatusCode == 404)
             {
@@ -21,12 +21,17 @@
             }
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-5">
         <div class="col" style="margin: 0 auto;">
             <h3 class="mb-2">@Model.Message</h3>
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-5">
+        <div class="col" style="margin: 0 auto;">
+            <h3 class="mb-2">@Model.Details</h3>
+        </div>
+    </div>
+    <div class="row mt-5">
         <div class="col" style="margin: 0 auto;">
             <h3 class="mt-4 mb-2">You will be redirected to the home page in 10 seconds.</h3>
         </div>
