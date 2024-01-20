@@ -4,9 +4,9 @@ using NexusConnectCRM.Data.Models.Customer;
 using NexusConnectCRM.Data.Models.Employee;
 using NexusConnectCRM.Data.Models.Identity;
 using NexusConnectCRM.Data.Models.Prospect;
-using NexusConnectCRM.Areas.Admin.ViewModels;
 using NexusConnectCRM.Data.Models.Company;
 using NexusConnectCRM.Data.Models.Help;
+using NexusConnectCRM.Data.Models.Newsletter;
 
 namespace NexusConnectCRM.Data
 {
@@ -42,5 +42,8 @@ namespace NexusConnectCRM.Data
         // Relationship Tables \\
         public DbSet<ProspectEmployee> ProspectEmployees { get; set; } = null!;
         public DbSet<CustomerEmployee> CustomerEmployees { get; set; } = null!;
+
+        // NewsLetter Tables \\
+        public DbSet<Newsletter> Newsletters { get; set; } = null!;
     }
 }

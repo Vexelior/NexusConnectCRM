@@ -18,8 +18,9 @@
                         <p>
                             Take advantage of our weekly newsletter to stay up to date on the latest news and updates!
                         </p>
-                        <form action="" method="post">
-                            <input type="email" name="email" autocomplete="on"><input type="submit" value="Subscribe">
+                        <form asp-action="NewsletterSignUp" asp-controller="Contact">
+                            <input type="email" name="email" autocomplete="on">
+                            <input type="submit" value="Subscribe">
                         </form>
                     </div>
                 </div>
