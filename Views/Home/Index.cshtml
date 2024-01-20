@@ -4,6 +4,39 @@
     ViewData["Title"] = "Home";
 }
 
+@if (Context.Request.Query["emailSignup"] == "success")
+{
+    <div class="modal fade show" tabindex="-1" id="newsletterSuccessModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="border-bottom: none !important">
+                    <h5 class="modal-title">
+                        <i class="bi bi-check-circle-fill text-success"></i>
+                        Success!
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Thank you for signing up for our newsletter!
+                    </p>
+                    <p>
+                        You will receive an email shortly with a confirmation link.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+
+    <script>
+        setTimeout(function () {
+            $('#newsletterSuccessModal').modal('show');
+        }, 2000);
+    </script>
+}
+
 <section id="hero" class="d-flex align-items-center">
     <div class="container">
         <div class="row">
