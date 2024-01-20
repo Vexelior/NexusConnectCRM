@@ -55,22 +55,22 @@ namespace NexusConnectCRM.Controllers
                 if (dbContext.Users.Any(n => n.Email == viewModel.Email))
                 {
                     ApplicationUser user = dbContext.Users.FirstOrDefault(n => n.Email == viewModel.Email);
+                    Newsletter newsletter = dbContext.Newsletters.FirstOrDefault(n => n.Email == user.Email);
 
-                    if (dbContext.Newsletters.Any(n => n.Email == user.Email))
+                    if (newsletter is not null && dbContext.Newsletters.Any(n => n.Email == user.Email))
                     {
-                        Newsletter newsletter = dbContext.Newsletters.FirstOrDefault(n => n.Email == user.Email);
                         newsletter.IsSubscribed = true;
                     }
                     else
                     {
-                        Newsletter newsletter = new()
+                        Newsletter newNewsletter = new()
                         {
                             Email = user.Email,
                             IsSubscribed = true,
                             UserId = user.Id
                         };
 
-                        dbContext.Newsletters.Add(newsletter);
+                        dbContext.Newsletters.Add(newNewsletter);
                     }
                 }
                 else
