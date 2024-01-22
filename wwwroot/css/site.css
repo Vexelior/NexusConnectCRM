@@ -1549,11 +1549,11 @@ section {
             padding-top: 15px;
         }
 
-            #register .account-register-form #existing-account a {
+            #register .account-register-form #existing-account {
                 color: #47b2e4;
             }
 
-                #register .account-register-form #existing-account a:hover {
+                #register .account-register-form #existing-account:hover {
                     color: #209dd8;
                 }
 
