@@ -1464,11 +1464,11 @@ section {
             padding-top: 15px;
         }
 
-            #login .account-login-form #forgot-password a {
+            #login .account-login-form #forgot-password {
                 color: #47b2e4;
             }
 
-                #login .account-login-form #forgot-password a:hover {
+                #login .account-login-form #forgot-password:hover {
                     color: #209dd8;
                 }
 
@@ -1477,11 +1477,11 @@ section {
             padding-top: 15px;
         }
 
-            #login .account-login-form #create-account a {
+            #login .account-login-form #create-account {
                 color: #47b2e4;
             }
 
-                #login .account-login-form #create-account a:hover {
+                #login .account-login-form #create-account:hover {
                     color: #209dd8;
                 }
 
