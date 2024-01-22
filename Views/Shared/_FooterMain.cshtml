@@ -19,7 +19,14 @@
                             Take advantage of our weekly newsletter to stay up to date on the latest news and updates!
                         </p>
                         <form asp-action="NewsletterSignUp" asp-controller="Contact">
-                            <input type="email" name="email" autocomplete="on">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <input type="email" name="email" id="email_signup" value="@User.Identity.Name" />
+                            }
+                            else
+                            {
+                                <input type="email" name="email" id="email_signup" placeholder="Email" />
+                            }
                             <input type="submit" value="Subscribe">
                         </form>
                     </div>

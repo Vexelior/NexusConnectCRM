@@ -1464,26 +1464,26 @@ section {
             padding-top: 15px;
         }
 
-            #login .account-login-form #forgot-password {
-                color: #47b2e4;
-            }
+        #login .account-login-form #forgot-password {
+            color: #47b2e4;
+        }
 
-                #login .account-login-form #forgot-password:hover {
-                    color: #209dd8;
-                }
+            #login .account-login-form #forgot-password:hover {
+                color: #209dd8;
+            }
 
         #login .account-login-form #create-account {
             text-align: center;
             padding-top: 15px;
         }
 
-            #login .account-login-form #create-account {
-                color: #47b2e4;
-            }
+        #login .account-login-form #create-account {
+            color: #47b2e4;
+        }
 
-                #login .account-login-form #create-account:hover {
-                    color: #209dd8;
-                }
+            #login .account-login-form #create-account:hover {
+                color: #209dd8;
+            }
 
     #login .login-title {
         font-family: "Raleway", sans-serif;
@@ -1549,13 +1549,13 @@ section {
             padding-top: 15px;
         }
 
-            #register .account-register-form #existing-account {
-                color: #47b2e4;
-            }
+        #register .account-register-form #existing-account {
+            color: #47b2e4;
+        }
 
-                #register .account-register-form #existing-account:hover {
-                    color: #209dd8;
-                }
+            #register .account-register-form #existing-account:hover {
+                color: #209dd8;
+            }
 
     #register .register-title {
         font-family: "Raleway", sans-serif;
@@ -2497,4 +2497,10 @@ button:focus {
 
 #search-button {
     border: none !important;
+}
+
+#email_signup:focus {
+    outline: none;
+    border: none;
+    border-color: transparent;
 }
