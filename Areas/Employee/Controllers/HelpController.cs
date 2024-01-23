@@ -10,6 +10,7 @@ using NexusConnectCRM.Data.Models.Help;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.SignalR;
 using NexusConnectCRM.Extensions.SignalR;
+using Microsoft.AspNetCore.Hosting;
 
 namespace NexusConnectCRM.Areas.Employee.Controllers
 {

@@ -1,4 +1,5 @@
-﻿using NexusConnectCRM.Data.Models.Help;
+﻿using Microsoft.AspNetCore.Http;
+using NexusConnectCRM.Data.Models.Help;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
