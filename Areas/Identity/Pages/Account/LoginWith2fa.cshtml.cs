@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
 using NexusConnectCRM.Data.Models.Identity;
 
 namespace NexusConnectCRM.Areas.Identity.Pages.Account

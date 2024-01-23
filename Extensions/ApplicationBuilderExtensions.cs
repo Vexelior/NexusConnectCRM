@@ -7,8 +7,6 @@ using NexusConnectCRM.Data.Models.Company;
 using NexusConnectCRM.Data.Models.Customer;
 using NexusConnectCRM.Data.Models.Help;
 using NexusConnectCRM.Data.Models.Employee;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace NexusConnectCRM.Extensions
 {
