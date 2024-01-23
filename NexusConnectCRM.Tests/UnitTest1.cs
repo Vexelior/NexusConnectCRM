@@ -1,3 +1,5 @@
+using NUnit.Framework;
+
 namespace NexusConnectCRM.Tests
 {
     public class Tests
