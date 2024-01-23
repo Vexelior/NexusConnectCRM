@@ -12,6 +12,13 @@ namespace NexusConnectCRM.Controllers
 {
     public class ContactController : Controller
     {
+        private readonly ILogger<ContactController> _logger;
+
+        public ContactController(ILogger<ContactController> logger)
+        {
+            _logger = logger;
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult SubmitContact(ContactViewModel viewModel)
@@ -44,7 +51,7 @@ namespace NexusConnectCRM.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult NewsletterSignUp(NewsletterViewModel viewModel)
+        public async Task<IActionResult> NewsletterSignUp(NewsletterViewModel viewModel)
         {
             ArgumentNullException.ThrowIfNull(viewModel);
 
@@ -54,8 +61,8 @@ namespace NexusConnectCRM.Controllers
 
                 if (dbContext.Users.Any(n => n.Email == viewModel.Email))
                 {
-                    ApplicationUser user = dbContext.Users.FirstOrDefault(n => n.Email == viewModel.Email);
-                    Newsletter newsletter = dbContext.Newsletters.FirstOrDefault(n => n.Email == user.Email);
+                    ApplicationUser user = await dbContext.Users.FirstOrDefaultAsync(n => n.Email == viewModel.Email);
+                    Newsletter newsletter = await dbContext.Newsletters.FirstOrDefaultAsync(n => n.Email == user.Email);
 
                     if (newsletter is not null && dbContext.Newsletters.Any(n => n.Email == user.Email))
                     {
@@ -70,7 +77,7 @@ namespace NexusConnectCRM.Controllers
                             UserId = user.Id
                         };
 
-                        dbContext.Newsletters.Add(newNewsletter);
+                        await dbContext.Newsletters.AddAsync(newNewsletter);
                     }
                 }
                 else
@@ -81,12 +88,12 @@ namespace NexusConnectCRM.Controllers
                         IsSubscribed = true,
                     };
 
-                    dbContext.Newsletters.Add(newsletter);
+                    await dbContext.Newsletters.AddAsync(newsletter);
                 }
 
                 try
                 {
-                    dbContext.SaveChanges();
+                    await dbContext.SaveChangesAsync();
                 }
                 catch (DbUpdateException)
                 {
