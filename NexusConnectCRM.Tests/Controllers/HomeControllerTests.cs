@@ -1,13 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NexusConnectCRM.Controllers;
-using NexusConnectCRM.ViewModels;
-using System.Diagnostics;
 using NUnit.Framework;
 using Moq;
 using System.Threading.Tasks;
-
 
 namespace NexusConnectCRM.Tests.Controllers
 {
