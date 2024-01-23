@@ -24,9 +24,5 @@ namespace NexusConnectCRM.ViewModels
         [Required]
         [StringLength(500, MinimumLength = 2)]
         public string Message { get; set; }
-
-        public ContactViewModel()
-        {
-        }
     }
 }
