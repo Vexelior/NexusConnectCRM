@@ -42,9 +42,13 @@ namespace NexusConnectCRM.Controllers
                 smtpClient.Credentials = new NetworkCredential("nexusconnectcrm@gmail.com", "qbur pikt hrqz wsuz");
                 smtpClient.EnableSsl = true;
                 smtpClient.Send(mailMessage);
+
+                TempData["StatusMessage"] = "Thank you for your message! We will get back to you as soon as possible.";
             }
             else
             {
+                TempData["StatusMessage"] = "There was an error submitting your message. Please try again.";
+
                 return View("Index", viewModel);
             }
 
@@ -93,10 +97,12 @@ namespace NexusConnectCRM.Controllers
 
                 try
                 {
+                    TempData["StatusMessage"] = "Thank you for signing up for our newsletter!";
                     await dbContext.SaveChangesAsync();
                 }
                 catch (DbUpdateException)
                 {
+                    TempData["StatusMessage"] = "There was an error signing up for our newsletter. Please try again.";
                     return RedirectToAction("Index", "Home", new { emailSignup = false });
                 }
 
@@ -116,7 +122,7 @@ namespace NexusConnectCRM.Controllers
                 smtpClient.EnableSsl = true;
                 smtpClient.Send(mailMessage);
 
-                return RedirectToAction("Index", "Home", new { emailSignup = "success" });
+                return RedirectToAction("Index", "Home");
             }
             else
             {
