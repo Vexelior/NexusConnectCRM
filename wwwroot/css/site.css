@@ -2354,6 +2354,11 @@ span {
     color: #fff;
 }
 
+#homeUsersSubmenu .dropdown-item:hover {
+    background: transparent;
+    color: #fff;
+}
+
 /* Remove all outlines from buttons on-click*/
 button:focus {
     outline: none !important;

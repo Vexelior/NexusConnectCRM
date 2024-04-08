@@ -19,8 +19,8 @@
     int ticketNotificationCount = ticketsNeedingAttention + pendingHelpTicketsCount;
 
     string firstName = _context.Users.Where(x => x.Id == _userManager.GetUserId(User))
-                                 .Select(x => x.FirstName)
-                                 .FirstOrDefault();
+                                     .Select(x => x.FirstName)
+                                     .FirstOrDefault();
 }
 
 <div class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0 d-flex sticky-top" id="sidebar" data-aos="fade-right" data-aos-delay="100" style="font-size: 14px !important;">
@@ -50,7 +50,7 @@
             <li>
                 <a href="#homeSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="nav-link px-sm-0 px-2">
                     <i class="fa fa-ticket"></i>
-                    <span class="spacer d-none d-sm-inline">Help Tickets</span>
+                    <span class="spacer d-none d-sm-inline">Tickets</span>
                     @if (ticketNotificationCount > 0)
                     {
                         @if (ticketNotificationCount > 99)
@@ -113,6 +113,40 @@
                     </li>
                 </ul>
             </li>
+            @if (User.IsInRole("Admin") || User.IsInRole("HeadAdmin"))
+            {
+                <li>
+                    <a href="#homeUsersSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="nav-link px-sm-0 px-2">
+                        <i class="fa fa-users"></i>
+                        <span class="spacer d-none d-sm-inline">Users</span>
+                    </a>
+                </li>
+                <ul class="collapse list-unstyled" id="homeUsersSubmenu">
+                    <li class="nav-item">
+                        <a class="dropdown-item" href="@Url.Action("ViewUsers", "Index", new { area = "Admin" })">
+                            <i class="fa fa-user"></i>
+                            All Users
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="dropdown-item" href="@Url.Action("ViewProspects", "Index", new { area = "Admin" })">
+                            <i class="fa fa-user"></i>
+                            Prospects
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="dropdown-item" href="@Url.Action("ViewCustomers", "Index", new { area = "Admin" })">
+                            <i class="fa fa-user"></i>
+                            Customers
+                        </a>
+                    </li>
+                </ul>
+                <li>
+                    <a class="nav-link px-sm-0 px-2" href="@Url.Action("ViewCompanies", "Index", new { area = "Admin" })">
+                        <i class="fa fa-building"></i><span class="spacer d-none d-sm-inline">Companies</span>
+                    </a>
+                </li>
+            }
         </ul>
         @await Html.PartialAsync("_PortalAccountOptions")
         @await Html.PartialAsync("_FooterPortal")
