@@ -1,9 +1,14 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Routing.Constraints;
 using Microsoft.EntityFrameworkCore;
 using NexusConnectCRM.Data;
 using NexusConnectCRM.Data.Models.Identity;
 using NexusConnectCRM.Extensions;
 using NexusConnectCRM.Extensions.SignalR;
+using NLog;
+using NLog.Config;
+using NLog.Extensions.Logging;
+using NLog.Targets;
 
 namespace NexusConnectCRM
 {
@@ -30,6 +35,20 @@ namespace NexusConnectCRM
 
             builder.Services.AddSignalR();
 
+            IConfigurationRoot config = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
+                                                                  .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                                                                  .Build();
+
+            LoggingConfiguration nlogConfig = new NLogLoggingConfiguration(config.GetSection("NLog"));
+            Logger logger = LogManager.Setup().LoadConfigurationFromSection(config.GetSection("NLog")).GetCurrentClassLogger();
+
+            builder.Services.AddLogging(loggingBuilder =>
+            {
+                loggingBuilder.ClearProviders();
+                loggingBuilder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+                loggingBuilder.AddNLog(nlogConfig);
+            });
+
             var app = builder.Build();
 
             // Create a service scope to get an ApplicationDbContext instance \\
@@ -46,8 +65,7 @@ namespace NexusConnectCRM
                 }
                 catch (Exception ex)
                 {
-                    ILogger<Program> logger = services.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(ex, "An error occurred while migrating or seeding the database.");
+                    logger.Error(ex, "An error occurred while migrating or seeding the database.");
                 }
             }
 

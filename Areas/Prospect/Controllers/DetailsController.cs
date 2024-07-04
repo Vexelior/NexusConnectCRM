@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using NexusConnectCRM.Areas.Prospect.Helper;
 using NexusConnectCRM.Areas.Prospect.ViewModels;
 using NexusConnectCRM.Data;
 using NexusConnectCRM.Data.Models.Company;
@@ -28,8 +29,8 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
 
         public IActionResult CompanyDetails()
         {
-            var countryDetails = Countries.GetAll();
-            var stateDetails = States.GetAll();
+            List<Country> countryDetails = Countries.GetAll();
+            List<State> stateDetails = States.GetAll();
 
             ProspectCompanyDetailsViewModel model = new()
             {
@@ -37,12 +38,12 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
                 ListOfStates = []
             };
 
-            foreach (var country in countryDetails)
+            foreach (Country country in countryDetails)
             {
                 model.ListOfCountries.Add(new SelectListItem { Value = country.Id, Text = country.Name });
             }
 
-            foreach (var state in stateDetails)
+            foreach (State state in stateDetails)
             {
                 model.ListOfStates.Add(new SelectListItem { Value = state.Id, Text = state.Name });
             }
@@ -53,27 +54,27 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
         [HttpPost]
         public async Task<IActionResult> CompanyDetails([Bind("Id,Name,Address,Country,City,State,Zip,Phone,Website,Email,Industry,NeedsContact")] CompanyInfo companyInfo)
         {
-            var user = await _context.Prospects.FirstOrDefaultAsync(u => u.UserId == _userManager.GetUserId(User));
+            ProspectInfo user = await _context.Prospects.FirstOrDefaultAsync(u => u.UserId.Equals(_userManager.GetUserId(User)));
 
             if (user is null)
             {
                 return NotFound();
             }
 
-            var countryDetails = Countries.GetAll();
-            var stateDetails = States.GetAll();
+            List<Country> countryDetails = Countries.GetAll();
+            List<State> stateDetails = States.GetAll();
 
-            foreach (var country in countryDetails)
+            foreach (Country country in countryDetails)
             {
-                if (country.Id == companyInfo.Country)
+                if (country.Id.Equals(companyInfo.Country))
                 {
                     companyInfo.Country = country.Name;
                 }
             }
 
-            foreach (var state in stateDetails)
+            foreach (State state in stateDetails)
             {
-                if (state.Id == companyInfo.State)
+                if (state.Id.Equals(companyInfo.State))
                 {
                     companyInfo.State = state.Name;
                 }
@@ -81,13 +82,20 @@ namespace NexusConnectCRM.Areas.Prospect.Controllers
 
             if (ModelState.IsValid)
             {
-                await _context.Companies.AddAsync(companyInfo);
-                await _context.SaveChangesAsync();
+                try
+                {
+                    await _context.Companies.AddAsync(companyInfo);
+                    await _context.SaveChangesAsync();
 
-                user.CompanyId = companyInfo.Id;
-                user.CompanyName = companyInfo.Name;
+                    user.CompanyId = companyInfo.Id;
+                    user.CompanyName = companyInfo.Name;
 
-                await _context.SaveChangesAsync();
+                    await _context.SaveChangesAsync();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
 
                 return RedirectToAction("Index", "Index", null);
             }

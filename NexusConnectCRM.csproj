@@ -9,6 +9,12 @@
 		<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
 	</PropertyGroup>
 	<ItemGroup>
+	  <Compile Remove="Logs\**" />
+	  <Content Remove="Logs\**" />
+	  <EmbeddedResource Remove="Logs\**" />
+	  <None Remove="Logs\**" />
+	</ItemGroup>
+	<ItemGroup>
 		<Content Remove="Areas\Prospect\Views\Index\ProspectNeedHelp.cshtml" />
 		<Content Remove="wwwroot\js\PasswordStrength.js" />
 	</ItemGroup>
@@ -19,6 +25,7 @@
 		<PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter" Version="8.0.1" />
 		<PackageReference Include="Microsoft.AspNetCore.SignalR.Common" Version="8.0.1" />
 		<PackageReference Include="Moq" Version="4.20.70" />
+		<PackageReference Include="NLog.Web.AspNetCore" Version="5.3.11" />
 		<PackageReference Include="NUnit" Version="3.13.3" />
 		<PackageReference Include="xunit" Version="2.6.6" />
 		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.1" />
