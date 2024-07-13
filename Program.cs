@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Routing.Constraints;
 using Microsoft.EntityFrameworkCore;
 using NexusConnectCRM.Data;
 using NexusConnectCRM.Data.Models.Identity;
@@ -18,7 +17,6 @@ namespace NexusConnectCRM
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
@@ -42,6 +40,42 @@ namespace NexusConnectCRM
             LoggingConfiguration nlogConfig = new NLogLoggingConfiguration(config.GetSection("NLog"));
             Logger logger = LogManager.Setup().LoadConfigurationFromSection(config.GetSection("NLog")).GetCurrentClassLogger();
 
+            ColoredConsoleTarget consoleTarget = new("console")
+            {
+                Layout = $"[{DateTime.Now}]" + " ${level:uppercase=true} ${logger}.${callsite} [${callsite-linenumber}] - MESSAGE: ${message}${newline}${exception}"
+            };
+            nlogConfig.AddTarget(consoleTarget);
+            nlogConfig.AddRule(NLog.LogLevel.Info, NLog.LogLevel.Fatal, consoleTarget);
+
+            FileTarget fileTarget = new("fileTarget")
+            {
+                FileName = $"{Directory.GetCurrentDirectory()}/Logs/{DateTime.Now:yyyy-MM-dd}.log",
+                Layout = $"[{DateTime.Now}]" + " (${level:uppercase=true}) - ${message}${newline}${exception}",
+                KeepFileOpen = true,
+                ArchiveFileName = $"{Directory.GetCurrentDirectory()}/Logs/Archive/NexusConnect.{{#}}.log",
+                ArchiveNumbering = ArchiveNumberingMode.Rolling,
+                MaxArchiveFiles = 2,
+                ArchiveAboveSize = 102400
+            };
+
+            TraceTarget traceTarget = new("trace")
+            {
+                Layout = $"[{DateTime.Now}]" + " ${level:uppercase=true} ${logger}.${callsite} [${callsite-linenumber}] - MESSAGE: ${message}${newline}${exception}"
+            };
+            nlogConfig.AddTarget(traceTarget);
+            nlogConfig.AddRule(NLog.LogLevel.Info, NLog.LogLevel.Fatal, traceTarget);
+
+            nlogConfig.AddRule(NLog.LogLevel.Warn, NLog.LogLevel.Fatal, consoleTarget, "Microsoft.AspNetCore.*", true);
+            nlogConfig.AddRule(NLog.LogLevel.Warn, NLog.LogLevel.Fatal, traceTarget, "Microsoft.AspNetCore.*", true);
+
+            nlogConfig.AddRule(NLog.LogLevel.Warn, NLog.LogLevel.Fatal, consoleTarget, "Microsoft.EntityFrameworkCore.*", true);
+            nlogConfig.AddRule(NLog.LogLevel.Warn, NLog.LogLevel.Fatal, traceTarget, "Microsoft.EntityFrameworkCore.*", true);
+
+            nlogConfig.AddTarget(fileTarget);
+            nlogConfig.AddRuleForAllLevels(fileTarget, "NexusConnectCRM.*");
+
+            LogManager.Configuration = nlogConfig;
+
             builder.Services.AddLogging(loggingBuilder =>
             {
                 loggingBuilder.ClearProviders();
@@ -51,7 +85,6 @@ namespace NexusConnectCRM
 
             var app = builder.Build();
 
-            // Create a service scope to get an ApplicationDbContext instance \\
             using (IServiceScope scope = app.Services.CreateScope())
             {
                 IServiceProvider services = scope.ServiceProvider;
@@ -69,7 +102,6 @@ namespace NexusConnectCRM
                 }
             }
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseMigrationsEndPoint();
@@ -77,7 +109,6 @@ namespace NexusConnectCRM
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 

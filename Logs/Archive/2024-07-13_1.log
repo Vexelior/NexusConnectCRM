@@ -1,0 +1,966 @@
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Admin/Views/Shared/_AdminPortalLayout.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Admin/Views/Shared/_AdminSidebar.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Admin/Views/User/EditUser.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Customer/Views/Index/Index.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Customer/Views/Shared/_CustomerPortalLayout.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Customer/Views/Shared/_CustomerSidebar.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Employee/Views/Help/CompletedHelp.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Employee/Views/Help/Help.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Employee/Views/Help/HelpEdit.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Employee/Views/Help/NewHelp.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Employee/Views/Help/PendingHelp.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Employee/Views/Help/RejectedHelp.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Employee/Views/Index/Index.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Employee/Views/Shared/_EmployeePortalLayout.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Employee/Views/Shared/_EmployeeSidebar.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/AccessDenied.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/ConfirmEmail.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/ConfirmEmailChange.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/ExternalLogin.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/ForgotPassword.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/ForgotPasswordConfirmation.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Lockout.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Login.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/LoginWith2fa.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/LoginWithRecoveryCode.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Logout.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/ChangePassword.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/DeletePersonalData.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/Disable2fa.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/DownloadPersonalData.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/Email.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/EnableAuthenticator.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/ExternalLogins.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/GenerateRecoveryCodes.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/Index.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/PersonalData.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/ResetAuthenticator.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/SetPassword.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/ShowRecoveryCodes.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/TwoFactorAuthentication.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/_Layout.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/_ManageNav.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/_StatusMessage.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/_ViewImports.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Register.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/RegisterConfirmation.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/ResendEmailConfirmation.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/ResetPassword.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/ResetPasswordConfirmation.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/_StatusMessage.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/_ViewImports.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Error.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/_ViewImports.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/_ViewStart.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Prospect/Views/Details/EnterCompanyDetails.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Prospect/Views/Details/EnterUserDetails.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Prospect/Views/Index/Index.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Prospect/Views/Shared/_PromptUserDetails.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Prospect/Views/Shared/_ProspectNavigationSidebarLinks.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Prospect/Views/Shared/_ProspectPortalLayout.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Prospect/Views/Shared/_ProspectSidebar.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Views/Error/Error.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Views/HelpInfo/Create.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Views/HelpInfo/Delete.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Views/HelpInfo/Details.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Views/HelpInfo/Edit.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Views/HelpInfo/Index.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Views/HelpInfo/_Tickets.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Views/Home/Index.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Views/Shared/Error.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Views/Shared/_AccountLayout.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Views/Shared/_BackToTopButton.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Views/Shared/_ChatHub.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Views/Shared/_FooterMain.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Views/Shared/_FooterPortal.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Views/Shared/_LoginPartial.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Views/Shared/_ManageProfile.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Views/Shared/_NavbarBasic.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Views/Shared/_NavbarHomeMain.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Views/Shared/_NavigationSidebarLinks.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Views/Shared/_PortalAccountOptions.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Views/Shared/_PortalLoginPartial.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Views/Shared/_Preloader.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Views/Shared/_PrivacyPolicyModal.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Views/Shared/_ValidationScriptsPartial.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Views/_ViewImports.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Views/_ViewStart.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Views/Shared/_ErrorLayout.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Views/Shared/_Layout.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/AccessDenied.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/ConfirmEmail.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/ConfirmEmailChange.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/ExternalLogin.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/ForgotPassword.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/ForgotPasswordConfirmation.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Lockout.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Login.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/LoginWith2fa.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/LoginWithRecoveryCode.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Logout.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/ChangePassword.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/DeletePersonalData.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/Disable2fa.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/DownloadPersonalData.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/Email.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/EnableAuthenticator.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/ExternalLogins.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/GenerateRecoveryCodes.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/Index.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/PersonalData.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/ResetAuthenticator.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/SetPassword.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/ShowRecoveryCodes.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/TwoFactorAuthentication.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/_Layout.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/_ManageNav.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/_StatusMessage.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/_ViewImports.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Manage/_ViewStart.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/Register.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/RegisterConfirmation.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/ResendEmailConfirmation.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/ResetPassword.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/ResetPasswordConfirmation.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/_StatusMessage.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Account/_ViewImports.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/Error.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/_Layout.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/_ViewImports.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Initializing Razor view compiler with compiled view: '/Areas/Identity/Pages/_ViewStart.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Registered model binder providers, in the following order: Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider
+[7/13/2024 1:17:46 AM] DEBUG Hosting starting
+[7/13/2024 1:17:46 AM] DEBUG Reading data from file 'C:\Users\asand\AppData\Local\ASP.NET\DataProtection-Keys\key-55172483-18e5-4841-b936-b359bbc14ca0.xml'.
+[7/13/2024 1:17:46 AM] DEBUG Reading data from file 'C:\Users\asand\AppData\Local\ASP.NET\DataProtection-Keys\key-66b00437-3bf2-449c-badc-1959d2eaabbd.xml'.
+[7/13/2024 1:17:46 AM] DEBUG Reading data from file 'C:\Users\asand\AppData\Local\ASP.NET\DataProtection-Keys\key-a3b2b694-3681-45a5-856d-4bfff22e2901.xml'.
+[7/13/2024 1:17:46 AM] DEBUG Reading data from file 'C:\Users\asand\AppData\Local\ASP.NET\DataProtection-Keys\key-bda7c4be-e1a3-44c9-97f9-aed1ec3099dd.xml'.
+[7/13/2024 1:17:46 AM] DEBUG Reading data from file 'C:\Users\asand\AppData\Local\ASP.NET\DataProtection-Keys\key-c7844121-ab63-4075-af02-732076eb01a6.xml'.
+[7/13/2024 1:17:46 AM] DEBUG Reading data from file 'C:\Users\asand\AppData\Local\ASP.NET\DataProtection-Keys\key-cce6962f-1bde-4704-94f8-88de75a07af9.xml'.
+[7/13/2024 1:17:46 AM] DEBUG Reading data from file 'C:\Users\asand\AppData\Local\ASP.NET\DataProtection-Keys\key-f0fa452e-efcf-47ec-a6c5-437670a2a6f0.xml'.
+[7/13/2024 1:17:46 AM] DEBUG Found key {55172483-18e5-4841-b936-b359bbc14ca0}.
+[7/13/2024 1:17:46 AM] DEBUG Found key {66b00437-3bf2-449c-badc-1959d2eaabbd}.
+[7/13/2024 1:17:46 AM] DEBUG Found key {a3b2b694-3681-45a5-856d-4bfff22e2901}.
+[7/13/2024 1:17:46 AM] DEBUG Found key {bda7c4be-e1a3-44c9-97f9-aed1ec3099dd}.
+[7/13/2024 1:17:46 AM] DEBUG Found key {c7844121-ab63-4075-af02-732076eb01a6}.
+[7/13/2024 1:17:46 AM] DEBUG Found key {cce6962f-1bde-4704-94f8-88de75a07af9}.
+[7/13/2024 1:17:46 AM] DEBUG Found key {f0fa452e-efcf-47ec-a6c5-437670a2a6f0}.
+[7/13/2024 1:17:46 AM] DEBUG Considering key {f0fa452e-efcf-47ec-a6c5-437670a2a6f0} with expiration date 2024-08-20 01:22:46Z as default key.
+[7/13/2024 1:17:46 AM] DEBUG Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+[7/13/2024 1:17:46 AM] DEBUG Decrypting secret element using Windows DPAPI.
+[7/13/2024 1:17:46 AM] DEBUG Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+[7/13/2024 1:17:46 AM] DEBUG Opening CNG algorithm 'AES' from provider '(null)' with chaining mode CBC.
+[7/13/2024 1:17:46 AM] DEBUG Opening CNG algorithm 'SHA256' from provider '(null)' with HMAC.
+[7/13/2024 1:17:46 AM] DEBUG Using key {f0fa452e-efcf-47ec-a6c5-437670a2a6f0} as the default key.
+[7/13/2024 1:17:46 AM] DEBUG Key ring with default key {f0fa452e-efcf-47ec-a6c5-437670a2a6f0} was loaded during application startup.
+[7/13/2024 1:17:46 AM] INFO Now listening on: https://localhost:7219
+[7/13/2024 1:17:46 AM] INFO Now listening on: http://localhost:5228
+[7/13/2024 1:17:46 AM] DEBUG Loaded hosting startup assembly NexusConnectCRM
+[7/13/2024 1:17:46 AM] DEBUG Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh
+[7/13/2024 1:17:46 AM] DEBUG Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net
+[7/13/2024 1:17:46 AM] INFO Application started. Press Ctrl+C to shut down.
+[7/13/2024 1:17:46 AM] INFO Hosting environment: Development
+[7/13/2024 1:17:46 AM] INFO Content root path: C:\Users\asand\Documents\GitHub\NexusConnectCRM
+[7/13/2024 1:17:46 AM] TRACE Starting connection heartbeat.
+[7/13/2024 1:17:46 AM] DEBUG Hosting started
+[7/13/2024 1:17:46 AM] DEBUG Connection id "0HN532H5435TQ" accepted.
+[7/13/2024 1:17:46 AM] DEBUG Connection id "0HN532H5435TQ" started.
+[7/13/2024 1:17:46 AM] DEBUG Connection id "0HN532H5435TR" accepted.
+[7/13/2024 1:17:46 AM] DEBUG Connection id "0HN532H5435TR" started.
+[7/13/2024 1:17:46 AM] DEBUG Connection id "0HN532H5435TR" received FIN.
+[7/13/2024 1:17:46 AM] DEBUG Connection id "0HN532H5435TQ" received FIN.
+[7/13/2024 1:17:46 AM] DEBUG Failed to authenticate HTTPS connection.
+[7/13/2024 1:17:46 AM] DEBUG Failed to authenticate HTTPS connection.
+[7/13/2024 1:17:46 AM] DEBUG Connection id "0HN532H5435TR" stopped.
+[7/13/2024 1:17:46 AM] DEBUG Connection id "0HN532H5435TQ" stopped.
+[7/13/2024 1:17:46 AM] DEBUG Connection id "0HN532H5435TR" sending FIN because: "The Socket transport's send loop completed gracefully."
+[7/13/2024 1:17:46 AM] DEBUG Connection id "0HN532H5435TQ" sending FIN because: "The Socket transport's send loop completed gracefully."
+[7/13/2024 1:17:46 AM] DEBUG Connection id "0HN532H5435TS" accepted.
+[7/13/2024 1:17:46 AM] DEBUG Connection id "0HN532H5435TS" started.
+[7/13/2024 1:17:46 AM] DEBUG Connection 0HN532H5435TS established using the following protocol: Tls12
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" sending SETTINGS frame for stream ID 0 with length 24 and flags NONE.
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" sending WINDOW_UPDATE frame for stream ID 0 with length 4 and flags 0x0.
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" received SETTINGS frame for stream ID 0 with length 24 and flags NONE.
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" sending SETTINGS frame for stream ID 0 with length 0 and flags ACK.
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" received WINDOW_UPDATE frame for stream ID 0 with length 4 and flags 0x0.
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" received HEADERS frame for stream ID 1 with length 2447 and flags END_STREAM, END_HEADERS, PRIORITY.
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" received SETTINGS frame for stream ID 0 with length 0 and flags ACK.
+[7/13/2024 1:17:46 AM] INFO Request starting HTTP/2 GET https://localhost:7219/ - - -
+[7/13/2024 1:17:46 AM] DEBUG Wildcard detected, all requests with hosts will be allowed.
+[7/13/2024 1:17:46 AM] TRACE All hosts are allowed.
+[7/13/2024 1:17:46 AM] DEBUG The request path / does not match a supported file type
+[7/13/2024 1:17:46 AM] DEBUG 1 candidate(s) found for the request path '/'
+[7/13/2024 1:17:46 AM] DEBUG Endpoint 'NexusConnectCRM.Controllers.HomeController.Index (NexusConnectCRM)' with route pattern '{controller=Home}/{action=Index}/{id?}' is valid for the request path '/'
+[7/13/2024 1:17:46 AM] DEBUG Request matched endpoint 'NexusConnectCRM.Controllers.HomeController.Index (NexusConnectCRM)'
+[7/13/2024 1:17:46 AM] TRACE The endpoint does not specify the IRequestSizeLimitMetadata.
+[7/13/2024 1:17:46 AM] DEBUG AuthenticationScheme: Identity.Application was not authenticated.
+[7/13/2024 1:17:46 AM] INFO Executing endpoint 'NexusConnectCRM.Controllers.HomeController.Index (NexusConnectCRM)'
+[7/13/2024 1:17:46 AM] INFO Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller NexusConnectCRM.Controllers.HomeController (NexusConnectCRM).
+[7/13/2024 1:17:46 AM] DEBUG Execution plan of authorization filters (in the following order): None
+[7/13/2024 1:17:46 AM] DEBUG Execution plan of resource filters (in the following order): Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter
+[7/13/2024 1:17:46 AM] DEBUG Execution plan of action filters (in the following order): Microsoft.AspNetCore.Mvc.Filters.ControllerActionFilter (Order: -2147483648), Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)
+[7/13/2024 1:17:46 AM] DEBUG Execution plan of exception filters (in the following order): None
+[7/13/2024 1:17:46 AM] DEBUG Execution plan of result filters (in the following order): Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter
+[7/13/2024 1:17:46 AM] TRACE Resource Filter: Before executing OnResourceExecuting on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter.
+[7/13/2024 1:17:46 AM] TRACE Resource Filter: After executing OnResourceExecuting on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter.
+[7/13/2024 1:17:46 AM] DEBUG Executing controller factory for controller NexusConnectCRM.Controllers.HomeController (NexusConnectCRM)
+[7/13/2024 1:17:46 AM] DEBUG Executed controller factory for controller NexusConnectCRM.Controllers.HomeController (NexusConnectCRM)
+[7/13/2024 1:17:46 AM] TRACE Action Filter: Before executing OnActionExecutionAsync on filter Microsoft.AspNetCore.Mvc.Filters.ControllerActionFilter.
+[7/13/2024 1:17:46 AM] TRACE Action Filter: Before executing OnActionExecuting on filter Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter.
+[7/13/2024 1:17:46 AM] TRACE Action Filter: After executing OnActionExecuting on filter Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter.
+[7/13/2024 1:17:46 AM] INFO Executing action method NexusConnectCRM.Controllers.HomeController.Index (NexusConnectCRM) - Validation state: Valid
+[7/13/2024 1:17:46 AM] INFO Home page loaded.
+[7/13/2024 1:17:46 AM] INFO Executed action method NexusConnectCRM.Controllers.HomeController.Index (NexusConnectCRM), returned result Microsoft.AspNetCore.Mvc.ViewResult in 23.3583ms.
+[7/13/2024 1:17:46 AM] TRACE Action Filter: Before executing OnActionExecuted on filter Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter.
+[7/13/2024 1:17:46 AM] TRACE Action Filter: After executing OnActionExecuted on filter Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter.
+[7/13/2024 1:17:46 AM] TRACE Action Filter: After executing OnActionExecutionAsync on filter Microsoft.AspNetCore.Mvc.Filters.ControllerActionFilter.
+[7/13/2024 1:17:46 AM] TRACE Result Filter: Before executing OnResultExecuting on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter.
+[7/13/2024 1:17:46 AM] TRACE Result Filter: After executing OnResultExecuting on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter.
+[7/13/2024 1:17:46 AM] TRACE Before executing action result Microsoft.AspNetCore.Mvc.ViewResult.
+[7/13/2024 1:17:46 AM] DEBUG View lookup cache miss for view 'Index' in controller 'Home'.
+[7/13/2024 1:17:46 AM] TRACE Located compiled view for view at path '/Views/Home/Index.cshtml'.
+[7/13/2024 1:17:46 AM] TRACE Could not find a file for view at path '/Views/Home/_ViewStart.cshtml'.
+[7/13/2024 1:17:46 AM] TRACE Located compiled view for view at path '/Views/_ViewStart.cshtml'.
+[7/13/2024 1:17:46 AM] TRACE Could not find a file for view at path '/_ViewStart.cshtml'.
+[7/13/2024 1:17:46 AM] INFO Executing ViewResult, running view Index.
+[7/13/2024 1:17:46 AM] DEBUG The view path '/Views/Home/Index.cshtml' was found in 25.7512ms.
+[7/13/2024 1:17:46 AM] DEBUG Found the endpoints /Account/Register, Route: {area:exists}/{controller=Home}/{action=Index}/{id?}, Route: {controller=Home}/{action=Index}/{id?} for address (area=[Identity],page=[/Account/Register])
+[7/13/2024 1:17:46 AM] DEBUG Successfully processed template Identity/Account/Register for /Account/Register resulting in /Identity/Account/Register and 
+[7/13/2024 1:17:46 AM] DEBUG Link generation succeeded for endpoints /Account/Register, Route: {area:exists}/{controller=Home}/{action=Index}/{id?}, Route: {controller=Home}/{action=Index}/{id?} with result /Identity/Account/Register
+[7/13/2024 1:17:46 AM] DEBUG Found the endpoints Route: {area:exists}/{controller=Home}/{action=Index}/{id?}, Route: {controller=Home}/{action=Index}/{id?} for address (action=[SubmitContact],controller=[Contact])
+[7/13/2024 1:17:46 AM] DEBUG Failed to process the template {area:exists}/{controller=Home}/{action=Index}/{id?} for Route: {area:exists}/{controller=Home}/{action=Index}/{id?}. A required route value is missing, or has a different value from the required default values. Supplied ambient values { "action": "Index", "controller": "Home" } and { "action": "SubmitContact", "controller": "Contact" } with default values { "action": "Index", "controller": "Home" }
+[7/13/2024 1:17:46 AM] DEBUG Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /Contact/SubmitContact and 
+[7/13/2024 1:17:46 AM] DEBUG Link generation succeeded for endpoints Route: {area:exists}/{controller=Home}/{action=Index}/{id?}, Route: {controller=Home}/{action=Index}/{id?} with result /Contact/SubmitContact
+[7/13/2024 1:17:46 AM] TRACE Performing unprotect operation to key {f0fa452e-efcf-47ec-a6c5-437670a2a6f0} with purposes ('C:\Users\asand\Documents\GitHub\NexusConnectCRM\', 'Microsoft.AspNetCore.Antiforgery.AntiforgeryToken.v1').
+[7/13/2024 1:17:46 AM] TRACE Performing protect operation to key {f0fa452e-efcf-47ec-a6c5-437670a2a6f0} with purposes ('C:\Users\asand\Documents\GitHub\NexusConnectCRM\', 'Microsoft.AspNetCore.Antiforgery.AntiforgeryToken.v1').
+[7/13/2024 1:17:46 AM] DEBUG An antiforgery cookie token was reused.
+[7/13/2024 1:17:46 AM] DEBUG The temp data cookie .AspNetCore.Mvc.CookieTempDataProvider was not found.
+[7/13/2024 1:17:46 AM] DEBUG View lookup cache miss for view '_Layout' in controller 'Home'.
+[7/13/2024 1:17:46 AM] TRACE Could not find a file for view at path '/Views/Home/_Layout.cshtml'.
+[7/13/2024 1:17:46 AM] TRACE Located compiled view for view at path '/Views/Shared/_Layout.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG View lookup cache miss for view '_NavbarHomeMain' in controller 'Home'.
+[7/13/2024 1:17:46 AM] TRACE Could not find a file for view at path '/Views/Home/_NavbarHomeMain.cshtml'.
+[7/13/2024 1:17:46 AM] TRACE Located compiled view for view at path '/Views/Shared/_NavbarHomeMain.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Found the endpoints Route: {area:exists}/{controller=Home}/{action=Index}/{id?}, Route: {controller=Home}/{action=Index}/{id?} for address (area=[],action=[Index],controller=[Home])
+[7/13/2024 1:17:46 AM] DEBUG Failed to process the template {area:exists}/{controller=Home}/{action=Index}/{id?} for Route: {area:exists}/{controller=Home}/{action=Index}/{id?}. A required route value is missing, or has a different value from the required default values. Supplied ambient values { "action": "Index", "controller": "Home" } and { "action": "Index", "area": "", "controller": "Home" } with default values { "action": "Index", "controller": "Home" }
+[7/13/2024 1:17:46 AM] DEBUG Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in  and 
+[7/13/2024 1:17:46 AM] DEBUG Link generation succeeded for endpoints Route: {area:exists}/{controller=Home}/{action=Index}/{id?}, Route: {controller=Home}/{action=Index}/{id?} with result /
+[7/13/2024 1:17:46 AM] DEBUG View lookup cache miss for view '_LoginPartial' in controller 'Home'.
+[7/13/2024 1:17:46 AM] TRACE Could not find a file for view at path '/Views/Home/_LoginPartial.cshtml'.
+[7/13/2024 1:17:46 AM] TRACE Located compiled view for view at path '/Views/Shared/_LoginPartial.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Entity Framework Core 8.0.1 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.1' with options: None
+[7/13/2024 1:17:46 AM] DEBUG Compiling query expression: 
+'DbSet<ApplicationUser>()
+    .FirstOrDefault(u => u.Id == __GetUserId_0)'
+[7/13/2024 1:17:46 AM] DEBUG Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<ApplicationUser>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: ApplicationUser.Id (string) Required PK AfterSave:Throw, 0], [Property: ApplicationUser.AccessFailedCount (int) Required, 1], [Property: ApplicationUser.ConcurrencyStamp (string) Concurrency, 2], [Property: ApplicationUser.DateOfBirth (DateTime) Required, 3], [Property: ApplicationUser.Email (string) MaxLength(256), 4], [Property: ApplicationUser.EmailConfirmed (bool) Required, 5], [Property: ApplicationUser.FirstName (string), 6], [Property: ApplicationUser.IsOnline (bool) Required, 7], [Property: ApplicationUser.LastName (string), 8], [Property: ApplicationUser.LockoutEnabled (bool) Required, 9], [Property: ApplicationUser.LockoutEnd (DateTimeOffset?), 10], [Property: ApplicationUser.NormalizedEmail (string) Index MaxLength(256), 11], [Property: ApplicationUser.NormalizedUserName (string) Index MaxLength(256), 12], [Property: ApplicationUser.PasswordHash (string), 13], [Property: ApplicationUser.PhoneNumber (string), 14], [Property: ApplicationUser.PhoneNumberConfirmed (bool) Required, 15], [Property: ApplicationUser.Roles (string), 16], [Property: ApplicationUser.SecurityStamp (string), 17], [Property: ApplicationUser.TwoFactorEnabled (bool) Required, 18], [Property: ApplicationUser.UserName (string) MaxLength(256), 19] }
+        SELECT TOP(1) a.Id, a.AccessFailedCount, a.ConcurrencyStamp, a.DateOfBirth, a.Email, a.EmailConfirmed, a.FirstName, a.IsOnline, a.LastName, a.LockoutEnabled, a.LockoutEnd, a.NormalizedEmail, a.NormalizedUserName, a.PasswordHash, a.PhoneNumber, a.PhoneNumberConfirmed, a.Roles, a.SecurityStamp, a.TwoFactorEnabled, a.UserName
+        FROM AspNetUsers AS a
+        WHERE a.Id == @__GetUserId_0), 
+    null, 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, ApplicationUser>, 
+    NexusConnectCRM.Data.ApplicationDbContext, 
+    False, 
+    False, 
+    True
+)
+    .SingleOrDefault()'
+[7/13/2024 1:17:46 AM] DEBUG Creating DbConnection.
+[7/13/2024 1:17:46 AM] DEBUG Created DbConnection. (0ms).
+[7/13/2024 1:17:46 AM] DEBUG Opening connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:17:46 AM] DEBUG Opened connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:17:46 AM] DEBUG Creating DbCommand for 'ExecuteReader'.
+[7/13/2024 1:17:46 AM] DEBUG Created DbCommand for 'ExecuteReader' (0ms).
+[7/13/2024 1:17:46 AM] DEBUG Initialized DbCommand for 'ExecuteReader' (0ms).
+[7/13/2024 1:17:46 AM] DEBUG Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsOnline], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[Roles], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE 0 = 1
+[7/13/2024 1:17:46 AM] INFO Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsOnline], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[Roles], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE 0 = 1
+[7/13/2024 1:17:46 AM] DEBUG Closing data reader to 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:17:46 AM] DEBUG A data reader for 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' is being disposed after spending 1ms reading results.
+[7/13/2024 1:17:46 AM] DEBUG Closing connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:17:46 AM] DEBUG Closed connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' (0ms).
+[7/13/2024 1:17:46 AM] DEBUG Found the endpoints /Account/Register, Route: {area:exists}/{controller=Home}/{action=Index}/{id?}, Route: {controller=Home}/{action=Index}/{id?} for address (area=[Identity],page=[/Account/Register])
+[7/13/2024 1:17:46 AM] DEBUG Successfully processed template Identity/Account/Register for /Account/Register resulting in /Identity/Account/Register and 
+[7/13/2024 1:17:46 AM] DEBUG Link generation succeeded for endpoints /Account/Register, Route: {area:exists}/{controller=Home}/{action=Index}/{id?}, Route: {controller=Home}/{action=Index}/{id?} with result /Identity/Account/Register
+[7/13/2024 1:17:46 AM] DEBUG Found the endpoints /Account/Login, Route: {area:exists}/{controller=Home}/{action=Index}/{id?}, Route: {controller=Home}/{action=Index}/{id?} for address (area=[Identity],page=[/Account/Login])
+[7/13/2024 1:17:46 AM] DEBUG Successfully processed template Identity/Account/Login for /Account/Login resulting in /Identity/Account/Login and 
+[7/13/2024 1:17:46 AM] DEBUG Link generation succeeded for endpoints /Account/Login, Route: {area:exists}/{controller=Home}/{action=Index}/{id?}, Route: {controller=Home}/{action=Index}/{id?} with result /Identity/Account/Login
+[7/13/2024 1:17:46 AM] DEBUG View lookup cache miss for view '_FooterMain' in controller 'Home'.
+[7/13/2024 1:17:46 AM] TRACE Could not find a file for view at path '/Views/Home/_FooterMain.cshtml'.
+[7/13/2024 1:17:46 AM] TRACE Located compiled view for view at path '/Views/Shared/_FooterMain.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Found the endpoints Route: {area:exists}/{controller=Home}/{action=Index}/{id?}, Route: {controller=Home}/{action=Index}/{id?} for address (action=[NewsletterSignUp],controller=[Contact])
+[7/13/2024 1:17:46 AM] DEBUG Failed to process the template {area:exists}/{controller=Home}/{action=Index}/{id?} for Route: {area:exists}/{controller=Home}/{action=Index}/{id?}. A required route value is missing, or has a different value from the required default values. Supplied ambient values { "action": "Index", "controller": "Home" } and { "action": "NewsletterSignUp", "controller": "Contact" } with default values { "action": "Index", "controller": "Home" }
+[7/13/2024 1:17:46 AM] DEBUG Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /Contact/NewsletterSignUp and 
+[7/13/2024 1:17:46 AM] DEBUG Link generation succeeded for endpoints Route: {area:exists}/{controller=Home}/{action=Index}/{id?}, Route: {controller=Home}/{action=Index}/{id?} with result /Contact/NewsletterSignUp
+[7/13/2024 1:17:46 AM] DEBUG An antiforgery cookie token was reused.
+[7/13/2024 1:17:46 AM] DEBUG View lookup cache miss for view '_Preloader' in controller 'Home'.
+[7/13/2024 1:17:46 AM] TRACE Could not find a file for view at path '/Views/Home/_Preloader.cshtml'.
+[7/13/2024 1:17:46 AM] TRACE Located compiled view for view at path '/Views/Shared/_Preloader.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG View lookup cache miss for view '_BackToTopButton' in controller 'Home'.
+[7/13/2024 1:17:46 AM] TRACE Could not find a file for view at path '/Views/Home/_BackToTopButton.cshtml'.
+[7/13/2024 1:17:46 AM] TRACE Located compiled view for view at path '/Views/Shared/_BackToTopButton.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG View lookup cache miss for view '_PrivacyPolicyModal' in controller 'Home'.
+[7/13/2024 1:17:46 AM] TRACE Could not find a file for view at path '/Views/Home/_PrivacyPolicyModal.cshtml'.
+[7/13/2024 1:17:46 AM] TRACE Located compiled view for view at path '/Views/Shared/_PrivacyPolicyModal.cshtml'.
+[7/13/2024 1:17:46 AM] DEBUG Response markup is scheduled to include Browser Link script injection.
+[7/13/2024 1:17:46 AM] DEBUG Response markup is scheduled to include browser refresh script injection.
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" sending HEADERS frame for stream ID 1 with length 217 and flags END_HEADERS.
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" sending DATA frame for stream ID 1 with length 16384 and flags NONE.
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" sending DATA frame for stream ID 1 with length 13901 and flags NONE.
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" sending DATA frame for stream ID 1 with length 357 and flags NONE.
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" sending DATA frame for stream ID 1 with length 83 and flags NONE.
+[7/13/2024 1:17:46 AM] INFO Executed ViewResult - view Index executed in 383.2005ms.
+[7/13/2024 1:17:46 AM] TRACE After executing action result Microsoft.AspNetCore.Mvc.ViewResult.
+[7/13/2024 1:17:46 AM] TRACE Result Filter: Before executing OnResultExecuted on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter.
+[7/13/2024 1:17:46 AM] TRACE Result Filter: After executing OnResultExecuted on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter.
+[7/13/2024 1:17:46 AM] TRACE Resource Filter: Before executing OnResourceExecuted on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter.
+[7/13/2024 1:17:46 AM] TRACE Resource Filter: After executing OnResourceExecuted on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter.
+[7/13/2024 1:17:46 AM] INFO Executed action NexusConnectCRM.Controllers.HomeController.Index (NexusConnectCRM) in 492.4186ms
+[7/13/2024 1:17:46 AM] INFO Executed endpoint 'NexusConnectCRM.Controllers.HomeController.Index (NexusConnectCRM)'
+[7/13/2024 1:17:46 AM] DEBUG Response markup was updated to include Browser Link script injection.
+[7/13/2024 1:17:46 AM] DEBUG Response markup was updated to include browser refresh script injection.
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" sending DATA frame for stream ID 1 with length 0 and flags END_STREAM.
+[7/13/2024 1:17:46 AM] DEBUG 'ApplicationDbContext' disposed.
+[7/13/2024 1:17:46 AM] DEBUG Disposing connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:17:46 AM] DEBUG Disposed connection to database '' on server '' (1ms).
+[7/13/2024 1:17:46 AM] INFO Request finished HTTP/2 GET https://localhost:7219/ - 200 - text/html;+charset=utf-8 885.5712ms
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" received HEADERS frame for stream ID 3 with length 110 and flags END_STREAM, END_HEADERS, PRIORITY.
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" received HEADERS frame for stream ID 5 with length 264 and flags END_STREAM, END_HEADERS, PRIORITY.
+[7/13/2024 1:17:46 AM] INFO Request starting HTTP/2 GET https://localhost:7219/_framework/aspnetcore-browser-refresh.js - - -
+[7/13/2024 1:17:46 AM] INFO Request starting HTTP/2 GET https://localhost:7219/_vs/browserLink - - -
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" sending HEADERS frame for stream ID 3 with length 90 and flags END_HEADERS.
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" sending DATA frame for stream ID 3 with length 13766 and flags NONE.
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" sending DATA frame for stream ID 3 with length 0 and flags END_STREAM.
+[7/13/2024 1:17:46 AM] INFO Request finished HTTP/2 GET https://localhost:7219/_framework/aspnetcore-browser-refresh.js - 200 13766 application/javascript;+charset=utf-8 68.6051ms
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" sending HEADERS frame for stream ID 5 with length 119 and flags END_HEADERS.
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" sending DATA frame for stream ID 5 with length 9986 and flags NONE.
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" sending DATA frame for stream ID 5 with length 10240 and flags NONE.
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" sending DATA frame for stream ID 5 with length 10240 and flags NONE.
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" sending DATA frame for stream ID 5 with length 10240 and flags NONE.
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" sending DATA frame for stream ID 5 with length 10240 and flags NONE.
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" sending DATA frame for stream ID 5 with length 10240 and flags NONE.
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" sending DATA frame for stream ID 5 with length 10240 and flags NONE.
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" sending DATA frame for stream ID 5 with length 10240 and flags NONE.
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" sending DATA frame for stream ID 5 with length 10240 and flags NONE.
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" sending DATA frame for stream ID 5 with length 10240 and flags NONE.
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" sending DATA frame for stream ID 5 with length 10240 and flags NONE.
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" sending DATA frame for stream ID 5 with length 10240 and flags NONE.
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" sending DATA frame for stream ID 5 with length 10240 and flags NONE.
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" sending DATA frame for stream ID 5 with length 10240 and flags NONE.
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" sending DATA frame for stream ID 5 with length 10240 and flags NONE.
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" sending DATA frame for stream ID 5 with length 160 and flags NONE.
+[7/13/2024 1:17:46 AM] TRACE Connection id "0HN532H5435TS" sending DATA frame for stream ID 5 with length 0 and flags END_STREAM.
+[7/13/2024 1:17:46 AM] INFO Request finished HTTP/2 GET https://localhost:7219/_vs/browserLink - 200 - text/javascript;+charset=UTF-8 131.7559ms
+[7/13/2024 1:17:46 AM] DEBUG Config reload token fired. Checking for changes...
+[7/13/2024 1:18:05 AM] DEBUG An 'IServiceProvider' was created for internal use by Entity Framework.
+[7/13/2024 1:18:05 AM] DEBUG The index {'UserId'} was not created on entity type 'IdentityUserRole<string>' as the properties are already covered by the index {'UserId', 'RoleId'}.
+[7/13/2024 1:18:05 AM] DEBUG The index {'UserId'} was not created on entity type 'IdentityUserToken<string>' as the properties are already covered by the index {'UserId', 'LoginProvider', 'Name'}.
+[7/13/2024 1:18:05 AM] DEBUG The property 'HelpResponseInfo.HelpInfoId' was created in shadow state because there are no eligible CLR members with a matching name.
+[7/13/2024 1:18:05 AM] DEBUG Entity Framework Core 8.0.1 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.1' with options: None
+[7/13/2024 1:18:05 AM] DEBUG Creating DbConnection.
+[7/13/2024 1:18:05 AM] DEBUG Created DbConnection. (35ms).
+[7/13/2024 1:18:05 AM] DEBUG Migrating using database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Opening connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Opened connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Creating DbCommand for 'ExecuteNonQuery'.
+[7/13/2024 1:18:05 AM] DEBUG Created DbCommand for 'ExecuteNonQuery' (5ms).
+[7/13/2024 1:18:05 AM] DEBUG Initialized DbCommand for 'ExecuteNonQuery' (9ms).
+[7/13/2024 1:18:05 AM] DEBUG Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT 1
+[7/13/2024 1:18:05 AM] INFO Executed DbCommand (26ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT 1
+[7/13/2024 1:18:05 AM] DEBUG Closing connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Closed connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' (5ms).
+[7/13/2024 1:18:05 AM] DEBUG Creating DbCommand for 'ExecuteScalar'.
+[7/13/2024 1:18:05 AM] DEBUG Created DbCommand for 'ExecuteScalar' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Initialized DbCommand for 'ExecuteScalar' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Opening connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Opened connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+[7/13/2024 1:18:05 AM] INFO Executed DbCommand (15ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+[7/13/2024 1:18:05 AM] DEBUG Closing connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Closed connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Opening connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Opened connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Creating DbCommand for 'ExecuteNonQuery'.
+[7/13/2024 1:18:05 AM] DEBUG Created DbCommand for 'ExecuteNonQuery' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Initialized DbCommand for 'ExecuteNonQuery' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT 1
+[7/13/2024 1:18:05 AM] INFO Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT 1
+[7/13/2024 1:18:05 AM] DEBUG Closing connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Closed connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' (3ms).
+[7/13/2024 1:18:05 AM] DEBUG Creating DbCommand for 'ExecuteScalar'.
+[7/13/2024 1:18:05 AM] DEBUG Created DbCommand for 'ExecuteScalar' (1ms).
+[7/13/2024 1:18:05 AM] DEBUG Initialized DbCommand for 'ExecuteScalar' (1ms).
+[7/13/2024 1:18:05 AM] DEBUG Opening connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Opened connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+[7/13/2024 1:18:05 AM] INFO Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+[7/13/2024 1:18:05 AM] DEBUG Closing connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Closed connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Opening connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Opened connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Creating DbCommand for 'ExecuteReader'.
+[7/13/2024 1:18:05 AM] DEBUG Created DbCommand for 'ExecuteReader' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Initialized DbCommand for 'ExecuteReader' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+[7/13/2024 1:18:05 AM] INFO Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+[7/13/2024 1:18:05 AM] DEBUG Closing data reader to 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG A data reader for 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' is being disposed after spending 3ms reading results.
+[7/13/2024 1:18:05 AM] DEBUG Closing connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Closed connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' (5ms).
+[7/13/2024 1:18:05 AM] INFO No migrations were applied. The database is already up to date.
+[7/13/2024 1:18:05 AM] INFO User profile is available. Using 'C:\Users\asand\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[7/13/2024 1:18:05 AM] DEBUG Entity Framework Core 8.0.1 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.1' with options: None
+[7/13/2024 1:18:05 AM] DEBUG Creating DbConnection.
+[7/13/2024 1:18:05 AM] DEBUG Created DbConnection. (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Migrating using database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Opening connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Opened connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Creating DbCommand for 'ExecuteNonQuery'.
+[7/13/2024 1:18:05 AM] DEBUG Created DbCommand for 'ExecuteNonQuery' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Initialized DbCommand for 'ExecuteNonQuery' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT 1
+[7/13/2024 1:18:05 AM] INFO Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT 1
+[7/13/2024 1:18:05 AM] DEBUG Closing connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Closed connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Creating DbCommand for 'ExecuteScalar'.
+[7/13/2024 1:18:05 AM] DEBUG Created DbCommand for 'ExecuteScalar' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Initialized DbCommand for 'ExecuteScalar' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Opening connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Opened connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+[7/13/2024 1:18:05 AM] INFO Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+[7/13/2024 1:18:05 AM] DEBUG Closing connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Closed connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Opening connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Opened connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Creating DbCommand for 'ExecuteNonQuery'.
+[7/13/2024 1:18:05 AM] DEBUG Created DbCommand for 'ExecuteNonQuery' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Initialized DbCommand for 'ExecuteNonQuery' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT 1
+[7/13/2024 1:18:05 AM] INFO Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT 1
+[7/13/2024 1:18:05 AM] DEBUG Closing connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Closed connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Creating DbCommand for 'ExecuteScalar'.
+[7/13/2024 1:18:05 AM] DEBUG Created DbCommand for 'ExecuteScalar' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Initialized DbCommand for 'ExecuteScalar' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Opening connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Opened connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+[7/13/2024 1:18:05 AM] INFO Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+[7/13/2024 1:18:05 AM] DEBUG Closing connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Closed connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Opening connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Opened connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Creating DbCommand for 'ExecuteReader'.
+[7/13/2024 1:18:05 AM] DEBUG Created DbCommand for 'ExecuteReader' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Initialized DbCommand for 'ExecuteReader' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+[7/13/2024 1:18:05 AM] INFO Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+[7/13/2024 1:18:05 AM] DEBUG Closing data reader to 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG A data reader for 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' is being disposed after spending 0ms reading results.
+[7/13/2024 1:18:05 AM] DEBUG Closing connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Closed connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' (0ms).
+[7/13/2024 1:18:05 AM] INFO No migrations were applied. The database is already up to date.
+[7/13/2024 1:18:05 AM] DEBUG Compiling query expression: 
+'DbSet<IdentityRole>()
+    .Any()'
+[7/13/2024 1:18:05 AM] DEBUG Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<bool>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> 0
+        SELECT EXISTS (
+            SELECT 1
+            FROM AspNetRoles AS a)), 
+    null, 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, bool>, 
+    NexusConnectCRM.Data.ApplicationDbContext, 
+    False, 
+    False, 
+    True
+)
+    .Single()'
+[7/13/2024 1:18:05 AM] DEBUG Opening connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Opened connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Creating DbCommand for 'ExecuteReader'.
+[7/13/2024 1:18:05 AM] DEBUG Created DbCommand for 'ExecuteReader' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Initialized DbCommand for 'ExecuteReader' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AspNetRoles] AS [a]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+[7/13/2024 1:18:05 AM] INFO Executed DbCommand (7ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AspNetRoles] AS [a]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+[7/13/2024 1:18:05 AM] DEBUG Closing data reader to 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG A data reader for 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' is being disposed after spending 2ms reading results.
+[7/13/2024 1:18:05 AM] DEBUG Closing connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Closed connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Compiling query expression: 
+'DbSet<ApplicationUser>()
+    .Any()'
+[7/13/2024 1:18:05 AM] DEBUG Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<bool>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> 0
+        SELECT EXISTS (
+            SELECT 1
+            FROM AspNetUsers AS a)), 
+    null, 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, bool>, 
+    NexusConnectCRM.Data.ApplicationDbContext, 
+    False, 
+    False, 
+    True
+)
+    .Single()'
+[7/13/2024 1:18:05 AM] DEBUG Opening connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Opened connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Creating DbCommand for 'ExecuteReader'.
+[7/13/2024 1:18:05 AM] DEBUG Created DbCommand for 'ExecuteReader' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Initialized DbCommand for 'ExecuteReader' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AspNetUsers] AS [a]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+[7/13/2024 1:18:05 AM] INFO Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AspNetUsers] AS [a]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+[7/13/2024 1:18:05 AM] DEBUG Closing data reader to 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG A data reader for 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' is being disposed after spending 0ms reading results.
+[7/13/2024 1:18:05 AM] DEBUG Closing connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Closed connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Compiling query expression: 
+'DbSet<CompanyInfo>()
+    .Any()'
+[7/13/2024 1:18:05 AM] DEBUG Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<bool>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> 0
+        SELECT EXISTS (
+            SELECT 1
+            FROM Companies AS c)), 
+    null, 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, bool>, 
+    NexusConnectCRM.Data.ApplicationDbContext, 
+    False, 
+    False, 
+    True
+)
+    .Single()'
+[7/13/2024 1:18:05 AM] DEBUG Opening connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Opened connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Creating DbCommand for 'ExecuteReader'.
+[7/13/2024 1:18:05 AM] DEBUG Created DbCommand for 'ExecuteReader' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Initialized DbCommand for 'ExecuteReader' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Companies] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+[7/13/2024 1:18:05 AM] INFO Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Companies] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+[7/13/2024 1:18:05 AM] DEBUG Closing data reader to 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG A data reader for 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' is being disposed after spending 0ms reading results.
+[7/13/2024 1:18:05 AM] DEBUG Closing connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Closed connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Compiling query expression: 
+'DbSet<ProspectInfo>()
+    .Any()'
+[7/13/2024 1:18:05 AM] DEBUG Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<bool>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> 0
+        SELECT EXISTS (
+            SELECT 1
+            FROM Prospects AS p)), 
+    null, 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, bool>, 
+    NexusConnectCRM.Data.ApplicationDbContext, 
+    False, 
+    False, 
+    True
+)
+    .Single()'
+[7/13/2024 1:18:05 AM] DEBUG Opening connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Opened connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Creating DbCommand for 'ExecuteReader'.
+[7/13/2024 1:18:05 AM] DEBUG Created DbCommand for 'ExecuteReader' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Initialized DbCommand for 'ExecuteReader' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Prospects] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+[7/13/2024 1:18:05 AM] INFO Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Prospects] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+[7/13/2024 1:18:05 AM] DEBUG Closing data reader to 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG A data reader for 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' is being disposed after spending 0ms reading results.
+[7/13/2024 1:18:05 AM] DEBUG Closing connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Closed connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Compiling query expression: 
+'DbSet<CustomerInfo>()
+    .Any()'
+[7/13/2024 1:18:05 AM] DEBUG Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<bool>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> 0
+        SELECT EXISTS (
+            SELECT 1
+            FROM Customers AS c)), 
+    null, 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, bool>, 
+    NexusConnectCRM.Data.ApplicationDbContext, 
+    False, 
+    False, 
+    True
+)
+    .Single()'
+[7/13/2024 1:18:05 AM] DEBUG Opening connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Opened connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Creating DbCommand for 'ExecuteReader'.
+[7/13/2024 1:18:05 AM] DEBUG Created DbCommand for 'ExecuteReader' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Initialized DbCommand for 'ExecuteReader' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Customers] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+[7/13/2024 1:18:05 AM] INFO Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Customers] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+[7/13/2024 1:18:05 AM] DEBUG Closing data reader to 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG A data reader for 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' is being disposed after spending 1ms reading results.
+[7/13/2024 1:18:05 AM] DEBUG Closing connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Closed connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' (1ms).
+[7/13/2024 1:18:05 AM] DEBUG Compiling query expression: 
+'DbSet<ApplicationUser>()
+    .Where(u => u.Email == "asanderson1994s@gmail.com")
+    .FirstOrDefault()'
+[7/13/2024 1:18:05 AM] DEBUG Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<ApplicationUser>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: ApplicationUser.Id (string) Required PK AfterSave:Throw, 0], [Property: ApplicationUser.AccessFailedCount (int) Required, 1], [Property: ApplicationUser.ConcurrencyStamp (string) Concurrency, 2], [Property: ApplicationUser.DateOfBirth (DateTime) Required, 3], [Property: ApplicationUser.Email (string) MaxLength(256), 4], [Property: ApplicationUser.EmailConfirmed (bool) Required, 5], [Property: ApplicationUser.FirstName (string), 6], [Property: ApplicationUser.IsOnline (bool) Required, 7], [Property: ApplicationUser.LastName (string), 8], [Property: ApplicationUser.LockoutEnabled (bool) Required, 9], [Property: ApplicationUser.LockoutEnd (DateTimeOffset?), 10], [Property: ApplicationUser.NormalizedEmail (string) Index MaxLength(256), 11], [Property: ApplicationUser.NormalizedUserName (string) Index MaxLength(256), 12], [Property: ApplicationUser.PasswordHash (string), 13], [Property: ApplicationUser.PhoneNumber (string), 14], [Property: ApplicationUser.PhoneNumberConfirmed (bool) Required, 15], [Property: ApplicationUser.Roles (string), 16], [Property: ApplicationUser.SecurityStamp (string), 17], [Property: ApplicationUser.TwoFactorEnabled (bool) Required, 18], [Property: ApplicationUser.UserName (string) MaxLength(256), 19] }
+        SELECT TOP(1) a.Id, a.AccessFailedCount, a.ConcurrencyStamp, a.DateOfBirth, a.Email, a.EmailConfirmed, a.FirstName, a.IsOnline, a.LastName, a.LockoutEnabled, a.LockoutEnd, a.NormalizedEmail, a.NormalizedUserName, a.PasswordHash, a.PhoneNumber, a.PhoneNumberConfirmed, a.Roles, a.SecurityStamp, a.TwoFactorEnabled, a.UserName
+        FROM AspNetUsers AS a
+        WHERE a.Email == N'asanderson1994s@gmail.com'), 
+    null, 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, ApplicationUser>, 
+    NexusConnectCRM.Data.ApplicationDbContext, 
+    False, 
+    False, 
+    True
+)
+    .SingleOrDefault()'
+[7/13/2024 1:18:05 AM] DEBUG Opening connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Opened connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Creating DbCommand for 'ExecuteReader'.
+[7/13/2024 1:18:05 AM] DEBUG Created DbCommand for 'ExecuteReader' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Initialized DbCommand for 'ExecuteReader' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsOnline], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[Roles], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = N'asanderson1994s@gmail.com'
+[7/13/2024 1:18:05 AM] INFO Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsOnline], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[Roles], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = N'asanderson1994s@gmail.com'
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'ApplicationUser' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Closing data reader to 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG A data reader for 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' is being disposed after spending 82ms reading results.
+[7/13/2024 1:18:05 AM] DEBUG Closing connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Closed connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Compiling query expression: 
+'DbSet<ApplicationUser>()
+    .Where(u => u.Email == "b.johnson@gmail.com")
+    .FirstOrDefault()'
+[7/13/2024 1:18:05 AM] DEBUG Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<ApplicationUser>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: ApplicationUser.Id (string) Required PK AfterSave:Throw, 0], [Property: ApplicationUser.AccessFailedCount (int) Required, 1], [Property: ApplicationUser.ConcurrencyStamp (string) Concurrency, 2], [Property: ApplicationUser.DateOfBirth (DateTime) Required, 3], [Property: ApplicationUser.Email (string) MaxLength(256), 4], [Property: ApplicationUser.EmailConfirmed (bool) Required, 5], [Property: ApplicationUser.FirstName (string), 6], [Property: ApplicationUser.IsOnline (bool) Required, 7], [Property: ApplicationUser.LastName (string), 8], [Property: ApplicationUser.LockoutEnabled (bool) Required, 9], [Property: ApplicationUser.LockoutEnd (DateTimeOffset?), 10], [Property: ApplicationUser.NormalizedEmail (string) Index MaxLength(256), 11], [Property: ApplicationUser.NormalizedUserName (string) Index MaxLength(256), 12], [Property: ApplicationUser.PasswordHash (string), 13], [Property: ApplicationUser.PhoneNumber (string), 14], [Property: ApplicationUser.PhoneNumberConfirmed (bool) Required, 15], [Property: ApplicationUser.Roles (string), 16], [Property: ApplicationUser.SecurityStamp (string), 17], [Property: ApplicationUser.TwoFactorEnabled (bool) Required, 18], [Property: ApplicationUser.UserName (string) MaxLength(256), 19] }
+        SELECT TOP(1) a.Id, a.AccessFailedCount, a.ConcurrencyStamp, a.DateOfBirth, a.Email, a.EmailConfirmed, a.FirstName, a.IsOnline, a.LastName, a.LockoutEnabled, a.LockoutEnd, a.NormalizedEmail, a.NormalizedUserName, a.PasswordHash, a.PhoneNumber, a.PhoneNumberConfirmed, a.Roles, a.SecurityStamp, a.TwoFactorEnabled, a.UserName
+        FROM AspNetUsers AS a
+        WHERE a.Email == N'b.johnson@gmail.com'), 
+    null, 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, ApplicationUser>, 
+    NexusConnectCRM.Data.ApplicationDbContext, 
+    False, 
+    False, 
+    True
+)
+    .SingleOrDefault()'
+[7/13/2024 1:18:05 AM] DEBUG Opening connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Opened connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Creating DbCommand for 'ExecuteReader'.
+[7/13/2024 1:18:05 AM] DEBUG Created DbCommand for 'ExecuteReader' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Initialized DbCommand for 'ExecuteReader' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsOnline], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[Roles], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = N'b.johnson@gmail.com'
+[7/13/2024 1:18:05 AM] INFO Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsOnline], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[Roles], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = N'b.johnson@gmail.com'
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'ApplicationUser' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Closing data reader to 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG A data reader for 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' is being disposed after spending 0ms reading results.
+[7/13/2024 1:18:05 AM] DEBUG Closing connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Closed connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Compiling query expression: 
+'DbSet<HelpInfo>()
+    .Any()'
+[7/13/2024 1:18:05 AM] DEBUG Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<bool>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> 0
+        SELECT EXISTS (
+            SELECT 1
+            FROM Help AS h)), 
+    null, 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, bool>, 
+    NexusConnectCRM.Data.ApplicationDbContext, 
+    False, 
+    False, 
+    True
+)
+    .Single()'
+[7/13/2024 1:18:05 AM] DEBUG Opening connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Opened connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Creating DbCommand for 'ExecuteReader'.
+[7/13/2024 1:18:05 AM] DEBUG Created DbCommand for 'ExecuteReader' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Initialized DbCommand for 'ExecuteReader' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Help] AS [h]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+[7/13/2024 1:18:05 AM] INFO Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Help] AS [h]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+[7/13/2024 1:18:05 AM] DEBUG Closing data reader to 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG A data reader for 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' is being disposed after spending 0ms reading results.
+[7/13/2024 1:18:05 AM] DEBUG Closing connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Closed connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Opening connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Opened connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Creating DbCommand for 'ExecuteReader'.
+[7/13/2024 1:18:05 AM] DEBUG Created DbCommand for 'ExecuteReader' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Initialized DbCommand for 'ExecuteReader' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsOnline], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[Roles], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = N'b.johnson@gmail.com'
+[7/13/2024 1:18:05 AM] INFO Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsOnline], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[Roles], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = N'b.johnson@gmail.com'
+[7/13/2024 1:18:05 AM] DEBUG Closing data reader to 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG A data reader for 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' is being disposed after spending 0ms reading results.
+[7/13/2024 1:18:05 AM] DEBUG Closing connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Closed connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Compiling query expression: 
+'DbSet<ProspectInfo>()
+    .Where(p => p.UserId == __testAccountUserId2_0)
+    .Select(p => p.FirstName + " " + p.LastName)
+    .FirstOrDefault()'
+[7/13/2024 1:18:05 AM] DEBUG Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<string>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> 0
+        SELECT TOP(1) (p.FirstName + N' ') + p.LastName
+        FROM Prospects AS p
+        WHERE p.UserId == @__testAccountUserId2_0), 
+    null, 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, string>, 
+    NexusConnectCRM.Data.ApplicationDbContext, 
+    False, 
+    False, 
+    True
+)
+    .SingleOrDefault()'
+[7/13/2024 1:18:05 AM] DEBUG Opening connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Opened connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Creating DbCommand for 'ExecuteReader'.
+[7/13/2024 1:18:05 AM] DEBUG Created DbCommand for 'ExecuteReader' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG Initialized DbCommand for 'ExecuteReader' (3ms).
+[7/13/2024 1:18:05 AM] DEBUG Executing DbCommand [Parameters=[@__testAccountUserId2_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) COALESCE([p].[FirstName], N'') + N' ' + COALESCE([p].[LastName], N'')
+FROM [Prospects] AS [p]
+WHERE [p].[UserId] = @__testAccountUserId2_0
+[7/13/2024 1:18:05 AM] INFO Executed DbCommand (26ms) [Parameters=[@__testAccountUserId2_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) COALESCE([p].[FirstName], N'') + N' ' + COALESCE([p].[LastName], N'')
+FROM [Prospects] AS [p]
+WHERE [p].[UserId] = @__testAccountUserId2_0
+[7/13/2024 1:18:05 AM] DEBUG Closing data reader to 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG A data reader for 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' is being disposed after spending 1ms reading results.
+[7/13/2024 1:18:05 AM] DEBUG Closing connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb'.
+[7/13/2024 1:18:05 AM] DEBUG Closed connection to database 'NexusConnectCRM' on server '(localdb)\mssqllocaldb' (0ms).
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG Context 'ApplicationDbContext' started tracking 'HelpInfo' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+[7/13/2024 1:18:05 AM] DEBUG 'ApplicationDbContext' generated a temporary value for the property 'HelpInfo.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.

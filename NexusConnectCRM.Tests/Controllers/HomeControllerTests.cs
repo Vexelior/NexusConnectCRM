@@ -30,9 +30,9 @@ namespace NexusConnectCRM.Tests.Controllers
         }
 
         [Test]
-        public async Task Index_ReturnsAViewResult()
+        public void Index_ReturnsAViewResult()
         {
-            var result = await _controller.Index();
+            var result = _controller.Index();
 
             Assert.That(result, Is.InstanceOf<ViewResult>());
         }
